@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>dirsearch | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="# 简单介绍 dirsearch 是一个基于 python 的命令行工具，旨在暴力扫描页面结构，包括网页中的目录和文件。 当对目标网站渗透测试时，第一步应该是找到易受攻击网站的隐藏目录。 这些隐藏的 Web 目录非常重要，因为它们可以提供一些非常有用的信息，即在面向公众的网站上看不到的潜在攻击媒介。 比较快捷的攻击方法之一就是采用暴力猜解网站目录及结构，其中包括网站中的目录、备份文件、编辑器、后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dirsearch">
+<meta property="og:url" content="https://my011215.github.io/2022/10/17/tool/dirsearch/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="# 简单介绍 dirsearch 是一个基于 python 的命令行工具，旨在暴力扫描页面结构，包括网页中的目录和文件。 当对目标网站渗透测试时，第一步应该是找到易受攻击网站的隐藏目录。 这些隐藏的 Web 目录非常重要，因为它们可以提供一些非常有用的信息，即在面向公众的网站上看不到的潜在攻击媒介。 比较快捷的攻击方法之一就是采用暴力猜解网站目录及结构，其中包括网站中的目录、备份文件、编辑器、后台">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-17T03:29:30.000Z">
+<meta property="article:modified_time" content="2022-10-31T05:49:51.977Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tool/dirsearch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/10/17/tool/dirsearch/" class="article-date">
+  <time datetime="2022-10-17T03:29:30.000Z" itemprop="datePublished">2022-10-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      dirsearch
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="简单介绍"> 简单介绍</span></h2>
+<p>dirsearch 是一个基于 python 的命令行工具，旨在暴力扫描页面结构，包括网页中的目录和文件。<br>
+当对目标网站渗透测试时，第一步应该是找到易受攻击网站的隐藏目录。<br>
+这些隐藏的 Web 目录非常重要，因为它们可以提供一些非常有用的信息，即在面向公众的网站上看不到的潜在攻击媒介。<br>
+比较快捷的攻击方法之一就是采用暴力猜解网站目录及结构，其中包括网站中的目录、备份文件、编辑器、后台等敏感目录，为此，需须选择一个功能强大的工具。</p>
+<span id="more"></span>    
+<h2><span id="下载和安装"> 下载和安装</span></h2>
+<p>参考 <a target="_blank" rel="noopener" href="http://t.csdn.cn/51odN">http://t.csdn.cn/51odN</a><br>
+ 下载地址：<br>
+<a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsearch">https://github.com/maurosoria/dirsearch</a><br>
+ 将解压后的文件放入 python 文件夹下<br>
+ cmd 进入 dirsearch 目录<br>
+ python <a target="_blank" rel="noopener" href="http://setup.py">setup.py</a> install</p>
+<h2><span id="使用"> 使用</span></h2>
+<ul>
+<li>状态码<br>
+参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/starof/p/5035119.html">https://www.cnblogs.com/starof/p/5035119.html</a><br>
+200 (成功) 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页</li>
+</ul>
+<h3><span id="参数"> 参数</span></h3>
+<ul>
+<li>-u  指定需要扫描 URL<br>
+ 响应状态 200 敏感目录</li>
+<li>-e   指定需要扫描的文件名<br>
+例如：-e php  如果不知道即所有 -e *</li>
+<li>-x  排除不需要的状态码<br>
+不需要显示响应状态码为 403 响应<br>
+ python <a target="_blank" rel="noopener" href="http://dirsearch.py">dirsearch.py</a> -u  <a target="_blank" rel="noopener" href="http://192.168.3.112:81/dvwa/">http://192.168.3.112:81/dvwa/</a>  -e php  -x  403<br>
+ 排除多个响应状态码：-x 403,302,301</li>
+<li>-t 指定线程数<br>
+在备份文件没扫出来想要的时候，可以放低线程数量考虑一下</li>
+<li>-r  使用递归进行扫描爆破<br>
+速度会很慢</li>
+<li>-R<br>
+ 递归深度</li>
+</ul>
+<h3><span id="扫描封目录解决办法"> 扫描封目录解决办法</span></h3>
+<p>参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/tysec/p/14977430.html">https://www.cnblogs.com/tysec/p/14977430.html</a></p>
+<ol>
+<li>代理 ip<br>
+–proxy 来指定代理包括：<br>
+–proxy 127.0.0.1:8080<br>
+–proxy socks5://10.10.0.1:8080<br>
+–proxylist proxyservers.txt</li>
+<li>线程放低<br>
+ - t 指定线程数 -t 20<br>
+–max-rate 来指定每秒最大请求数<br>
+ - s 来指定请求间的延迟</li>
+<li>去除敏感的文件探测 （zip sql 后缀啥的）只做普通文件的探测（html php 后缀啥的）<br>
+-e 即可指定后缀 -e php,html,js</li>
+<li>随机 UA XFF 等请求头<br>
+–random-agent 可以随机一个 User-agent 对每一个请求</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/10/17/tool/dirsearch/" data-id="clbelq673000saotn4rg2bam9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/25/vulnerability/Unicode%E6%AC%BA%E9%AA%97%E6%94%BB%E5%87%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Unicode欺骗攻击
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/08/vulnerability/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">文件包含漏洞</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/08/Blockchain/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/">中南民族VPN登录框</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/01/interview/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件上传漏洞面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/30/vulnerability/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">登陆界面逻辑漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>

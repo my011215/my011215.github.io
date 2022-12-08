@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>降噪耳机 | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="# 准备 从噪音污染的例子引入话题，引入降噪，简单讲述降噪的历史发展 物理原理简单了解  (图理结合)  降噪类型 (图理结合)  涉及计算机领域的知识 降噪耳机对我们生活影响 (健康、价格、使用范围、优缺点、目前发展趋势)  qq 视频，软件实现降噪？ 大家 (知乎、各论坛、各种研究学者) 对降噪耳机的看法，我的看法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="降噪耳机">
+<meta property="og:url" content="https://my011215.github.io/2021/07/18/others/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="# 准备 从噪音污染的例子引入话题，引入降噪，简单讲述降噪的历史发展 物理原理简单了解  (图理结合)  降噪类型 (图理结合)  涉及计算机领域的知识 降噪耳机对我们生活影响 (健康、价格、使用范围、优缺点、目前发展趋势)  qq 视频，软件实现降噪？ 大家 (知乎、各论坛、各种研究学者) 对降噪耳机的看法，我的看法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-9843298321f819a15a978070d1d8ab48_hd.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-9843298321f819a15a978070d1d8ab48_720w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-e745ff59e343ae704581d4c83e3d3e3a_hd.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-e745ff59e343ae704581d4c83e3d3e3a_720w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-bf1c89e5e4c7ccc082672722c3190d3f_hd.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-bf1c89e5e4c7ccc082672722c3190d3f_720w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-60c73c6d1120af56587797b587881ef3_720w.jpg">
+<meta property="og:image" content="https://www.techteller.com/wp-content/uploads/2020/08/%E7%88%86%E6%AC%BE%E5%9C%969.jpg">
+<meta property="og:image" content="https://www.techteller.com/wp-content/uploads/2020/05/2017-VP-Medium__43784.1509029289.500.750-1.png">
+<meta property="og:image" content="https://www.techteller.com/wp-content/uploads/2020/05/spinfit-tips_850x-1.png">
+<meta property="og:image" content="https://www.techteller.com/wp-content/uploads/2020/05/Earplug_14-694x462-2.jpg">
+<meta property="og:image" content="http://pic.hifidiy.net/www/2013/03/14/01_87.jpg">
+<meta property="og:image" content="http://pic.hifidiy.net/www/2013/03/14/01_88.jpg">
+<meta property="og:image" content="http://pic.hifidiy.net/www/2013/03/14/01_89.jpg">
+<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/images/20180427/fbb9f0c8e15b44df9fab9ca11259888d.jpeg">
+<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/images/20180427/c0f9b504aa3a495991e00b3d9cca49b4.jpeg">
+<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/images/20180427/327c77c307594018b461504a4aa56a12.jpeg">
+<meta property="og:image" content="http://www.zowee.com.cn/upload/image/20200724/20200724152137_1134.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-cc1e9ffad4c0d9b4b557eb0684393ef0_720w.jpg">
+<meta property="og:image" content="https://segmentfault.com/img/remote/1460000021721653">
+<meta property="article:published_time" content="2021-07-18T13:56:39.000Z">
+<meta property="article:modified_time" content="2022-08-16T13:57:08.150Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/50/v2-9843298321f819a15a978070d1d8ab48_hd.jpg?source=1940ef5c">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-others/降噪耳机" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/18/others/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/" class="article-date">
+  <time datetime="2021-07-18T13:56:39.000Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      降噪耳机
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="准备"> 准备</span></h2>
+<p>从噪音污染的例子引入话题，引入降噪，简单讲述降噪的历史发展<br>
+物理原理简单了解  (图理结合)<br>
+ 降噪类型 (图理结合)<br>
+ 涉及计算机领域的知识<br>
+降噪耳机对我们生活影响 (健康、价格、使用范围、优缺点、目前发展趋势)<br>
+ qq 视频，软件实现降噪？<br>
+大家 (知乎、各论坛、各种研究学者) 对降噪耳机的看法，我的看法</p>
+<span id="more"></span>  
+<h2><span id="噪音污染"> 噪音污染</span></h2>
+<p>噪音的来源非常多，飞机或汽机车等交通工具、工厂、工地、日常生活都会产生噪音，因此噪音可以说是无处不在。噪音被归类为环境污染之一，在法律上被政府具体量化噪音标准。</p>
+<p>自工业革命开始，地球上的环境噪音不断在增加，噪音不只会干扰交谈及生活更会衍生出健康与安全问题，因此才会有 ANC 主动降噪的需求，进而有科学家研究理论及研发降噪功能。</p>
+<h2><span id="发展过程"> 发展过程</span></h2>
+<p>1936 年，德国物理学家卢埃格提出了主动降噪的概念，还申请了专利，但是欧洲专利有效期只有 20 年，所以还没有等到用主动降噪专利赚钱，专利期就到了，这也没什么，就像电脑技术，1946 年就在美国宾夕法尼亚大学问世，但是真正的商用也是 1971 年。</p>
+<p>小故事：1978 年，一个男人在欧洲飞往波士顿的飞机上，本来想听一点音乐，但是飞机引擎的噪音破坏了雅兴，因此下飞机后直奔麻省的公司，开始推导演算，写出了主动降噪耳机最原始的方程式，后来他调集核心研发团队，开启了降噪科技的研究，这个男人就是 Bose 的创始人，Amar G. Bose 博士。</p>
+<p>经过 11 年的研发 1989 年，首款商用 Bose 降噪耳机才诞生，这只是商用，并不是民用，最早只应用于军事领域，专供飞行员使用，受到了美国军方的追捧。</p>
+<p>直到 2000 年，Bose 具有了稳定的商用市场后，Bose 的工程师开始将主动降噪技术应用到民用耳机，紧接着推出了大名鼎鼎的 QC 降噪耳机系列，把降噪耳机推向了普通大众。</p>
+<p>降噪耳机领域，另一个大厂就是索尼，索尼一直扮演最佳配角，直到 2016 年 8 月，索尼发布了头戴式无线降噪耳机 MDR-1000X，此款产品让索尼与 Bose 一起站上了巅峰</p>
+<h2><span id="物理原理-简单了解不用深入"> 物理原理  (简单了解，不用深入)</span></h2>
+<p>(1) 噪声：频率、强弱变化无规律、杂乱无章的机械波。<br>
+(2) 传播特点：不同频率的声音，会有不同的传播特性，声波在传播过程中都会存在衰减。<br>
+(3) 衰减：<br>
+・扩散衰减<br>
+物体振动发出的声波向四周传播，声波能量逐渐扩散开来。能量的扩散使得单位面积上所存在的能量减小，听到的声音就变得微弱。单位面积上的声波能量随着声源距离的平方而递减。<br>
+・吸收衰减<br>
+声波在固体介质中传播时，由于介质的粘滞性而造成质点之间的内摩擦，从而使一部分声能转变为热能；同时，由于介质的热传导，介质的稠密和稀疏部分之间进行热交换，从而导致声能的损耗，这就是介质的吸收现象。介质的这种衰减称为吸收衰减。通常认为，吸收衰减与声波频率的一次方、频率的平方成正比。<br>
+・散射衰减<br>
+当介质中存在颗粒状结构（如液体中的悬浮粒子、气泡，固体中的颗粒状结构、缺陷、搀杂物等）而导致的声波的衰减称散射衰减。通常认为当颗粒的尺寸远小于波长时，散射衰减与频率的四次方成正比；当颗粒尺寸与波长相近时，散射衰减与频率的平方成正比。<br>
+(4) 总结：<br>
+高频声音易于衰减，低频声音较难衰减。对于高频噪声，通常采用的是物理阻隔的方法，例如采用更多的吸声材料，这也是所谓的被动降噪，而对于低频噪声，吸声材料的作用就有限了，此时主动降噪也就成为了必要手段。而也正是因为对于高低频噪声不同的降噪特性，主动降噪和被动降噪技术被综合地使用很多降噪耳机中。</p>
+<p>(5) 相位：</p>
+<p>佛家里讲 “凡有所相，皆是虚妄”，俗语说 “相由心生”，这都是看得见的表相。</p>
+<p>在物理学中，<strong>相位</strong>的描述是：<strong>周期性运动在各个时刻所处的不同状态</strong>。不光描述机械运动的时候能遇到相位，在机械波、交流电甚至天文学上，这个词使用的也很普遍。这里我们只讲机械运动的相位（为了便于同学理解）。</p>
+<p>在机械振动中，<strong>相位描述的是做机械振动的物体的振动状态</strong>。更多的是拿来对两个振动物体的振动步调进行比较。确切一些说；是拿来对做简谐运动的两个质点的振动步调进行比较。</p>
+<p>譬如，两个相同的单摆，把摆球拉起一定角度。如果摆球 A 和 B 同时释放，我们说它们的相位相同；如果 A 球领先于 B 球释放，我们说 A 球的相位领先（或超前）于 B 球，或者说 B 球的相位落后于 A 球。</p>
+<p>在振动图像上，我们来做个对比，更直观。</p>
+<p><strong>譬如下面这个图：</strong></p>
+<p><img src="https://pic1.zhimg.com/50/v2-9843298321f819a15a978070d1d8ab48_hd.jpg?source=1940ef5c" alt="img"><img src="https://pic1.zhimg.com/80/v2-9843298321f819a15a978070d1d8ab48_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><em>可以看出，A 领先于 B 振动，A 的相位领先 B。</em></p>
+<hr>
+<p><strong>再来看这个图：</strong></p>
+<p><img src="https://pic1.zhimg.com/50/v2-e745ff59e343ae704581d4c83e3d3e3a_hd.jpg?source=1940ef5c" alt="img"><img src="https://pic1.zhimg.com/80/v2-e745ff59e343ae704581d4c83e3d3e3a_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><em>可以看出 A 和 B 同相振动。摆球 A 和摆球 B 在任一时刻位移方向总相同，振动方向也总相同，同时达到正向最大位移，也同时到达负向最大位移。这样的情况叫 A 和 B 同相位振动，简称同相振动。</em></p>
+<hr>
+<p><strong>再来看这个图：</strong></p>
+<p><img src="https://pic3.zhimg.com/50/v2-bf1c89e5e4c7ccc082672722c3190d3f_hd.jpg?source=1940ef5c" alt="img"><img src="https://pic3.zhimg.com/80/v2-bf1c89e5e4c7ccc082672722c3190d3f_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><em>可以看出，A 和 B 反相振动。</em></p>
+<p><em>在任意时刻，A 和 B 的位移方向总相反，振动方向也总相反，A 位于正向最大位移处时 B 位于负向最大位移处，A 位于负向最大位移处时 B 位于正向最大位移处。这样的情况叫 A 和 B 反相位振动，简称反相振动。</em></p>
+<h2><span id="降噪类型-两者分别举例对比讲解"> 降噪类型  (两者分别举例对比讲解)</span></h2>
+<p><img src="https://pic4.zhimg.com/80/v2-60c73c6d1120af56587797b587881ef3_720w.jpg" alt="img"></p>
+<p>(1) 主动降噪 (Active Noice Control)<br>
+・原理<br>
+如果两个声音频率是一样的，振幅也是一样的，但是相位偏偏相反：两个声波处处相反，彼此抵消，声音就被消除了。<br>
+想要产生用于抵消噪声的声波，首先要得到噪声的信息才可以。主动降噪耳机设有反馈麦克风用于采集环境中的噪声信号。这里有一个先后顺序的问题：先采集噪声，但是要与噪声同时产生抵消音才能够降噪。所以处理器会根据噪声进行预测，预测出下一时刻噪声的情况，并产生相应抵消声波。</p>
+<p>为了保证降噪质量，还需要一个反馈麦克风用来检测所合成后的噪声是否真的变小了。这时处理器会根据这个反馈麦克风测量到的结果，对处理过程进行调整从而进一步降低合成后的噪声音量，这叫做自适应过程。<br>
+拾音器（监测环境噪音）→处理芯片（分析噪音曲线）→扬声器（产生反响声波）<br>
+(2) 被动降噪<br>
+被动式降噪耳机利用物理特性将外部噪声与耳朵隔绝开，通过不同材质的阻塞物来防止噪音进入耳朵，就像放鞭炮用手捂着耳朵一样。</p>
+<p>厂商需要精心研究耳塞的材质与形状、腔体的材质与形状等会影响被动降噪效果的各项因素，只要设计平衡就可以获得优秀的降噪效果。<strong>材质大多是塑胶材料</strong>，但<strong>耳机腔体外观就各有不同</strong>了，</p>
+<p>但除了须着重在隔音效果，<strong>穿戴舒适度更是耳机的根本</strong>，因此在形状设计的<strong>人体工学也非常重要</strong>。</p>
+<h3><span id="耳塞差异"> <strong>耳塞差异</strong></span></h3>
+<p><a target="_blank" rel="noopener" href="https://www.techteller.com/wp-content/uploads/2020/08/%E7%88%86%E6%AC%BE%E5%9C%969.jpg"><img src="https://www.techteller.com/wp-content/uploads/2020/08/%E7%88%86%E6%AC%BE%E5%9C%969.jpg" alt="一次看懂抗噪耳机原理－2020年8款ANC主动降噪真无线蓝牙耳机推荐"></a></p>
+<p>耳塞部分不同于耳机材质与形状，是消费者可以自行选择与更换的。常见的有矽胶、海绵、二节 / 三节胶耳塞。海绵与二节 / 三节胶耳塞可以带来最好的被动隔音效果。</p>
+<h4><span id="海绵耳塞"> <strong>海绵耳塞</strong></span></h4>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.techteller.com/wp-content/uploads/2020/05/2017-VP-Medium__43784.1509029289.500.750-1.png"><img src="https://www.techteller.com/wp-content/uploads/2020/05/2017-VP-Medium__43784.1509029289.500.750-1.png" alt="img"></a><em>image source：complyfoam</em></li>
+</ul>
+<p>除了<strong>隔音效果拔群</strong>以外，因为海绵可压缩，能让耳塞<strong>更贴合耳朵</strong>借此带来优秀的舒适感。但海绵耳塞因材质特性<strong>会吸收音乐的高频部分与细节</strong>，<strong>造成音质下滑</strong>。且海绵耳塞<strong>易脏</strong>，每隔一段时间就需要更换，相对其他耳塞属于消耗品。海绵厂商中比较知名的厂商是<strong> Comply</strong>。</p>
+<h4><span id="矽胶耳塞"> <strong>矽胶耳塞</strong></span></h4>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.techteller.com/wp-content/uploads/2020/05/spinfit-tips_850x-1.png"><img src="https://www.techteller.com/wp-content/uploads/2020/05/spinfit-tips_850x-1.png" alt="img"></a><em>image source： Spinfit</em></li>
+</ul>
+<p>矽胶耳塞的隔音效果是最差的，当然这只是相比出来的结果，不代表矽胶耳塞的隔音都很差，只是更<strong>需注意耳塞尺寸避免漏音</strong>。音质在高频与细节部分比海绵耳塞表现好，低频则是较海绵耳塞少。</p>
+<p>矽胶耳塞算是在<strong>音质</strong>、<strong>舒适度</strong>、<strong>隔音</strong>、<strong>耐用度获得良好平衡</strong>的材质，因此被耳机厂商广泛使用为标配耳塞。这几年矽胶耳塞最知名的是<strong> Spinfit</strong>。</p>
+<h4><span id="二节-三节胶耳塞"> <strong>二节 / 三节胶耳塞</strong></span></h4>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.techteller.com/wp-content/uploads/2020/05/Earplug_14-694x462-2.jpg"><img src="https://www.techteller.com/wp-content/uploads/2020/05/Earplug_14-694x462-2.jpg" alt="img"></a><em>image source：unwire</em></li>
+</ul>
+<p>二节 / 三节胶耳塞在<strong>隔音效果</strong>与<strong>音质获得绝佳效果</strong>，综合了海绵与矽胶耳塞的优点，<strong>全频表现都很好</strong>。</p>
+<p>但缺点也非常明显：「<strong>舒适度较差</strong>」，这部分我认为算是影响蛮大的缺点，因为耳塞是会直接接触耳朵，而耳朵又是人体比较敏感的部位，如果戴起来不舒适在体感上很容易被放大。因此 Daniel 认为二 / 三节胶耳塞可以说是种<strong>优劣分明的耳塞</strong>。</p>
+<p>除了上列三种材质的耳塞也有<strong>复合材质耳塞</strong>，像是矽胶与海绵同时使用的耳塞，为的就是想同时获得两种材质的优点。</p>
+<p>耳塞对耳机整体使用的体验影响甚大，在隔音方面其实只要<strong>选择适合自己的尺寸</strong>加上<strong>正确的穿戴耳机</strong>，以矽胶与海绵耳塞来说表现就是在 80 分与 95 分的差别而已，比较后依然听得出差异但都能应付日常生活使用。</p>
+<p>在音质方面则是比较能感受且使用上也确实有差异，海绵耳塞的音质理论上都会被影响，这也是矽胶耳塞非常明显的优势。</p>
+<h4><span id="spinfit-耳塞"> <strong>Spinfit 耳塞</strong></span></h4>
+<p>矽胶耳塞随着技术演进，在隔音方面的表现也越来越优秀。像是 Daniel 平常使用的 Spinfit 矽胶耳塞，除了<strong>舒适</strong>、<strong>听感表现佳</strong>在<strong>隔音方面也非常棒</strong>，耳机无须开大声就可以隔绝掉大多数外界声音。</p>
+<p><strong>选择自己适合及调性的的耳塞</strong>，<strong>是轻松且花费相对低的方法</strong>。因此 Daniel 蛮推荐大家可以多试试几种耳塞，说不定能为你带来意想不到的新感觉。</p>
+<h2><span id="计算机领域技术"> 计算机领域技术</span></h2>
+<p>前馈降噪：接收外部噪音，计算出反相噪声在喇叭里播放，内外抵消。但耳道内还是会有一定残留</p>
+<p>反馈降噪：接收耳道内噪音，计算反相，直接抵消耳道内噪音，并且还能对耳机播放的声音进行反馈并动态调节。但直接反馈效果也不好。</p>
+<p>3、由喇叭发出带有噪音的反向声波的音乐（在播放音乐的同时对外部噪音进行中和处理）。</p>
+<p><img src="http://pic.hifidiy.net/www/2013/03/14/01_87.jpg" alt="img"></p>
+<p>一、前馈式主动降噪设计：如图中所示，前馈式设计是将麦克风与耳机喇叭单元隔离开来（就是将麦克风的声音采集点设计在耳机腔体表面），确保喇叭产生的声波对麦克风的影响最小。这种设计为最直接的噪音采集方式，麦克风采集噪音信号之后，通过传递函数函数 G（w) 处理，通过喇叭发出反向声波，中和噪音。</p>
+<p><img src="http://pic.hifidiy.net/www/2013/03/14/01_88.jpg" alt="img"></p>
+<p>二、反馈式主动降噪设计：如图中所示，反馈式主动降噪将噪音采集麦克风设计在了喇叭附近，相对于前馈式，反馈式所采集到的噪音更接近于人耳所能听到的噪音，但是这种设计的一大缺点就是麦克风无法很好的分辨喇叭发出的声音及噪音的区别，如果音乐当中出现与噪音类似的声音，也会被识别为噪音，被进行处理，这在一定程度上造成了音乐的失真，如何避免这一现象，是体现各个厂商设计实力的所在。</p>
+<p><img src="http://pic.hifidiy.net/www/2013/03/14/01_89.jpg" alt="img"></p>
+<p>三、前馈与反馈结合式：如图中所示，这种方式就是集合以上两种降噪设计，拥有两个麦克风，这种设计除了会增加物料成本以外，对于函数 G（w）的建立也是一个不小的挑战，不过目前市面上已经有不少这类降噪耳机产品。</p>
+<p>总结：虽然笔者上面的介绍较为简洁，但降噪技术可真心没这么简单，想要做好一款真正实用的降噪耳机产品，对很多厂商来说是一件很头疼的问题，这也是为什么市面上你能见到的降噪耳机产品一般较贵的原因之一（销量小也是原因之一)。</p>
+<p>单前馈：</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/images/20180427/fbb9f0c8e15b44df9fab9ca11259888d.jpeg" alt="img"></p>
+<p>单反馈：</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/images/20180427/c0f9b504aa3a495991e00b3d9cca49b4.jpeg" alt="img"></p>
+<p>我们可以把<strong>前馈麦</strong>形象地当作是一个干活差不多就行的凑合星人：比起质量，他更追求速度。听到某个噪声后，他只负责<strong>报告给 PCB</strong>，然后<strong>就去接着监听别的声音了</strong>；</p>
+<p><strong>反馈麦</strong>则完全不同，是一位特别忠于职守、一丝不苟的严谨派。只要是他监听到的噪声，他就想要<strong>负责到底</strong>，<strong>不处理干净声音就不罢休</strong>。</p>
+<p>那么，双麦一起降噪，又是什么样子呢？</p>
+<p>前馈 + 反馈：</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/images/20180427/327c77c307594018b461504a4aa56a12.jpeg" alt="img"></p>
+<p>看到这，相信你脑中也有了大致结论：</p>
+<blockquote>
+<p><strong>前馈降噪频段宽、深度小；</strong></p>
+<p>反馈降噪频段短、深度大；</p>
+<p>1.ANC 降噪（Active Noise Control，主动降噪），</p>
+</blockquote>
+<p>工作原理是通过麦克风收集外部的环境噪音，然后经过系统变换为一个反相的声波加到喇叭端，最终人耳听到的声音是：环境噪音 + 反相的环境噪音，两种噪音叠加从而实现噪音降低。<br>
+拾音器（监测环境噪音）→处理芯片（分析噪音曲线）→扬声器（产生反响声波）→完成降噪</p>
+<p>简单的说，假设出现的噪音为 A，通过外部的拾音器监测到后，那么耳机会瞬间产生 - A 的声音，两者在耳内相互抵消，以此实现降噪的功能。可以说其实你的耳朵已经 “听” 了噪音，但是同时也听到了 “降噪音”，两者在你耳中互相抵消实现降噪。</p>
+<p>主动降噪根据拾音麦克风位置的不同，分为前馈式主动降噪与反馈式主动降噪。</p>
+<p>这么一来，这个耳机需要一段的算法处理时间，先学习噪声，这个学习需要时间，然后再把学习到的噪声相位反转，有一个自适应调整期。</p>
+<p>主动降噪耳机价格昂贵，但是一般效果优秀，佩戴舒适。但是需要<strong>独立电池供电</strong>，大多数被动降噪耳机可以不耗电使用（也不主动降噪）</p>
+<p>2.ENC 降噪 ENC（Environmental Noise Cancellation，环境降噪技术），通过双麦克风阵列，精准计算通话者说话的方位，在保护主方向目标语音的同时，去除环境中的各种干扰噪声。能有效抑制 90% 的反向环境噪声，由此降低环境噪声最高可达 35dB 以上。</p>
+<p>ENC 与 ANC 最明显的区别就在于，ANC 的受益人为使用耳机本人，通过 ANC 的功能，可以让用户自身免受环境噪音干扰；ENC 的受益人则是通话的另一方，通过 ENC 减少环境噪音对通话的影响，让对方听到纯净的语音。ANC 让自身听感环境更加安静，而 ENC 让通话的另一端听感环境更加安静。</p>
+<p>ENC 会使用<strong>双麦克风</strong>，其中<strong>一个负责人声收音</strong>，<strong>另一个负责接收环境声音</strong>，并透过演算法将人声麦克风收到的声音与环境声音重叠的部分消除，这样就可以精准的将环境声音过滤。</p>
+<p>通过双麦克风阵列，精准计算通话者说话的方位，在保护主方向目标语音的同时，去除环境中的各种干扰噪声。</p>
+<p>ENC 全称是 Environmental Noise Cancellation（环境降噪技术）。ENC 包括单麦环境降噪和双麦环境降噪。单麦环境降噪通常以环境噪声为随机平稳加性噪声、且与语音信号不相关为前提估计噪声，然后进行滤波。因此，单麦环境降噪的效果比较差。双麦环境降噪则是通过双麦克风阵列，精准计算通话者说话的方位，在保护目标语音的同时，滤除环境中的各种干扰噪声。其工作原理大致如下：在进行环境噪声滤波模块计算之前，先校正语音麦克风和参考麦克风的增益，以及两个麦克风的时延。然后检测语音麦克风采集到的数据是否为语音段。若为语音段（即上行通话），则根据参考麦克风采集到的环境噪声和语音麦克风的语音数据，预估环境噪声，并计算相应的噪声抑制参数，最终由滤波器模块滤出环境噪声；反之，不进行环境噪声滤除，上行通话输出为静音。ENC 主要降低通话时非目标语音噪声，确保通话清晰。</p>
+<p><img src="http://www.zowee.com.cn/upload/image/20200724/20200724152137_1134.png" alt="img"></p>
+<p>3.DSP 降噪的原理和 ANC 降噪相似。但 DSP 降噪正反向噪音直接在系统内部相互中和抵消。DSP 与 ANC 的区别：（1）混叠的信号类型不同：ANC 混叠声信号，而 DSP 混叠数字电信号。（2）混叠的位置不同：ANC 是在喇叭到耳膜这段空气中，进行声信号的混叠，而 DSP 是在耳机系统内部进行电信号的混叠。</p>
+<p>4.CVC 降噪 CVC（Clear Voice Capture）是通话软件降噪技术。主要针对通话过程中产生的回声。通过全双工麦克风消噪软件，提供通话的回声和环境噪音消除功能，是目前蓝牙通话耳机中最先进的降噪技术。</p>
+<p>cVc 可以说是使用高通晶片蓝牙耳机的独家技术，与 ENC 的概念相同都是透过麦克风收音去辨识分离环境音与人声，算是通话降噪的指标，但偶有听说 CVC 的降噪效果过强造成人声也被消除的状况。</p>
+<p>尽管高通的 cVc 技术较知名，但<strong> ENC 与 cVc 并无优劣之分</strong>，两者都可以为通话带来超过 30 分贝以上的降噪效果，ENC 只要厂商适当调整不会输给 cVc，基本上<strong>有通话降噪技术就可视为通话品质有一定的水准</strong>。</p>
+<p>DSP 技术主要受益方是耳机使用者本人，而 CVC（消除回声）主要使通话的另一方受益。</p>
+<p>这里我总结了一个思维导图给大家。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-cc1e9ffad4c0d9b4b557eb0684393ef0_720w.jpg" alt="img"></p>
+<p><strong>如果说 ANC 让自身听感环境更加安静，那 ENC 则是让通话的另一端听感环境更加安静。而 CVC 可以理解成一种算法或者软件，它主要针对通话过程中的回音，受益人为通话的另一端，ENC 则是针对环境噪声，虽然受益的也是通话的另一端，但是针对的干扰信号不同。DSP 降噪虽然跟 ANC 主动降噪原理类似，但是中和声波的位置是不一样的，这下搞明白了吗？</strong></p>
+<h2><span id="其他"> 其他</span></h2>
+<p>ANC 主动降噪因为发声器（喇叭）需要同时发出声音与抵销外界噪音的反向声波，因此<strong>音质部分势必会受到干扰</strong>。</p>
+<p>多数追求音质的人都会重视器材的「<strong>保真度</strong>」，即声音细节是否能妥善还原，但开启 ANC 主动降噪模式后，喇叭发出的<strong>反向声波就可能造成声音的细节部分被掩盖流失</strong>，这时就会造成耳机音质变差、听起来闷闷的情形。</p>
+<p>除了最常见的麦克风收音外，科技大厂 Huawei 华为在自家真无线蓝牙耳机 Freebuds 3 上使用了「<strong>骨声纹</strong>」感应装置，技术类似骨传导耳机的发声方式只是变为收音，借此来强化人声收音，算是非常特别的技术。</p>
+<p>大家好，我是来自腾讯多媒体实验室的李松南，本次分享将为大家介绍传统降噪和深度学习降噪方法，以及降噪技术未来的发展趋势。腾讯多媒体实验室专注于多媒体技术领域的前沿技术探索、研发、应用和落地，在长期积累中精心打造出三大核心能力，分别是：音视频编解码、网络传输和实时通信；多媒体内容处理、分析、理解和质量评估；沉浸式媒体系统设计和端到端解决方案。本次分享中的内容就属于多媒体内容处理的一部分。</p>
+<p><img src="https://segmentfault.com/img/remote/1460000021721653" alt="图像视频降噪的现在与未来——从经典方法到深度学习"></p>
+<p>上图是腾讯多媒体实验室常年积累起来的视频处理能力，包括视频降噪、去压缩失真、视频去抖动、夜景增强、视频超分、视频锐化等，这些能力已经应用于腾讯的许多产品，比如腾讯云、全民 K 歌、企鹅电竞、微视、QQ 空间等。目前团队正在向腾讯云推出画质修复功能，已经开发和计划开发的技术，包括视频超分、去伪影、去抖动、去划痕与雪花、插帧、HDR，还有下面主要介绍的视频降噪技术。</p>
+<p>图像、视频从采集到播放的整个生命周期中会经历各种各样的处理过程，比如采集、剪辑、编码、转码、传输、显示等，每个处理过程都会引入失真。“噪声” 就是在信号采集过程中引入的一种普遍失真。降低噪声强度可以使图像主观效果更好。另外，在图像、视频压缩时也不必浪费码率在编码噪声上。同时，会使得视频编码中的运动估计更准确、熵编码速度更快。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2021/07/18/others/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/" data-id="clbelq674000uaotn3naccqoj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/25/others/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          WPS兼容性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/04/01/vulnerability/XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">XSS跨站脚本攻击</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/08/Blockchain/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/">中南民族VPN登录框</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/01/interview/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件上传漏洞面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/30/vulnerability/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">登陆界面逻辑漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>

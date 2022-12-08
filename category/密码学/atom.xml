@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://my011215.github.io</id>
+    <title>blog小窝 • Posts by &#34;密码学&#34; category</title>
+    <link href="https://my011215.github.io" />
+    <updated>2021-03-13T13:44:39.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2021/03/13/cryptology/%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81%E7%9A%84%E5%8D%B1%E5%AE%B3/</id>
+        <title>同一个密码的危害</title>
+        <link rel="alternate" href="https://my011215.github.io/2021/03/13/cryptology/%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81%E7%9A%84%E5%8D%B1%E5%AE%B3/"/>
+        <content type="html">&lt;h2&gt;&lt;span id=&#34;知识储备&#34;&gt; 知识储备&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;密码泄露原因：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;本地泄露&lt;br&gt;
+ 1.1 恶意木马 / 恶意植入 / 键盘监听&lt;br&gt;
+建议：&lt;br&gt;
+不在公共或者潜在安全的设备上进行密码操作&lt;br&gt;
+不安装未知来源的盗版软件&lt;br&gt;
+ 1.2 伪造&lt;br&gt;
+有人开发一款和官方软件一模一样的 App，或者抢先占用 alipay:// 这个协议的 URL_Scheme&lt;br&gt;
+ 建议：&lt;br&gt;
+从可信的源下载安装软件&lt;/li&gt;
+&lt;li&gt;传输过程泄露&lt;br&gt;
+在一个不可靠的网络环境下，黑客可以使用 Wireshark 这样的工具包拦截请求包，直接可以看到密码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;p&gt;建议：&lt;br&gt;
+不适用不可信的 WiFi 网络，特别是公共场合陌生、免费的 WiFi&lt;br&gt;
+ 非加密传输&lt;br&gt;
+ http/https 协议，后者传输过程是加密的，如果有人拦截了数据请求包，也无法获知传输的是什么内容&lt;br&gt;
+建议：&lt;br&gt;
+尽量使用 SSl 加密&lt;br&gt;
+保持浏览器在最新版本&lt;br&gt;
+检查网络证书是否可信&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务端泄露&lt;br&gt;
+建议：&lt;br&gt;
+密码位数不宜过短过简单&lt;br&gt;
+密码采用数字 + 大小写 + 特殊符号组成&lt;br&gt;
+设置有自己规律的密码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span id=&#34;攻击方法&#34;&gt; 攻击方法&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;木马、键盘记录、钓鱼、（拖库、洗库、撞库）&lt;/li&gt;
+&lt;li&gt;恶意木马 / 恶意植入 / 键盘监听 / 伪造 / 不可信的 WiFi 网络 / 网络证书不可信 / 密码位数过短过简单 /&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;防御以及缓解措施&#34;&gt; 防御以及缓解措施&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://xn--haveibeenpwned-4x97a.com/%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E6%98%AF%E5%90%A6%E6%B3%84%E9%9C%B2&#34;&gt;用 haveibeenpwned.com/ 查看密码是否泄露&lt;/a&gt; （未泄露绿色、泄露红色）&lt;/li&gt;
+&lt;li&gt;利用 1Password、LastPass、Bitwarden 之类的密码管理器来保存密码。密码管理器可以注册时自动创建高强度无规律的密码，将其安全的存储在加密的保管库中，并在需要时自动填写密码。&lt;/li&gt;
+&lt;li&gt;用户密码加密：对称加密算法（3DES、AES）&lt;br&gt;
+明文密码 ----- 对称加密 ------- 密文密码&lt;br&gt;
+密文密码 ----- 对称解密 ------- 明文密码&lt;/li&gt;
+&lt;li&gt;使用 MD、SHA1 等单项 HASH 算法保护密码&lt;br&gt;
+优点：使用这些算法后，没有办法通过算法还原出原始密码，实现简单，很多互联网公司喜欢用这种方式保存用户密码&lt;br&gt;
+缺点：彩虹表技术可以进行查表破解，目前这种方式已经很不安全&lt;br&gt;
+明文密码 ------HASH------- 密文密码&lt;br&gt;
+密文密码不能解密密文密码&lt;/li&gt;
+&lt;li&gt;特殊的单项 HASH 算法（加了 “固定盐” 的 HASH 算法）&lt;br&gt;
+缺点：泄露了盐之后，用彩虹表技术也可以破解，只是增加了破解时间&lt;/li&gt;
+&lt;li&gt;PBKDF2 算法：HASH 算法上增加 “随机盐”，并且进行多次 HASH 算法&lt;br&gt;
+优点：“随机盐” 使彩虹表的建表难度大幅度增加，多次 HASH 也同样使得建表和破解的难度大幅度增加，该算法是美国国家标准与技术研究院推荐使用的算法&lt;/li&gt;
+&lt;li&gt;使用一些高级算法保护密码可以有效低于彩虹表的攻击，即使数据泄露，最关键的 “用户密码” 仍然可以得到保护，切断撞库扫库的根源&lt;/li&gt;
+&lt;li&gt;根据不同的 App 类型设置密码等级&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;学习&#34;&gt; 学习&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;资源&lt;br&gt;
+&lt;a href=&#34;https://imbajin.com/about/&#34;&gt; https://imbajin.com/about/&lt;/a&gt;  (jin 学长)&lt;br&gt;
+&lt;a href=&#34;https://www.hyominn00.top/&#34;&gt;https://www.hyominn00.top/&lt;/a&gt;  (何茜悦学姐)&lt;br&gt;
+ 奇项东：多看博客，写博客不是目的，是为了加深你对知识的理解&lt;br&gt;
+尹俊：掘金&lt;br&gt;
+赵谦诚学长：多看博客，学会用安全的角度看待问题，不要抄袭，文章末尾，列出参考文献，像做笔记一样，详细的写清楚攻击方法、防御方法，用自己的语言表达&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/31818607&#34;&gt; https://www.zhihu.com/question/31818607&lt;/a&gt;&lt;br&gt;
+ 李虹骏：阮一峰&lt;br&gt;
+陈淅：CSDN   、&lt;/li&gt;
+&lt;li&gt;笔记&lt;br&gt;
+名字：可以这样标题前半部分是关键字，后半部分指明意图  （Mac OS Laravel 安装）&lt;br&gt;
+内容：贴解决方案和代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;试着去表达一些技术上的细节，也要学会省去一些细节&lt;/li&gt;
+&lt;li&gt;按照自己学习的角度去想怎么样可以一步步写下来&lt;/li&gt;
+&lt;li&gt;加入个人情感，博客与文档不一样&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <updated>2021-03-13T13:44:39.000Z</updated>
+    </entry>
+</feed>

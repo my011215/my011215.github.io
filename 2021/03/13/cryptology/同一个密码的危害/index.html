@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>同一个密码的危害 | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="# 知识储备  密码泄露原因：   本地泄露  1.1 恶意木马 &#x2F; 恶意植入 &#x2F; 键盘监听 建议： 不在公共或者潜在安全的设备上进行密码操作 不安装未知来源的盗版软件  1.2 伪造 有人开发一款和官方软件一模一样的 App，或者抢先占用 alipay:&#x2F;&#x2F; 这个协议的 URL_Scheme  建议： 从可信的源下载安装软件 传输过程泄露 在一个不可靠的网络环境下，黑客可以使用 Wireshar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同一个密码的危害">
+<meta property="og:url" content="https://my011215.github.io/2021/03/13/cryptology/%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81%E7%9A%84%E5%8D%B1%E5%AE%B3/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="# 知识储备  密码泄露原因：   本地泄露  1.1 恶意木马 &#x2F; 恶意植入 &#x2F; 键盘监听 建议： 不在公共或者潜在安全的设备上进行密码操作 不安装未知来源的盗版软件  1.2 伪造 有人开发一款和官方软件一模一样的 App，或者抢先占用 alipay:&#x2F;&#x2F; 这个协议的 URL_Scheme  建议： 从可信的源下载安装软件 传输过程泄露 在一个不可靠的网络环境下，黑客可以使用 Wireshar">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-13T13:44:39.000Z">
+<meta property="article:modified_time" content="2022-08-16T13:45:05.054Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cryptology/同一个密码的危害" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/13/cryptology/%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81%E7%9A%84%E5%8D%B1%E5%AE%B3/" class="article-date">
+  <time datetime="2021-03-13T13:44:39.000Z" itemprop="datePublished">2021-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      同一个密码的危害
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="知识储备"> 知识储备</span></h2>
+<ol>
+<li>密码泄露原因：</li>
+</ol>
+<ul>
+<li>本地泄露<br>
+ 1.1 恶意木马 / 恶意植入 / 键盘监听<br>
+建议：<br>
+不在公共或者潜在安全的设备上进行密码操作<br>
+不安装未知来源的盗版软件<br>
+ 1.2 伪造<br>
+有人开发一款和官方软件一模一样的 App，或者抢先占用 alipay:// 这个协议的 URL_Scheme<br>
+ 建议：<br>
+从可信的源下载安装软件</li>
+<li>传输过程泄露<br>
+在一个不可靠的网络环境下，黑客可以使用 Wireshark 这样的工具包拦截请求包，直接可以看到密码</li>
+</ul>
+<span id="more"></span>  
+<p>建议：<br>
+不适用不可信的 WiFi 网络，特别是公共场合陌生、免费的 WiFi<br>
+ 非加密传输<br>
+ http/https 协议，后者传输过程是加密的，如果有人拦截了数据请求包，也无法获知传输的是什么内容<br>
+建议：<br>
+尽量使用 SSl 加密<br>
+保持浏览器在最新版本<br>
+检查网络证书是否可信</p>
+<ul>
+<li>服务端泄露<br>
+建议：<br>
+密码位数不宜过短过简单<br>
+密码采用数字 + 大小写 + 特殊符号组成<br>
+设置有自己规律的密码</li>
+</ul>
+<h2><span id="攻击方法"> 攻击方法</span></h2>
+<ol>
+<li>木马、键盘记录、钓鱼、（拖库、洗库、撞库）</li>
+<li>恶意木马 / 恶意植入 / 键盘监听 / 伪造 / 不可信的 WiFi 网络 / 网络证书不可信 / 密码位数过短过简单 /</li>
+</ol>
+<h2><span id="防御以及缓解措施"> 防御以及缓解措施</span></h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://xn--haveibeenpwned-4x97a.com/%E6%9F%A5%E7%9C%8B%E5%AF%86%E7%A0%81%E6%98%AF%E5%90%A6%E6%B3%84%E9%9C%B2">用 haveibeenpwned.com/ 查看密码是否泄露</a> （未泄露绿色、泄露红色）</li>
+<li>利用 1Password、LastPass、Bitwarden 之类的密码管理器来保存密码。密码管理器可以注册时自动创建高强度无规律的密码，将其安全的存储在加密的保管库中，并在需要时自动填写密码。</li>
+<li>用户密码加密：对称加密算法（3DES、AES）<br>
+明文密码 ----- 对称加密 ------- 密文密码<br>
+密文密码 ----- 对称解密 ------- 明文密码</li>
+<li>使用 MD、SHA1 等单项 HASH 算法保护密码<br>
+优点：使用这些算法后，没有办法通过算法还原出原始密码，实现简单，很多互联网公司喜欢用这种方式保存用户密码<br>
+缺点：彩虹表技术可以进行查表破解，目前这种方式已经很不安全<br>
+明文密码 ------HASH------- 密文密码<br>
+密文密码不能解密密文密码</li>
+<li>特殊的单项 HASH 算法（加了 “固定盐” 的 HASH 算法）<br>
+缺点：泄露了盐之后，用彩虹表技术也可以破解，只是增加了破解时间</li>
+<li>PBKDF2 算法：HASH 算法上增加 “随机盐”，并且进行多次 HASH 算法<br>
+优点：“随机盐” 使彩虹表的建表难度大幅度增加，多次 HASH 也同样使得建表和破解的难度大幅度增加，该算法是美国国家标准与技术研究院推荐使用的算法</li>
+<li>使用一些高级算法保护密码可以有效低于彩虹表的攻击，即使数据泄露，最关键的 “用户密码” 仍然可以得到保护，切断撞库扫库的根源</li>
+<li>根据不同的 App 类型设置密码等级</li>
+</ol>
+<h2><span id="学习"> 学习</span></h2>
+<ul>
+<li>资源<br>
+<a target="_blank" rel="noopener" href="https://imbajin.com/about/"> https://imbajin.com/about/</a>  (jin 学长)<br>
+<a target="_blank" rel="noopener" href="https://www.hyominn00.top/">https://www.hyominn00.top/</a>  (何茜悦学姐)<br>
+ 奇项东：多看博客，写博客不是目的，是为了加深你对知识的理解<br>
+尹俊：掘金<br>
+赵谦诚学长：多看博客，学会用安全的角度看待问题，不要抄袭，文章末尾，列出参考文献，像做笔记一样，详细的写清楚攻击方法、防御方法，用自己的语言表达<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31818607"> https://www.zhihu.com/question/31818607</a><br>
+ 李虹骏：阮一峰<br>
+陈淅：CSDN   、</li>
+<li>笔记<br>
+名字：可以这样标题前半部分是关键字，后半部分指明意图  （Mac OS Laravel 安装）<br>
+内容：贴解决方案和代码</li>
+</ul>
+<ol>
+<li>试着去表达一些技术上的细节，也要学会省去一些细节</li>
+<li>按照自己学习的角度去想怎么样可以一步步写下来</li>
+<li>加入个人情感，博客与文档不一样</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2021/03/13/cryptology/%E5%90%8C%E4%B8%80%E4%B8%AA%E5%AF%86%E7%A0%81%E7%9A%84%E5%8D%B1%E5%AE%B3/" data-id="clbelq66u0008aotn3j9z4n2c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/04/01/vulnerability/XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          XSS跨站脚本攻击
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/08/Blockchain/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/">中南民族VPN登录框</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/01/interview/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件上传漏洞面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/30/vulnerability/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">登陆界面逻辑漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>

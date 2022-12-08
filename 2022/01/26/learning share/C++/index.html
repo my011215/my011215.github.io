@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++ | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="# const 修饰符 1.const 作用与 #define 相似，但是它消除了 #define 的不安全性比如： #define T1 a+a #define T2 T1-T1 2.const 与指针组合可以归纳为 3 种类型； (1) 指向常量的指针  3. 指向常量的指针  const char * name&#x3D;“chen”; name&#x3D;“zhang”; 4. 常指针  char * con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++">
+<meta property="og:url" content="https://my011215.github.io/2022/01/26/learning%20share/C++/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="# const 修饰符 1.const 作用与 #define 相似，但是它消除了 #define 的不安全性比如： #define T1 a+a #define T2 T1-T1 2.const 与指针组合可以归纳为 3 种类型； (1) 指向常量的指针  3. 指向常量的指针  const char * name&#x3D;“chen”; name&#x3D;“zhang”; 4. 常指针  char * con">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-26T14:01:39.000Z">
+<meta property="article:modified_time" content="2022-08-16T14:01:33.618Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning share/C++" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/26/learning%20share/C++/" class="article-date">
+  <time datetime="2022-01-26T14:01:39.000Z" itemprop="datePublished">2022-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="const-修饰符"> const 修饰符</span></h2>
+<p>1.const 作用与 #define 相似，但是它消除了 #define 的不安全性比如：<br>
+#define T1 a+a<br>
+#define T2 T1-T1<br>
+2.const 与指针组合可以归纳为 3 种类型；<br>
+(1) 指向常量的指针<br>
+ 3. 指向常量的指针<br>
+ const char * name=“chen”;<br>
+name=“zhang”;<br>
+4. 常指针<br>
+ char * const name=“chen”;<br>
+name[3]=‘a’;<br>
+5. 指向常量的常指针<br>
+ const char * const name=“chen”;</p>
+<span id="more"></span>  
+<h2><span id="内联函数"> 内联函数</span></h2>
+<ul>
+<li>原因：为了消除函数调用时的系统开销，以提高运行速度。<br>
+inline int box(int i,int j,int k)<br>
+int main()<br>
+{<br>
+int a,b,c,v;<br>
+cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;<br>
+v=box(a,b,c);<br>
+cout&lt;&lt;“a * b * c=”&lt;&lt;v&lt;&lt;endl;<br>
+return 0;<br>
+}<br>
+inline int box(int i,int j,int k)<br>
+{<br>
+return i * j * k;<br>
+}</li>
+</ul>
+<h2><span id="带有默认参数的函数"> 带有默认参数的函数</span></h2>
+<ul>
+<li>要求：在声明函数时，所有带有默认值的参数必须出现在不指定默认值参数的右边。<br>
+错误：int fun (int i,int j=5,int k);<br>
+ 正确：int fun (int i,int k,int j=5);</li>
+<li>要求：函数调用时，如果某一个参数省略，后面的参数只能省略采取默认值，不能赋予新的值。<br>
+错误：special (,21.5);</li>
+</ul>
+<h2><span id="函数的重载"> 函数的重载</span></h2>
+<ul>
+<li>含义：当两个或两个以上的函数共有一个函数名时，称为函数的重载。<br>
+例如：<br>
+int square(int i)<br>
+{<br>
+return i * i;<br>
+}<br>
+long square(long l)<br>
+{<br>
+return l * l;<br>
+}<br>
+double square(double d)<br>
+{<br>
+return d * d;<br>
+}</li>
+<li>注意：调用重载函数时，如果两个函数的参数和类型都相同，而只有返回值类型不同，则不允许重载。<br>
+例如：<br>
+int mul(int x,int y);<br>
+double mul(int x,int y);<br>
+ 不允许重载</li>
+<li>注意：函数的重载与带默认值的函数一起使用时，有可能引起二义性<br>
+比如：<br>
+void Drawcircle(int r=0,int x=0,int y=0);<br>
+void Drawcircle(int r);<br>
+ 当执行 Drawcircle (20);<br>
+ 系统无法确定调用哪一个函数</li>
+</ul>
+<h2><span id="作用域运算符-quotquot"> 作用域运算符 &quot;::&quot;</span></h2>
+<p>通常情况下，局部变量在作用域内具有较高的优先权，它将屏蔽全局变量。</p>
+<ul>
+<li>如果希望在局部变量的作用域内使用同名的全局变量，可以在这个变量前加上 &quot;::&quot;,&quot;::&quot; 称为：作用域运算符<br>
+例如：<br>
+int avar;<br>
+int main()<br>
+{<br>
+int avar;<br>
+avar=25;   // 给局部变量赋值 25<br>
+::avar=10;  // 给全局变量赋值<br>
+ cout&lt;&lt;“local avar=”&lt;&lt;avar&lt;&lt;endl;<br>
+cout&lt;&lt;“global avar =”&lt;&lt;::avar&lt;&lt;endl;<br>
+return 0;<br>
+}<br>
+ 输出：<br>
+local avar =25<br>
+global avar =10</li>
+</ul>
+<h2><span id="运算符-new-和-delete"> 运算符 new 和 delete</span></h2>
+<ul>
+<li>new<br>
+int * p;<br>
+p=new int;</li>
+<li>delete<br>
+delete p;</li>
+<li>注意：</li>
+</ul>
+<ol>
+<li>使用 new 为多维数组分配空间时，必须提供所有维的大小<br>
+如：int * pi =new int [2][3][4];</li>
+<li>new 可在为简单变量分配内存的同时，进行初始化。<br>
+指针变量名 = new 类型（初值）<br>
+int * p;<br>
+p=new int(99);</li>
+</ol>
+<h2><span id="引用"> 引用</span></h2>
+<ol>
+<li>别名<br>
+ int i=5;<br>
+int &amp;j=i;<br>
+ 注意：i 和 j 的地址一样，i 和 j 同时变化。<br>
+不能建立 void 类型<br>
+不能建立引用的数组<br>
+不能建立引用的引用</li>
+<li>引用作为函数参数<br>
+例如：<br>
+void swap(int &amp;m,int &amp;n)<br>
+{<br>
+int temp;<br>
+temp=m;<br>
+m=n;<br>
+n=temp;<br>
+}<br>
+int main()<br>
+{<br>
+int a=5,b=10;<br>
+swap(a,b);<br>
+}</li>
+<li>使用引用返回函数值</li>
+</ol>
+<h2><span id="结构体与类"> 结构体与类</span></h2>
+<p>类是对象的抽象，对象是类的实例。</p>
+<ul>
+<li>注意：私有成员 (数据成员和成员函数) 只能被类内的成员函数访问，不能被类外的对象访；公有成员都可以被访问</li>
+<li>注意：在实际应用中，一般把需要保护的数据设置为私有的，把它隐蔽起来，把成员函数设置为公有的，作为类与外界的接口。</li>
+</ul>
+<h2><span id="成员函数的定义"> 成员函数的定义</span></h2>
+<h2><span id="静态成员"> 静态成员</span></h2>
+<ul>
+<li>静态数据成员<br>
+ 1. 当我们想要用在__同一个类中 (学生类)<strong> 任何一个对象__共享__一个数据 (这个数据可以累计前面对象的数据情况，不会随着定义下一个对象就刷新)(<strong>平均分、学生总人数、总成绩…</strong>)，就应该将这个数据定义为静态数据成员<br>
+ 2. 虽然将数据成员定义为全局变量也可以达到同样的目的，但是全局变量具有__不安全性</strong>，<strong>破坏面对象程序的封装性__特点<br>
+ 3.<strong> 格式：</strong><br>
+static 数据成员 数据成员名<br>
+ 4. 静态数据成员初始化应该在类外单独进行，而且在定义对象之前进行<br>
+ 5.<strong> 初始化格式：</strong><br>
+数据类型 类名：：静态数据成员名 = 初始值<br>
+注意：数据成员名之前不要加 static<br>
+6.<strong> 静态数据成员属于类</strong>，而__普通数据成员属于对象</strong>，因此在访问静态数据成员时，__可以 (并非只能)__用类名访问，格式：<br>
+类名：：静态数据成员名<br>
+ 7. 用对象访问静态数据成员格式：<br>
+对象名。静态数据成员名<br>
+ 8. 私有静态数据成员不能在类外被访问，应该通过公有成员函数访问</li>
+<li>静态数据成员函数<br>
+ 1. 静态成员函数属于整个类，是该类所有对象共享的成员函数<br>
+ 2.<strong> 格式：</strong><br>
+static 返回类型 静态成员函数名 (参数表)；<br>
+3.<strong> 调用格式:</strong><br>
+(规范) 类名：：静态成员函数名 (实参表)<br>
+ 4. 使用静态成员函数其中一个原因是，可以用它在建立任何对象之前调用静态成员函数，以处理静态数据成员。原因：<strong>在调用静态成员函数中的静态成员已经被初始化</strong>，可以用来调用以及运算<br>
+ 5. 编译系统将静态成员函数限定为内部连接，所以其他文件中的同名函数不会与该函数发生冲突<br>
+ 6. 静态成员函数与非静态成员函数的区别为：<strong>非静态成员函数有 this 指针，而静态成员函数没有</strong><br>
+ 7. 一般来说__静态成员函数不能访问类中的非静态成员__，若要访问只能通过 (对象名、<strong>对象指针、对象引用</strong>)</li>
+</ul>
+<h2><span id="友元"> 友元</span></h2>
+<ul>
+<li>友元函数<br>
+ 1. 类中的私有成员是受保护的，只有类中的成员函数能访问 (一般调用构造函数), 此时友元函数便可以作为一个小口子用来访问其中的私有成员<br>
+ 2. 既可以是不属于类的非成员函数 (普通函数)，也可以是另一个类的成员函数<br>
+ 3. 友元函数可以定义在类的内部，也可以定义在类的外部<br>
+ 4. 定义友元函数需要在函数名之前加上关键字 friend<br>
+5. 由于友元函数权限范围很大，不可具体划分为某一类成员函数，属于一种特殊的函数，因此在外部定义时，<strong>按照普通函数的定义即可</strong><br>
+ 6. 友元函数时特殊的函数，<strong>不属于类的成员</strong>，所以它不能直接访问对象的数据成员，也不可以通过 this 指针访问，<strong>必须通过 (对象指针或者对象的引用) 来实现</strong><br>
+ 7.<strong> 使用友元函数可以提高运行效率</strong><br>
+类中的私有成员不可以被类外部访问，必须构造函数进行调用，这时候，如果大量需要访问私有成员，就会不停的调用函数进行访问，浪费时间，降低运行效率</li>
+<li>将成员函数声明为友元函数<br>
+ 1. 当有两个类时，我想要__两个类中的数据有共同使用的部分__(<strong>在一个类中调用另一个类中的私有数据成员</strong>)，<strong>就可以在其中一个类 A 中将函数声明为它的成员函数，在另一个类 B 中声明为 A 中的成员函数为 B 的友元函数，其中 A 中的私有数据成员可以直接 cout,B 中要访问私有数据成员就要用 (对象指针或者对象的引用) 来调用私有数据成员来 cout</strong><br>
+2. 注意类的引用声明以及定义</li>
+<li>友元类<br>
+ 1. 格式：<br>
+friend 类名；<br>
+2. 当类 Y 被说明为类 X 的友元时，类 Y 中的所有成员函数都可以访问 X 中的__所有__数据成员</li>
+</ul>
+<h2><span id="类的组合"> 类的组合</span></h2>
+<p>class X<br>
+{<br>
+类名 1  对象成员 1；<br>
+类名 2  对象成员 2；<br>
+.<br>
+.<br>
+.<br>
+ 类名 n  对象成员 n;<br>
+}；<br>
+类 X 的构造函数定义为：<br>
+X::X (形参表 0）：对象成员 1（形参表 1），对象成员 2（形参表 2），…<br>
+{<br>
+// 类 X 的函数构造体<br>
+}</p>
+<h2><span id="常类型"> 常类型</span></h2>
+<p>常类型是指使用类型修饰符 const 说明的类型，常类型的变量或者对象成员的值在程序运行期间是不可以改变的</p>
+<ul>
+<li>常引用<br>
+例如：<br>
+int a=5;<br>
+const int &amp;b=a;<br>
+b 是一个常引用，这时候 b 的 值可以随 a 的值而改变 (可以改变 a 的值)，而不可以改变 b 的值</li>
+<li>常对象<br>
+常对象的数据成员值在整个生存期内不能被改变<br>
+格式：<br>
+类名 const 对象名 [(参数表)]；<br>
+或者<br>
+ const 类名 对象名 [(参数表)]；<br>
+<strong>常对象不能调用普通成员函数</strong><br>
+<strong>在定义对象时必须进行初始化，而且不能被更新</strong></li>
+<li>常对象成员<br>
+ 1. 常数据成员<br>
+使用 const 说明的数据成员称为常数据成员，如果一个类中说明了常数据成员，那么构造函数就只能通过成员初始化列表对该数据成员进行初始化，并且其他任何函数都不能对该成员赋值</li>
+<li>常成员函数<br>
+在类中使用关键字 const 说明的成员函数为常成员函数<br>
+格式：<br>
+类型说明符  函数名 (参数表) const；<br>
+常成员函数可以访问常数据成员，也可以访问普通数据成员。常数据成员可以被常成员函数访问也可以被普通成员函数访问</li>
+</ul>
+<h2><span id="派生类的概念"> 派生类的概念</span></h2>
+<p>当两个类有很多相同的地方，为了提高代码的可重用性，可以引入继承</p>
+<ul>
+<li>派生类的声明<br>
+ class 派生类名：[继承方式] 基类名<br>
+ {派生类新增的数据成员和成员函数}；<br>
+继承方式可以为：private (私有继承)、protected (保护继承)、public (公有继承)<br>
+ 如果没有给出继承方式，系统默认为私有继承</li>
+<li>派生类的构成<br>
+派生类把基类的全部成员 (除构造函数和析构函数之外) 接收过来</li>
+<li>基类成员在派生类中的访问属性<br>
+ 1. 基类中的私有成员<br>
+无论哪种继承方式，基类中的私有成员不允许派生类继承<br>
+ 2. 基类中的公有成员<br>
+当类中的成员以什么方式继承时，基类中的所有公有成员就以什么成员的方式出现<br>
+ 3. 基类中的保护成员<br>
+当类中的成员以公有或保护方式继承时，基类中的所有保护成员就以保护成员的方式出现<br>
+当类中的成员为私有继承时，基类中的所有保护成员就以私有成员的方式继承</li>
+<li>派生类对基类成员的访问属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">基类中的成员</th>
+<th style="text-align:center">在公有派生类</th>
+<th style="text-align:right">在私有派生类</th>
+<th>在保护派生类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">私有成员</td>
+<td style="text-align:center">不可直接访问</td>
+<td style="text-align:right">不可直接访问</td>
+<td>不可直接访问</td>
+</tr>
+<tr>
+<td style="text-align:left">公有成员</td>
+<td style="text-align:center">公有</td>
+<td style="text-align:right">私有</td>
+<td>保护</td>
+</tr>
+<tr>
+<td style="text-align:left">保护成员</td>
+<td style="text-align:center">保护</td>
+<td style="text-align:right">私有</td>
+<td>保护</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>派生类对基类成员的访问规则<br>
+类的继承方式有 public (公有继承)、protected (保护继承)、private (私有继承)<br>
+ 访问形式：内部访问、对象访问</li>
+</ul>
+<ol>
+<li>私有继承访问规则</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">基类中的成员</th>
+<th style="text-align:center">私有成员</th>
+<th style="text-align:right">公有成员</th>
+<th>保护成员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">内部访问</td>
+<td style="text-align:center">不可访问</td>
+<td style="text-align:right">可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td style="text-align:left">对象访问</td>
+<td style="text-align:center">不可访问</td>
+<td style="text-align:right">不可访问</td>
+<td>不可访问</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>公有继承访问规则</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">基类中的成员</th>
+<th style="text-align:center">私有成员</th>
+<th style="text-align:right">公有成员</th>
+<th>保护成员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">内部访问</td>
+<td style="text-align:center">不可访问</td>
+<td style="text-align:right">可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td style="text-align:left">对象访问</td>
+<td style="text-align:center">不可访问</td>
+<td style="text-align:right">可访问</td>
+<td>不可访问</td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>保护继承访问规则</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">基类中的成员</th>
+<th style="text-align:center">私有成员</th>
+<th style="text-align:right">公有成员</th>
+<th>保护成员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">内部访问</td>
+<td style="text-align:center">不可访问</td>
+<td style="text-align:right">可访问</td>
+<td>可访问</td>
+</tr>
+<tr>
+<td style="text-align:left">对象访问</td>
+<td style="text-align:center">不可访问</td>
+<td style="text-align:right">不可访问</td>
+<td>不可访问</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="派生类的构造函数和析构函数"> 派生类的构造函数和析构函数</span></h2>
+<ul>
+<li>派生类构造函数和析构函数的执行顺序<br>
+构造函数：<br>
+1. 基类构造函数<br>
+ 2. 派送类构造函数<br>
+析构函数：<br>
+1. 派生类析构函数<br>
+ 2. 基类析构函数</li>
+<li>派生类构造函数和析构函数的构造规则<br>
+派生类名 (参数总表)：基类名 (参数表)<br>
+{<br>
+派生类新增数据成员初始化语句<br>
+}<br>
+<strong> 注意：</strong><br>
+<strong>在类中声明派生类的构造函数时，不包括基类构造函数名及其参数表，只有在类外定义时才将它列出</strong></li>
+<li>派生类的析构函数<br>
+析构函数调用顺序与构造函数相反</li>
+<li>含有对象成员 (子对象) 的派生类的构造函数<br>
+派生类名 (参数总表)：基类名 (参数表 0)，对象成员名 1 (参数表 1)，…，对象成员名 n (参数表 n)<br>
+{<br>
+派生类新增成员的初始化语句<br>
+}<br>
+ 构造函数执行顺序如下：</li>
+</ul>
+<ol>
+<li>调用基类</li>
+<li>调用内嵌对象成员</li>
+<li>派生类</li>
+</ol>
+<h2><span id="基类成员在派生类中的访问属性的其他方法"> 基类成员在派生类中的访问属性的其他方法</span></h2>
+<ul>
+<li>同名成员<br>
+为了在派生类中使用基类的同名成员，必须在该成员名之前加上基类名和作用域标识符::(在派生类中使用基类同名函数)<br>
+ 基类名：：成员名</li>
+<li>访问声明</li>
+</ul>
+<h2><span id="多重继承"> 多重继承</span></h2>
+<ul>
+<li>多重继承派生类的声明<br>
+ class 派生类名：继承方式 1  基类名 1，…，继承方式 n  基类名 n<br>
+{<br>
+派生类新增的数据成员和成员函数<br>
+}；</li>
+<li>多重继承派生类的构造函数与析构函数<br>
+派生类名 (参数总表)：基类名 1 (参数表 1), 基类名 2 (参数表 2),…, 基类名 n (参数表 n)<br>
+{<br>
+派生类新增成员的初始化语句<br>
+}<br>
+ 析构函数执行顺序与构造函数相反</li>
+<li>虚基类<br>
+ 1. 如果一个类中有多个直接基类，并且这些基类又有共同的基类，为了避免同名函数不知道如何调用，产生了虚机类<br>
+ 2. 语法形式：<br>
+class 派生类名：virtual 继承方式 基类名<br>
+ {<br>
+}<br>
+ 3. 虚基类初始化<br>
+ (1) 所有直接间接的派生类都必须在构造函数初始化列表中列出对虚基类的构造和函数的调用，以初始化虚基类中定义的数据成员<br>
+ (2) 调用顺序为：<br>
+虚基类<br>
+非虚基类<br>
+成员对象<br>
+派生类<br>
+ (3) 对于多个虚基类或非虚基类，构造函数的执行顺序总是先左后右，自上而下</li>
+<li>基类与派生类对象之间的赋值兼容关系<br>
+公有继承派生类对象既是基类对象又是派生类对象</li>
+</ul>
+<h2><span id="多态性"> 多态性</span></h2>
+<ul>
+<li>运算符重载<br>
+运算符重载可以是类外定义的普通函数，也可以是类的成员函数或友元函数<br>
+有时候我们需要将类中定义的几个对象的数据进行计算，但是由于类的对象不是基本数据类型，而是用户自定义的数据类型，所以导致不能进行计算，这时需要进行运算符重载来实现。<br>
+1. 在类外定义的运算符重载函数<br>
+类名 operator 运算符 (类名 对象 1，类名 对象 2…)<br>
+{<br>
+类名 新对象<br>
+计算过程<br>
+}<br>
+ C++ 绝大运算符可以重载，以下运算符不能重载<br>
+。成员访问运算符<br>
+. *      成员指针访问运算符<br>
+：：作用域运算符<br>
+ sizeof 长度运算符<br>
+？：条件运算符<br>
+不允许用户自己定义新的运算符<br>
+ 2. 友元运算符重载函数<br>
+在类中定义<br>
+ friend 函数类型 operator 运算符 (形参表)<br>
+{<br>
+函数体<br>
+}<br>
+ 在类外定义<br>
+函数类型 operator 运算符 (形参表)<br>
+{<br>
+函数体<br>
+}<br>
+ 3. 成员运算符重载函数<br>
+在类中定义<br>
+函数类型 operator 运算符 (形参表)<br>
+{<br>
+函数体<br>
+}<br>
+ 声明：函数类型 operator 运算符 (形参表)；<br>
+在类外定义<br>
+函数类型 ：：operator 运算符 (形参表)<br>
+{<br>
+函数体<br>
+}</li>
+<li>指针悬挂问题<br>
+详见 CSDN 收藏夹</li>
+</ul>
+<h2><span id="虚函数"> 虚函数</span></h2>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/01/26/learning%20share/C++/" data-id="clbelq66y000eaotna5hx25j8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/03/02/others/%E5%85%B3%E4%BA%8E%E5%BC%80%E6%BA%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          开源
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/01/26/others/%E7%88%AC%E8%99%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">爬虫</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/08/Blockchain/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/">中南民族VPN登录框</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/01/interview/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件上传漏洞面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/30/vulnerability/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">登陆界面逻辑漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>

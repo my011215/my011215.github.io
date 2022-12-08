@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>blog小窝 • Posts by &#34;实战&#34; category</title>
+        <link>https://my011215.github.io</link>
+        <description>用来记录学习和分享日常</description>
+        <language>en</language>
+        <pubDate>Fri, 02 Dec 2022 18:27:30 +0800</pubDate>
+        <lastBuildDate>Fri, 02 Dec 2022 18:27:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/</guid>
+            <title>中南民族VPN登录框</title>
+            <link>https://my011215.github.io/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/</link>
+            <pubDate>Fri, 02 Dec 2022 18:27:30 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;&lt;span id=&#34;探索&#34;&gt; 探索&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;首先探测 https://webvpn.scuec.edu.cn/users/sign_in&lt;br&gt;
+burp 抓包&lt;br&gt;
+对参数 url 解码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;NAME&lt;/th&gt;
+&lt;th&gt;VALUE&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;authenticity_token&lt;/td&gt;
+&lt;td&gt;YfVXnZvUQQ5tSly8sK0TlxMdC0AMPaJeytcoJyq6CPEgnqbVU9DRXPlCxCn5IK9/U95t0kP9YCGCRVDGvofkIw==&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;user[login]&lt;/td&gt;
+&lt;td&gt;202021091205&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;user[password]&lt;/td&gt;
+&lt;td&gt;123456&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;user[dymatice_code]&lt;/td&gt;
+&lt;td&gt;unknown&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;user[otp_with_capcha]&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;_rucaptcha&lt;/td&gt;
+&lt;td&gt;bysn&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;commit&lt;/td&gt;
+&lt;td&gt;登录 + Login&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;repeat&lt;br&gt;
+ 发现一个包不行，必须连发三个包&lt;br&gt;
+退而求其次&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入另外一个登录界面&lt;br&gt;
+&lt;a href=&#34;https://id.scuec.edu.cn/authserver/login?service=https%3A%2F%2Fehall.scuec.edu.cn%2Flogin%3Fservice%3Dhttps%3A%2F%2Fehall.scuec.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno&#34;&gt; https://id.scuec.edu.cn/authserver/login?service=https%3A%2F%2Fehall.scuec.edu.cn%2Flogin%3Fservice%3Dhttps%3A%2F%2Fehall.scuec.edu.cn%2Fnew%2Findex.html%3Fbrowser%3Dno&lt;/a&gt;&lt;br&gt;
+ 抓包发现最后一个包会有回显，且会有正确与错误两种不同的回显&lt;br&gt;
+尝试爆破？&lt;/p&gt;
+&lt;p&gt;对于运气问题我们不能左右，但是对于技术问题却是可以专注的！&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span id=&#34;爆破&#34;&gt; 爆破&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/D:%5Cblog%5Cmyblog%5Csource%5Cimage%5C153.png&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/153.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;password&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;通过分析 js 代码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$(&amp;quot;#saltPassword&amp;quot;).val(encryptPassword($(LOGIN_PASSWORD_ID).val(),$(&amp;quot;#pwdEncryptSalt&amp;quot;).val()));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;将 pwdEncryptSalt（id) 作为 encryptPassword 函数的参数还有输入的 LOGIN_PASSWORD_ID，一起带入加密&lt;br&gt;
+ 2. 获取 pwdEncryptSalt（id)&lt;br&gt;
+ 分析前端 html 代码可知，pwdEncryptSalt 的 value 每次都不同，而且是从后端获取的，那么我们可以利用 python 发请求，正则表达式得到其值&lt;br&gt;
+ 3. encryptPassword 函数&lt;br&gt;
+前端可以直接获取加密的 js 包&lt;br&gt;
+直接写个 button (测试) 得到加密后的 saltPassword，貌似是 AES 加密&lt;br&gt;
+ 4. 对 password 和 excution 进行 url 编码后再放进去&lt;br&gt;
+放包看结果！&lt;br&gt;
+5. 貌似失败了捏&lt;br&gt;
+原因分析：&lt;br&gt;
+（1）操作超时？（脚本可以解决）  &lt;br&gt;
+显然不是，我抓包等了 15 分钟，放包依然成功登录&lt;br&gt;
+（2）还有其他限制？&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;type&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;pwdEncryptSalt&amp;quot;&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;value&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;qZb7cLORB1US5u0s&amp;quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;type&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;execution&amp;quot;&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;name&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;execution&amp;quot;&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;value&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&amp;quot;65f5498c-3c66-4390-90f4-9d4084dc2f12_ZXlKaGJHY2lPaUpJVXpVeE1pSjkuMWlYR3RubWZKU1NoK0xUTGtnaC90aDAx……“/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;把 python 请求的这部分替换到前端直接登录，发现登录认证失败，问题应该就是出在这里。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

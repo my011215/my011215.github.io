@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>blog小窝 • Posts by &#34;书籍&#34; category</title>
+        <link>https://my011215.github.io</link>
+        <description>用来记录学习和分享日常</description>
+        <language>en</language>
+        <pubDate>Sun, 12 Sep 2021 21:25:39 +0800</pubDate>
+        <lastBuildDate>Sun, 12 Sep 2021 21:25:39 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2021/09/12/books/Web%E5%AE%89%E5%85%A8%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/</guid>
+            <title>Web安全深度剖析</title>
+            <link>https://my011215.github.io/2021/09/12/books/Web%E5%AE%89%E5%85%A8%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90/</link>
+            <pubDate>Sun, 12 Sep 2021 21:25:39 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;&lt;span id=&#34;web-安全简介&#34;&gt; Web 安全简介&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;服务器是如何被入侵的&#34;&gt; 服务器是如何被入侵的&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;过去的黑客攻击大多数是直接针对姆比送进行攻击，比如端口扫描、一些服务的密码爆破 (FTP、数据库)、缓冲区溢出攻击等方式直接获取目标权限&lt;br&gt;
+ C 段渗透：攻击者通过渗透同一网段内的一台主机对目标主机进行 ARP 等手段渗透&lt;br&gt;
+社会工程学：高端攻击者必须掌握的技能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h3&gt;&lt;span id=&#34;如何更好的学习-web-安全&#34;&gt; 如何更好的学习 web 安全&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;黑客都是程序员，但程序员不一定是黑客&lt;/li&gt;
+&lt;li&gt;C/C++、Java、C# 、PHP、Python、HTML、JavaScript、数据库 (SQL)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;深入-http-请求流程&#34;&gt; 深入 HTTP 请求流程&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;当客户端与 Web 服务器进行交互时，就存在 Web 请求，这种请求都基于应用层协议 (HTTP 协议) 交互数据&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;http-协议解析&#34;&gt; HTTP 协议解析&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;发起 HTTP 请求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;在浏览器地址栏输入一个 URL，回车后就发起了 HTTP 请求&lt;/li&gt;
+&lt;li&gt;或者可以用 curl.exe 工具发起请求，通过 curl+URL 命令就可以&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 协议详解&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;HTTP 请求只能由客户端发起，而服务器不能主动向客户端发送数据&lt;/li&gt;
+&lt;li&gt;HTTP 遵循请求 / 应答模型&lt;br&gt;
+ (1) HTTP 请求&lt;br&gt;
+包括：请求行 (请求方法)、请求头 (消息报文)、请求正文&lt;br&gt;
+ (2) HTTP 响应&lt;br&gt;
+包括：响应行、响应头 (消息报文)、响应正文 (消息主题)&lt;/li&gt;
+&lt;li&gt;HTTP 请求方法&lt;br&gt;
+包括：GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT、OPTIONS&lt;/li&gt;
+&lt;li&gt;HTTP 状态码，HTTP 状态码由三位数字构成&lt;br&gt;
+第一位数字定义了响应的类别：&lt;br&gt;
+(1) 1xx：信息提示，表示请求已被成功接收，继续处理。范围：100~101&lt;br&gt;
+ (2) 2xx：成功，服务器成功的处理了请求。范围：200~206&lt;br&gt;
+ (3) 3xx：重定向，重定向状态码用于告诉浏览器客户端，它们访问的资源已被移动，并告诉客户端新的资源地址位置，这时，浏览器将重新对新资源发起请求。范围：300~305&lt;br&gt;
+ (4) 4xx：客户端错误状态码，有时客户端会发送一些服务器 无法处理的东西，比如：格式错误、URL 不存在。范围：400~415&lt;br&gt;
+ (5) 5xx：有时候客户端发送了一条有效请求，但 Web 服务器自身却出错了，用来描述服务器内部错误。范围：500~505&lt;/li&gt;
+&lt;li&gt;HTTP 消息&lt;br&gt;
+包括：请求头、响应头、普通头、实体头&lt;br&gt;
+ (1) 请求头&lt;br&gt;
+允许客户端向服务端传递请求的附加信息和客户端自身的信息&lt;br&gt;
+包括：Host、User-Agent、Referer、Cookie、Range、x-forword-for、Accept、Accept-Charset&lt;br&gt;
+ (2) 响应头&lt;br&gt;
+服务器根据请求向客户端发送的 HTTP 头&lt;br&gt;
+包括：Server、Set-Cookie、Last-Modified、Location、Refresh&lt;br&gt;
+ (3) 普通头&lt;br&gt;
+传输消息&lt;br&gt;
+ (4) 实体头&lt;br&gt;
+定义了关于实体正文和请求所标识的资源的元信息 (实体内容的属性)&lt;br&gt;
+ 包括：Content-Type、Content-Encoding、Content-Length、Last-Modified&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 协议与 HTTPS 协议的区别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;HTTP 是超文本传输协议，信息是明文传输，HTTPS 是具有安全性的 SSL 加密传输协议&lt;/li&gt;
+&lt;li&gt;完全不同的链接方式，HTTP：80 端口，HTTPS：443 端口&lt;/li&gt;
+&lt;li&gt;HTTPS 需要用到 ca 申请证书&lt;/li&gt;
+&lt;li&gt;HTTP 连接相对简单，是无状态的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;截取-http-请求&#34;&gt; 截取 HTTP 请求&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;burpsuite&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;简介&lt;br&gt;
+ BurpSuite 是用于攻击 web 应用程序的集成平台，它包含了许多 Burp 工具，所有的工具都共享一个能处理并显示 HTTP 消息，持久性，认证，代理，日志，警报的一个强大的可扩展的框架。是一个为渗透测试人员开发的集成平台，利用 BurpSuite，可以更高效更快速的发现系统或者服务漏洞。&lt;/li&gt;
+&lt;li&gt;功能&lt;br&gt;
+ (1) Target (目标)—— 显示目标目录结构的的一个功能，也就是站点。&lt;br&gt;
+(2) Proxy (代理)—— 拦截 HTTP/S 的代理服务器，作为一个在浏览器和目标应用程序之间的中间人，允许你拦截，查看，修改在两个方向上的原始数据流。&lt;br&gt;
+(3) Spider (蜘蛛)—— 应用智能感应的网络爬虫，它能完整的枚举应用程序的内容和功能。&lt;br&gt;
+(4) Scanner (扫描器)—— 高级工具，执行后，它能自动地发现 web 应用程序的安全漏洞。&lt;br&gt;
+(5) Intruder (入侵)—— 一个定制的高度可配置的工具，对 web 应用程序进行自动化攻击，如：枚举标识符，收集有用的数据，以及使用 fuzzing 技术探测常规漏洞。&lt;br&gt;
+(6) Repeater (中继器)—— 一个靠手动操作来触发单独的 HTTP 请求，并分析应用程序响应的工具。&lt;br&gt;
+(7) Sequencer (会话)—— 用来分析那些不可预知的应用程序会话令牌和重要数据项的随机性的工具。&lt;br&gt;
+(8) Decoder (解码器)—— 进行手动执行或对应用程序数据者智能解码编码的工具。&lt;br&gt;
+(9) Comparer (对比)—— 通常是通过一些相关的请求和响应得到两项数据的一个可视化的 “差异”。&lt;br&gt;
+(10) Extender (扩展)—— 可以让你加载 BurpSuite 的扩展，使用你自己的或第三方代码来扩展 Burp Suit 的功能。&lt;br&gt;
+(11) User Options (设置)—— 对 BurpSuite 的一些设置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Fiddler&lt;br&gt;
+Fiddler 是一款优秀的 Web 调试工具，它可以清晰的记录所以浏览器与服务器之间的通信信息 (HTTP 和 HTTPS)，并且允许你设置断电，修改输入输出数据&lt;/li&gt;
+&lt;li&gt;WinSoc Expert&lt;br&gt;
+WinSoc Expert 是一个用来监视和修改网络发送和接收数据的程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span id=&#34;信息探测&#34;&gt; 信息探测&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;google-hack&#34;&gt; Google Hack&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;搜索子域名&lt;br&gt;
+利用 Google 搜索网站子域名是一件非常简单也非常复杂的事情，简单是指只要用 Google 搜索一下即可，复杂指要从海量信息中寻找子域名&lt;/li&gt;
+&lt;li&gt;搜集 Web 信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;nmap-初体验&#34;&gt; Nmap 初体验&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 Nmap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;概念&lt;br&gt;
+ Nmap 是一个开源的网络连接端扫描软件，用来扫描计算机开放的网络连接端，确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统。Nmap 增加了许多实用的插件，可以用来检测 SQL 注射、网页爬行、数据库密码检测，号称 “扫描之王”&lt;/li&gt;
+&lt;li&gt;使用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;DirBuster&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;概念&lt;br&gt;
+在渗透测试中，会探测 Web 目录结构和隐藏的敏感文件。通过探测可以了解网站的结构，获取管理员的一些敏感信息，比如网站的后台管理界面、文件上传界面，有时甚至可能扫出网站的源代码。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞扫描&#34;&gt; 漏洞扫描&lt;/span&gt;&lt;/h2&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
