@@ -57,6 +57,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E9%9B%B6%E5%92%8C%E5%8D%9A%E5%BC%88&#34;&gt;零和博弈&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%84%9F%E6%83%B3&#34;&gt;感想&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;h2&gt;&lt;span id=&#34;引言&#34;&gt; 引言&lt;/span&gt;&lt;/h2&gt;
@@ -322,6 +323,8 @@ ps：箭头的方法感觉更好&lt;/li&gt;
 &lt;li&gt;二人 “常和” 博弈&lt;br&gt;
 每局双方得失之和虽然不是零，却是一个常数。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2&gt;&lt;span id=&#34;感想&#34;&gt; 感想&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;博弈论是这样一个过程：它是个人或团体在一定规则约束下，依据各自掌握的关于别人选择的行为或策略，决定自身选择的行为或策略的收益过程。  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;通过本次公选课收获了很多知识，博弈论的一些专业术语；还有博弈的分类：合作博弈和非合作博弈，静态博弈和动态博弈，完全信息博弈与不完全信息博弈，纯策略和混合策略；并且学会了找纳什均衡的各种方法，通过各种有趣的事例，详细清晰的明白各种策略，以及利用一些数学方法和哲学理论进行解决。其中我觉得对我个人收获最大了是拓宽了我的知识面，我结合最近火爆的区块链知识和博弈论进行一个理解。 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;区块链和博弈论是两个不同的领域，乍一看似乎并没有太大的关联性，但事实并非如此。几乎所有的博弈论经典案例都可以借助区块链构建出新的博弈关系&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;区块链本质上是一个去中心化数据库。是一种分布式数据存储，点对点传输，共识机制，加密算法等计算机技术的新型应用模式。那么，一个无序的、去中心化的点对点系统是如何保持其诚信的呢？矿工权利很大，且很容易作恶并逃脱。这就是先前尝试构建去中心化系统失败的地方。毕竟，用户是人类，而人类就有作恶的倾向。因此，如何建立一个有人类诚信的去中心化系统？答案就在一个最基本的经济学概念中：博弈论。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
  ]]></description>
         </item>
         <item>
