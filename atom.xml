@@ -3,7 +3,38 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2022-12-09T09:27:30.000Z</updated>
+    <updated>2022-12-09T10:27:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/</id>
+        <title>phpinfo信息利用</title>
+        <link rel="alternate" href="https://my011215.github.io/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/"/>
+        <content type="html">&lt;h2&gt;&lt;span id=&#34;phpinfo-页面信息利用&#34;&gt; phpinfo 页面信息利用&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;system&lt;br&gt;
+ 获取操作系统具体版本，提权&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/187.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;Server API	&lt;br&gt;
+依稀记得做题用到这个条件限制，记不太清楚了…&lt;/li&gt;
+&lt;li&gt;Registered PHP Streams&lt;br&gt;
+ 已注册的 PHP 流&lt;br&gt;
+可以利用 php 伪协议&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/188.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;Registered Stream Filters&lt;br&gt;
+ 可使用的过滤器&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/189.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;伪协议利用条件&lt;br&gt;
+ allow_url_fopen	&lt;br&gt;
+allow_url_include&lt;/li&gt;
+&lt;li&gt;extension_dir&lt;br&gt;
+php 扩展的路径&lt;/li&gt;
+&lt;li&gt;disable_functions&lt;br&gt;
+ 禁用函数列表&lt;/li&gt;
+&lt;li&gt;open_basedir&lt;br&gt;
+ 将用户可操作的文件限制在某目录下&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <updated>2022-12-09T10:27:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2022/12/09/CTF/%E5%88%B7%E9%A2%98/</id>
         <title>刷题</title>
@@ -746,7 +777,8 @@ php 强类型比较，如果为字符串类型的 2 就会让 op=1, 之后执行
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;?str=O:11:&amp;quot;FileHandler&amp;quot;:3:&amp;#123;s:2:&amp;quot;op&amp;quot;;i:2;s:8:&amp;quot;filename&amp;quot;;s:8:&amp;quot;flag.php&amp;quot;;s:7:&amp;quot;content&amp;quot;;N;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;f12 在注释成功拿取 flag&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&#34;gxyctf2019babyupload&#34;&gt; [GXYCTF2019]BabyUpload&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;点进去 Github 看到 exp 中有.htaccess&lt;/p&gt;
+&lt;p&gt;文件上传漏洞&lt;br&gt;
+点进去 Github 看到 exp 中有.htaccess&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;,htaccess&lt;/li&gt;
 &lt;/ol&gt;
