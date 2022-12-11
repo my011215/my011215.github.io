@@ -52,7 +52,7 @@
 &lt;li&gt;&lt;a href=&#34;#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84areuserialz&#34;&gt;[网鼎杯 2020 青龙组]（AreUSerialz）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#gxyctf2019babyupload&#34;&gt;[GXYCTF2019]BabyUpload&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#gyctf2020blacklist&#34;&gt;[GYCTF2020]Blacklist&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#ciscn2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-day2-web1hack-world&#34;&gt;[CISCN2019 (华北赛区) Day2 Web1] Hack World&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ciscn2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-day2-web1hack-world&#34;&gt;[CISCN2019 华北赛区 Day2 Web1] Hack World&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
@@ -810,7 +810,7 @@ mochu7=show_source(’/flag’)&lt;br&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;HANDLER … OPEN语句打开一个表&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;HANDLER … READ语句访问&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;HANDLER … CLOSE关闭一个表&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&amp;#x27;;handler FlagHere open;handler FlagHere read first;handler FlagHere close;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;得到 flag&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;ciscn2019-华北赛区-day2-web1-hack-world&#34;&gt; [CISCN2019 (华北赛区) Day2 Web1] Hack World&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;ciscn2019-华北赛区-day2-web1-hack-world&#34;&gt; [CISCN2019 华北赛区 Day2 Web1] Hack World&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;点开靶机进去，页面告诉我们 table 和 column 都是 flag&lt;br&gt;
 Now, just give the id of passage&lt;br&gt;
  浅浅怀疑是 sql 注入，id 应该是个参数&lt;/p&gt;
