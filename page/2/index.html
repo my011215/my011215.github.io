@@ -72,6 +72,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vulnerability/php反序列化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/11/26/vulnerability/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="article-date">
+  <time datetime="2022-11-26T14:39:30.000Z" itemprop="datePublished">2022-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/11/26/vulnerability/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">php反序列化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E5%BA%8F%E5%88%97%E5%8C%96">序列化</a></li>
+<li><a href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96">反序列化</a></li>
+<li><a href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E">反序列化漏洞</a></li>
+<li><a href="#%E9%AD%94%E6%B3%95%E5%87%BD%E6%95%B0">魔法函数</a></li>
+<li><a href="#%E5%88%A9%E7%94%A8">利用</a></li>
+</ul>
+<!-- tocstop -->
+<p>参考：<a target="_blank" rel="noopener" href="http://t.csdn.cn/dWy9l">http://t.csdn.cn/dWy9l</a><br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fish-pompom/p/11126473.html">https://www.cnblogs.com/fish-pompom/p/11126473.html</a></p>
+<h2 id="序列化"><a class="markdownIt-Anchor" href="#序列化">#</a> 序列化</h2>
+<p>有时需要把一个对象在网络上传输，为了方便传输，可以把整个对象转化为二进制串，等到达另一端时，再还原为原来的对象，这个过程称之为串行化 (也叫序列化)。<br>
+json 数据使用，分隔开，数据内使用：分隔键和值<br>
+ json 数据其实就是个数组，这样做的目的也是为了方便在前后端传输数据，后端接受到 json 数据，可以通过 json_decode () 得到原数据，这种将原本的数据通过某种手段进行 &quot;压缩&quot;，并且按照一定的格式存储的过程就可以称之为序列化。<br>
+有两种情况必须把对象序列化：</p>
+<ol>
+<li>把一个对象在网络中传输</li>
+<li>把对象写入文件或数据库</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2022/11/26/vulnerability/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/11/26/vulnerability/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" data-id="clbelq679001baotnhkf030vr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vulnerability/php伪协议" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/11/26/vulnerability/php%E4%BC%AA%E5%8D%8F%E8%AE%AE/" class="article-date">
@@ -615,62 +679,6 @@ md5 是一种被广泛使用的密码散列函数，可以产生一个 128 位�
 
 
   
-    <article id="post-cryptology/密码学的前世今生（短分享）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/09/01/cryptology/%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%EF%BC%88%E7%9F%AD%E5%88%86%E4%BA%AB%EF%BC%89/" class="article-date">
-  <time datetime="2022-09-01T12:02:26.597Z" itemprop="datePublished">2022-09-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>title: 密码学的前世今生（短分享）<br>
-date: 2022-9-01 19:53:30<br>
-categories:<br>
-- 密码学</p>
-<h2 id="发展"><a class="markdownIt-Anchor" href="#发展">#</a> 发展</h2>
-<h3 id="起源4000年以前"><a class="markdownIt-Anchor" href="#起源4000年以前">#</a> 起源（4000 年以前）</h3>
-<p>有意识的隐藏信息</p>
-<h3 id="古代密码1900年以前"><a class="markdownIt-Anchor" href="#古代密码1900年以前">#</a> 古代密码（1900 年以前）</h3>
-<p>纯手工或采用简单机械</p>
-<h3 id="古典密码1900-1949"><a class="markdownIt-Anchor" href="#古典密码1900-1949">#</a> 古典密码（1900-1949）</h3>
-<p>采用复杂机械机电设备<br>
-也有些内容称 1949 年之前为古典密码</p>
-<ol>
-<li>最早的密文<br>
-公元前 19 世纪，古埃及十二王朝，祭祀用一些奇怪的符号来代替常用的象形文字，撰写碑文。核心思想是代替、代换。</li>
-</ol>
-<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/52.png?raw=true" alt><br>
-2. 斯巴达人的 &quot;天书&quot; 密码<br>
-公元前 400 年，斯巴达人把一个类似于纸袋、羊皮带、皮革带类似的东西，呈螺旋状的缠在一根权杖或木棍上，之后再沿着棍子的纵轴书写文字，核心思想是替换。<br>
-<img src="https://github.com/my011215/my011215.github.io/blob/main/image/53.png?raw=true" alt></p>
-<ol start="3">
-<li>总结<br>
-古典密码是艺术还不是科学。<br>
-出现一些密码算法和加密设备。<br>
-密码算法的基本手段（代换＆置换）针对的是字符。</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2022/09/01/cryptology/%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%EF%BC%88%E7%9F%AD%E5%88%86%E4%BA%AB%EF%BC%89/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2022/09/01/cryptology/%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%EF%BC%88%E7%9F%AD%E5%88%86%E4%BA%AB%EF%BC%89/" data-id="clbelq66w000aaotne6w55yxx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -686,7 +694,7 @@ categories:<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">26</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -701,7 +709,7 @@ categories:<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -712,6 +720,10 @@ categories:<br>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/16/vulnerability/beescms/">beescms</a>
+          </li>
         
           <li>
             <a href="/2022/12/13/vulnerability/SSRF%E6%BC%8F%E6%B4%9E/">SSRF漏洞</a>
@@ -727,10 +739,6 @@ categories:<br>
         
           <li>
             <a href="/2022/12/09/vulnerability/phpinfo%E4%BF%A1%E6%81%AF%E5%88%A9%E7%94%A8/">php信息利用</a>
-          </li>
-        
-          <li>
-            <a href="/2022/12/09/interview/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%9D%A2%E8%AF%95%E9%A2%98/">暴力破解</a>
           </li>
         
       </ul>

@@ -5,6 +5,14 @@
     "home_page_url": "https://my011215.github.io",
     "items": [
         {
+            "id": "https://my011215.github.io/2022/12/16/vulnerability/beescms/",
+            "url": "https://my011215.github.io/2022/12/16/vulnerability/beescms/",
+            "title": "beescms",
+            "date_published": "2022-12-16T07:15:30.000Z",
+            "content_html": "<p>参考：<a href=\"https://xz.aliyun.com/t/11955\">https://xz.aliyun.com/t/11955</a></p>\n<!-- toc -->\n<ul>\n<li><a href=\"#%E6%90%AD%E5%BB%BA\">搭建</a></li>\n<li><a href=\"#begin\">begin</a></li>\n</ul>\n<!-- tocstop -->\n<h2><span id=\"搭建\"> 搭建</span></h2>\n<p>基于 phpstudy 搭建</p>\n<ol>\n<li><a href=\"http://beescms.com/cxxz.html\">http://beescms.com/cxxz.html</a> 官网进行下载，可能会提示安全问题忽略即可。</li>\n<li>解压后改名（beescms）放入 WWW 根目录下。</li>\n<li>访问 http://127.0.0.1/beescms/install 开始安装<br>\n ps: 一直到填写数据库页面可能会出现如下问题</li>\n<li>数据库用户名密码（和 phpstudy 相配）</li>\n<li>数据库之前进行过冲突处理的，要进入服务打开 mysqla。</li>\n<li>数据库名字，我取的是 beescms，需要用 phpstudy 打开数据库可视化工具新建一个同名数据库。</li>\n<li>php 版本最好 5.4 以下，版本太高不兼容会报语法错误。</li>\n<li>在 mysql 里面的 my.ini 文件加入 secure_file_priv =</li>\n</ol>\n<span id=\"more\"></span>  \n<h2><span id=\"begin\"> begin</span></h2>\n",
+            "tags": []
+        },
+        {
             "id": "https://my011215.github.io/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/",
             "url": "https://my011215.github.io/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/",
             "title": "中南民族VPN登录框",

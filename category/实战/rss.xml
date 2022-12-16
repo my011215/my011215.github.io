@@ -5,8 +5,37 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Fri, 02 Dec 2022 18:27:30 +0800</pubDate>
-        <lastBuildDate>Fri, 02 Dec 2022 18:27:30 +0800</lastBuildDate>
+        <pubDate>Fri, 16 Dec 2022 15:15:30 +0800</pubDate>
+        <lastBuildDate>Fri, 16 Dec 2022 15:15:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2022/12/16/vulnerability/beescms/</guid>
+            <title>beescms</title>
+            <link>https://my011215.github.io/2022/12/16/vulnerability/beescms/</link>
+            <pubDate>Fri, 16 Dec 2022 15:15:30 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;参考：&lt;a href=&#34;https://xz.aliyun.com/t/11955&#34;&gt;https://xz.aliyun.com/t/11955&lt;/a&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%90%AD%E5%BB%BA&#34;&gt;搭建&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#begin&#34;&gt;begin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;h2&gt;&lt;span id=&#34;搭建&#34;&gt; 搭建&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;基于 phpstudy 搭建&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://beescms.com/cxxz.html&#34;&gt;http://beescms.com/cxxz.html&lt;/a&gt; 官网进行下载，可能会提示安全问题忽略即可。&lt;/li&gt;
+&lt;li&gt;解压后改名（beescms）放入 WWW 根目录下。&lt;/li&gt;
+&lt;li&gt;访问 http://127.0.0.1/beescms/install 开始安装&lt;br&gt;
+ ps: 一直到填写数据库页面可能会出现如下问题&lt;/li&gt;
+&lt;li&gt;数据库用户名密码（和 phpstudy 相配）&lt;/li&gt;
+&lt;li&gt;数据库之前进行过冲突处理的，要进入服务打开 mysqla。&lt;/li&gt;
+&lt;li&gt;数据库名字，我取的是 beescms，需要用 phpstudy 打开数据库可视化工具新建一个同名数据库。&lt;/li&gt;
+&lt;li&gt;php 版本最好 5.4 以下，版本太高不兼容会报语法错误。&lt;/li&gt;
+&lt;li&gt;在 mysql 里面的 my.ini 文件加入 secure_file_priv =&lt;/li&gt;
+&lt;/ol&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;begin&#34;&gt; begin&lt;/span&gt;&lt;/h2&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2022/12/02/vulnerability/%E4%B8%AD%E5%8D%97%E6%B0%91%E6%97%8FVPN%E7%99%BB%E5%BD%95%E6%A1%86/</guid>
             <title>中南民族VPN登录框</title>
