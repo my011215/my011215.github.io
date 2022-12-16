@@ -12,14 +12,18 @@
 &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%90%AD%E5%BB%BA&#34;&gt;搭建&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2&#34;&gt;登录界面&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2&#34;&gt;登录界面&lt;/a&gt;
+&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#sql%E6%B3%A8%E5%85%A5&#34;&gt;sql 注入&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%B5%8B%E8%AF%95&#34;&gt;测试&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1&#34;&gt;代码审计&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BB%BC%E4%B8%8A&#34;&gt;综上&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%88%86%E7%A0%B4&#34;&gt;爆破&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;h2&gt;&lt;span id=&#34;搭建&#34;&gt; 搭建&lt;/span&gt;&lt;/h2&gt;
@@ -38,8 +42,8 @@
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
 &lt;h2&gt;&lt;span id=&#34;登录界面&#34;&gt; 登录界面&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/193.png?raw=true&#34; alt&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;sql-注入&#34;&gt; sql 注入&lt;/span&gt;&lt;/h2&gt;
-&lt;h3&gt;&lt;span id=&#34;测试&#34;&gt; 测试&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;sql-注入&#34;&gt; sql 注入&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;测试&#34;&gt; 测试&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;首先，观察有用户名和密码，还有验证码。&lt;br&gt;
 然后，可以想到的事是分别测试用户名和密码，看是否存在 sql 注入。&lt;/p&gt;
 &lt;ul&gt;
@@ -62,7 +66,7 @@
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/194.png?raw=true&#34; alt&gt;&lt;br&gt;
 看来是存在 sql 注入的，那么具体是哪一种注入呢？这里有源码，我们进行一下代码审计。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3&gt;&lt;span id=&#34;代码审计&#34;&gt; 代码审计&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;代码审计&#34;&gt; 代码审计&lt;/span&gt;&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;admin/login.php&lt;/li&gt;
 &lt;/ul&gt;
@@ -93,10 +97,8 @@ mysql_fetch_assoc () — 从结果集中取得一行作为关联数&lt;br&gt;
  5. query ()&lt;/p&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;function query($sql)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		if(!$res=@mysql_query($sql,$this-&amp;gt;link))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;			err(&amp;#x27;操作数据库失败&amp;#x27;.mysql_error().&amp;quot;&amp;lt;br&amp;gt;sql:&amp;#123;$sql&amp;#125;&amp;quot;,&amp;quot;javascript:history.go(-1);&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		return $res;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;mysql_error () 返回错误信息&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;综上&lt;br&gt;
-可以使用报错注入，对于一些关键字可以使用双写绕过&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;综上&#34;&gt; 综上&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;可以使用报错注入，对于一些关键字可以使用双写绕过&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;暴库&lt;/li&gt;
 &lt;/ol&gt;
@@ -117,7 +119,7 @@ mysql_fetch_assoc () — 从结果集中取得一行作为关联数&lt;br&gt;
  用户名：admin&lt;br&gt;
  密码：admin&lt;br&gt;
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/198png?raw=true&#34; alt&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;爆破&#34;&gt; 爆破&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;爆破&#34;&gt; 爆破&lt;/span&gt;&lt;/h3&gt;
 </content>
         <updated>2022-12-16T07:15:30.000Z</updated>
     </entry>
