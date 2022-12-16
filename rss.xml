@@ -16,6 +16,11 @@
 &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%90%AD%E5%BB%BA&#34;&gt;搭建&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F&#34;&gt;目录扫描&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2&#34;&gt;登录界面&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#sql%E6%B3%A8%E5%85%A5&#34;&gt;sql 注入&lt;/a&gt;
@@ -44,6 +49,14 @@
 &lt;li&gt;在 mysql 里面的 my.ini 文件加入 secure_file_priv =&lt;/li&gt;
 &lt;/ol&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;信息收集&#34;&gt; 信息收集&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;目录扫描&#34;&gt; 目录扫描&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/199.png?raw=true&#34; alt&gt;&lt;br&gt;
+测试了一下发现这几个网址都是后台登录界面&lt;br&gt;
+&lt;a href=&#34;http://127.0.0.1/beescms/ADMIN/&#34;&gt; http://127.0.0.1/beescms/ADMIN/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;http://127.0.0.1/beescms/Admin/&#34;&gt;http://127.0.0.1/beescms/Admin/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;http://127.0.0.1/beescms/admin/&#34;&gt;http://127.0.0.1/beescms/admin/&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;http://127.0.0.1/beescms/admin./&#34;&gt;http://127.0.0.1/beescms/admin./&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&#34;登录界面&#34;&gt; 登录界面&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/193.png?raw=true&#34; alt&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;span id=&#34;sql-注入&#34;&gt; sql 注入&lt;/span&gt;&lt;/h3&gt;
