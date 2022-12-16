@@ -131,8 +131,35 @@ mysql_fetch_assoc () — 从结果集中取得一行作为关联数&lt;br&gt;
 &lt;p&gt;&lt;sub&gt;admin21232f297a57a5a743894a0e4a801fc3&lt;/sub&gt;&lt;br&gt;
  用户名：admin&lt;br&gt;
  密码：admin&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/198png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/198.png?raw=true&#34; alt&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;span id=&#34;爆破&#34;&gt; 爆破&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;分析&lt;br&gt;
+用户名和密码都好进行爆破，现在唯一棘手的就是绕过验证码，我们可以抓包看看情况&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/200.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;user=admin&amp;amp;password=password&amp;amp;code=72df&amp;amp;submit=true&amp;amp;submit.x=33&amp;amp;submit.y=19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;猜测 submit 可以控制验证码，如果 submit=false 会怎么样呢？验证码会不会不变？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;验证&lt;br&gt;
+ submit=false 情况下&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;密码错误，验证码正确&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/200.png?raw=true&#34; alt&gt;&lt;br&gt;
+被告知密码错误&lt;/li&gt;
+&lt;li&gt;密码错误，验证码错误&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/202.png?raw=true&#34; alt&gt;&lt;br&gt;
+被优先告知验证码错误&lt;br&gt;
+说明程序应该是优先判断验证码对不对，但是我们在控制 submit=false 情况下，不断重复发送，验证码一直都是原来那一个，由此可知 submit=false 情况下可以保证验证码不变。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;爆破&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/203.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/204.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/205.png?raw=true&#34; alt&gt;&lt;br&gt;
+使用 admin 成功登录！&lt;/li&gt;
+&lt;/ul&gt;
 </content>
         <updated>2022-12-16T07:15:30.000Z</updated>
     </entry>
