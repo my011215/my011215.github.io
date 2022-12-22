@@ -5,8 +5,156 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Fri, 09 Dec 2022 11:23:39 +0800</pubDate>
-        <lastBuildDate>Fri, 09 Dec 2022 11:23:39 +0800</lastBuildDate>
+        <pubDate>Thu, 22 Dec 2022 23:29:30 +0800</pubDate>
+        <lastBuildDate>Thu, 22 Dec 2022 23:29:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2022/12/22/interview/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+            <title>文件包含漏洞面试题</title>
+            <link>https://my011215.github.io/2022/12/22/interview/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+            <pubDate>Thu, 22 Dec 2022 23:29:30 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;————————————————&lt;br&gt;
+ 版权声明：本文为 CSDN 博主「_PowerShell」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。&lt;br&gt;
+原文链接：&lt;a href=&#34;https://blog.csdn.net/qq_51577576/article/details/128123224&#34;&gt;https://blog.csdn.net/qq_51577576/article/details/128123224&lt;/a&gt;&lt;br&gt;
+ 转发博文：&lt;a href=&#34;http://t.csdn.cn/bo3hT&#34;&gt;http://t.csdn.cn/bo3hT&lt;/a&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E&#34;&gt;什么是文件包含漏洞？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%83%BD%E8%AE%B2%E4%B8%80%E4%B8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%8E%9F%E7%90%86%E5%90%97&#34;&gt;能讲一下文件包含漏洞的原理吗？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%8F%AF%E4%BB%A5%E5%88%86%E4%B8%BA%E9%82%A3%E4%B8%A4%E7%B1%BB%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86&#34;&gt;文件包含漏洞可以分为那两类，如何区分？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%86%E7%B1%BB&#34;&gt;文件包含漏洞的分类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB&#34;&gt;本地文件包含&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB&#34;&gt;远程文件包含&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%8D%B1%E5%AE%B3&#34;&gt;文件包含漏洞的危害&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#php%E4%B8%AD%E7%9A%84%E5%8C%85%E5%90%AB%E5%87%BD%E6%95%B0&#34;&gt;PHP 中的包含函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jspservlet%E4%B8%AD%E7%9A%84%E5%8C%85%E5%90%AB%E5%87%BD%E6%95%B0&#34;&gt;JSP/Servlet 中的包含函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#asp%E4%B8%AD%E7%9A%84%E5%8C%85%E5%90%AB%E5%87%BD%E6%95%B0&#34;&gt;ASP 中的包含函数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#php%E4%B8%ADrequire%E5%92%8Cinclude%E5%87%BD%E6%95%B0%E5%8C%BA%E5%88%AB&#34;&gt;PHP 中 Require 和 Include 函数区别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%88%A9%E7%94%A8%E6%80%9D%E8%B7%AF&#34;&gt;文件包含利用思路&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%88%A9%E7%94%A8%E6%80%9D%E8%B7%AF&#34;&gt;利用思路&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%85%8D%E5%90%88%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9Egetshell&#34;&gt;配合文件上传漏洞 getshell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8D%95%E7%8B%AC%E4%BD%BF%E7%94%A8getshell&#34;&gt;单独使用 getshell&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%81%87%E8%AE%BE%E6%94%BB%E5%87%BB%E8%80%85%E5%B7%B2%E7%BB%8F%E7%9F%A5%E9%81%93%E6%9F%90%E7%BD%91%E7%AB%99%E5%AD%98%E5%9C%A8%E4%B8%94%E4%BB%85%E5%AD%98%E5%9C%A8%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%B9%B6%E4%B8%94%E6%B2%A1%E6%9C%89%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%82%B9%E5%8F%8A%E5%85%B6%E4%BB%96%E6%BC%8F%E6%B4%9E%E5%A6%82%E4%BD%95getshell&#34;&gt;假设攻击者已经知道某网站存在且仅存在本地文件包含漏洞，并且没有文件上传漏洞点及其他漏洞，如何 GetShell。&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#php%E4%B8%AD%E8%A6%81%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%88%99%E9%9C%80%E8%A6%81%E5%AF%B9phpini%E5%81%9A%E4%BB%80%E4%B9%88%E6%93%8D%E4%BD%9C&#34;&gt;php 中要实现远程文件包含则需要对 php.ini 做什么操作？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%98%B2%E8%8C%83%E6%8E%AA%E6%96%BD&#34;&gt;常见的防范措施&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%AE%BE%E7%BD%AE%E7%99%BD%E5%90%8D%E5%8D%95&#34;&gt;设置白名单&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%BF%87%E6%BB%A4%E5%8D%B1%E9%99%A9%E5%AD%97%E7%AC%A6&#34;&gt;过滤危险字符&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95&#34;&gt;设置文件目录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%B3%E9%97%AD%E5%8D%B1%E9%99%A9%E9%85%8D%E7%BD%AE&#34;&gt;关闭危险配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#session%E6%96%87%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B7%AF%E5%BE%84%E6%9C%89%E5%93%AA%E4%BA%9B&#34;&gt;SESSION 文件常见的常见的路径有哪些？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9C%A8php%E7%AB%99%E7%82%B9%E4%B8%AD%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E4%BD%BF%E7%94%A8user-agent%E6%8F%92%E5%85%A5php%E4%BB%A3%E7%A0%81%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E5%8C%85%E5%90%AB&#34;&gt;在 php 站点中，如果我想使用 user-agent 插入 php 代码，如何进行包含？&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8C%85%E5%90%AB%E6%80%9D%E8%B7%AF&#34;&gt;包含思路&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%88%A9%E7%94%A8%E6%9D%A1%E4%BB%B6&#34;&gt;利用条件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#windows%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B&#34;&gt;Windows 特殊文件有哪些？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#linux%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B&#34;&gt;linux 特殊文件有哪些？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E7%9A%84%E7%BB%95%E8%BF%87%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B&#34;&gt;文件包含漏洞的绕过方式有哪些？&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%90%8E%E5%8A%A0%E5%85%A5%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%BB%95%E8%BF%87&#34;&gt;文件后加入特殊字符绕过&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%9C%81%E7%95%A5%E5%90%8E%E7%BC%80&#34;&gt;省略后缀&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87&#34;&gt;双写绕过&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%88%A9%E7%94%A8%E7%9B%AE%E5%BD%95%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E&#34;&gt;利用目录解析漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8C%85%E5%90%AB%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6&#34;&gt;包含日志文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BC%AA%E5%8D%8F%E8%AE%AE%E5%8C%85%E5%90%AB&#34;&gt;伪协议包含&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;h2&gt;&lt;span id=&#34;什么是文件包含漏洞&#34;&gt; 什么是文件包含漏洞？&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;文件包含漏洞是一种最常见的漏洞类型，它会影响依赖于脚本运行时的web应用程序。当应用程序使用攻击者控制的变量构建可执行代码的路径时，文件包含漏洞会导致攻击者任意控制运行时执行的文件。如果一个文件包含这个漏洞，为了方便起见，经常在开发阶段就实施。由于它经常用于程序开发阶段，所以这就为后来的攻击埋下了伏笔并导致了各种基于文件的攻击。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;文件包含漏洞主要是程序员把一些公用的代码写在一个单独的文件中，然后使用其他文件进行包含调用，如果需要包含的文件使用硬编码，一般是不会出现安全问题，但是有时可能不确定需要包含哪些具体文件，所以就会采用变量的形式来传递需要包含的文件，但是在使用包含文件的过程中，未对包含的变量进行检查及过滤，导致外部提交的恶意数据作为变量进入到了文件包含的过程中，从而导致提交的恶意数据被执行。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;能讲一下文件包含漏洞的原理吗&#34;&gt; 能讲一下文件包含漏洞的原理吗？&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1、文件包含漏洞的产生原因是在PHP的函数引入文件时，由于传入的文件名没有经过合理的校验，从而操作了预想之外的文件，就可能导致意外的文件泄露甚至恶意的代码注入。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2、最常见的就属于本地文件包含（Local File Inclusion）漏洞了。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;开发人员一般会把重复使用的函数写到单个文件中，需要使用某个函数时直接调用此文件，无需再次编写，这个文件调用的过程就是文件包含。如果对传入的文件名限制不严谨就会引发文件包含漏洞。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3、几乎所有脚本语言都会提供文件包含的功能，但文件包含漏洞在PHP站点文件包含漏洞居多，而在JSP、ASP等站点文件包含漏洞非常少，甚至没有，这是有些语言设计的弊端。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;文件包含漏洞可以分为那两类如何区分&#34;&gt; 文件包含漏洞可以分为那两类，如何区分？&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;文件包含漏洞的分类&#34;&gt; 文件包含漏洞的分类&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;文件包含漏洞分为本地文件包含 (Loacl File Inclusion,LFI) 和远程文件包含 (Remote File Inclusion,RFI)。二者有着相同的原理，但前者只能包含服务器上存在的文件，而后者可以包含远程服务器上的文件。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;本地文件包含&#34;&gt; 本地文件包含&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;本地文件包含就是通过浏览器包含 web 服务器上的文件，这种漏洞是因为浏览器包含文件时没有进行严格的过滤允许遍历目录的字符注入浏览器并执行。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;远程文件包含&#34;&gt; 远程文件包含&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;远程文件包含就是允许攻击者包含一个远程的文件,一般是在远程服务器上预先设置好的脚本。 此漏洞是因为浏览器对用户的输入没有进行检查，导致不同程度的信息泄露、拒绝服务攻击 甚至在目标服务器上执行代码。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;文件包含漏洞的危害&#34;&gt; 文件包含漏洞的危害&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;1、通过文件包含漏洞，可以读取系统中的敏感文件，源代码文件等，如密码文件，通过对密码文件进行暴力破解。&lt;br&gt;
+2、若破解成功则可获取操作系统的用户账户，甚至可通过开放的远程连接服务进行连接控制。&lt;br&gt;
+3、不管是本地文件包含还是远程文件包含，文件包含漏洞还可能导致执行任意代码。&lt;br&gt;
+4、简单来说就是可能造成敏感文件泄露，获取 webs hell，任意命令执行。&lt;br&gt;
+5、导致文件包含的函数&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;php-中的包含函数&#34;&gt; PHP 中的包含函数&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;include()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;include_once()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;require()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;re-quire_once()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fopen()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;readfile()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;......&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;jspservlet-中的包含函数&#34;&gt; JSP/Servlet 中的包含函数&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ava.io.File()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;java.io.Fil-eReader()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;......&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;asp-中的包含函数&#34;&gt; ASP 中的包含函数&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;include file&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;include virtual&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;php-中-require-和-include-函数区别&#34;&gt; PHP 中 Require 和 Include 函数区别&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Require ()：如果里面有一些错误就会停止运行。&lt;br&gt;
+Include ()：有错误的话会产生警告信息，同时会接着往下执行。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;文件包含利用思路&#34;&gt; 文件包含利用思路&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;利用思路&#34;&gt; 利用思路&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;一般来说文件包含漏洞会配合文件上传漏洞进行利用，如果不存在文件上传漏洞的情况下我们可以去获取一些敏感信息，或者利用日志文件记录报错的方法，来往日志文件中 “写入” 一句话木马&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;配合文件上传漏洞-getshell&#34;&gt; 配合文件上传漏洞 getshell&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;1. 制作一个图片木马，通过文件上传漏洞上传&lt;br&gt;
+ 2. 通过文件包含漏洞对该图片木马进行包含&lt;br&gt;
+ 3. 获取执行结果&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;单独使用-getshell&#34;&gt; 单独使用 getshell&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;由于没有存在文件上传点，而我们又需要服务器本地有个文件存在一句话木马代码，这时候我们想到，日志文件记录报错的方法，来往日志文件中 “写入” 一句话木马，然后再利用文件包含来执行日志文件中的一句话木马。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;假设攻击者已经知道某网站存在且仅存在本地文件包含漏洞并且没有文件上传漏洞点及其他漏洞如何-getshell&#34;&gt; 假设攻击者已经知道某网站存在且仅存在本地文件包含漏洞，并且没有文件上传漏洞点及其他漏洞，如何 GetShell。&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;由于没有存在文件上传点，而我们又需要服务器本地有个文件存在一句话木马代码，这时候我们想到，日志文件记录报错的方法，来往日志文件中 “写入” 一句话木马，然后再利用文件包含来执行日志文件中的一句话木马。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;php-中要实现远程文件包含则需要对-phpini-做什么操作&#34;&gt; php 中要实现远程文件包含则需要对 php.ini 做什么操作？&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;1、需要确认 allow_url_fopen 和 allow_url_include 的值都为 On，也就是打开状态。&lt;br&gt;
+2、如果不是打开状态，我们设置未打开并且完成之后需要重启才能生效。&lt;br&gt;
+3、allow_url_fopen：默认值是 ON。允许 url 里的封装协议访问文件。&lt;br&gt;
+4、allow_url_include：默认值是 OFF。不允许包含 url 里的封装协议包含文件。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;常见的防范措施&#34;&gt; 常见的防范措施&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;任意文件包含漏洞的主要出现在能够解析处理脚本文件的函数上，没有对输入的变量进行过滤，导致任意文件包含，进而导致恶意代码执行。在开发处理这类功能函数上，一定要遵循编程规范；在代码核心处，对变量进行过滤限制，设置文件路径或者白名单，避免执行任意文件包含。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;设置白名单&#34;&gt; 设置白名单&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;代码在进行文件包含时，如果文件名可以确定，可以设置白名单对传入的参数进行比较。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;过滤危险字符&#34;&gt; 过滤危险字符&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;由于 Include/Require 可以对 PHP Wrapper 形式的地址进行包含执行（需要配置 php.ini），在 Linux 环境中可以通过”…/…/” 的形式进行目录绕过，所以需要判断文件名称是否为合法的 PHP 文件。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;设置文件目录&#34;&gt; 设置文件目录&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;PHP 配置文件中有 open_basedir 选项可以设置用户需要执行的文件目录，如果设置目录的话，PHP 仅仅在该目录内搜索文件。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;关闭危险配置&#34;&gt; 关闭危险配置&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;PHP 配置中的 allow_url_include 选项如果打开，PHP 会通过 Include/Require 进行远程文件包含，由于远程文件的不可信任性及不确定性，在开发中禁止打开此选项，PHP 默认是关闭的。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;session-文件常见的常见的路径有哪些&#34;&gt; SESSION 文件常见的常见的路径有哪些？&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/var/lib/php/sess_PHPSESSID&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/var/lib/php/sess_PHPSESSID&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/tmp/sess_PHPSESSID&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/tmp/sessions/sess_PHPSESSID&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;在-php-站点中如果我想使用-user-agent-插入-php-代码如何进行包含&#34;&gt; 在 php 站点中，如果我想使用 user-agent 插入 php 代码，如何进行包含？&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;包含 environ 文件即可，常见路径为 /pros/self/environ。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;包含思路&#34;&gt; 包含思路&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;proc/self/environ 中会保存 user-agent 头，如果在 user-agent 中插入 php 代码，则 php 代码会被写入到 environ 中，之后再包含它，就可以完成包含 user-agent 插入的 php 代码。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;利用条件&#34;&gt; 利用条件&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;php 以 cgi 方式运行，这样 environ 才会保持 UA 头。&lt;br&gt;
+environ 文件存储位置已知，且 environ 文件可读。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;windows-特殊文件有哪些&#34;&gt; Windows 特殊文件有哪些？&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;C:\boot.ini&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;C:\windows\System32\inetsrv\MetaBas.xml&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;C:\windows\repair\sam&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;C:\program Files\mysql\my.ini&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;C:\program Files\mysql\data\mysql\user.MYD&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;c\windows\php.ini&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;C\windows\my.ini&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;linux-特殊文件有哪些&#34;&gt; linux 特殊文件有哪些？&lt;/span&gt;&lt;/h2&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/root/.ssh/authorized_keys&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/root/.ssh/id_rsa&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/root/.ssh/id_ras.keystore&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/root/.ssh/known_hosts&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/passwd&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/shadow&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/my.cnf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/my.cnf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/httpd/conf/httpd.conf&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/root/.bash_history&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/root/.mysql_history&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/proc/self/fd/fd*&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/proc/mounts/porc/config.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;文件包含漏洞的绕过方式有哪些&#34;&gt; 文件包含漏洞的绕过方式有哪些？&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;文件后加入特殊字符绕过&#34;&gt; 文件后加入特殊字符绕过&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;利用工具，将访问路径后加入 %00，可以绕过后缀检查。&lt;br&gt;
+或者后面加一些特殊字符例如 斜杠 点之类。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;省略后缀&#34;&gt; 省略后缀&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;有些程序会将传入参数指引到其他位置，或者修改后缀名，先访问文件判断，例如不需要写后缀名。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;双写绕过&#34;&gt; 双写绕过&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;当写入文件时，发现删除某些特殊字符，我们可以判断是删除了其中字符，例如”php&amp;quot;，“…/”，只需再增加一个使其删除后得到我们需要的，需要注意绝对路径与相对路径。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;利用目录解析漏洞&#34;&gt; 利用目录解析漏洞&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;如中间件是 nginx 时，我们可以利用 nginx 目录解析，当我们只能上传.jpg 文件时，我们无法利用，只能原文读取出来，但是发现在 shell.jpg 后加 /xxx.php, 他就能以 php 方式读取文件，这就是目录解析漏洞。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;包含日志文件&#34;&gt; 包含日志文件&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;当我们访问不存在目录时，例如：&lt;a href=&#34;http://lfi.cn/LFI-1/&#34;&gt;http://lfi.cn/LFI-1/&lt;/a&gt;&lt;?php phpinfo();?&gt;&lt;br&gt;
+它会将错误路径保存在日志中。不同的中间件有不同的路径。&lt;br&gt;
+日志文件名字为 access_log，access.log，error.log，Logfiles 等。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;伪协议包含&#34;&gt; 伪协议包含&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;当不能直接访问目录下文件时，可以选择利用伪协议来访问文件，前提是 allow_url_fopen 和 allow_url_include 都是打开状态。&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1.page=file://[绝对路径]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;当页面有file1，file2……后台会判断是否已file开头，我们可以使用此协议。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2.php:// 访问各个输入/输出流（I/O streams）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;php://filter用于读取源码&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;php://input用于执行php代码，或者直接将代码写入执行。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3.zip://[绝对路径], bzip2://[绝对路径], zlib://[绝对路径]协议，都属于压缩楼，访问压缩文件中的子文件，不需要指定后缀&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;phar:// 可以查找指定压缩包内的文件，相对路径与绝对路径都可以写&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4.data: text/plain,&amp;lt;?php 执行内容 ?&amp;gt;与input类似，当我们想查看源代码时，可以将其先转换为base64文件在传到页面上就不会执行PHP了&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5.http协议&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;也可以传入外部链接，自己服务器的钓鱼网站&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2022/12/09/interview/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
             <title>暴力破解</title>
