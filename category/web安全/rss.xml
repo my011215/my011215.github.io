@@ -5,13 +5,13 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Fri, 16 Dec 2022 15:15:30 +0800</pubDate>
-        <lastBuildDate>Fri, 16 Dec 2022 15:15:30 +0800</lastBuildDate>
+        <pubDate>Thu, 22 Dec 2022 22:15:30 +0800</pubDate>
+        <lastBuildDate>Thu, 22 Dec 2022 22:15:30 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://my011215.github.io/2022/12/16/vulnerability/beescms/</guid>
+            <guid isPermalink="true">https://my011215.github.io/2022/12/22/vulnerability/beescms/</guid>
             <title>beescms</title>
-            <link>https://my011215.github.io/2022/12/16/vulnerability/beescms/</link>
-            <pubDate>Fri, 16 Dec 2022 15:15:30 +0800</pubDate>
+            <link>https://my011215.github.io/2022/12/22/vulnerability/beescms/</link>
+            <pubDate>Thu, 22 Dec 2022 22:15:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;参考：&lt;a href=&#34;https://xz.aliyun.com/t/11955&#34;&gt;https://xz.aliyun.com/t/11955&lt;/a&gt;&lt;/p&gt;
 &lt;!-- toc --&gt;
 &lt;ul&gt;
@@ -31,6 +31,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%88%86%E7%A0%B4&#34;&gt;爆破&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%E5%AF%BC%E8%87%B4%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E7%BB%95%E8%BF%87&#34;&gt;变量覆盖导致的后台登录绕过&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -51,7 +52,8 @@
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
 &lt;h2&gt;&lt;span id=&#34;信息收集&#34;&gt; 信息收集&lt;/span&gt;&lt;/h2&gt;
 &lt;h3&gt;&lt;span id=&#34;目录扫描&#34;&gt; 目录扫描&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/199.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;p&gt;这里顺嘴记录一下，本人用的目录扫描工具是 dirsearch，需要 python 运行，但是 dirsearch 只支持 3.7 以上版本，这时候我们要如何快速切换对应版本呢？只需要在对应版本的路径找到 python.exe，比如我的版本是 3.6，我改成 python36，执行 python36 就行。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/199.png?raw=true&#34; alt&gt;&lt;br&gt;
 测试了一下发现这几个网址都是后台登录界面&lt;br&gt;
 &lt;a href=&#34;http://127.0.0.1/beescms/ADMIN/&#34;&gt; http://127.0.0.1/beescms/ADMIN/&lt;/a&gt;&lt;br&gt;
 &lt;a href=&#34;http://127.0.0.1/beescms/Admin/&#34;&gt;http://127.0.0.1/beescms/Admin/&lt;/a&gt;&lt;br&gt;
@@ -164,6 +166,28 @@ mysql_fetch_assoc () — 从结果集中取得一行作为关联数&lt;br&gt;
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/205.png?raw=true&#34; alt&gt;&lt;br&gt;
 使用 admin 成功登录！&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;变量覆盖导致的后台登录绕过&#34;&gt; 变量覆盖导致的后台登录绕过&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;后台登录验证的代码在 admin/init.php 文件下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;admin/init.php&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;//检查登陆&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;if(!is_login())&amp;#123;header(&amp;#x27;location:login.php&amp;#x27;);exit;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;到 include/fun.php 审计 is_login ()&lt;br&gt;
+2. include/fun.php&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;function is_login()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	if($_SESSION[&amp;#x27;login_in&amp;#x27;]==1&amp;amp;&amp;amp;$_SESSION[&amp;#x27;admin&amp;#x27;])&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		if(time()-$_SESSION[&amp;#x27;login_time&amp;#x27;]&amp;gt;3600)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;			login_out();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;			$_SESSION[&amp;#x27;login_time&amp;#x27;]=time();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;			@session_regenerate_id();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		return 1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;admin&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;admin_purview&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;admin_id&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;admin_time&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;login_in&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;login_time&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		$_SESSION[&amp;#x27;admin_ip&amp;#x27;]=&amp;#x27;&amp;#x27;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;登录条件： &lt;code&gt;$_SESSION[&#39;login_in&#39;]==1&lt;/code&gt;  并且有 &lt;code&gt;$_SESSION[&#39;admin&#39;]&lt;/code&gt;  变量，还有 &lt;code&gt;time()-$_SESSION[&#39;login_time&#39;]&amp;lt;3600&lt;/code&gt; ,time () 是一个超大的数值&lt;br&gt;
+所以如果在一个界面可以传入&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;_SESSION[login_in]=1&amp;amp;_SESSION[admin]=admin&amp;amp;_SESSION[login_time]=100000000000000000000000&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;那么就可以伪造登录&lt;br&gt;
+ 3. includes/init.php&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;if (isset($_REQUEST))&amp;#123;$_REQUEST  = fl_value($_REQUEST);&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    $_COOKIE   = fl_value($_COOKIE);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	$_GET = fl_value($_GET);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;@extract($_POST);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;@extract($_GET);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;@extract($_COOKIE);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们发现对 request 请求到的一些资源都在 fl_value () 中做了过滤，但是 post 没做过滤，那么我们看一下哪些界面引用了这个文件，就可以进行 post 传参，然后再切换到登录界面，应该就可以实现登录。&lt;br&gt;
+4. index.php&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;require_once(&amp;#x27;includes/init.php&amp;#x27;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;引入的文件如果看不见，可以在 includes/init.php 传参处打断点，逐步运行调试，看哪一步用到了。&lt;br&gt;
+5. 传参&lt;br&gt;
+ hackbar&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/206.png?raw=true&#34; alt&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
