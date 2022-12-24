@@ -72,6 +72,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vulnerability/beescms" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/12/24/vulnerability/beescms/" class="article-date">
+  <time datetime="2022-12-24T09:15:30.000Z" itemprop="datePublished">2022-12-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/12/24/vulnerability/beescms/">beescms</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11955">https://xz.aliyun.com/t/11955</a></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E6%90%AD%E5%BB%BA">搭建</a></li>
+<li><a href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86">信息收集</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F">目录扫描</a></li>
+</ul>
+</li>
+<li><a href="#%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2">登录界面</a>
+<ul>
+<li><a href="#sql%E6%B3%A8%E5%85%A5">sql 注入</a>
+<ul>
+<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1">代码审计</a></li>
+<li><a href="#%E7%BB%BC%E4%B8%8A">综上</a></li>
+</ul>
+</li>
+<li><a href="#%E7%88%86%E7%A0%B4">爆破</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%E5%AF%BC%E8%87%B4%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E7%BB%95%E8%BF%87">变量覆盖导致的后台登录绕过</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4%E6%BC%8F%E6%B4%9E">任意文件删除漏洞</a></li>
+<li><a href="#%E5%8F%82%E6%95%B0%E5%8F%AF%E6%8E%A7%E5%AF%BC%E8%87%B4%E7%9A%84sql%E6%B3%A8%E5%85%A5">参数可控导致的 sql 注入</a></li>
+</ul>
+<!-- tocstop -->
+<h2 id="搭建"><a class="markdownIt-Anchor" href="#搭建">#</a> 搭建</h2>
+<p>基于 phpstudy 搭建</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://beescms.com/cxxz.html">http://beescms.com/cxxz.html</a> 官网进行下载，可能会提示安全问题忽略即可。</li>
+<li>解压后改名（beescms）放入 WWW 根目录下。</li>
+<li>访问 http://127.0.0.1/beescms/install 开始安装<br>
+ ps: 一直到填写数据库页面可能会出现如下问题</li>
+<li>数据库用户名密码（和 phpstudy 相配）</li>
+<li>数据库之前进行过冲突处理的，要进入服务打开 mysqla。</li>
+<li>数据库名字，我取的是 beescms，需要用 phpstudy 打开数据库可视化工具新建一个同名数据库。</li>
+<li>php 版本最好 5.4 以下，版本太高不兼容会报语法错误。</li>
+<li>在 mysql 里面的 my.ini 文件加入 secure_file_priv =</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2022/12/24/vulnerability/beescms/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/12/24/vulnerability/beescms/" data-id="clbq722j20000lotn0pjcfuuh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-interview/文件包含漏洞面试题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/12/22/interview/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
@@ -167,87 +250,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="https://my011215.github.io/2022/12/22/interview/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/" data-id="clbz5e1bi0000pctnc003eqr6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vulnerability/beescms" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/12/22/vulnerability/beescms/" class="article-date">
-  <time datetime="2022-12-22T14:15:30.000Z" itemprop="datePublished">2022-12-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/12/22/vulnerability/beescms/">beescms</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11955">https://xz.aliyun.com/t/11955</a></p>
-<!-- toc -->
-<ul>
-<li><a href="#%E6%90%AD%E5%BB%BA">搭建</a></li>
-<li><a href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86">信息收集</a>
-<ul>
-<li><a href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F">目录扫描</a></li>
-</ul>
-</li>
-<li><a href="#%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2">登录界面</a>
-<ul>
-<li><a href="#sql%E6%B3%A8%E5%85%A5">sql 注入</a>
-<ul>
-<li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li>
-<li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1">代码审计</a></li>
-<li><a href="#%E7%BB%BC%E4%B8%8A">综上</a></li>
-</ul>
-</li>
-<li><a href="#%E7%88%86%E7%A0%B4">爆破</a></li>
-<li><a href="#%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96%E5%AF%BC%E8%87%B4%E7%9A%84%E5%90%8E%E5%8F%B0%E7%99%BB%E5%BD%95%E7%BB%95%E8%BF%87">变量覆盖导致的后台登录绕过</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-<h2 id="搭建"><a class="markdownIt-Anchor" href="#搭建">#</a> 搭建</h2>
-<p>基于 phpstudy 搭建</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://beescms.com/cxxz.html">http://beescms.com/cxxz.html</a> 官网进行下载，可能会提示安全问题忽略即可。</li>
-<li>解压后改名（beescms）放入 WWW 根目录下。</li>
-<li>访问 http://127.0.0.1/beescms/install 开始安装<br>
- ps: 一直到填写数据库页面可能会出现如下问题</li>
-<li>数据库用户名密码（和 phpstudy 相配）</li>
-<li>数据库之前进行过冲突处理的，要进入服务打开 mysqla。</li>
-<li>数据库名字，我取的是 beescms，需要用 phpstudy 打开数据库可视化工具新建一个同名数据库。</li>
-<li>php 版本最好 5.4 以下，版本太高不兼容会报语法错误。</li>
-<li>在 mysql 里面的 my.ini 文件加入 secure_file_priv =</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2022/12/22/vulnerability/beescms/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2022/12/22/vulnerability/beescms/" data-id="clbq722j20000lotn0pjcfuuh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -994,11 +996,11 @@ burp 抓包<br>
       <ul>
         
           <li>
-            <a href="/2022/12/22/interview/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件包含漏洞面试题</a>
+            <a href="/2022/12/24/vulnerability/beescms/">beescms</a>
           </li>
         
           <li>
-            <a href="/2022/12/22/vulnerability/beescms/">beescms</a>
+            <a href="/2022/12/22/interview/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E9%9D%A2%E8%AF%95%E9%A2%98/">文件包含漏洞面试题</a>
           </li>
         
           <li>
