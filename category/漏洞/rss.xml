@@ -5,8 +5,106 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Tue, 13 Dec 2022 22:15:30 +0800</pubDate>
-        <lastBuildDate>Tue, 13 Dec 2022 22:15:30 +0800</lastBuildDate>
+        <pubDate>Tue, 27 Dec 2022 22:25:30 +0800</pubDate>
+        <lastBuildDate>Tue, 27 Dec 2022 22:25:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2022/12/27/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</guid>
+            <title>渗透测试学习</title>
+            <link>https://my011215.github.io/2022/12/27/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</link>
+            <pubDate>Tue, 27 Dec 2022 22:25:30 +0800</pubDate>
+            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%90%8D%E8%AF%8D%E6%A6%82%E5%BF%B5&#34;&gt;基础名词概念&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%95%B0%E6%8D%AE%E5%8C%85%E6%89%A9%E5%B1%95&#34;&gt;数据包扩展&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%9D%B6%E5%9C%BA&#34;&gt;靶场&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1&#34;&gt;代码审计&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%B3%BB%E7%BB%9F%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93&#34;&gt;系统及数据库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8A%A0%E5%AF%86%E5%92%8C%E7%BC%96%E7%A0%81&#34;&gt;加密和编码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cdn%E7%BB%95%E8%BF%87&#34;&gt;（CDN）绕过&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86waf&#34;&gt;信息收集（WAF）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#app%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;（APP）信息收集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9%E6%94%B6%E9%9B%86&#34;&gt;其他内容收集&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E&#34;&gt;（Web）常见漏洞&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#sql%E6%B3%A8%E5%85%A5&#34;&gt;(sql) 注入&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0&#34;&gt;文件上传&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xss&#34;&gt;xss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#csrf&#34;&gt;csrf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&#34;&gt;（php）反序列化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&#34;&gt;（java）反序列化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xxe&#34;&gt;xxe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jwt%E5%AE%89%E5%85%A8%E5%8F%8A%E9%A2%84%E7%BC%96%E8%AF%91case%E6%B3%A8%E5%85%A5&#34;&gt;（JWT）安全及预编译（CASE）注入&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#java%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86&#34;&gt;（java）目录遍历&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%B6%E4%BB%96%E6%BC%8F%E6%B4%9E&#34;&gt;其他漏洞&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%BC%8F%E6%B4%9E&#34;&gt;操作系统漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#web%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E&#34;&gt;（Web）应用漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#app%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E&#34;&gt;（APP）应用漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#api%E6%8E%A5%E5%8F%A3%E6%9C%8D%E5%8A%A1%E6%BC%8F%E6%B4%9E&#34;&gt;（API）接口服务漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#waf%E7%BB%95%E8%BF%87%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;（WAF）绕过信息收集&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%90%86%E6%B1%A0&#34;&gt;代理池&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%8C%87%E7%BA%B9%E6%8E%A2%E9%92%88&#34;&gt;指纹探针&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E6%B7%B7%E6%B7%86&#34;&gt;代码混淆&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%B3%A8%E5%85%A5%E4%B8%8A%E4%BC%A0&#34;&gt;注入上传&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-1&#34;&gt;代码审计&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#php&#34;&gt;PHP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#java&#34;&gt;JAVA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%8F%90%E6%9D%83&#34;&gt;提权&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8&#34;&gt;内网安全&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;h2&gt;&lt;span id=&#34;信息收集&#34;&gt; 信息收集&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;基础名词概念&#34;&gt; 基础名词概念&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;数据包扩展&#34;&gt; 数据包扩展&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;靶场&#34;&gt; 靶场&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;代码审计&#34;&gt; 代码审计&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;系统及数据库&#34;&gt; 系统及数据库&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;加密和编码&#34;&gt; 加密和编码&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;cdn绕过&#34;&gt; （CDN）绕过&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;信息收集waf&#34;&gt; 信息收集（WAF）&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;app信息收集&#34;&gt; （APP）信息收集&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;其他内容收集&#34;&gt; 其他内容收集&lt;/span&gt;&lt;/h3&gt;
+&lt;h2&gt;&lt;span id=&#34;web常见漏洞&#34;&gt; （Web）常见漏洞&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;sql-注入&#34;&gt; (sql) 注入&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;文件上传&#34;&gt; 文件上传&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;xss&#34;&gt; xss&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;csrf&#34;&gt; csrf&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;php反序列化&#34;&gt; （php）反序列化&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;java反序列化&#34;&gt; （java）反序列化&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;xxe&#34;&gt; xxe&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;jwt安全及预编译case注入&#34;&gt; （JWT）安全及预编译（CASE）注入&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;java目录遍历&#34;&gt; （java）目录遍历&lt;/span&gt;&lt;/h3&gt;
+&lt;h2&gt;&lt;span id=&#34;其他漏洞&#34;&gt; 其他漏洞&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;操作系统漏洞&#34;&gt; 操作系统漏洞&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;web应用漏洞&#34;&gt; （Web）应用漏洞&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;app应用漏洞&#34;&gt; （APP）应用漏洞&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;api接口服务漏洞&#34;&gt; （API）接口服务漏洞&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;waf绕过信息收集&#34;&gt; （WAF）绕过信息收集&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;代理池&#34;&gt; 代理池&lt;/span&gt;&lt;/h4&gt;
+&lt;h4&gt;&lt;span id=&#34;指纹探针&#34;&gt; 指纹探针&lt;/span&gt;&lt;/h4&gt;
+&lt;h4&gt;&lt;span id=&#34;代码混淆&#34;&gt; 代码混淆&lt;/span&gt;&lt;/h4&gt;
+&lt;h4&gt;&lt;span id=&#34;注入上传&#34;&gt; 注入上传&lt;/span&gt;&lt;/h4&gt;
+&lt;h2&gt;&lt;span id=&#34;代码审计&#34;&gt; 代码审计&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;php&#34;&gt; PHP&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;java&#34;&gt; JAVA&lt;/span&gt;&lt;/h3&gt;
+&lt;h2&gt;&lt;span id=&#34;提权&#34;&gt; 提权&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;内网安全&#34;&gt; 内网安全&lt;/span&gt;&lt;/h2&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2022/12/13/vulnerability/SSRF%E6%BC%8F%E6%B4%9E/</guid>
             <title>SSRF漏洞</title>
