@@ -5,13 +5,13 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Wed, 04 Jan 2023 00:01:30 +0800</pubDate>
-        <lastBuildDate>Wed, 04 Jan 2023 00:01:30 +0800</lastBuildDate>
+        <pubDate>Wed, 04 Jan 2023 21:25:30 +0800</pubDate>
+        <lastBuildDate>Wed, 04 Jan 2023 21:25:30 +0800</lastBuildDate>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/01/04/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</guid>
             <title>渗透测试学习</title>
             <link>https://my011215.github.io/2023/01/04/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</link>
-            <pubDate>Wed, 04 Jan 2023 00:01:30 +0800</pubDate>
+            <pubDate>Wed, 04 Jan 2023 21:25:30 +0800</pubDate>
             <description><![CDATA[ &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;
@@ -33,8 +33,16 @@
 &lt;li&gt;&lt;a href=&#34;#%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%8C%85&#34;&gt;请求和响应数据包&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E9%9D%B6%E5%9C%BA&#34;&gt;靶场&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1&#34;&gt;代码审计&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%9D%B6%E5%9C%BA&#34;&gt;靶场&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%89%E8%A3%85vulhub&#34;&gt;安装 vulhub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#web%E6%BA%90%E7%A0%81&#34;&gt;（web）源码&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#cms%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB&#34;&gt;（CMS）指纹识别&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%B3%BB%E7%BB%9F%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93&#34;&gt;系统及数据库&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%8A%A0%E5%AF%86%E5%92%8C%E7%BC%96%E7%A0%81&#34;&gt;加密和编码&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#cdn%E7%BB%95%E8%BF%87&#34;&gt;（CDN）绕过&lt;/a&gt;&lt;/li&gt;
@@ -72,7 +80,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-1&#34;&gt;代码审计&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1&#34;&gt;代码审计&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#php&#34;&gt;PHP&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#java&#34;&gt;JAVA&lt;/a&gt;&lt;/li&gt;
@@ -269,6 +277,10 @@ d. 响应数据包中的&lt;strong&gt;授权域和附加域&lt;/strong&gt;&lt;br
 &lt;li&gt;app 抓包测试&lt;br&gt;
 下载模拟器用抓包工具抓包&lt;/li&gt;
 &lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;ip 扫描有更多可能性&lt;br&gt;
+目录备份文件扫描，ip 一般是在域名的上一级可能会有更多惊喜&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h3&gt;&lt;span id=&#34;数据包扩展&#34;&gt; 数据包扩展&lt;/span&gt;&lt;/h3&gt;
 &lt;h4&gt;&lt;span id=&#34;http和https&#34;&gt; （http）和（https）&lt;/span&gt;&lt;/h4&gt;
 &lt;p&gt;参考：&lt;a href=&#34;https://www.runoob.com/w3cnote/http-vs-https.html&#34;&gt;https://www.runoob.com/w3cnote/http-vs-https.html&lt;/a&gt;&lt;br&gt;
@@ -378,7 +390,122 @@ HTTPS 其实就是建构在 SSL/TLS 之上的 HTTP 协议，所以，要比较 H
 通过发送数据包，判断响应码看是否存在&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;&lt;span id=&#34;靶场&#34;&gt; 靶场&lt;/span&gt;&lt;/h3&gt;
-&lt;h3&gt;&lt;span id=&#34;代码审计&#34;&gt; 代码审计&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;安装-vulhub&#34;&gt; 安装 vulhub&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;参考：&lt;a href=&#34;http://t.csdn.cn/pv18q&#34;&gt;http://t.csdn.cn/pv18q&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Vulhub：&lt;br&gt;
+是一个面向大众的开源漏洞靶场，简单执行两条命令即可编译、运行一个完整的漏洞靶场镜像。让漏洞复现变得更加简单。&lt;/li&gt;
+&lt;li&gt;Docker：&lt;br&gt;
+是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中。&lt;/li&gt;
+&lt;li&gt;Docker 三大核心：&lt;br&gt;
+由镜像 (Image)、容器 (Container)、仓库 (Repository)&lt;/li&gt;
+&lt;li&gt;安装步骤&lt;br&gt;
+前提 sudo -s 进入最高权限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;先更新 APT，apt-get update&lt;br&gt;
+ 成功显示完成&lt;/li&gt;
+&lt;li&gt;安装 https 协议、CA 证书，apt-get install -y apt-transport-https ca-certificates&lt;br&gt;
+ 成功显示两个 done.&lt;/li&gt;
+&lt;li&gt;安装 docker，apt install &lt;a href=&#34;http://docker.io&#34;&gt;docker.io&lt;/a&gt;&lt;br&gt;
+ 报错：下列软件包有未满足的依赖关系：libc6-dev&lt;/li&gt;
+&lt;li&gt;apt-get update&lt;/li&gt;
+&lt;li&gt;apt-get upgrade&lt;/li&gt;
+&lt;li&gt;apt-get install libc6-dev&lt;/li&gt;
+&lt;li&gt;安装 docker，apt install &lt;a href=&#34;http://docker.io&#34;&gt;docker.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;查看版本，是否安装成功；docker -v&lt;br&gt;
+ 显示 docker version&lt;/li&gt;
+&lt;li&gt;显示 docker 信息 ，systemctl start docker&lt;/li&gt;
+&lt;li&gt;查看开启的环境，docker ps -a&lt;/li&gt;
+&lt;li&gt;安装 pip3，apt-get install python3-pip&lt;/li&gt;
+&lt;li&gt;安装 docker-compose，pip3 install docker-compose&lt;br&gt;
+ 报错：error: subprocess-exited-with-error&lt;/li&gt;
+&lt;li&gt;pip install --upgrade setuptools&lt;/li&gt;
+&lt;li&gt;查看 docker-compose 版本，docker-compose -v&lt;br&gt;
+ 安装成功显示 docker-compose version&lt;/li&gt;
+&lt;li&gt;下载 Vulhub，git clone &lt;a href=&#34;https://gitee.com/puier/vulhub.git&#34;&gt;https://gitee.com/puier/vulhub.git&lt;/a&gt;&lt;br&gt;
+（1）ls&lt;br&gt;
+（2）cd vulhub&lt;br&gt;
+（3）ls&lt;/li&gt;
+&lt;li&gt;进入一个目录，cd spring（比如进入 spring)&lt;br&gt;
+（1）ls&lt;br&gt;
+（2）选择具体漏洞：CVE…&lt;br&gt;
+（3）对靶场进行编译：docker-compose build&lt;br&gt;
+（4）运行靶场：docker-compose up -d&lt;br&gt;
+ 中国网速…&lt;br&gt;
+ 赶紧重新配置了一波&lt;br&gt;
+参考：&lt;a href=&#34;http://t.csdn.cn/C3ayS&#34;&gt;http://t.csdn.cn/C3ayS&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Kali  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;（1）mkdir -p /etc/docker  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;（2） &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tee /etc/docker/daemon.json &amp;lt;&amp;lt;-&amp;#x27;EOF&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;quot;registry-mirrors&amp;quot;: [&amp;quot;https://l10nt4hq.mirror.aliyuncs.com&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;EOF  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;（3）systemctl daemon-reload  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;（4）systemctl restart docker  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（5）查看启动环境，docker-compose ps（查看端口）&lt;br&gt;
+17. 访问 http://0.0.0.0:8080/users&lt;br&gt;
+18. 移除环境，docker-compose down&lt;br&gt;
+docker-compose 会默认根据当前目录下的配置文件启动容器，在关闭及移除环境的时候，也需要在对应目录下。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更多漏洞可以参考 Vulhub 官方文档:   &lt;a href=&#34;https://vulhub.org/#/environments/&#34;&gt;https://vulhub.org/#/environments/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;web源码&#34;&gt; （web）源码&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;参考：&lt;a href=&#34;http://t.csdn.cn/pMmhk&#34;&gt;http://t.csdn.cn/pMmhk&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/355150689&#34;&gt;https://zhuanlan.zhihu.com/p/355150689&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;cms指纹识别&#34;&gt; （CMS）指纹识别&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;概念&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;cms 就是内容管理系统，也可以理解成为网站建设系统。&lt;/li&gt;
+&lt;li&gt;内容管理系统使用基于角色的用户管理，通过添加不同权限的用户，可以把网站管理权限分配到不同的用户上，然后把这些用户通过权限来划分各种级别，例如：超级管理人员、栏目管理人员、文档录入人员、审核人员等等，这样网站在发布内容的时候就不会出现任何错误，同时也能保证内容的质量。&lt;/li&gt;
+&lt;li&gt;现在流行的开源 CMS 系统有 WordPress、Joomla!、Drupal、Xoops、CmsTop 等。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;识别 cms 目的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;准确的获取 CMS 类型、Web 服务组件类型及版本信息。&lt;/li&gt;
+&lt;li&gt;了目标的 cms，就可以利用相关 bug 进行测试，进行代码审计等。&lt;/li&gt;
+&lt;li&gt;在指纹识别的学习过程中，有很多开源的工具和指纹库，如 fofa、WhatWeb、w11scan、WebEye。&lt;/li&gt;
+&lt;li&gt;在了解使用了具体框架，可以进行框架漏洞的搜索，利用工具进行扫描。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;指纹识别对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;CMS 信息：比如大汉 CMS、织梦、帝国 CMS、phpcms、ecshop 等；&lt;/li&gt;
+&lt;li&gt;前端技术：比如 HTML5、jquery、bootstrap、pure、ace 等；&lt;/li&gt;
+&lt;li&gt;Web 服务器：比如 Apache、lighttpd, Nginx, IIS 等；&lt;/li&gt;
+&lt;li&gt;应用服务器：比如 Tomcat、Jboss、weblogic、websphere 等；&lt;/li&gt;
+&lt;li&gt;开发语言：比如 PHP、Java、Ruby、Python、C# 等；&lt;/li&gt;
+&lt;li&gt;操作系统信息：比如 linux、win2k8、win7、kali、centos 等；&lt;/li&gt;
+&lt;li&gt;CDN 信息：是否使用 CDN，如 cloudflare、360cdn、365cyd、yunjiasu 等；&lt;/li&gt;
+&lt;li&gt;WAF 信息：是否使用 waf，如 Topsec、Jiasule、Yundun 等；&lt;/li&gt;
+&lt;li&gt;IP 及域名信息：IP 和域名注册信息、服务商信息等；&lt;/li&gt;
+&lt;li&gt;端口信息：有些软件或平台还会探测服务器开放的常见端口。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别 cms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;人工&lt;br&gt;
+（1）网站特有文件&lt;br&gt;
+如 /templets/default/style/dedecms.css—dedecms&lt;br&gt;
+（2）网站独有文件的 md5&lt;br&gt;
+ 如 favicon.ico，但是该文件可以被修改导致不准确。&lt;br&gt;
+（3）网页关键字&lt;br&gt;
+如 /data/sessions/index.html——dedecms&lt;br&gt;
+（4）Url 特征&lt;br&gt;
+（5）robots.txt&lt;br&gt;
+（6）通过版权信息进行查询&lt;br&gt;
+（7）通过查看网页源码的方式&lt;br&gt;
+（8）通过比较网站 md5 值&lt;/li&gt;
+&lt;li&gt;网站&lt;br&gt;
+（1）&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//whatweb.bugscaner.com/look/&#34;&gt;https://link.zhihu.com/?target=http%3A//whatweb.bugscaner.com/look/&lt;/a&gt;&lt;br&gt;
+（2）&lt;a href=&#34;https://www.yunsee.cn/&#34;&gt;https://www.yunsee.cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;工具&lt;br&gt;
+思想：爆破&lt;br&gt;
+有些 cms 的扫描器就是用这个原理的，cms 有些特定的文件。&lt;br&gt;
+先收集某个 cms 的某个路径的文件的 md5 值，要求这个文件一般不会被使用者修改的。然后访问这个网站同样的路径下是否存在这个文件，存在的话比较 md5 值。相同能报出 cms 类型。这个比较考验字典的能力。&lt;br&gt;
+（1）WhatWeb&lt;br&gt;
+ 此工具 kali 自带，使用方法：whatweb &lt;a href=&#34;http://www.example.com&#34;&gt;www.example.com&lt;/a&gt; 即可，也可以加参数 - v 显示更详细的信息。&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h3&gt;&lt;span id=&#34;系统及数据库&#34;&gt; 系统及数据库&lt;/span&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;span id=&#34;加密和编码&#34;&gt; 加密和编码&lt;/span&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;span id=&#34;cdn绕过&#34;&gt; （CDN）绕过&lt;/span&gt;&lt;/h3&gt;
