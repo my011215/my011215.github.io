@@ -147,10 +147,10 @@ d. DNS-A 就会给 DNS-C 发出解析请求，等到 DNS-C 的查询结果；&lt
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;如果某个攻击者可以预测和伪造响应数据包，他就可以对DNS服务器发起缓存中毒攻击了。由于DNS服务器发送的数据包中的TID只有16位，而且大部分的DNS实现发出的请求中的源端口都是固定不变的。因此，攻击者就可以伪造DNS响应包，DNS服务器在收到响应包后就会将解析结果保存在自己的缓存中，进而实现了缓存中毒攻击。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;（2）DNS 响应数据包解析原理&lt;br&gt;
  DNS 服务器不是对收到的任何 DNS 响应数据包都会接受，它会解码数据包，检查数据包是否符合接受的标准&lt;/p&gt;
-&lt;p&gt;a. 在 DNS 服务器发出的查询请求包中包含了它的__UDP 端口号__，返回的响应数据包的目的端口号不对，网络协议栈就会直接丢弃该数据包。&lt;br&gt;
-b. DNS 服务器收到响应数据包后，可以通过检查问题域与发出的查询包中的问题__域是否一致__来判断响应数据包的合法性。&lt;br&gt;
-c. DNS 服务器每发出一个查询请求都会分配对应的一个查询 ID 号，在内部对应是某一个域名查询请求，在 DNS 服务器内部区分不同的查询就是__TID 号__，如果 DNS 服务器收到的响应数据包中的 TID 号不在 DNS 服务器等待响应数据的 TID 中，服务器就会丢弃该数据包。&lt;br&gt;
-d. 响应数据包中的__授权域和附加域__&lt;br&gt;
+&lt;p&gt;a. 在 DNS 服务器发出的查询请求包中包含了它的&lt;strong&gt; UDP 端口号&lt;/strong&gt;，返回的响应数据包的目的端口号不对，网络协议栈就会直接丢弃该数据包。&lt;br&gt;
+b. DNS 服务器收到响应数据包后，可以通过检查问题域与发出的查询包中的问题&lt;strong&gt;域是否一致&lt;/strong&gt;来判断响应数据包的合法性。&lt;br&gt;
+c. DNS 服务器每发出一个查询请求都会分配对应的一个查询 ID 号，在内部对应是某一个域名查询请求，在 DNS 服务器内部区分不同的查询就是&lt;strong&gt; TID 号&lt;/strong&gt;，如果 DNS 服务器收到的响应数据包中的 TID 号不在 DNS 服务器等待响应数据的 TID 中，服务器就会丢弃该数据包。&lt;br&gt;
+d. 响应数据包中的&lt;strong&gt;授权域和附加域&lt;/strong&gt;&lt;br&gt;
 授权域和附加域中的域名必须和问题域中的域名是同属于某个域名下的子域名。&lt;/p&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;域名劫持（DNS 重定向）&lt;br&gt;
