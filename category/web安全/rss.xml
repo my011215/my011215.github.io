@@ -601,6 +601,8 @@ windows 对大小写不敏感&lt;/li&gt;
 &lt;a href=&#34;https://github.com/vulhub/vulhub/blob/master/phpmyadmin/CVE-2018-12613/README.zh-cn.md&#34;&gt;https://github.com/vulhub/vulhub/blob/master/phpmyadmin/CVE-2018-12613/README.zh-cn.md&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Mysql 身份认证绕过漏洞（CVE-2012-2122）&lt;br&gt;
 &lt;a href=&#34;https://vulhub.org/#/environments/mysql/CVE-2012-2122/&#34;&gt;https://vulhub.org/#/environments/mysql/CVE-2012-2122/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;phpmyadmin scripts/setup.php 反序列化漏洞（WooYun-2016-199433）&lt;br&gt;
+&lt;a href=&#34;https://github.com/vulhub/vulhub/blob/master/phpmyadmin/WooYun-2016-199433/README.zh-cn.md&#34;&gt;https://github.com/vulhub/vulhub/blob/master/phpmyadmin/WooYun-2016-199433/README.zh-cn.md&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;&lt;span id=&#34;加密和编码&#34;&gt; 加密和编码&lt;/span&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;span id=&#34;cdn绕过&#34;&gt; （CDN）绕过&lt;/span&gt;&lt;/h3&gt;
