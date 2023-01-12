@@ -7,13 +7,15 @@
   
   <title>Nmap的使用方法总结 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;bonelee&#x2F;p&#x2F;9188122.html   功能介绍 常见使用   # 功能介绍 Nmap 是主机扫描工具，他的图形化界面是 Zenmap，分布式框架为 Dnamp。  Nmap 可以完成以下任务：   主机探测 端口扫描 版本检测 系统检测 支持探测脚本的编写   Nmap 在实际中应用场合如下：   通过对设备或者防火墙的探测来审计它">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Nmap的使用方法总结">
-<meta property="og:url" content="https://my011215.github.io/2023/01/08/tool/Nmap/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/01/12/tool/Nmap/index.html">
 <meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;bonelee&#x2F;p&#x2F;9188122.html   功能介绍 常见使用   # 功能介绍 Nmap 是主机扫描工具，他的图形化界面是 Zenmap，分布式框架为 Dnamp。  Nmap 可以完成以下任务：   主机探测 端口扫描 版本检测 系统检测 支持探测脚本的编写   Nmap 在实际中应用场合如下：   通过对设备或者防火墙的探测来审计它">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-08T13:25:30.000Z">
-<meta property="article:modified_time" content="2023-01-08T11:04:08.799Z">
+<meta property="article:published_time" content="2023-01-12T07:02:30.000Z">
+<meta property="article:modified_time" content="2023-01-12T07:03:17.322Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
   
@@ -72,8 +74,8 @@
       <div class="outer">
         <section id="main"><article id="post-tool/Nmap" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/01/08/tool/Nmap/" class="article-date">
-  <time datetime="2023-01-08T13:25:30.000Z" itemprop="datePublished">2023-01-08</time>
+    <a href="/2023/01/12/tool/Nmap/" class="article-date">
+  <time datetime="2023-01-12T07:02:30.000Z" itemprop="datePublished">2023-01-12</time>
 </a>
     
   <div class="article-category">
@@ -96,13 +98,94 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- toc -->
+        <p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bonelee/p/9188122.html">https://www.cnblogs.com/bonelee/p/9188122.html</a></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D">功能介绍</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8">常见使用</a></li>
+</ul>
 <!-- tocstop -->
-<span id="more"></span>
+<h2><span id="功能介绍"> 功能介绍</span></h2>
+<p>Nmap 是主机扫描工具，他的图形化界面是 Zenmap，分布式框架为 Dnamp。</p>
+<ul>
+<li>Nmap 可以完成以下任务：</li>
+</ul>
+<ol>
+<li>主机探测</li>
+<li>端口扫描</li>
+<li>版本检测</li>
+<li>系统检测</li>
+<li>支持探测脚本的编写</li>
+</ol>
+<ul>
+<li>Nmap 在实际中应用场合如下：</li>
+</ul>
+<ol>
+<li>通过对设备或者防火墙的探测来审计它的安全性</li>
+<li>探测目标主机所开放的端口</li>
+<li>通过识别新的服务器审计网络的安全性</li>
+<li>探测网络上的主机</li>
+</ol>
+<span id="more"></span>  
+<ul>
+<li>常见服务对应端口号<br>
+参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1702021">https://cloud.tencent.com/developer/article/1702021</a></li>
+</ul>
+<ol>
+<li>FTP    20    FTP 服务器真正传输所用的端口，用于上传、下载</li>
+<li>FTP    21    用于 FTP 的登陆认证</li>
+<li>SSH、SFTP     22    加密的远程登录，文件传输</li>
+<li>Telnet    23    远程登录（在本地主机上使用此端口与远程服务器的 22/3389 端口连接）</li>
+<li>SMTP    25    用于发送邮件</li>
+<li>HTTP    80    用于网页浏览</li>
+<li>POP3    110    SUN 公司的 RPC 服务所有端口</li>
+<li>Network News Transfer Protocol    119    NEWS 新闻组传输协议，承载 USENET 通信</li>
+<li>SMTP    161    Simple Network Management Protocol，简单网络管理协议</li>
+<li>SNMP Trap    162    SNMP 陷阱</li>
+<li>HTTPS    443    加密的网页浏览端口</li>
+<li>CIFS    445    公共 Internet 文件系统</li>
+<li>sql server    1433    Microsoft 的 SQL 服务开放的端口 数据库</li>
+<li>Oracle    1521    数据库</li>
+<li>NFS    2049    通过网络，让不同的机器、不同的操作系统实现文件共享</li>
+<li>MySQL    3306    数据库</li>
+<li>WIN2003 远程登录    3389    Windows 2000 (2003) Server 远程桌面的服务端口，本地服务器开放此端口，去连接到远程的服务器</li>
+<li>QQ・4000    腾讯 QQ 客户端开放此端口</li>
+<li>WebLogic    7001    一个基于 JAVAEE 架构的中间件，WebLogic 是用于开发、集成、部署和管理大型分布式 Web 应用、网络应用和数据库应用的 Java 应用服务器</li>
+<li>Wingate    8010    Wingate 代理开放此端口</li>
+<li>TOMCAT    8080    WWW 代理开放此端口</li>
+</ol>
+<h2><span id="常见使用"> 常见使用</span></h2>
+<ol>
+<li>nmap 简单扫描<br>
+ nmap 默认发送一个 ARP 的 PING 数据包，来探测目标主机 1-10000 范围内所开放的所有端口<br>
+<strong> nmap 10.0.0.55</strong></li>
+<li>nmap 简单扫描，并对结果返回详细的描述输出<br>
+<strong> nmap -vv 10.0.0.55</strong></li>
+<li>nmap 自定义扫描<br>
+ nmap -p (range) IP<br>
+range）为要扫描的端口范围，端口大小不能超过 65535<br>
+<strong>nmap -p50-80 10.0.0.55</strong></li>
+<li>nmap 指定端口扫描<br>
+ nmap -p (port1,port2,…)  IP<br>
+<strong>nmap -p80,443,801 10.0.0.55</strong></li>
+<li>nmap ping 扫描<br>
+ nmap 可以利用类似 windows/linux 系统下的 ping 方式进行扫描<br>
+ nmap -sP ip<br>
+<strong>nmap sP 10.1.112.89</strong></li>
+<li>nmap 路由跟踪<br>
+路由器追踪功能，能够帮助网络管理员了解网络通行情况，同时也是网络管理人员很好的辅助工具，通过路由器追踪可以轻松的查处从我们电脑所在地到目的地之间所经常的网络节点，并可以看到通过各个结点所花费的时间<br>
+<strong> namp –traceroute 8.8.8.8 (geogle dns 服务器 ip)</strong></li>
+<li>nmap 操作系统类型的探测<br>
+ ** nmap -O (大写的 o) 10.1.112.89**</li>
+<li>nmap 万能开关<br>
+包含了 1-10000 端口 ping 扫描，操作系统扫描，脚本扫描，路由跟踪，服务探测<br>
+<strong> nmap -A 10.1.112.89</strong></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/01/08/tool/Nmap/" data-id="clcn9qomy0001n0tn6nvka3sx" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/01/12/tool/Nmap/" data-id="clcn9qomy0001n0tn6nvka3sx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -111,19 +194,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          永恒之蓝漏洞复现
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/01/08/vulnerability/vulhub%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/01/08/tool/Metasploit/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">vulhub漏洞复现</div>
+      <div class="article-nav-title">Metasploit</div>
     </a>
   
 </nav>
@@ -167,15 +241,15 @@
       <ul>
         
           <li>
+            <a href="/2023/01/12/tool/Nmap/">Nmap的使用方法总结</a>
+          </li>
+        
+          <li>
             <a href="/2023/01/08/tool/Metasploit/">Metasploit</a>
           </li>
         
           <li>
             <a href="/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/">永恒之蓝漏洞复现</a>
-          </li>
-        
-          <li>
-            <a href="/2023/01/08/tool/Nmap/">Nmap的使用方法总结</a>
           </li>
         
           <li>
