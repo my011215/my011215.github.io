@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;漏洞&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-01-13T14:02:30.000Z</updated>
+    <updated>2023-01-14T15:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/01/13/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</id>
+        <id>https://my011215.github.io/2023/01/14/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</id>
         <title>渗透测试学习</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/01/13/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/01/14/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86&#34;&gt;基础知识&lt;/a&gt;
@@ -50,7 +50,11 @@
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#cdn%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF&#34;&gt;CDN 相关技术&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#cdn%E7%BB%95%E8%BF%87&#34;&gt;（CDN）绕过&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86waf&#34;&gt;信息收集（WAF）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86waf&#34;&gt;信息收集（WAF）&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA&#34;&gt;站点搭建&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#app%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;（APP）信息收集&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9%E6%94%B6%E9%9B%86&#34;&gt;其他内容收集&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -625,6 +629,12 @@ cdn 会隐藏服务器真实的 ip 地址，无法对目标网站的操作系统
 &lt;li&gt;&lt;a href=&#34;https://sitereport.netcraft.com/?url&#34;&gt;https://sitereport.netcraft.com/?url&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://viewdns.info/&#34;&gt;https://viewdns.info/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;原理：证书透明公开日志枚举&lt;br&gt;
+证书透明度 (Certificate Transparency, CT) 是证书授权机构 (CA) 的一个项目，证书授权机构会将每个 SSL/TLS 证书发布到公共日志中。一个 SSL/TLS 证书通常包含域名、子域名和邮件地址， 这些也经常成为攻击者非常希望获得的有用信息。查找某个域名所属证书的最简单的方法就是使用搜索引 | 擎搜索一些公开的 CT 日志。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://myssl.com/&#34;&gt;https://myssl.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://crt.sh/&#34;&gt;https://crt.sh/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;邮件服务查询：&lt;br&gt;
 因为邮箱大部分都是内部人在访问、而且访问的量也不是很大，一般是没有做 CDN。邮件服务查询&lt;/li&gt;
@@ -709,6 +719,37 @@ zmap 原理详细解剖：&lt;a href=&#34;https://xz.aliyun.com/t/3653&#34;&gt;h
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http.favicon.hash:(hash值)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;（4）最后通过结果访问探针真实地址&lt;/p&gt;
 &lt;h3&gt;&lt;span id=&#34;信息收集waf&#34;&gt; 信息收集（WAF）&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;站点搭建&#34;&gt; 站点搭建&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;目录型站点&lt;br&gt;
+简单的理解就是主站上面存在其他的 cms 程序（一个站点多个应用功能）&lt;br&gt;
+例如：&lt;br&gt;
+学生网站的上面通过后台扫描探针发现有一个 bbs 的目录一点击发现是一个 bbs 的论坛网站如：&lt;a href=&#34;http://www.xxx.com/bbs&#34;&gt;www.xxx.com/bbs&lt;/a&gt;&lt;br&gt;
+ 我们把这个成为目录型网站、可以有两种找到漏洞的思路一个是主站的漏洞另外的一个是 bbs 上面的漏洞&lt;/li&gt;
+&lt;li&gt;端口类站点&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/305.png?raw=true&#34; alt&gt;&lt;br&gt;
+有的站点不是使用的是默认的站点 80 而是其他的端口、可以使用 shodan 等空间搜索引擎去收集端口&lt;/li&gt;
+&lt;li&gt;子域名站点&lt;br&gt;
+现在的主流网站都是采用的这种模式且子域名和网站之间很有可能是不在同一台的服务器上面。&lt;/li&gt;
+&lt;li&gt;类似域名站点&lt;br&gt;
+有些公司由于业务的发展将原来的域名弃用、选择了其他的域名但是我们访问他的旧的域名还是能够访问、有的是二级域名的更换而有的是顶级域名的更换&lt;br&gt;
+可以通过他的旧的域名找到一些突破口&lt;br&gt;
+例如：&lt;a href=&#34;http://xn--jd-8w2c3vq45gzqu2xgqsj.com&#34;&gt;京东的网站是 jd.com&lt;/a&gt; &lt;a href=&#34;http://xn--jd-002coj9ns6w1rpz0s9xb6y7d6g1ali3bxdd.net&#34;&gt;那么他就有可能是采用了 jd.net&lt;/a&gt; jd.cn 等域名我们采用社工的方式去尝试获取他的相关域名信息&lt;/li&gt;
+&lt;li&gt;旁站，c 段站点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;旁站：同一个服务器上面存在多个站点。&lt;br&gt;
+但是你要攻击的是 A 网站由于各种原因不能完成安全测试。就通过测试 B 网站进入服务器然后在攻击 A 网站最终实现目的。&lt;/li&gt;
+&lt;li&gt;C 段：同网段不同的服务器上面存在不同的网站。&lt;br&gt;
+通过扫描发现与你渗透测试的是同一个网段最终拿下服务器、然后通过内网渗透的方式拿下渗透服务器。&lt;/li&gt;
+&lt;li&gt;旁注 /c 段查询在线网站：&lt;br&gt;
+（1）&lt;a href=&#34;https://chapangzhan.com/&#34;&gt;https://chapangzhan.com/&lt;/a&gt;&lt;br&gt;
+（2）&lt;a href=&#34;https://www.webscan.cc/&#34;&gt;https://www.webscan.cc/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;搭建软件特征站点&lt;br&gt;
+有的网站是借助于第三方的集成搭建工具实现例如：PHPstudy、宝塔等环境这样的集成环境搭建的危害就是泄露了详细的版本信息。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;&lt;span id=&#34;app信息收集&#34;&gt; （APP）信息收集&lt;/span&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;span id=&#34;其他内容收集&#34;&gt; 其他内容收集&lt;/span&gt;&lt;/h3&gt;
 &lt;h2&gt;&lt;span id=&#34;web常见漏洞&#34;&gt; （Web）常见漏洞&lt;/span&gt;&lt;/h2&gt;
@@ -737,7 +778,7 @@ zmap 原理详细解剖：&lt;a href=&#34;https://xz.aliyun.com/t/3653&#34;&gt;h
 &lt;h2&gt;&lt;span id=&#34;提权&#34;&gt; 提权&lt;/span&gt;&lt;/h2&gt;
 &lt;h2&gt;&lt;span id=&#34;内网安全&#34;&gt; 内网安全&lt;/span&gt;&lt;/h2&gt;
 </content>
-        <updated>2023-01-13T14:02:30.000Z</updated>
+        <updated>2023-01-14T15:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2022/12/13/vulnerability/SSRF%E6%BC%8F%E6%B4%9E/</id>
