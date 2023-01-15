@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;漏洞&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-01-14T15:12:30.000Z</updated>
+    <updated>2023-01-15T08:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/01/14/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</id>
+        <id>https://my011215.github.io/2023/01/15/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</id>
         <title>渗透测试学习</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/01/14/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/01/15/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86&#34;&gt;基础知识&lt;/a&gt;
@@ -53,6 +53,7 @@
 &lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86waf&#34;&gt;信息收集（WAF）&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA&#34;&gt;站点搭建&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#waf%E9%98%B2%E6%8A%A4%E5%88%86%E6%9E%90&#34;&gt;（WAF）防护分析&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#app%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;（APP）信息收集&lt;/a&gt;&lt;/li&gt;
@@ -750,6 +751,40 @@ zmap 原理详细解剖：&lt;a href=&#34;https://xz.aliyun.com/t/3653&#34;&gt;h
 &lt;li&gt;搭建软件特征站点&lt;br&gt;
 有的网站是借助于第三方的集成搭建工具实现例如：PHPstudy、宝塔等环境这样的集成环境搭建的危害就是泄露了详细的版本信息。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;waf防护分析&#34;&gt; （WAF）防护分析&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是 WAF&lt;br&gt;
+&lt;strong&gt; 安全测试的一道墙&lt;/strong&gt;&lt;br&gt;
+ Web 应用防护系统（也称为：网站应用级入侵防御系统。英文：Web Application Firewall，简称： WAF）。利用国际上公认的一种说法：Web 应用防火墙是通过执行一系列针对 HTTP/HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;大型公司企业会有硬件类的 WAF 进行防护。&lt;/li&gt;
+&lt;li&gt;一般企业和个人网站会选择软件脚本类型 WAF 进行防护。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别 WAF&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;使用工具 wafw00f&lt;br&gt;
+wafw00f 的缺点判断的不是特别的准确存在误报或识别不出的情况。&lt;/li&gt;
+&lt;li&gt;在有些网站的请求信息当中有的网站没有做安全信息上面留下了 waf 的相关信息&lt;br&gt;
+ X-Powered-By:&lt;/li&gt;
+&lt;li&gt;使用工具 nmap&lt;br&gt;
+**nmap --script=http-waf-detect &lt;a href=&#34;http://www.jianshu.com&#34;&gt;www.jianshu.com&lt;/a&gt; **&lt;br&gt;
+** nmap --script==http-waf-fingerprint &lt;a href=&#34;http://www.jianshu.com&#34;&gt;www.jianshu.com&lt;/a&gt; **&lt;/li&gt;
+&lt;li&gt;使用工具 sqlmap&lt;br&gt;
+sqlmap -u “&lt;a href=&#34;http://www.baidu.com&#34;&gt;http://www.baidu.com&lt;/a&gt;” --identify-waf&lt;br&gt;
+&lt;strong&gt; 这个选项已经被废弃了，但是 sqlmap 仍然有识别 waf 的能力，主要是由于 identywaf 这个库。&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;使用工具 identYwaf&lt;br&gt;
+ 下载地址：参考地址：&lt;a href=&#34;https://github.com/stamparm/identywaf&#34;&gt;https://github.com/stamparm/identywaf&lt;/a&gt;&lt;br&gt;
+**python &lt;a href=&#34;http://identYwaf.py&#34;&gt;identYwaf.py&lt;/a&gt; &lt;a href=&#34;https://www.baidu.com/&#34;&gt;https://www.baidu.com/&lt;/a&gt; **&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/307.png?raw=true&#34; alt&gt;&lt;br&gt;
+ 缺点就是：很慢很慢很慢很慢，但是结果还不错。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;识别 wAF 对于安全测试的意义？&lt;br&gt;
+ 对于一个网站要是使用了 waf 而渗透人员没有识别直接使用工具进行扫描有可能会导致 waf 将你的 ip 地址拉入黑名单而不能访问。而识别 waf 在于有针对性行的绕过各个厂商的 waf 可能存在着不同的绕过思路&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;&lt;span id=&#34;app信息收集&#34;&gt; （APP）信息收集&lt;/span&gt;&lt;/h3&gt;
 &lt;h3&gt;&lt;span id=&#34;其他内容收集&#34;&gt; 其他内容收集&lt;/span&gt;&lt;/h3&gt;
 &lt;h2&gt;&lt;span id=&#34;web常见漏洞&#34;&gt; （Web）常见漏洞&lt;/span&gt;&lt;/h2&gt;
@@ -778,7 +813,7 @@ zmap 原理详细解剖：&lt;a href=&#34;https://xz.aliyun.com/t/3653&#34;&gt;h
 &lt;h2&gt;&lt;span id=&#34;提权&#34;&gt; 提权&lt;/span&gt;&lt;/h2&gt;
 &lt;h2&gt;&lt;span id=&#34;内网安全&#34;&gt; 内网安全&lt;/span&gt;&lt;/h2&gt;
 </content>
-        <updated>2023-01-14T15:12:30.000Z</updated>
+        <updated>2023-01-15T08:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2022/12/13/vulnerability/SSRF%E6%BC%8F%E6%B4%9E/</id>

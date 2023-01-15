@@ -5,17 +5,21 @@
   
 
   
-  <title>Archives: 2022/5 | blog小窝</title>
+  <title>wafw00f | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用来记录学习和分享日常">
-<meta property="og:type" content="website">
-<meta property="og:title" content="blog小窝">
-<meta property="og:url" content="https://my011215.github.io/archives/2022/05/index.html">
+  <meta name="description" content="参考：https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1778218   工作原理 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wafw00f">
+<meta property="og:url" content="https://my011215.github.io/2023/01/15/tool/wafw00f/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="用来记录学习和分享日常">
+<meta property="og:description" content="参考：https:&#x2F;&#x2F;cloud.tencent.com&#x2F;developer&#x2F;article&#x2F;1778218   工作原理 使用">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/306.png?raw=true">
+<meta property="article:published_time" content="2023-01-15T03:40:30.000Z">
+<meta property="article:modified_time" content="2023-01-15T03:40:26.293Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/306.png?raw=true">
   
     <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
   
@@ -70,40 +74,89 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/05/04/learning%20share/%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%B9%B6%E4%B8%94%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/" class="archive-article-date">
-  <time datetime="2022-05-04T13:19:39.000Z" itemprop="datePublished">May 4</time>
+        <section id="main"><article id="post-tool/wafw00f" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/01/15/tool/wafw00f/" class="article-date">
+  <time datetime="2023-01-15T03:40:30.000Z" itemprop="datePublished">2023-01-15</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/04/learning%20share/%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%B9%B6%E4%B8%94%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/">通信</a>
+    <h1 class="article-title" itemprop="name">
+      wafw00f
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1778218">https://cloud.tencent.com/developer/article/1778218</a></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">工作原理</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+</ul>
+<!-- tocstop -->
+<span id="more"></span>  
+<h2><span id="工作原理"> 工作原理</span></h2>
+<ol>
+<li>首先通过发送一个正常 http 请求，然后观察其返回有没有一些特征字符<br>
+ 2、如果不成功，它将发送大量 (潜在的恶意) HTTP 请求，并使用简单的逻辑推断出它是哪个 WAF<br>
+3、如果这也不成功，它将分析以前返回的响应，并使用另一个简单的算法来猜测 WAF 或安全解决方案是否正在积极响应我们的攻击</li>
+</ol>
+<h2><span id="使用"> 使用</span></h2>
+<ul>
+<li>查看功能<br>
+ wafw00f -h<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/306.png?raw=true" alt></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-h， -  help显示此帮助消息并退出</span><br><span class="line">-v， -  verbose启用详细程度 - 多个-v选项可增加详细程度</span><br><span class="line">-a， -  findind查找所有WAF，不要在第一个上停止测试</span><br><span class="line">-r， -  disableredirect不要遵循3xx响应给出的重定向</span><br><span class="line">-t TEST， -  test = TEST测试一个特定的WAF</span><br><span class="line">-l， -  list列出我们能够检测到的所有WAF</span><br><span class="line">--xmlrpc启用XML-RPC接口而不是CUI</span><br><span class="line">-p    代理,代理=代理</span><br><span class="line">使用HTTP代理执行请求，例如:</span><br><span class="line">http://hostname: 8080年,socks5: / /主机名:1080</span><br><span class="line">--xmlrpcport = XMLRPCPORT指定要侦听的备用端口，默认为8001</span><br><span class="line">-V， -  version打印出版本</span><br><span class="line">-h    HEADERSFILE, HEADERSFILE = HEADERSFILE</span><br></pre></td></tr></table></figure>
+<ul>
+<li>例子<br>
+ wafw00f <a target="_blank" rel="noopener" href="https://webvpn.scuec.edu.cn/">https://webvpn.scuec.edu.cn/</a> -a -v</li>
+</ul>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/01/15/tool/wafw00f/" data-id="clcx37pm30000w0tn161y4yyw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/15/tool/Nmap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Nmap的使用方法总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/01/08/tool/Metasploit/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Metasploit</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
