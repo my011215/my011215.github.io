@@ -5125,6 +5125,113 @@ proxy (代理)&lt;/p&gt;
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">https://my011215.github.io/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</guid>
+            <title>暴力破解</title>
+            <link>https://my011215.github.io/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</link>
+            <pubDate>Mon, 18 Jul 2022 21:19:39 +0800</pubDate>
+            <description><![CDATA[ &lt;h2&gt;&lt;span id=&#34;什么是暴力破解&#34;&gt; 什么是暴力破解&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;暴力破解通俗来说就是 “撞库”，是现在最流行的密码破解方式之一。它的实质就是枚举法，通过大量穷举的方式来尝试获取用户口令，即猜口令。并且暴力破解也不仅仅只用来暴力破解，也可以发现 Web 应用程序中的隐藏页面和内容。&lt;br&gt;
+造成这样的漏洞的原因主要和不安全的口令设置和不可靠的数据传输组成，其中不安全的口令设置又可以分为使用弱口令和使用默认口令。&lt;br&gt;
+大量猜测和穷举获取用户口令，通过对比数据包的长度可以很好的判断是否爆破成功&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;burpsuite-四种攻击类型&#34;&gt; burpsuite 四种攻击类型&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;sniper (狙击手模式)&lt;br&gt;
+ 狙击手模式使用一组 payload 集合，它一次只使用一个 payload 位置，假设你标记了两个位置 “A” 和 “B”，payload 值为 “1” 和 “2”，那么它攻击会形成以下组合（除原始数据外）&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/10.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;battering ram (攻城锤模式)&lt;br&gt;
+ 攻城锤模式与狙击手模式类似的地方是，同样只使用一个 payload 集合，不同的地方在于每次攻击都是替换所有 payload 标记位置，而狙击手模式每次只能替换一个 payload 标记位置。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/11.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;pitchfrk (音叉模式)&lt;br&gt;
+ 音叉模式允许使用多组 payload 组合，在每个标记位置上遍历所有 payload 组合，假设有两个位置 “A” 和 “B”，payload 组合 1 的值为 “1” 和 “2”，payload 组合 2 的值为 “3” 和 “4”&lt;br&gt;
+![]&lt;a href=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/12.png?raw=true&#34;&gt;https://github.com/my011215/my011215.github.io/blob/main/image/12.png?raw=true&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;cluster bomb (集数炸弹模式)&lt;br&gt;
+ 集束炸弹模式跟草叉模式不同的地方在于，集束炸弹模式会对 payload 组进行笛卡尔积&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/13.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;pikachu-暴力破解&#34;&gt; pikachu 暴力破解&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;基于表单的暴力破解&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 burpsuite 抓包进行撞库&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/14.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;右键进入 intruder 模块&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/15.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;按照如下步骤更改&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/16.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/17.png?raw=true&#34; alt&gt;&lt;br&gt;
+爆破资料：&lt;a href=&#34;https://github.com/rootphantomer/Blasting_dictionary&#34;&gt;https://github.com/rootphantomer/Blasting_dictionary&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/18.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/19.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/20.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;等待结果&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/21.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;验证码绕过 (on server)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 burpsuite 抓包查看具体情况&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/22.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;右键进入 repeater 模块改变用户名和密码看看 (保持验证码不变)&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/23.png?raw=true&#34; alt&gt;&lt;br&gt;
+ 没改变，按照之前方案进行撞库&lt;/li&gt;
+&lt;li&gt;验证码不改变可以爆破原因：&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/28.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;撞库&lt;br&gt;
+！[]&lt;a href=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/24.png?raw=true&#34;&gt;https://github.com/my011215/my011215.github.io/blob/main/image/24.png?raw=true&lt;/a&gt;)&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/25.png?raw=true&#34; alt&gt;&lt;br&gt;
+![]&lt;a href=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/26.png?raw=true&#34;&gt;https://github.com/my011215/my011215.github.io/blob/main/image/26.png?raw=true&lt;/a&gt;)&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/27.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/29.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;验证码绕过 (on client)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 burpsuite 抓包查看具体情况&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/30.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;右键进入 repeater 模块改变用户名和密码看看 (保持验证码不变)&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/31.png?raw=true&#34; alt&gt;&lt;br&gt;
+ 没改变，按照之前方案进行撞库&lt;/li&gt;
+&lt;li&gt;验证码不改变可以爆破原因：&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/36.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;撞库&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/32.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/33.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/34.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/35.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/37.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;on client 和 on server&lt;br&gt;
+on client:&lt;br&gt;
+ 验证码生成是由前端生成并且检查的，burpsuite 的数据传输在前端后面，不用经过前端验证码的检查&lt;br&gt;
+ on server:&lt;br&gt;
+ 验证码放在后端，但是如果验证码没有时间限制和进行销毁就可以无限次使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;token 防爆破？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;token&lt;br&gt;
+（1）Token 的引入：Token 是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token 便应运而生。&lt;br&gt;
+（2）Token 的定义：Token 是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个 Token 便将此 Token 返回给客户端，以后客户端只需带上这个 Token 前来请求数据即可，无需再次带上用户名和密码。&lt;br&gt;
+（3）使用 Token 的目的：Token 的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮&lt;br&gt;
+如果我们没有这个 token 值得话，无法去请求得到想要的数据。&lt;/li&gt;
+&lt;li&gt;使用 burpsuite 抓包查看具体情况&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/38.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;撞库&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/39.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/40.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/41.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/42.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/43.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/44.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/45.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">https://my011215.github.io/2022/07/18/tool/sqlmap/</guid>
             <title>sqlmap</title>
             <link>https://my011215.github.io/2022/07/18/tool/sqlmap/</link>
@@ -5310,113 +5417,6 @@ SELECT * FROM users WHERE id=(‘1’)  AND (‘abc’=‘abc’) LIMIT 0, 1&lt;
 3）自动扫描自带常见表单&lt;br&gt;
 感觉类似于猜常见参数&lt;br&gt;
  payload：python &lt;a href=&#34;http://sqlmap.py&#34;&gt;sqlmap.py&lt;/a&gt; -u “&lt;a href=&#34;http://127.0.0.1/pikachu/vul/sqli/sqli_id.php&#34;&gt;http://127.0.0.1/pikachu/vul/sqli/sqli_id.php&lt;/a&gt;” --forms&lt;/li&gt;
-&lt;/ul&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://my011215.github.io/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</guid>
-            <title>暴力破解</title>
-            <link>https://my011215.github.io/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</link>
-            <pubDate>Mon, 18 Jul 2022 21:19:39 +0800</pubDate>
-            <description><![CDATA[ &lt;h2&gt;&lt;span id=&#34;什么是暴力破解&#34;&gt; 什么是暴力破解&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;暴力破解通俗来说就是 “撞库”，是现在最流行的密码破解方式之一。它的实质就是枚举法，通过大量穷举的方式来尝试获取用户口令，即猜口令。并且暴力破解也不仅仅只用来暴力破解，也可以发现 Web 应用程序中的隐藏页面和内容。&lt;br&gt;
-造成这样的漏洞的原因主要和不安全的口令设置和不可靠的数据传输组成，其中不安全的口令设置又可以分为使用弱口令和使用默认口令。&lt;br&gt;
-大量猜测和穷举获取用户口令，通过对比数据包的长度可以很好的判断是否爆破成功&lt;/p&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
-&lt;h2&gt;&lt;span id=&#34;burpsuite-四种攻击类型&#34;&gt; burpsuite 四种攻击类型&lt;/span&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;sniper (狙击手模式)&lt;br&gt;
- 狙击手模式使用一组 payload 集合，它一次只使用一个 payload 位置，假设你标记了两个位置 “A” 和 “B”，payload 值为 “1” 和 “2”，那么它攻击会形成以下组合（除原始数据外）&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/10.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;battering ram (攻城锤模式)&lt;br&gt;
- 攻城锤模式与狙击手模式类似的地方是，同样只使用一个 payload 集合，不同的地方在于每次攻击都是替换所有 payload 标记位置，而狙击手模式每次只能替换一个 payload 标记位置。&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/11.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;pitchfrk (音叉模式)&lt;br&gt;
- 音叉模式允许使用多组 payload 组合，在每个标记位置上遍历所有 payload 组合，假设有两个位置 “A” 和 “B”，payload 组合 1 的值为 “1” 和 “2”，payload 组合 2 的值为 “3” 和 “4”&lt;br&gt;
-![]&lt;a href=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/12.png?raw=true&#34;&gt;https://github.com/my011215/my011215.github.io/blob/main/image/12.png?raw=true&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;cluster bomb (集数炸弹模式)&lt;br&gt;
- 集束炸弹模式跟草叉模式不同的地方在于，集束炸弹模式会对 payload 组进行笛卡尔积&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/13.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;&lt;span id=&#34;pikachu-暴力破解&#34;&gt; pikachu 暴力破解&lt;/span&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;基于表单的暴力破解&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;使用 burpsuite 抓包进行撞库&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/14.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;右键进入 intruder 模块&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/15.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;按照如下步骤更改&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/16.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/17.png?raw=true&#34; alt&gt;&lt;br&gt;
-爆破资料：&lt;a href=&#34;https://github.com/rootphantomer/Blasting_dictionary&#34;&gt;https://github.com/rootphantomer/Blasting_dictionary&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/18.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/19.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/20.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;等待结果&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/21.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;验证码绕过 (on server)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;使用 burpsuite 抓包查看具体情况&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/22.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;右键进入 repeater 模块改变用户名和密码看看 (保持验证码不变)&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/23.png?raw=true&#34; alt&gt;&lt;br&gt;
- 没改变，按照之前方案进行撞库&lt;/li&gt;
-&lt;li&gt;验证码不改变可以爆破原因：&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/28.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;撞库&lt;br&gt;
-！[]&lt;a href=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/24.png?raw=true&#34;&gt;https://github.com/my011215/my011215.github.io/blob/main/image/24.png?raw=true&lt;/a&gt;)&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/25.png?raw=true&#34; alt&gt;&lt;br&gt;
-![]&lt;a href=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/26.png?raw=true&#34;&gt;https://github.com/my011215/my011215.github.io/blob/main/image/26.png?raw=true&lt;/a&gt;)&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/27.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/29.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;验证码绕过 (on client)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;使用 burpsuite 抓包查看具体情况&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/30.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;右键进入 repeater 模块改变用户名和密码看看 (保持验证码不变)&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/31.png?raw=true&#34; alt&gt;&lt;br&gt;
- 没改变，按照之前方案进行撞库&lt;/li&gt;
-&lt;li&gt;验证码不改变可以爆破原因：&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/36.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;撞库&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/32.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/33.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/34.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/35.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/37.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;on client 和 on server&lt;br&gt;
-on client:&lt;br&gt;
- 验证码生成是由前端生成并且检查的，burpsuite 的数据传输在前端后面，不用经过前端验证码的检查&lt;br&gt;
- on server:&lt;br&gt;
- 验证码放在后端，但是如果验证码没有时间限制和进行销毁就可以无限次使用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;token 防爆破？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;token&lt;br&gt;
-（1）Token 的引入：Token 是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token 便应运而生。&lt;br&gt;
-（2）Token 的定义：Token 是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个 Token 便将此 Token 返回给客户端，以后客户端只需带上这个 Token 前来请求数据即可，无需再次带上用户名和密码。&lt;br&gt;
-（3）使用 Token 的目的：Token 的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮&lt;br&gt;
-如果我们没有这个 token 值得话，无法去请求得到想要的数据。&lt;/li&gt;
-&lt;li&gt;使用 burpsuite 抓包查看具体情况&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/38.png?raw=true&#34; alt&gt;&lt;/li&gt;
-&lt;li&gt;撞库&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/39.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/40.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/41.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/42.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/43.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/44.png?raw=true&#34; alt&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/45.png?raw=true&#34; alt&gt;&lt;/li&gt;
 &lt;/ul&gt;
  ]]></description>
         </item>
