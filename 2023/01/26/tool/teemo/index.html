@@ -5,17 +5,21 @@
   
 
   
-  <title>layer子域名挖掘机 | blog小窝</title>
+  <title>teemo | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="layer子域名挖掘机">
-<meta property="og:url" content="https://my011215.github.io/2023/01/25/tool/layer/index.html">
+  <meta name="description" content="介绍 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="teemo">
+<meta property="og:url" content="https://my011215.github.io/2023/01/26/tool/teemo/index.html">
 <meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="介绍 使用">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-01-25T15:12:30.000Z">
-<meta property="article:modified_time" content="2023-01-25T14:59:24.092Z">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/313.png?raw=true">
+<meta property="article:published_time" content="2023-01-26T06:40:30.000Z">
+<meta property="article:modified_time" content="2023-01-26T06:37:47.266Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/313.png?raw=true">
   
     <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
   
@@ -70,10 +74,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-tool/layer" class="article article-type-post" itemscope itemprop="blogPost"> 
+        <section id="main"><article id="post-tool/teemo" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/01/25/tool/layer/" class="article-date">
-  <time datetime="2023-01-25T15:12:30.000Z" itemprop="datePublished">2023-01-25</time>
+    <a href="/2023/01/26/tool/teemo/" class="article-date">
+  <time datetime="2023-01-26T06:40:30.000Z" itemprop="datePublished">2023-01-26</time>
 </a>
 
 
@@ -90,7 +94,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      layer子域名挖掘机
+      teemo
     </h1>
   
 
@@ -99,12 +103,32 @@
     <div class="article-entry" itemprop="articleBody">
       
         <!-- toc -->
+<ul>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+</ul>
 <!-- tocstop -->
-<span id="more"></span>
+<span id="more"></span>  
+<p>参考：<a target="_blank" rel="noopener" href="https://github.com/bit4woo/teemo">https://github.com/bit4woo/teemo</a><br>
+<a target="_blank" rel="noopener" href="https://www.uedbox.com/post/57472/">https://www.uedbox.com/post/57472/</a></p>
+<h2><span id="介绍"> 介绍</span></h2>
+<p>提莫 (teemo) 是一个有 python 编写的域名侦察兵，域名的收集如同渗透和漏洞挖掘的侦察，故命名为提莫（Teemo）！具有相关域名搜集能力，即会收集当前域名所在组织的其他域名。原理是通过证书中 &quot;Subject Alternative Name&quot; 的内容。<br>
+teemo 有三大模块收集域名信息，分别是利用搜索引擎、利用第三方站点、利用枚举<br>
+具体情况：<a target="_blank" rel="noopener" href="https://github.com/bit4woo/teemo">https://github.com/bit4woo/teemo</a></p>
+<h2><span id="使用"> 使用</span></h2>
+<p>python 版本： <code>python2.7.* </code></p>
+<ol>
+<li>查看帮助：python <a target="_blank" rel="noopener" href="http://teemo.py">teemo.py</a> -h</li>
+<li>枚举指定域名（会使用搜索引擎和第三方站点模块）：python <a target="_blank" rel="noopener" href="http://teemo.py">teemo.py</a> -d <a target="_blank" rel="noopener" href="http://example.com">example.com</a><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/313.png?raw=true" alt></li>
+<li>启用枚举模式：python <a target="_blank" rel="noopener" href="http://teemo.py">teemo.py</a> -b -d <a target="_blank" rel="noopener" href="http://example.com">example.com</a></li>
+<li>扫描出来的结果会保存在 teemo 目录下的 output 文件夹里</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/01/25/tool/layer/" data-id="cldbsmxae00006wtnhktk0730" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/01/26/tool/teemo/" data-id="cldbrypvy0003zotn1qoy7uwq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -113,8 +137,17 @@
     
 <nav id="article-nav">
   
+    <a href="/2023/01/26/tool/layer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          layer子域名挖掘机
+        
+      </div>
+    </a>
   
-    <a href="/2023/01/25/tool/identYwaf/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2023/01/26/tool/identYwaf/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">identYwaf</div>
     </a>
@@ -161,15 +194,15 @@
       <ul>
         
           <li>
-            <a href="/2023/01/25/tool/layer/">layer子域名挖掘机</a>
+            <a href="/2023/01/26/tool/layer/">layer子域名挖掘机</a>
           </li>
         
           <li>
-            <a href="/2023/01/25/tool/identYwaf/">identYwaf</a>
+            <a href="/2023/01/26/tool/teemo/">teemo</a>
           </li>
         
           <li>
-            <a href="/2023/01/25/tool/teemo/">teemo</a>
+            <a href="/2023/01/26/tool/identYwaf/">identYwaf</a>
           </li>
         
           <li>

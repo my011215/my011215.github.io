@@ -3,36 +3,92 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;工具&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-01-25T15:12:30.000Z</updated>
+    <updated>2023-01-26T07:00:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/01/25/tool/layer/</id>
+        <id>https://my011215.github.io/2023/01/26/tool/layer/</id>
         <title>layer子域名挖掘机</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/01/25/tool/layer/"/>
-        <content type="html">&lt;!-- toc --&gt;
-&lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;</content>
-        <updated>2023-01-25T15:12:30.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://my011215.github.io/2023/01/25/tool/identYwaf/</id>
-        <title>identYwaf</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/01/25/tool/identYwaf/"/>
-        <content type="html">&lt;!-- toc --&gt;
-&lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
-</content>
-        <updated>2023-01-25T14:12:30.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://my011215.github.io/2023/01/25/tool/teemo/</id>
-        <title>teemo</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/01/25/tool/teemo/"/>
-        <content type="html">&lt;!-- toc --&gt;
+        <link rel="alternate" href="https://my011215.github.io/2023/01/26/tool/layer/"/>
+        <content type="html">&lt;p&gt;参考：&lt;a href=&#34;https://blog.csdn.net/qq_41901122/article/details/114366133&#34;&gt;https://blog.csdn.net/qq_41901122/article/details/114366133&lt;/a&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8&#34;&gt;使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
-&lt;p&gt;参考：&lt;a href=&#34;https://github.com/bit4woo/teemo&#34;&gt;https://github.com/bit4woo/teemo&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;一款很好用的子域名爆破工具&lt;br&gt;
+有服务接口、暴力破解、同服挖掘三种模式&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;使用&#34;&gt; 使用&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;1、如果要使用自定义字典，请把字典文件命名为 dic，放到跟程序同目录下，程序会自动加载字典。&lt;br&gt;
+2、如果没有自定义字典，程序会自动使用内置字典，内置字典总共两万多条数据，内容包括了常用子域名，以及 3000 + 常用单词和 1-3 位所有字母。&lt;br&gt;
+3、如果要爆破二级以下域名，可以直接填入要爆破的子域名，程序会自动拼接下一级子域。&lt;br&gt;
+4、如果界面列表显示有空白，请右键选择 “导出域名和 IP” 来导出完整列表。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/314.png?raw=true&#34; alt&gt;&lt;/p&gt;
 </content>
-        <updated>2023-01-25T14:12:30.000Z</updated>
+        <updated>2023-01-26T07:00:30.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://my011215.github.io/2023/01/26/tool/teemo/</id>
+        <title>teemo</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/01/26/tool/teemo/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8&#34;&gt;使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;p&gt;参考：&lt;a href=&#34;https://github.com/bit4woo/teemo&#34;&gt;https://github.com/bit4woo/teemo&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.uedbox.com/post/57472/&#34;&gt;https://www.uedbox.com/post/57472/&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;提莫 (teemo) 是一个有 python 编写的域名侦察兵，域名的收集如同渗透和漏洞挖掘的侦察，故命名为提莫（Teemo）！具有相关域名搜集能力，即会收集当前域名所在组织的其他域名。原理是通过证书中 &amp;quot;Subject Alternative Name&amp;quot; 的内容。&lt;br&gt;
+teemo 有三大模块收集域名信息，分别是利用搜索引擎、利用第三方站点、利用枚举&lt;br&gt;
+具体情况：&lt;a href=&#34;https://github.com/bit4woo/teemo&#34;&gt;https://github.com/bit4woo/teemo&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;使用&#34;&gt; 使用&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;python 版本： &lt;code&gt;python2.7.* &lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;查看帮助：python &lt;a href=&#34;http://teemo.py&#34;&gt;teemo.py&lt;/a&gt; -h&lt;/li&gt;
+&lt;li&gt;枚举指定域名（会使用搜索引擎和第三方站点模块）：python &lt;a href=&#34;http://teemo.py&#34;&gt;teemo.py&lt;/a&gt; -d &lt;a href=&#34;http://example.com&#34;&gt;example.com&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/313.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;启用枚举模式：python &lt;a href=&#34;http://teemo.py&#34;&gt;teemo.py&lt;/a&gt; -b -d &lt;a href=&#34;http://example.com&#34;&gt;example.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;扫描出来的结果会保存在 teemo 目录下的 output 文件夹里&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <updated>2023-01-26T06:40:30.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://my011215.github.io/2023/01/26/tool/identYwaf/</id>
+        <title>identYwaf</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/01/26/tool/identYwaf/"/>
+        <content type="html">&lt;p&gt;参考：&lt;a href=&#34;https://gitee.com/halftion/identYwaf&#34;&gt;https://gitee.com/halftion/identYwaf&lt;/a&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#waf%E7%9B%B8%E5%85%B3%E8%AF%86%E5%88%AB%E5%8E%9F%E7%90%86&#34;&gt;WAF 相关识别原理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8&#34;&gt;使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;identYwaf 是一种识别工具，可以基于盲推理识别 Web 保护类型（即 WAF）。盲推理是通过检查由一组预定义的攻击性（非破坏性）有效载荷引发的响应来完成的，其中这些有效载荷仅用于触发两者之间的 Web 保护系统（例如）。目前，它支持 80 多种不同的保护产品&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;waf-相关识别原理&#34;&gt; WAF 相关识别原理&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;详情：&lt;a href=&#34;https://www.slideshare.net/stamparm/blind-waf-identification&#34;&gt;https://www.slideshare.net/stamparm/blind-waf-identification&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;介绍 waf&lt;/li&gt;
+&lt;li&gt;waf 常规特征&lt;/li&gt;
+&lt;li&gt;盲 waf 和不盲 waf 识别方法&lt;br&gt;
+大致思路是根据特征识别，payload 查看回显情况等&lt;/li&gt;
+&lt;li&gt;产品分析（sqlmap 自带识别 waf 功能就是依赖这个）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;使用&#34;&gt; 使用&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;链接：git clone --depth 1 &lt;a href=&#34;https://github.com/stamparm/identYwaf.git&#34;&gt;https://github.com/stamparm/identYwaf.git&lt;/a&gt;&lt;br&gt;
+identYwaf 在任何平台上都可以与从 2.6.x 到 3.x 的任何 Python 版本开箱即用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;python &lt;a href=&#34;http://identYwaf.py&#34;&gt;identYwaf.py&lt;/a&gt; &lt;a href=&#34;https://www.baidu.com&#34;&gt;https://www.baidu.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <updated>2023-01-26T06:30:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/01/17/tool/%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</id>
