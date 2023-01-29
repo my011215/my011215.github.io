@@ -5,19 +5,21 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Sat, 28 Jan 2023 23:12:30 +0800</pubDate>
-        <lastBuildDate>Sat, 28 Jan 2023 23:12:30 +0800</lastBuildDate>
+        <pubDate>Sun, 29 Jan 2023 17:12:30 +0800</pubDate>
+        <lastBuildDate>Sun, 29 Jan 2023 17:12:30 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://my011215.github.io/2023/01/28/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/</guid>
+            <guid isPermalink="true">https://my011215.github.io/2023/01/29/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/</guid>
             <title>springboot学习代码</title>
-            <link>https://my011215.github.io/2023/01/28/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/</link>
-            <pubDate>Sat, 28 Jan 2023 23:12:30 +0800</pubDate>
+            <link>https://my011215.github.io/2023/01/29/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/</link>
+            <pubDate>Sun, 29 Jan 2023 17:12:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;参考：&lt;a href=&#34;https://gitee.com/CandyWall/spring-boot-study&#34;&gt;https://gitee.com/CandyWall/spring-boot-study&lt;/a&gt;&lt;/p&gt;
 &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#restful%E9%A3%8E%E6%A0%BC&#34;&gt;restful 风格&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#yaml&#34;&gt;yaml&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%95%B4%E5%90%88junit&#34;&gt;整合 junit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%95%B4%E5%90%88mybatis&#34;&gt;整合 mybatis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%95%B4%E5%90%88mybatis-plus&#34;&gt;整合 mybatis-plus&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
@@ -64,6 +66,116 @@
 &lt;li&gt;测试&lt;/li&gt;
 &lt;/ol&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;// 如果测试类跟springboot运行引导类不在同一个包下，那么需要给@SpringBootTest注解加classes属性&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;@SpringBootTest(classes = Demo1Application.class)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class Demo1ApplicationTests &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    // 1、注入要测试的对象&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private BookDao bookDao;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Test&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void contextLoads() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        // 2、执行要测试的对象对应的方法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        bookDao.save();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;整合-mybatis&#34;&gt; 整合 mybatis&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;导入模块选择对应的技术：&lt;br&gt;
+SQL 中的 MyBatis Framwork 和 MySQL Driver&lt;/li&gt;
+&lt;li&gt;application.yml 配置数据库信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 配置数据信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;spring:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  datasource:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    driver-class-name: com.mysql.cj.jdbc.Driver&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    url: jdbc:mysql://localhost:3306/test1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    username: root&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    password: xxx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;domain.Book.java&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;@Component&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;@Data&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;public class Book &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private String username;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private String password;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private Integer age;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;接口：dao.BookDao&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;@Mapper&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;public interface BookDao &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Select(&amp;quot;select * from users where age = #&amp;#123;age&amp;#125;&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Book getByAge(Integer age);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;测试：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;@SpringBootTest&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;class Demo2ApplicationTests &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Autowired&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private BookDao bookDao;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Test&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    void contextLoads() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        System.out.println(bookDao.getByAge(11));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;整合-mybatis-plus&#34;&gt; 整合 mybatis-plus&lt;/span&gt;&lt;/h2&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2023/01/29/learning%20share/superset%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA/</guid>
+            <title>superset大数据可视化展示</title>
+            <link>https://my011215.github.io/2023/01/29/learning%20share/superset%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA/</link>
+            <pubDate>Sun, 29 Jan 2023 17:12:30 +0800</pubDate>
+            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%90%AD%E5%BB%BAsuperset&#34;&gt;搭建（superset）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%AF%BE%E8%AE%BE%E5%B1%95%E7%A4%BA&#34;&gt;课设展示&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83%E6%97%B6%E9%97%B4git%E5%B1%95%E7%A4%BA&#34;&gt;文章发布时间（git）展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E5%B1%95%E7%A4%BA&#34;&gt;网站信息展示&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BD%91%E7%AB%99%E6%96%87%E7%AB%A0%E6%95%B0%E7%9B%AE%E9%A5%BC%E5%9B%BE&#34;&gt;网站文章数目饼图&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BD%91%E7%AB%99%E5%9C%B0%E5%8C%BA%E6%96%87%E7%AB%A0%E6%95%B0%E7%9B%AE%E5%9B%BE&#34;&gt;网站地区文章数目图&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B%E5%A4%A7%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E5%B1%95%E7%A4%BA&#34;&gt;四大门户网站信息展示&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%85%BE%E8%AE%AF%E7%BD%91%E5%90%84%E6%9D%BF%E5%9D%97%E6%96%87%E7%AB%A0%E6%95%B0%E5%B1%95%E7%A4%BA&#34;&gt;腾讯网各板块文章数展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%B0%E6%B5%AA%E7%BD%91%E5%90%84%E6%9D%BF%E5%9D%97%E6%96%87%E7%AB%A0%E6%95%B0%E5%B1%95%E7%A4%BA&#34;&gt;新浪网各板块文章数展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%90%9C%E7%8B%90%E7%BD%91%E5%90%84%E6%9D%BF%E5%9D%97%E6%96%87%E7%AB%A0%E6%95%B0%E5%B1%95%E7%A4%BA&#34;&gt;搜狐网各板块文章数展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BD%91%E6%98%93%E7%BD%91%E5%90%84%E6%9D%BF%E5%9D%97%E6%96%87%E7%AB%A0%E6%95%B0%E5%B1%95%E7%A4%BA&#34;&gt;网易网各板块文章数展示&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%9C%E8%80%85%E6%9D%A5%E6%BA%90%E6%95%B0%E9%87%8F%E5%B1%95%E7%A4%BA&#34;&gt;作者来源数量展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%A7%8D%E7%B1%BB%E4%BF%A1%E6%81%AF%E5%B1%95%E7%A4%BA&#34;&gt;种类信息展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%9C%E8%80%85%E6%96%87%E7%AB%A0top50%E5%B1%95%E7%A4%BA&#34;&gt;作者文章 top50 展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%83%AD%E5%BA%A6top20%E6%8E%92%E5%90%8D%E5%B1%95%E7%A4%BA&#34;&gt;热度 top20 排名展示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%B3%E9%94%AE%E5%AD%97%E4%BF%A1%E6%81%AF%E5%B1%95%E7%A4%BA&#34;&gt;关键字信息展示&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;搭建superset&#34;&gt; 搭建（superset）&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;参考：&lt;a href=&#34;https://juejin.cn/post/6991730150203195400&#34;&gt;https://juejin.cn/post/6991730150203195400&lt;/a&gt;&lt;br&gt;
+ 个人建议：本人搭建 superset 颇为费力，在此提以下建议：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;python 版本建议 3.6.7&lt;/li&gt;
+&lt;li&gt;各种操作按照最新文档操作&lt;/li&gt;
+&lt;li&gt;大数据可视化图片大部分需要时间，所以数据很多要求有时间。自行考虑搭建需求。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/316.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;课设展示&#34;&gt; 课设展示&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;介绍&lt;br&gt;
+对四大门户网站信息进行爬取，和队友自行设计 10 张表。进行数据清洗后用 sql 语句写入数据库，最后对数据进行聚合展示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;文章发布时间git展示&#34;&gt; 文章发布时间（git）展示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;在 2022 年 1 月 - 2023 年 1 月，统计每个时间段发布文章数目，参考 github 样式进行总体展示。&lt;br&gt;
+可以清晰简单的看到每个时间段发布的文章数目&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/317.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;网站信息展示&#34;&gt; 网站信息展示&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;网站文章数目饼图&#34;&gt; 网站文章数目饼图&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;根据四大门户网站，显示每个网站爬取的文章数目。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/318.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;网站地区文章数目图&#34;&gt; 网站地区文章数目图&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;根据四大门户网站总部公司的地址，在中国地图上显示具体位置和对应爬取文章数目总数。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/319.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;四大门户网站信息展示&#34;&gt; 四大门户网站信息展示&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;腾讯网各板块文章数展示&#34;&gt; 腾讯网各板块文章数展示&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;对腾讯网爬取板块的文章数用柱状图展示文章数目爬取多少情况。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/320.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;新浪网各板块文章数展示&#34;&gt; 新浪网各板块文章数展示&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;对新浪网爬取板块的文章数用柱状图展示文章数目爬取多少情况。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/321.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;搜狐网各板块文章数展示&#34;&gt; 搜狐网各板块文章数展示&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;对搜狐网爬取板块的文章数用柱状图展示文章数目爬取多少情况。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/322.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;网易网各板块文章数展示&#34;&gt; 网易网各板块文章数展示&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;对网易网爬取板块的文章数用柱状图展示文章数目爬取多少情况。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/323.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;作者来源数量展示&#34;&gt; 作者来源数量展示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;根据作者信息表，对四个门户网站的作者数量使用矩形分布图进行展示。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/324.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;种类信息展示&#34;&gt; 种类信息展示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;根据种类信息表，对每个板块的文章数量使用旭日图进行展示。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/325.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;作者文章-top50-展示&#34;&gt; 作者文章 top50 展示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;根据作者信息表，展示文章总量前 50 的作者名字。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/326.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;热度-top20-排名展示&#34;&gt; 热度 top20 排名展示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;根据热度信息表，对评论数进行热度排名，选取前 20 个火爆的文章。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/327.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;关键字信息展示&#34;&gt; 关键字信息展示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;根据关键字信息表，对在文章中出现次数排名前 20 的关键字使用旭日图进行展示。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/328.png?raw=true&#34; alt&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
