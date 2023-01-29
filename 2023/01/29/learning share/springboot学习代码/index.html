@@ -7,15 +7,15 @@
   
   <title>springboot学习代码 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考：https:&#x2F;&#x2F;gitee.com&#x2F;CandyWall&#x2F;spring-boot-study   restful 风格 yaml 整合 junit 整合 mybatis 整合 mybatis-plus">
+  <meta name="description" content="参考：https:&#x2F;&#x2F;gitee.com&#x2F;CandyWall&#x2F;spring-boot-study   restful 风格 yaml 整合 junit 整合 mybatis 整合 druid">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot学习代码">
 <meta property="og:url" content="https://my011215.github.io/2023/01/29/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="参考：https:&#x2F;&#x2F;gitee.com&#x2F;CandyWall&#x2F;spring-boot-study   restful 风格 yaml 整合 junit 整合 mybatis 整合 mybatis-plus">
+<meta property="og:description" content="参考：https:&#x2F;&#x2F;gitee.com&#x2F;CandyWall&#x2F;spring-boot-study   restful 风格 yaml 整合 junit 整合 mybatis 整合 druid">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-01-29T09:12:30.000Z">
-<meta property="article:modified_time" content="2023-01-29T07:05:40.492Z">
+<meta property="article:modified_time" content="2023-01-29T11:37:03.631Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
   
@@ -107,7 +107,7 @@
 <li><a href="#yaml">yaml</a></li>
 <li><a href="#%E6%95%B4%E5%90%88junit">整合 junit</a></li>
 <li><a href="#%E6%95%B4%E5%90%88mybatis">整合 mybatis</a></li>
-<li><a href="#%E6%95%B4%E5%90%88mybatis-plus">整合 mybatis-plus</a></li>
+<li><a href="#%E6%95%B4%E5%90%88druid">整合 druid</a></li>
 </ul>
 <!-- tocstop -->
 <span id="more"></span>  
@@ -173,7 +173,7 @@ SQL 中的 MyBatis Framwork 和 MySQL Driver</li>
 <li>测试：</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootTest</span><br><span class="line">class Demo2ApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private BookDao bookDao;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    void contextLoads() &#123;</span><br><span class="line">        System.out.println(bookDao.getByAge(11));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2><span id="整合-mybatis-plus"> 整合 mybatis-plus</span></h2>
+<h2><span id="整合-druid"> 整合 druid</span></h2>
 
       
     </div>
