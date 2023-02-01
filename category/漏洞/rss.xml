@@ -5,8 +5,17 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Sun, 15 Jan 2023 16:12:30 +0800</pubDate>
-        <lastBuildDate>Sun, 15 Jan 2023 16:12:30 +0800</lastBuildDate>
+        <pubDate>Wed, 01 Feb 2023 20:12:30 +0800</pubDate>
+        <lastBuildDate>Wed, 01 Feb 2023 20:12:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2023/02/01/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/</guid>
+            <title>目录遍历漏洞</title>
+            <link>https://my011215.github.io/2023/02/01/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/</link>
+            <pubDate>Wed, 01 Feb 2023 20:12:30 +0800</pubDate>
+            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt; ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/01/15/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</guid>
             <title>渗透测试学习</title>

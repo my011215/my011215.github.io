@@ -3,7 +3,16 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;漏洞&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-01-15T08:12:30.000Z</updated>
+    <updated>2023-02-01T12:12:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/02/01/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/</id>
+        <title>目录遍历漏洞</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/02/01/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;</content>
+        <updated>2023-02-01T12:12:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/01/15/vulnerability/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%AD%A6%E4%B9%A0/</id>
         <title>渗透测试学习</title>
