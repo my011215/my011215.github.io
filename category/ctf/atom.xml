@@ -3,7 +3,82 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;ctf&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2022-12-09T14:47:30.000Z</updated>
+    <updated>2023-02-06T12:12:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/</id>
+        <title>2022西湖论剑Web</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/"/>
+        <content type="html">&lt;p&gt;参考：&lt;a href=&#34;http://www.sdpcsec.cn/?p=259&#34;&gt;http://www.sdpcsec.cn/?p=259&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.ctfiot.com/95359.html&#34;&gt;https://www.ctfiot.com/95359.html&lt;/a&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%89%AD%E8%BD%AC%E4%B9%BE%E5%9D%A4&#34;&gt;扭转乾坤&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#node-magical-login&#34;&gt;Node Magical Login&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#unusual-php&#34;&gt;unusual php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;扭转乾坤&#34;&gt; 扭转乾坤&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;复现环境：1.14.95.102&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;上传一个普普通通平平无奇的 txt 文件，得到报错&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/329.png?raw=true&#34; alt&gt;&lt;br&gt;
+抱歉，Apache 可能会拒绝标头等于内容类型：multipart/form-data&lt;/li&gt;
+&lt;li&gt;解题办法&lt;br&gt;
+利用中间件与 RCF 协议的差异进行绕过&lt;br&gt;
+详情：&lt;a href=&#34;https://www.anquanke.com/post/id/241265&#34;&gt;https://www.anquanke.com/post/id/241265&lt;/a&gt;&lt;br&gt;
+（1）大小写&lt;br&gt;
+（2）空格&lt;br&gt;
+（3）双引号&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/330.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;node-magical-login&#34;&gt; Node Magical Login&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;复现地址：&lt;a href=&#34;http://80.endpoint-980e7909452440499d7db81e338dd5df.ins.cloud.dasctf.com:81/&#34;&gt;http://80.endpoint-980e7909452440499d7db81e338dd5df.ins.cloud.dasctf.com:81/&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下载文件，进行代码审计&lt;/li&gt;
+&lt;li&gt;main.js&lt;br&gt;
+ 里面就是一些路由（和 flask 框架有点像），规定访问的参数和请求方式，调用对应函数或者返回对应界面，没啥重点内容。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/331.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;controller.js&lt;br&gt;
+ 逐个审计一下每个函数&lt;br&gt;
+（1） LoginController&lt;br&gt;
+ 如果 username 不是 admin 和 pasword 不等于随机生成的一串随机数就登陆失败&lt;br&gt;
+显然，想要登录成功不现实。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/332.png?raw=true&#34; alt&gt;&lt;br&gt;
+（2）Flag1Controller&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;const SECRET_COOKIE = process.env.SECRET_COOKIE || &amp;quot;this_is_testing_cookie&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;function Flag1Controller(req,res)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    try &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        if(req.cookies.user === SECRET_COOKIE)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res.setHeader(&amp;quot;This_Is_The_Flag1&amp;quot;,flag1.toString().trim())&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res.setHeader(&amp;quot;This_Is_The_Flag2&amp;quot;,flag2.toString().trim())&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res.status(200).type(&amp;quot;text/html&amp;quot;).send(&amp;quot;Login success. Welcome,admin!&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        if(req.cookies.user === &amp;quot;admin&amp;quot;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res.setHeader(&amp;quot;This_Is_The_Flag1&amp;quot;, flag1.toString().trim())&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res.status(200).type(&amp;quot;text/html&amp;quot;).send(&amp;quot;You Got One Part Of Flag! Try To Get Another Part of Flag!&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            res.status(401).type(&amp;quot;text/html&amp;quot;).send(&amp;quot;Unauthorized&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;catch (__) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在第二个 if 条件中，我们 可以伪造 cookie 的 user 值为 admin&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;app.get(&amp;quot;/flag1&amp;quot;,(req,res) =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    controller.Flag1Controller(req,res)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这个函数是以 get 形式请求 /flags，就调用 Flag1Controller 函数&lt;br&gt;
+于是乎，可以这样&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/333.png?raw=true&#34; alt&gt;&lt;br&gt;
+（3）CheckController&lt;br&gt;
+ 同样的思维方式去跟着代码要求做得到 flag2&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;app.post(&amp;quot;/getflag2&amp;quot;,(req,res)=&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    controller.CheckController(req,res)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;function CheckController(req,res) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    let checkcode = req.body.checkcode?req.body.checkcode:1234;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    console.log(req.body)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    if(checkcode.length === 16)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        try&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            checkcode = checkcode.toLowerCase()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            if(checkcode !== &amp;quot;aGr5AtSp55dRacer&amp;quot;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                res.status(403).json(&amp;#123;&amp;quot;msg&amp;quot;:&amp;quot;Invalid Checkcode1:&amp;quot; + checkcode&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;catch (__) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        res.status(200).type(&amp;quot;text/html&amp;quot;).json(&amp;#123;&amp;quot;msg&amp;quot;:&amp;quot;You Got Another Part Of Flag: &amp;quot; + flag2.toString().trim()&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        res.status(403).type(&amp;quot;text/html&amp;quot;).json(&amp;#123;&amp;quot;msg&amp;quot;:&amp;quot;Invalid Checkcode2:&amp;quot; + checkcode&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;得到 flag2 有两种方法：&lt;br&gt;
+1）要么让 checkcode 值的长度为 16 并且值为 aGr5AtSp55dRacer&lt;br&gt;
+2）要么长度为 16 后直接异常报错，顺序执行获取 flag2&lt;br&gt;
+ 思来想去 toLowerCase () 总是会将字符转换为小写，并且也没有什么资料爆出它有啥漏洞。所以我主要想从 2）攻破。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;长度为 16 并且执行 toLowerCase () 报错&lt;br&gt;
+可以采取 json 数组解析错误绕过&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;quot;checkcode&amp;quot;:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;也或者是这个形式造成解析错误，异常&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&amp;amp;checkcode=1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/334.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/335.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;unusual-php&#34;&gt; unusual php&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;复现环境：&lt;a href=&#34;http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/&#34;&gt;http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;代码分析&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;if($_GET[&amp;quot;a&amp;quot;]==&amp;quot;upload&amp;quot;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    move_uploaded_file($_FILES[&amp;#x27;file&amp;#x27;][&amp;quot;tmp_name&amp;quot;], &amp;quot;upload/&amp;quot;.$_FILES[&amp;#x27;file&amp;#x27;][&amp;quot;name&amp;quot;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;elseif ($_GET[&amp;quot;a&amp;quot;]==&amp;quot;read&amp;quot;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    echo file_get_contents($_GET[&amp;quot;file&amp;quot;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;elseif ($_GET[&amp;quot;a&amp;quot;]==&amp;quot;version&amp;quot;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    phpinfo();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+        <updated>2023-02-06T12:12:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2022/12/09/CTF/%E5%88%B7%E9%A2%98/</id>
         <title>刷题</title>

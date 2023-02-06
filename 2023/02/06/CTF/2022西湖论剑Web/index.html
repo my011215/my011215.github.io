@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>2022西湖论剑Web | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考：http:&#x2F;&#x2F;www.sdpcsec.cn&#x2F;?p&#x3D;259 https:&#x2F;&#x2F;www.ctfiot.com&#x2F;95359.html   扭转乾坤 Node Magical Login unusual php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022西湖论剑Web">
+<meta property="og:url" content="https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="参考：http:&#x2F;&#x2F;www.sdpcsec.cn&#x2F;?p&#x3D;259 https:&#x2F;&#x2F;www.ctfiot.com&#x2F;95359.html   扭转乾坤 Node Magical Login unusual php">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/329.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/330.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/331.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/332.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/333.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/334.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/335.png?raw=true">
+<meta property="article:published_time" content="2023-02-06T12:12:30.000Z">
+<meta property="article:modified_time" content="2023-02-06T12:15:51.367Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/329.png?raw=true">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CTF/2022西湖论剑Web" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/" class="article-date">
+  <time datetime="2023-02-06T12:12:30.000Z" itemprop="datePublished">2023-02-06</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2022西湖论剑Web
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考：<a target="_blank" rel="noopener" href="http://www.sdpcsec.cn/?p=259">http://www.sdpcsec.cn/?p=259</a><br>
+<a target="_blank" rel="noopener" href="https://www.ctfiot.com/95359.html">https://www.ctfiot.com/95359.html</a></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E6%89%AD%E8%BD%AC%E4%B9%BE%E5%9D%A4">扭转乾坤</a></li>
+<li><a href="#node-magical-login">Node Magical Login</a></li>
+<li><a href="#unusual-php">unusual php</a></li>
+</ul>
+<!-- tocstop -->
+<span id="more"></span>  
+<h2><span id="扭转乾坤"> 扭转乾坤</span></h2>
+<p>复现环境：1.14.95.102</p>
+<ol>
+<li>上传一个普普通通平平无奇的 txt 文件，得到报错<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/329.png?raw=true" alt><br>
+抱歉，Apache 可能会拒绝标头等于内容类型：multipart/form-data</li>
+<li>解题办法<br>
+利用中间件与 RCF 协议的差异进行绕过<br>
+详情：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/241265">https://www.anquanke.com/post/id/241265</a><br>
+（1）大小写<br>
+（2）空格<br>
+（3）双引号<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/330.png?raw=true" alt></li>
+</ol>
+<h2><span id="node-magical-login"> Node Magical Login</span></h2>
+<p>复现地址：<a target="_blank" rel="noopener" href="http://80.endpoint-980e7909452440499d7db81e338dd5df.ins.cloud.dasctf.com:81/">http://80.endpoint-980e7909452440499d7db81e338dd5df.ins.cloud.dasctf.com:81/</a></p>
+<ol>
+<li>下载文件，进行代码审计</li>
+<li>main.js<br>
+ 里面就是一些路由（和 flask 框架有点像），规定访问的参数和请求方式，调用对应函数或者返回对应界面，没啥重点内容。<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/331.png?raw=true" alt></li>
+<li>controller.js<br>
+ 逐个审计一下每个函数<br>
+（1） LoginController<br>
+ 如果 username 不是 admin 和 pasword 不等于随机生成的一串随机数就登陆失败<br>
+显然，想要登录成功不现实。<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/332.png?raw=true" alt><br>
+（2）Flag1Controller</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const SECRET_COOKIE = process.env.SECRET_COOKIE || &quot;this_is_testing_cookie&quot;</span><br><span class="line"></span><br><span class="line">function Flag1Controller(req,res)&#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        if(req.cookies.user === SECRET_COOKIE)&#123;</span><br><span class="line">            res.setHeader(&quot;This_Is_The_Flag1&quot;,flag1.toString().trim())</span><br><span class="line">            res.setHeader(&quot;This_Is_The_Flag2&quot;,flag2.toString().trim())</span><br><span class="line">            res.status(200).type(&quot;text/html&quot;).send(&quot;Login success. Welcome,admin!&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">        if(req.cookies.user === &quot;admin&quot;) &#123;</span><br><span class="line">            res.setHeader(&quot;This_Is_The_Flag1&quot;, flag1.toString().trim())</span><br><span class="line">            res.status(200).type(&quot;text/html&quot;).send(&quot;You Got One Part Of Flag! Try To Get Another Part of Flag!&quot;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            res.status(401).type(&quot;text/html&quot;).send(&quot;Unauthorized&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;catch (__) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在第二个 if 条件中，我们 可以伪造 cookie 的 user 值为 admin</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(&quot;/flag1&quot;,(req,res) =&gt; &#123;</span><br><span class="line">    controller.Flag1Controller(req,res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这个函数是以 get 形式请求 /flags，就调用 Flag1Controller 函数<br>
+于是乎，可以这样<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/333.png?raw=true" alt><br>
+（3）CheckController<br>
+ 同样的思维方式去跟着代码要求做得到 flag2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.post(&quot;/getflag2&quot;,(req,res)=&gt; &#123;</span><br><span class="line">    controller.CheckController(req,res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function CheckController(req,res) &#123;</span><br><span class="line">    let checkcode = req.body.checkcode?req.body.checkcode:1234;</span><br><span class="line">    console.log(req.body)</span><br><span class="line">    if(checkcode.length === 16)&#123;</span><br><span class="line">        try&#123;</span><br><span class="line">            checkcode = checkcode.toLowerCase()</span><br><span class="line">            if(checkcode !== &quot;aGr5AtSp55dRacer&quot;)&#123;</span><br><span class="line">                res.status(403).json(&#123;&quot;msg&quot;:&quot;Invalid Checkcode1:&quot; + checkcode&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;catch (__) &#123;&#125;</span><br><span class="line">        res.status(200).type(&quot;text/html&quot;).json(&#123;&quot;msg&quot;:&quot;You Got Another Part Of Flag: &quot; + flag2.toString().trim()&#125;)</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        res.status(403).type(&quot;text/html&quot;).json(&#123;&quot;msg&quot;:&quot;Invalid Checkcode2:&quot; + checkcode&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>得到 flag2 有两种方法：<br>
+1）要么让 checkcode 值的长度为 16 并且值为 aGr5AtSp55dRacer<br>
+2）要么长度为 16 后直接异常报错，顺序执行获取 flag2<br>
+ 思来想去 toLowerCase () 总是会将字符转换为小写，并且也没有什么资料爆出它有啥漏洞。所以我主要想从 2）攻破。</p>
+<ul>
+<li>长度为 16 并且执行 toLowerCase () 报错<br>
+可以采取 json 数组解析错误绕过</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;checkcode&quot;:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也或者是这个形式造成解析错误，异常</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1&amp;checkcode=1</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/334.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/335.png?raw=true" alt></p>
+<h2><span id="unusual-php"> unusual php</span></h2>
+<p>复现环境：<a target="_blank" rel="noopener" href="http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/">http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/</a></p>
+<ol>
+<li>代码分析</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if($_GET[&quot;a&quot;]==&quot;upload&quot;)&#123;</span><br><span class="line">    move_uploaded_file($_FILES[&#x27;file&#x27;][&quot;tmp_name&quot;], &quot;upload/&quot;.$_FILES[&#x27;file&#x27;][&quot;name&quot;]);</span><br><span class="line">&#125;elseif ($_GET[&quot;a&quot;]==&quot;read&quot;) &#123;</span><br><span class="line">    echo file_get_contents($_GET[&quot;file&quot;]);</span><br><span class="line">&#125;elseif ($_GET[&quot;a&quot;]==&quot;version&quot;) &#123;</span><br><span class="line">    phpinfo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/" data-id="cldss1toi0000cwtn9x3qe17s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/01/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">目录遍历漏洞</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">40</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/">2022西湖论剑Web</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/01/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/">目录遍历漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/29/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/">springboot学习代码</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/29/learning%20share/superset%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA/">superset大数据可视化展示</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/26/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer id="footer">
+<span>访问总量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span>总访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+    </div>
+</div>
+</footer>
+
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>
