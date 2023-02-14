@@ -5,11 +5,11 @@
     "home_page_url": "https://my011215.github.io",
     "items": [
         {
-            "id": "https://my011215.github.io/2023/02/13/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/",
-            "url": "https://my011215.github.io/2023/02/13/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/",
+            "id": "https://my011215.github.io/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/",
+            "url": "https://my011215.github.io/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/",
             "title": "文件下载漏洞",
-            "date_published": "2023-02-13T14:12:30.000Z",
-            "content_html": "<!-- toc -->\n<!-- tocstop -->\n<span id=\"more\"></span>",
+            "date_published": "2023-02-14T06:12:30.000Z",
+            "content_html": "<!-- toc -->\n<ul>\n<li><a href=\"#%E6%A6%82%E5%BF%B5\">概念</a></li>\n<li><a href=\"#pikachu%E9%9D%B6%E5%9C%BA\">pikachu 靶场</a></li>\n</ul>\n<!-- tocstop -->\n<span id=\"more\"></span>  \n<h2><span id=\"概念\"> 概念</span></h2>\n<p>攻击者提交的不是一个程序预期的的文件名，而是一个精心构造的路径 (比如…/…/…/etc/passwd), 则很有可能会直接将该指定的文件下载下来。 从而导致后台敏感信息 (密码文件、源代码等) 被下载。<br>\n所以，在设计文件下载功能时，如果下载的目标文件是由前端传进来的，则一定要对传进来的文件进行安全考虑。 切记：所有与前端交互的数据都是不安全的。</p>\n<h2><span id=\"pikachu-靶场\"> pikachu 靶场</span></h2>\n<p><img src=\"https://github.com/my011215/my011215.github.io/blob/main/image/348.png?raw=true\" alt><br>\n发现下载路径<br>\n构造下载路径<br>\n<a href=\"http://127.0.0.1/pikachu/vul/unsafedownload/unsafe_down.php/execdownload.php?filename=../down_nba.php\"> http://127.0.0.1/pikachu/vul/unsafedownload/unsafe_down.php/execdownload.php?filename=../down_nba.php</a><br>\n 成功下载</p>\n",
             "tags": []
         },
         {

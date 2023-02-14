@@ -3,15 +3,29 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;漏洞&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-02-13T14:12:30.000Z</updated>
+    <updated>2023-02-14T06:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/02/13/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/</id>
+        <id>https://my011215.github.io/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/</id>
         <title>文件下载漏洞</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/02/13/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/"/>
         <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%A6%82%E5%BF%B5&#34;&gt;概念&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pikachu%E9%9D%B6%E5%9C%BA&#34;&gt;pikachu 靶场&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;</content>
-        <updated>2023-02-13T14:12:30.000Z</updated>
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;概念&#34;&gt; 概念&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;攻击者提交的不是一个程序预期的的文件名，而是一个精心构造的路径 (比如…/…/…/etc/passwd), 则很有可能会直接将该指定的文件下载下来。 从而导致后台敏感信息 (密码文件、源代码等) 被下载。&lt;br&gt;
+所以，在设计文件下载功能时，如果下载的目标文件是由前端传进来的，则一定要对传进来的文件进行安全考虑。 切记：所有与前端交互的数据都是不安全的。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;pikachu-靶场&#34;&gt; pikachu 靶场&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/348.png?raw=true&#34; alt&gt;&lt;br&gt;
+发现下载路径&lt;br&gt;
+构造下载路径&lt;br&gt;
+&lt;a href=&#34;http://127.0.0.1/pikachu/vul/unsafedownload/unsafe_down.php/execdownload.php?filename=../down_nba.php&#34;&gt; http://127.0.0.1/pikachu/vul/unsafedownload/unsafe_down.php/execdownload.php?filename=../down_nba.php&lt;/a&gt;&lt;br&gt;
+ 成功下载&lt;/p&gt;
+</content>
+        <updated>2023-02-14T06:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/02/13/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/</id>
