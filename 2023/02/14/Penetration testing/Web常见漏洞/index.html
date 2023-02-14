@@ -7,15 +7,15 @@
   
   <title>Web常见漏洞 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="（Web）常见漏洞  (sql) 注入 文件上传 xss csrf （php）反序列化 （java）反序列化 xxe （JWT）安全及预编译（CASE）注入 （java）目录遍历">
+  <meta name="description" content="(sql) 注入  概念 常见的 sql 注入产生原因 mysql 注入  判断是否存在注入点 信息收集 数据注入 高权限注入     文件上传 xss csrf （php）反序列化 （java）反序列化 xxe （JWT）安全及预编译（CASE）注入 （java）目录遍历">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web常见漏洞">
 <meta property="og:url" content="https://my011215.github.io/2023/02/14/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="（Web）常见漏洞  (sql) 注入 文件上传 xss csrf （php）反序列化 （java）反序列化 xxe （JWT）安全及预编译（CASE）注入 （java）目录遍历">
+<meta property="og:description" content="(sql) 注入  概念 常见的 sql 注入产生原因 mysql 注入  判断是否存在注入点 信息收集 数据注入 高权限注入     文件上传 xss csrf （php）反序列化 （java）反序列化 xxe （JWT）安全及预编译（CASE）注入 （java）目录遍历">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-02-14T10:12:30.000Z">
-<meta property="article:modified_time" content="2023-02-14T09:28:14.322Z">
+<meta property="article:published_time" content="2023-02-14T14:12:30.000Z">
+<meta property="article:modified_time" content="2023-02-14T14:16:12.890Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
   
@@ -75,7 +75,7 @@
         <section id="main"><article id="post-Penetration testing/Web常见漏洞" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
     <a href="/2023/02/14/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time datetime="2023-02-14T10:12:30.000Z" itemprop="datePublished">2023-02-14</time>
+  <time datetime="2023-02-14T14:12:30.000Z" itemprop="datePublished">2023-02-14</time>
 </a>
 
 
@@ -102,9 +102,20 @@
       
         <!-- toc -->
 <ul>
-<li><a href="#web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E">（Web）常见漏洞</a>
+<li><a href="#sql%E6%B3%A8%E5%85%A5">(sql) 注入</a>
 <ul>
-<li><a href="#sql%E6%B3%A8%E5%85%A5">(sql) 注入</a></li>
+<li><a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84sql%E6%B3%A8%E5%85%A5%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0">常见的 sql 注入产生原因</a></li>
+<li><a href="#mysql%E6%B3%A8%E5%85%A5">mysql 注入</a>
+<ul>
+<li><a href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%B3%A8%E5%85%A5%E7%82%B9">判断是否存在注入点</a></li>
+<li><a href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86">信息收集</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%B3%A8%E5%85%A5">数据注入</a></li>
+<li><a href="#%E9%AB%98%E6%9D%83%E9%99%90%E6%B3%A8%E5%85%A5">高权限注入</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">文件上传</a></li>
 <li><a href="#xss">xss</a></li>
 <li><a href="#csrf">csrf</a></li>
@@ -114,21 +125,71 @@
 <li><a href="#jwt%E5%AE%89%E5%85%A8%E5%8F%8A%E9%A2%84%E7%BC%96%E8%AF%91case%E6%B3%A8%E5%85%A5">（JWT）安全及预编译（CASE）注入</a></li>
 <li><a href="#java%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86">（java）目录遍历</a></li>
 </ul>
-</li>
-</ul>
 <!-- tocstop -->
 <span id="more"></span>  
 <p>参考：<a target="_blank" rel="noopener" href="https://www.yuque.com/weiker/xiaodi/xydntt">https://www.yuque.com/weiker/xiaodi/xydntt</a></p>
-<h2><span id="web常见漏洞"> （Web）常见漏洞</span></h2>
-<h3><span id="sql-注入"> (sql) 注入</span></h3>
-<h3><span id="文件上传"> 文件上传</span></h3>
-<h3><span id="xss"> xss</span></h3>
-<h3><span id="csrf"> csrf</span></h3>
-<h3><span id="php反序列化"> （php）反序列化</span></h3>
-<h3><span id="java反序列化"> （java）反序列化</span></h3>
-<h3><span id="xxe"> xxe</span></h3>
-<h3><span id="jwt安全及预编译case注入"> （JWT）安全及预编译（CASE）注入</span></h3>
-<h3><span id="java目录遍历"> （java）目录遍历</span></h3>
+<h2><span id="sql-注入"> (sql) 注入</span></h2>
+<h3><span id="概念"> 概念</span></h3>
+<p>可控变量，带入数据库查询，变量未存在过滤或过滤不严谨<br>
+注入产生的原因是接受相关参数未经过滤（黑名单、白名单、编码、加密等）直接带入数据库查询操作。<br>
+SQL 注入：服务器端未严格校验客户端发送的数据，而导致服务端 SQL 语句被恶意修改并成功执行</p>
+<h3><span id="常见的-sql-注入产生原因"> 常见的 sql 注入产生原因</span></h3>
+<p>SQL 注入的产生原因通常表现在以下几方面：<br>
+①转义字符处理不合适；<br>
+②不安全的数据库配置；<br>
+③不合理的查询集处理；<br>
+④不当的错误处理；<br>
+⑤多个提交处理不当。</p>
+<h3><span id="mysql-注入"> mysql 注入</span></h3>
+<h4><span id="判断是否存在注入点"> 判断是否存在注入点</span></h4>
+<ol>
+<li>逻辑判断<br>
+ and 1 = 1		页面正常<br>
+ and 1 = 2		页面异常<br>
+则可能存在注入点</li>
+<li>输入的 SQL 语句是否能报错 (能通过数据库报错，看到数据库一些语句痕迹)(select username,password from user where id = ?’ ) 后面单引号或者双引号<br>
+通过在 URL 中修改对应的 id 值，值为正常数字、大数字、字符 (单引号、双引号、双单引号、括号)、反斜杠 \ 来探测 URL 中是否存在注入点</li>
+<li>输入的 SQL 语句能否不报错 (我们的语句能够成功闭合) (select username,password from user where id = ‘?’ #‘limite 0,1’)</li>
+</ol>
+<h4><span id="信息收集"> 信息收集</span></h4>
+<ol>
+<li>数据库版本：version ()</li>
+<li>数据库名字：database ()</li>
+<li>数据库用户：user ()</li>
+<li>操作系统：@@version_compile_os</li>
+<li>数据库路径:：@@datadir</li>
+<li>字符串连接函数<br>
+（1）concat (str1,str2,…)------- 没有分隔符的连接字符串<br>
+（2）concat_ws (separator,str1,str2,…)----- 含有分隔符的连接字符串<br>
+（3）group_concat (str1,str2,…)------ 连接一个组的所有字符串，并以逗号分隔每一条数据</li>
+</ol>
+<h4><span id="数据注入"> 数据注入</span></h4>
+<ul>
+<li>高版本注入</li>
+</ul>
+<ol>
+<li>在 mysql5.0 以后的版本存在一个 information_schema 数据库、里面存储记录数据库名、表名、列名的数据库，相当于可以通过 information_schema 这个数据库获取到数据库下面的表名和列名。<br>
+（1）information_schema.tables			#information_schema 下面的所有表名<br>
+（2）information_schema.columns		#information_schema 下面所有的列名<br>
+（3）table_name										# 表名<br>
+（4）column_name										# 列名<br>
+（5）table_schema									# 数据库名</li>
+</ol>
+<ul>
+<li>低版本注入</li>
+</ul>
+<ol>
+<li>联合查询</li>
+</ol>
+<h4><span id="高权限注入"> 高权限注入</span></h4>
+<h2><span id="文件上传"> 文件上传</span></h2>
+<h2><span id="xss"> xss</span></h2>
+<h2><span id="csrf"> csrf</span></h2>
+<h2><span id="php反序列化"> （php）反序列化</span></h2>
+<h2><span id="java反序列化"> （java）反序列化</span></h2>
+<h2><span id="xxe"> xxe</span></h2>
+<h2><span id="jwt安全及预编译case注入"> （JWT）安全及预编译（CASE）注入</span></h2>
+<h2><span id="java目录遍历"> （java）目录遍历</span></h2>
 
       
     </div>
