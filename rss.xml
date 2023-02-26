@@ -44,7 +44,8 @@
 &lt;/ol&gt;
 &lt;h2&gt;&lt;span id=&#34;测试&#34;&gt; 测试&lt;/span&gt;&lt;/h2&gt;
 &lt;h3&gt;&lt;span id=&#34;sql-注入&#34;&gt; SQL 注入&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;服务器加载比较慢，而且为了测试安全，从仓库 pull 源代码，在本地跑进行测试。主要采取的方法：代码审计，查看后台报错信息；黑盒测试。&lt;/p&gt;
+&lt;p&gt;服务器加载比较慢，而且为了测试安全，从仓库 pull 源代码，在本地跑进行测试。&lt;br&gt;
+** 主要采取的方法：代码审计，查看后台报错信息；黑盒测试。  **&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;查看 SQL 语句执行情况。&lt;br&gt;
 application.yaml&lt;/li&gt;
