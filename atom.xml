@@ -3,7 +3,123 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-02-25T10:12:30.000Z</updated>
+    <updated>2023-02-26T07:12:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/02/26/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</id>
+        <title>citi项目渗透测试</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/02/26/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%AF%E7%96%91%E7%82%B9&#34;&gt;可疑点&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%B5%8B%E8%AF%95&#34;&gt;测试&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#sql%E6%B3%A8%E5%85%A5&#34;&gt;SQL 注入&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%A4%E6%98%93%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E&#34;&gt;交易逻辑漏洞&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%85%E5%80%BC%E6%8F%90%E7%8E%B0&#34;&gt;充值提现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83&#34;&gt;水平越权&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%85%E5%80%BC%E6%8F%90%E7%8E%B0-1&#34;&gt;充值提现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%8E%A8%E6%96%87&#34;&gt;推文&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;可疑点&#34;&gt; 可疑点&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;SQL 注入。&lt;/li&gt;
+&lt;li&gt;业务逻辑漏洞。&lt;/li&gt;
+&lt;li&gt;水平越权。&lt;/li&gt;
+&lt;li&gt;图片解析，图片上传。&lt;/li&gt;
+&lt;li&gt;xss（反射、存储）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;测试&#34;&gt; 测试&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;sql-注入&#34;&gt; SQL 注入&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;服务器加载比较慢，而且为了测试安全，从仓库 pull 源代码，在本地跑进行测试。主要采取的方法：代码审计，查看后台报错信息；黑盒测试。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;查看 SQL 语句执行情况。&lt;br&gt;
+application.yaml&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mybatis:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  # spring boot集成mybatis的方式打印sql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  configuration:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;预编译，先占位解决 SQL 注入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;原理&lt;br&gt;
+ mybatis 默认情况下，将对所有的 sql 进行预编译。mybatis 底层使用 PreparedStatement，过程是先将带有占位符（即”?”）的 sql 模板发送至 mysql 服务器，由服务器对此无参数的 sql 进行编译后，将编译结果缓存，然后直接执行带有真实参数的 sql。核心是通过 #{ } 实现的。&lt;br&gt;
+在预编译之前，#{ } 解析为一个 JDBC 预编译语句（prepared statement）的参数标记符？&lt;/li&gt;
+&lt;li account&gt;分析&lt;br&gt;
+ UserMapper.xml&lt;br&gt;
+（1）#&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;select id=&amp;quot;selectUserByAccount&amp;quot; resultMap=&amp;quot;userResultMap&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        select * from v_user where account = #&amp;#123;account&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;lt;/select&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;查看后台处理情况（使用 account 账户 1 和密码 1 进行登录，查看后台 sql 语句）&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;JDBC Connection [HikariProxyConnection@548761230 wrapping com.mysql.cj.jdbc.ConnectionImpl@29572120] will not be managed by Spring&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt;  Preparing: select * from v_user where account = ? &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt; Parameters: 1(String)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==    Columns: id, username, password, account, icon, status, admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 14, null, DqFzSl9t27Hf696hBn82SQ==, 1, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==      Total: 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b6b45bb]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/351.png?raw=true&#34; alt&gt;&lt;br&gt;
+可疑很清晰看到显示有？占位，对指令语句和数据语句分别进行编译，从根源上解决了 SQL 注入。&lt;br&gt;
+（2）${account}&lt;br&gt;
+ 一个很有意思的事情出现了！&lt;br&gt;
+1）account = 1&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;JDBC Connection [HikariProxyConnection@939952256 wrapping com.mysql.cj.jdbc.ConnectionImpl@19df681a] will not be managed by Spring&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt;  Preparing: select * from v_user where account = 1 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt; Parameters: &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==    Columns: id, username, password, account, icon, status, admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 12, null, J4Hsbg0u8mpD/ZwVmlWr3g==, 1&amp;quot;, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 13, null, L62seSBiMkORDq/plPDjWw==, 1&amp;#x27;, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 14, null, DqFzSl9t27Hf696hBn82SQ==, 1, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==      Total: 3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@57a4e160]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/352.png?raw=true&#34; alt&gt;&lt;br&gt;
+select * from v_user where account = 1，出现了三个结果！导致报错。&lt;br&gt;
+这是怎么回事呢？我们将命令带入数据库中跑一下看看。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/353.png?raw=true&#34; alt&gt;&lt;br&gt;
+其间还测试了各种情况：1.    1,   1a&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or 1=“1&amp;#x27;”  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or &amp;#x27;a1&amp;#x27;=0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or &amp;#x27;2&amp;#x27;=2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or &amp;#x27;a&amp;#x27;=0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以上情况均可查出所有 account 以 1 开头的&lt;br&gt;
+这应该是 mysql 的一个特性：转换就是字符中有数字转数字，没数字默认 0，转到字母就停止。&lt;br&gt;
+还可以再测试一下’11’=11 和’1a1’=1&lt;br&gt;
+ 可以参考一下 mysql 文档：&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html&#34;&gt;https://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html&lt;/a&gt;&lt;br&gt;
+2）account = 1 or 1 = 1&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/354.png?raw=true&#34; alt&gt;&lt;br&gt;
+ 好家伙，全给查出来了，好在没有报错回显。&lt;br&gt;
+（3）${qc}&lt;br&gt;
+AccountMapper.xml&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;select id=&amp;quot;selectCurrencyBalance&amp;quot; resultType=&amp;quot;java.math.BigDecimal&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        select $&amp;#123;qc&amp;#125; from v_account where account = #&amp;#123;account&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;lt;/select&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;交易逻辑漏洞&#34;&gt; 交易逻辑漏洞&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;充值提现&#34;&gt; 充值提现&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;抓包修改 recharge 参数值&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/355.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/356.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;抓包修改 cash 参数值&lt;br&gt;
+提现和充值也是一样可以抓包修改参数，虽然两者总的价值是 $10000，但是用户如果类似于微信支付逻辑一样链接银行卡等信息，可以无限制提现。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;水平越权&#34;&gt; 水平越权&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;充值提现&#34;&gt; 充值提现&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;抓包修改 account 参数值&lt;br&gt;
+可以随意更改其他用户充值提现情况，同时结合交易逻辑漏洞，可以造成其他用户账户信息混乱。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;admin1 用户（昵称：纯情男中专生）&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/357.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;1 用户（昵称：null）&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/358.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;li&gt;抓包修改 1 用户为 admin1 用户&lt;br&gt;
+充值 200&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/359.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/360.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;&lt;span id=&#34;推文&#34;&gt; 推文&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;发布推文&lt;br&gt;
+可以更改昵称伪造其他用户发表推文。&lt;/li&gt;
+&lt;li&gt;发布评论&lt;br&gt;
+可以更改昵称伪造其他用户发表评论。&lt;/li&gt;
+&lt;li&gt;点赞&lt;br&gt;
+可以更改昵称伪造其他用户点赞。&lt;/li&gt;
+&lt;li&gt;交易明细&lt;br&gt;
+可以更改 account 参数值伪造其他用户查看用户具体资产信息。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/361.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <updated>2023-02-26T07:12:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/02/25/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/</id>
         <title>Web常见漏洞</title>
@@ -244,73 +360,6 @@ PHP5.4.0 及其之后 PHP 版本中被取消了&lt;br&gt;
 &lt;h2&gt;&lt;span id=&#34;java目录遍历&#34;&gt; （java）目录遍历&lt;/span&gt;&lt;/h2&gt;
 </content>
         <updated>2023-02-25T10:12:30.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://my011215.github.io/2023/02/24/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</id>
-        <title>citi项目渗透测试</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/02/24/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
-        <content type="html">&lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#%E5%8F%AF%E7%96%91%E7%82%B9&#34;&gt;可疑点&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E6%B5%8B%E8%AF%95&#34;&gt;测试&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#sql%E6%B3%A8%E5%85%A5&#34;&gt;SQL 注入&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
-&lt;h2&gt;&lt;span id=&#34;可疑点&#34;&gt; 可疑点&lt;/span&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;行情左上角搜索框存在 js 弹框。&lt;/li&gt;
-&lt;li&gt;登录框 SQL 注入。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;&lt;span id=&#34;测试&#34;&gt; 测试&lt;/span&gt;&lt;/h2&gt;
-&lt;h3&gt;&lt;span id=&#34;sql-注入&#34;&gt; SQL 注入&lt;/span&gt;&lt;/h3&gt;
-&lt;p&gt;服务器加载比较慢，而且为了测试安全，从仓库 pull 源代码，在本地跑进行测试。主要采取的方法：代码审计，查看后台报错信息；黑盒测试。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;查看 SQL 语句执行情况。&lt;br&gt;
-application.yaml&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mybatis:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  # spring boot集成mybatis的方式打印sql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  configuration:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;预编译，先占位解决 SQL 注入&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;原理&lt;br&gt;
- mybatis 默认情况下，将对所有的 sql 进行预编译。mybatis 底层使用 PreparedStatement，过程是先将带有占位符（即”?”）的 sql 模板发送至 mysql 服务器，由服务器对此无参数的 sql 进行编译后，将编译结果缓存，然后直接执行带有真实参数的 sql。核心是通过 #{ } 实现的。&lt;br&gt;
-在预编译之前，#{ } 解析为一个 JDBC 预编译语句（prepared statement）的参数标记符？&lt;/li&gt;
-&lt;li account&gt;分析&lt;br&gt;
- UserMapper.xml&lt;br&gt;
-（1）#&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;select id=&amp;quot;selectUserByAccount&amp;quot; resultMap=&amp;quot;userResultMap&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        select * from v_user where account = #&amp;#123;account&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;lt;/select&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;查看后台处理情况（使用 account 账户 1 和密码 1 进行登录，查看后台 sql 语句）&lt;/p&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;JDBC Connection [HikariProxyConnection@548761230 wrapping com.mysql.cj.jdbc.ConnectionImpl@29572120] will not be managed by Spring&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt;  Preparing: select * from v_user where account = ? &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt; Parameters: 1(String)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==    Columns: id, username, password, account, icon, status, admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 14, null, DqFzSl9t27Hf696hBn82SQ==, 1, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==      Total: 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b6b45bb]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/351.png?raw=true&#34; alt&gt;&lt;br&gt;
-可疑很清晰看到显示有？占位，对指令语句和数据语句分别进行编译，从根源上解决了 SQL 注入。&lt;br&gt;
-（2）${account}&lt;br&gt;
- 一个很有意思的事情出现了！&lt;br&gt;
-1）account = 1&lt;/p&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;JDBC Connection [HikariProxyConnection@939952256 wrapping com.mysql.cj.jdbc.ConnectionImpl@19df681a] will not be managed by Spring&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt;  Preparing: select * from v_user where account = 1 &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;==&amp;gt; Parameters: &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==    Columns: id, username, password, account, icon, status, admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 12, null, J4Hsbg0u8mpD/ZwVmlWr3g==, 1&amp;quot;, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 13, null, L62seSBiMkORDq/plPDjWw==, 1&amp;#x27;, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==        Row: 14, null, DqFzSl9t27Hf696hBn82SQ==, 1, null, 0, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;==      Total: 3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@57a4e160]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/352.png?raw=true&#34; alt&gt;&lt;br&gt;
-select * from v_user where account = 1，出现了三个结果！导致报错。&lt;br&gt;
-这是怎么回事呢？我们将命令带入数据库中跑一下看看。&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/353.png?raw=true&#34; alt&gt;&lt;br&gt;
-其间还测试了各种情况：1.    1,   1a&lt;/p&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or 1=“1&amp;#x27;”  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or &amp;#x27;a1&amp;#x27;=0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or &amp;#x27;2&amp;#x27;=2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1 = 0 or &amp;#x27;a&amp;#x27;=0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上情况均可查出所有 account 以 1 开头的&lt;br&gt;
-这应该是 mysql 的一个特性：转换就是字符中有数字转数字，没数字默认 0，转到字母就停止。&lt;br&gt;
-还可以再测试一下’11’=11 和’1a1’=1&lt;br&gt;
- 可以参考一下 mysql 文档：&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html&#34;&gt;https://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html&lt;/a&gt;&lt;br&gt;
-2）account = 1 or 1 = 1&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/354.png?raw=true&#34; alt&gt;&lt;br&gt;
- 好家伙，全给查出来了，好在没有报错回显。&lt;br&gt;
-（3）${qc}&lt;br&gt;
-AccountMapper.xml&lt;/p&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;select id=&amp;quot;selectCurrencyBalance&amp;quot; resultType=&amp;quot;java.math.BigDecimal&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        select $&amp;#123;qc&amp;#125; from v_account where account = #&amp;#123;account&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;lt;/select&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-        <updated>2023-02-24T03:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/02/14/Penetration%20testing/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</id>
