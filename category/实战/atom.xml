@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;实战&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-02-26T13:12:30.000Z</updated>
+    <updated>2023-03-04T09:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/02/26/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</id>
+        <id>https://my011215.github.io/2023/03/04/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</id>
         <title>citi项目渗透测试</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/02/26/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/03/04/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%8F%AF%E7%96%91%E7%82%B9&#34;&gt;可疑点&lt;/a&gt;&lt;/li&gt;
@@ -185,7 +185,7 @@ select * from v_user where account = 1，出现了三个结果！导致报错。
 &lt;li&gt;增加 token 令牌，springboot 框架有防 csrf 的相应包和代码，对应调用即可。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
-        <updated>2023-02-26T13:12:30.000Z</updated>
+        <updated>2023-03-04T09:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/01/08/vulnerability/%E6%B0%B8%E6%81%92%E4%B9%8B%E8%93%9D%E6%BC%8F%E6%B4%9E/</id>
