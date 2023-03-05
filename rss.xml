@@ -5,8 +5,75 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Sat, 04 Mar 2023 17:12:30 +0800</pubDate>
-        <lastBuildDate>Sat, 04 Mar 2023 17:12:30 +0800</lastBuildDate>
+        <pubDate>Sun, 05 Mar 2023 13:12:30 +0800</pubDate>
+        <lastBuildDate>Sun, 05 Mar 2023 13:12:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2023/03/05/vulnerability/YYMusic%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</guid>
+            <title>YYMusic项目渗透测试</title>
+            <link>https://my011215.github.io/2023/03/05/vulnerability/YYMusic%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
+            <pubDate>Sun, 05 Mar 2023 13:12:30 +0800</pubDate>
+            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%AF%E7%96%91%E6%BC%8F%E6%B4%9E&#34;&gt;可疑漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0&#34;&gt;请求伪造&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#mdtest2html&#34;&gt;mdtest2.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pk%E5%8F%82%E6%95%B0&#34;&gt;pk 参数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ymy%E5%8F%82%E6%95%B0&#34;&gt;ymy 参数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#m%E5%8F%82%E6%95%B0&#34;&gt;m 参数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#poc%E6%9E%84%E9%80%A0&#34;&gt;poc 构造&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;可疑漏洞&#34;&gt; 可疑漏洞&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;请求伪造&lt;/li&gt;
+&lt;li&gt;dom 型 xss CSRF&lt;/li&gt;
+&lt;li&gt;CSRF&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;请求伪造&#34;&gt; 请求伪造&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;抓包分析参数&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/366.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&amp;quot;keyword&amp;quot;:&amp;quot;%E9%9D%92%E8%8A%B1%E7%93%B7&amp;quot;,&amp;quot;platform&amp;quot;:&amp;quot;wyy&amp;quot;,&amp;quot;ky&amp;quot;:&amp;quot;47edd1412c16e01a&amp;quot;,&amp;quot;pk&amp;quot;:&amp;quot;IFOBGd%2BakUwzpu1z2aQVuqMJqfCawZHsbhcaG11yOmlFQFhp5EfhIWZ3paxWcZqhllI%2BkcbYJYT1zPwO3191zA%3D%3D&amp;quot;,&amp;quot;verify&amp;quot;:&amp;quot;QJJcFb8IEqZjLdOq5ClClS9IWx6r47TEtyHrim276Kl3bzXE0jotR07synIAnmcaptQIETCqfC%2BrRESFN6qhJA%3D%3D&amp;quot;,&amp;quot;ymy&amp;quot;:&amp;quot;66g9GkeCJLKqO2fnTV99yM003f%2FIeJNGz8Mei7kWM9n4tX%2BOBi4KdckfeVWYNgJ6Yw5aLTq%2Fy04sd8s9yfAiCtDqOKqai7EkaEr1msMcoS21Mb0YmBPWqTIlOdhLypb6U4iV1HIH8COXnP5U1IK1SEtEJkVMDtrZHGds9QkH5FLDWECQHk1FW7lGTvjJ105SM456FQ30auIRE7pqmx4%2BeQ%3D%3D&amp;quot;,&amp;quot;m&amp;quot;:&amp;quot;f997e5c515b9b55e4190d0d4a353314c|1677985213000&amp;quot;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;代码审计分析&lt;br&gt;
+登录用户 mdtest2 会生成一个 mdtest2.html 页面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;mdtest2html&#34;&gt; mdtest2.html&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;var data = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;keyword&amp;quot;: encodeURIComponent(form__input.value),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;platform&amp;quot;: get_platform(),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;ky&amp;quot;:window.kky,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;pk&amp;quot;:encodeURIComponent(asrr()),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;verify&amp;quot;:encodeURIComponent(verify),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;ymy&amp;quot;:encodeURIComponent(window.ymy),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;m&amp;quot;:window.mm(),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（1）keyword：对输入框输入的歌曲进行 url 编码&lt;br&gt;
+（2）platform：歌曲获取的来源（wyy、kw、qq），这个在之后的代码中写看到，不过也很容易根据取名猜出来。&lt;br&gt;
+（3）ky：抓同一个用户多个包分析后，发现 ky 每次都一样。&lt;br&gt;
+（4）pk：每次都不一样，应该是进行了某种加密处理。&lt;br&gt;
+（5）verify：每次都一样。&lt;br&gt;
+（6）ymy：每次都不一样，应该是进行了某种加密处理。&lt;br&gt;
+（7）m：每次都不一样，应该是进行了某种加密处理。&lt;br&gt;
+所以主要集中对 pk,ymy,m 三个参数进行研究。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;pk-参数&#34;&gt; pk 参数&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;“pk”:encodeURIComponent(asrr())&lt;br&gt;
+ 所以我们进入 asrr () 进行查看&lt;br&gt;
+进入了 rsa.js 文件&lt;br&gt;
+发现这应该是引用了别人写好的 js 包，采用 rsa 加密&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;function asrr() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    plain_text=window.kky;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    var public_modulus = &amp;quot;b32e685b13983b6e84fe62c8e062aa167210b8b2a237fa010425cdc65180cb7a9168faf609ed24e5266f9bd04d383c7b2746223eb3bda399521ad21e56bbecff&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    var public_exponent = &amp;quot;10001&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    var Crypt = new asr.JSEncrypt();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Crypt.setPublic(public_modulus, public_exponent);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Crypt.setPublicKey(&amp;#123;&amp;quot;n&amp;quot;: Crypt.n, &amp;quot;e&amp;quot;: Crypt.e&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    var enc_str = Crypt.public_encryptLong(plain_text, 2, true);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return enc_str;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;并且 &amp;quot;ky&amp;quot;:window.kky，所以 ky 就是明文，既然每次明文都一样，根据 rsa 加密验证原理，我们不更改 pk 参数值，传回后端解密的密文也可以一致！&lt;br&gt;
+ps：可以抓两个包，只更改 ky 参数试一试，也可以成功返回数据包。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;ymy-参数&#34;&gt; ymy 参数&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;这应该是这里面最难分析的一个参数了。&lt;br&gt;
+找遍整个前端也没看见 ymy，之后偶然进入控制台输出 eval (window.xmy)，发现进入了一个函数，进入这个函数发现&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;window.ymy=p(w)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;var w=&amp;#123;ts:(new Date).getTime(),cts:(new Date).getTime(),brVD:d(),brR:l(),aM:h(),code:&amp;quot;&amp;quot;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;var p=function(e)&amp;#123;v(e);e.cts=(new Date).getTime();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后这个函数参数就一层一层套下去了，这代码还真不好看懂，那就默认应该是可以利用这个 SE.js 生成的。&lt;br&gt;
+后续又进行了简单验证，发现还需要向服务器发一下请求获取当前 cookie，生成的 ymy 才有作用，否则会显示重新登录。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;m-参数&#34;&gt; m 参数&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;登录用户 mdtest2 会生成一个 mdtest2.html 页面。&lt;br&gt;
+前几行直接用 script 引入一个很大的内容，里面就算生成 m 参数，简单了解了一下，发现是时间戳。&lt;br&gt;
+那也解决了，我们可以引入这个包也可以生成对应的 m 参数值。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;poc-构造&#34;&gt; poc 构造&lt;/span&gt;&lt;/h3&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/03/04/vulnerability/citi%E9%A1%B9%E7%9B%AE%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</guid>
             <title>citi项目渗透测试</title>
