@@ -30,7 +30,6 @@
 &lt;h2&gt;&lt;span id=&#34;可疑漏洞&#34;&gt; 可疑漏洞&lt;/span&gt;&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;请求伪造&lt;/li&gt;
-&lt;li&gt;dom 型 xss CSRF&lt;/li&gt;
 &lt;li&gt;CSRF&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;&lt;span id=&#34;请求伪造&#34;&gt; 请求伪造&lt;/span&gt;&lt;/h2&gt;

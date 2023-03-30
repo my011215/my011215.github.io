@@ -5,31 +5,37 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Thu, 26 Jan 2023 19:20:30 +0800</pubDate>
-        <lastBuildDate>Thu, 26 Jan 2023 19:20:30 +0800</lastBuildDate>
+        <pubDate>Sun, 19 Mar 2023 19:20:30 +0800</pubDate>
+        <lastBuildDate>Sun, 19 Mar 2023 19:20:30 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://my011215.github.io/2023/01/26/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</guid>
+            <guid isPermalink="true">https://my011215.github.io/2023/03/19/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</guid>
             <title>思维导图</title>
-            <link>https://my011215.github.io/2023/01/26/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</link>
-            <pubDate>Thu, 26 Jan 2023 19:20:30 +0800</pubDate>
+            <link>https://my011215.github.io/2023/03/19/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</link>
+            <pubDate>Sun, 19 Mar 2023 19:20:30 +0800</pubDate>
             <description><![CDATA[ &lt;!-- toc --&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sql%E6%B3%A8%E5%85%A5&#34;&gt;SQL 注入&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E&#34;&gt;文件包含漏洞&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E&#34;&gt;文件上传漏洞&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%99%BB%E5%BD%95%E6%A1%86%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E&#34;&gt;登录框常见漏洞&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#web%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9&#34;&gt;Web 安全学习内容&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;信息收集&#34;&gt; 信息收集&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://www.mubucm.com/doc/1YR4KkvYaGb&#34;&gt;https://www.mubucm.com/doc/1YR4KkvYaGb&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/315.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;sql-注入&#34;&gt; SQL 注入&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/368.png?raw=true&#34; alt&gt;&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&#34;文件包含漏洞&#34;&gt; 文件包含漏洞&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/144.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;文件上传漏洞&#34;&gt; 文件上传漏洞&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/367.png?raw=true&#34; alt&gt;&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&#34;登录框常见漏洞&#34;&gt; 登录框常见漏洞&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/152.png?raw=true&#34; alt&gt;&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&#34;web-安全学习内容&#34;&gt; Web 安全学习内容&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/190.png?raw=true&#34; alt&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;信息收集&#34;&gt; 信息收集&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;链接：&lt;a href=&#34;https://www.mubucm.com/doc/1YR4KkvYaGb&#34;&gt;https://www.mubucm.com/doc/1YR4KkvYaGb&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/315.png?raw=true&#34; alt&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
