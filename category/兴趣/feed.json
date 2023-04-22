@@ -5,6 +5,14 @@
     "home_page_url": "https://my011215.github.io",
     "items": [
         {
+            "id": "https://my011215.github.io/2023/04/22/learning%20share/spring%E5%AD%A6%E4%B9%A0/",
+            "url": "https://my011215.github.io/2023/04/22/learning%20share/spring%E5%AD%A6%E4%B9%A0/",
+            "title": "spring学习",
+            "date_published": "2023-04-22T11:30:30.000Z",
+            "content_html": "<!-- toc -->\n<ul>\n<li><a href=\"#%E5%8E%9F%E5%88%99\">原则</a></li>\n</ul>\n<!-- tocstop -->\n<span id=\"more\"></span>  \n<h2><span id=\"原则\"> 原则</span></h2>\n<ol>\n<li>\n<p>开闭原则（OCP）<br>\n扩展新功能时，旧功能不需要更改。</p>\n</li>\n<li>\n<p>依赖倒置原则（DIP）<br>\n上面依赖下面，上面一改动，下面程序会受到牵连。<br>\n面向接口、抽象编程，不要面向具体编程。（不喜欢 new）<br>\n降低程序耦合度，提升扩展力。</p>\n</li>\n</ol>\n<ul>\n<li>解决措施<br>\n 1、控制反转 IoC<br>\n 反转：<br>\n（1）不采用硬编程来 new 对象<br>\n（2）不采用硬编程来维护对象之间的关系<br>\n实现方式：<br>\n（1）依赖注入 DI<br>\nset 注入（set 函数赋值）<br>\n构造方法注入（构造函数赋值）<br>\n2、Spring 框架</li>\n</ul>\n",
+            "tags": []
+        },
+        {
             "id": "https://my011215.github.io/2023/01/29/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/",
             "url": "https://my011215.github.io/2023/01/29/learning%20share/springboot%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81/",
             "title": "springboot学习代码",
