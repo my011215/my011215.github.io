@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>spring学习 | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原则 spring 程序  构造 启用 log4j2 日志框架 依赖注入 spring 引入外部属性配置文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring学习">
+<meta property="og:url" content="https://my011215.github.io/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="原则 spring 程序  构造 启用 log4j2 日志框架 依赖注入 spring 引入外部属性配置文件">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-30T03:30:30.000Z">
+<meta property="article:modified_time" content="2023-04-30T10:50:21.368Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning share/spring学习" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2023-04-30T03:30:30.000Z" itemprop="datePublished">2023-04-30</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spring学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E5%8E%9F%E5%88%99">原则</a></li>
+<li><a href="#spring%E7%A8%8B%E5%BA%8F">spring 程序</a>
+<ul>
+<li><a href="#%E6%9E%84%E9%80%A0">构造</a></li>
+<li><a href="#%E5%90%AF%E7%94%A8log4j2%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6">启用 log4j2 日志框架</a></li>
+<li><a href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5">依赖注入</a></li>
+<li><a href="#spring%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">spring 引入外部属性配置文件</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<span id="more"></span>  
+<h2><span id="原则"> 原则</span></h2>
+<ol>
+<li>
+<p>开闭原则（OCP）<br>
+扩展新功能时，旧功能不需要更改。</p>
+</li>
+<li>
+<p>依赖倒置原则（DIP）<br>
+上面依赖下面，上面一改动，下面程序会受到牵连。<br>
+面向接口、抽象编程，不要面向具体编程。（不喜欢 new）<br>
+降低程序耦合度，提升扩展力。</p>
+</li>
+</ol>
+<ul>
+<li>解决措施<br>
+ 1、控制反转 IoC<br>
+ 反转：<br>
+（1）不采用硬编程来 new 对象<br>
+（2）不采用硬编程来维护对象之间的关系<br>
+实现方式：<br>
+（1）依赖注入 DI<br>
+set 注入（set 函数赋值）<br>
+构造方法注入（构造函数赋值）<br>
+2、Spring 框架</li>
+</ul>
+<h2><span id="spring-程序"> spring 程序</span></h2>
+<h3><span id="构造"> 构造</span></h3>
+<ol>
+<li>采取 maven 模式构造</li>
+<li>在 pom.xml 导入相关配置</li>
+<li>写入 Beans.xml 相关配置</li>
+</ol>
+<ul>
+<li>
+<p>Beans.xml 中配置 id 是唯一的</p>
+</li>
+<li>
+<p>spring 实例化对象本质<br>
+调用本地无参构造函数</p>
+</li>
+<li>
+<p>创建好的对象以键（id）值（bean 对象）对方式存入 map 中</p>
+</li>
+<li>
+<p>导入 Beans.xml 文件需要写完整路径（根路径是 resource）</p>
+</li>
+<li>
+<p>Beans.xml 文件可以导入自定义类也可以导入内置类</p>
+</li>
+<li>
+<p>spring 底层的 IoC 实习<br>
+ XML 解析 + 工厂模式 + 反射机制<br>
+工厂模式：将对象的创建和使用进行分离</p>
+</li>
+<li>
+<p>解析配置文件的时候就创建了对象，不是在 getbean 才创建对象</p>
+</li>
+</ul>
+<h3><span id="启用-log4j2-日志框架"> 启用 log4j2 日志框架</span></h3>
+<ol>
+<li>引入 log4j2 依赖<br>
+ pom.xml</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--log4j2的依赖--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.19.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;log4j-slf4j2-impl&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;2.19.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>类的根路径下提供 log4j2.xml 配置文件<br>
+ log4j2.xml</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;loggers&gt;</span><br><span class="line">        &lt;!--</span><br><span class="line">            level指定日志级别，从低到高的优先级：</span><br><span class="line">                ALL &lt; TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL &lt; OFF</span><br><span class="line">        --&gt;</span><br><span class="line">        &lt;root level=&quot;DEBUG&quot;&gt;</span><br><span class="line">            &lt;appender-ref ref=&quot;spring6log&quot;/&gt;</span><br><span class="line">        &lt;/root&gt;</span><br><span class="line">    &lt;/loggers&gt;</span><br><span class="line"></span><br><span class="line">    &lt;appenders&gt;</span><br><span class="line">        &lt;!--输出日志信息到控制台--&gt;</span><br><span class="line">        &lt;console name=&quot;spring6log&quot; target=&quot;SYSTEM_OUT&quot;&gt;</span><br><span class="line">            &lt;!--控制日志输出的格式--&gt;</span><br><span class="line">            &lt;PatternLayout pattern=&quot;%d&#123;yyyy-MM-dd HH:mm:ss SSS&#125; [%t] %-3level %logger&#123;1024&#125; - %msg%n&quot;/&gt;</span><br><span class="line">        &lt;/console&gt;</span><br><span class="line">    &lt;/appenders&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>使用日志框架</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Logger logger = LoggerFactory.getLogger(FirstSpringTest.class);</span><br><span class="line">logger.info(&quot;我是一条日志消息&quot;);</span><br></pre></td></tr></table></figure>
+<h3><span id="依赖注入"> 依赖注入</span></h3>
+<ul>
+<li>
+<p>set 注入<br>
+基于 set 方法实现的，底层会通过反射机制调用属性对应的 set 方法然后给属性赋值。这种方式要求属性必须对外提供 set 方法。</p>
+</li>
+<li>
+<p>构造注入<br>
+通过调用构造方法来给属性赋值</p>
+</li>
+</ul>
+<ol>
+<li>外部 Bean<br>
+bean 定义到外面，在 property 标签中使用 ref 属性进行注入。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;userServiceBean&quot; class=&quot;com.powernode.spring6.service.UserService&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;userDao&quot; ref=&quot;userDaoBean&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>内部 Bean<br>
+ 在 bean 标签中嵌套 bean 标签</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;userServiceBean&quot; class=&quot;com.powernode.spring6.service.UserService&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;userDao&quot;&gt;</span><br><span class="line">            &lt;bean class=&quot;com.powernode.spring6.dao.UserDao&quot;/&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>
+<p>简单类型注入<br>
+简单类型包括：<br>
+● 基本数据类型<br>
+● 基本数据类型对应的包装类<br>
+● String 或其他的 CharSequence 子类<br>
+● Number 子类<br>
+● Date 子类<br>
+● Enum 子类<br>
+● URI<br>
+● URL<br>
+● Temporal 子类<br>
+● Locale<br>
+● Class<br>
+● 另外还包括以上简单值类型对应的数组类型</p>
+</li>
+<li>
+<p>级联属性赋值</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;student&quot; class=&quot;com.powernode.spring6.beans.Student&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;name&quot; value=&quot;张三&quot;/&gt;</span><br><span class="line"></span><br><span class="line">       &lt;!--要点1：以下两行配置的顺序不能颠倒--&gt;</span><br><span class="line">       &lt;property name=&quot;clazz&quot; ref=&quot;clazzBean&quot;/&gt;</span><br><span class="line">       &lt;!--要点2：clazz属性必须有getter方法--&gt;</span><br><span class="line">       &lt;property name=&quot;clazz.name&quot; value=&quot;高三一班&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>注入数组</li>
+</ol>
+<ul>
+<li>数组中的元素是简单类型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;person&quot; class=&quot;com.powernode.spring6.beans.Person&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;favariteFoods&quot;&gt;</span><br><span class="line">            &lt;array&gt;</span><br><span class="line">                &lt;value&gt;鸡排&lt;/value&gt;</span><br><span class="line">                &lt;value&gt;汉堡&lt;/value&gt;</span><br><span class="line">                &lt;value&gt;鹅肝&lt;/value&gt;</span><br><span class="line">            &lt;/array&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数组中的元素是非简单类型：一个订单中包含多个商品</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;goods1&quot; class=&quot;com.powernode.spring6.beans.Goods&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;name&quot; value=&quot;西瓜&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">   &lt;bean id=&quot;goods2&quot; class=&quot;com.powernode.spring6.beans.Goods&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;name&quot; value=&quot;苹果&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">   &lt;bean id=&quot;order&quot; class=&quot;com.powernode.spring6.beans.Order&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;goods&quot;&gt;</span><br><span class="line">           &lt;array&gt;</span><br><span class="line">               &lt;!--这里使用ref标签即可--&gt;</span><br><span class="line">               &lt;ref bean=&quot;goods1&quot;/&gt;</span><br><span class="line">               &lt;ref bean=&quot;goods2&quot;/&gt;</span><br><span class="line">           &lt;/array&gt;</span><br><span class="line">       &lt;/property&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>注入 List 集合<br>
+ List 集合：有序可重复<br>
+ People.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class People &#123;</span><br><span class="line">    // 一个人有多个名字</span><br><span class="line">    private List&lt;String&gt; names;</span><br><span class="line"></span><br><span class="line">    public void setNames(List&lt;String&gt; names) &#123;</span><br><span class="line">        this.names = names;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;People&#123;&quot; +</span><br><span class="line">                &quot;names=&quot; + names +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;peopleBean&quot; class=&quot;com.powernode.spring6.beans.People&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;names&quot;&gt;</span><br><span class="line">           &lt;list&gt;</span><br><span class="line">               &lt;value&gt;铁锤&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;张三&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;张三&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;张三&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;狼&lt;/value&gt;</span><br><span class="line">           &lt;/list&gt;</span><br><span class="line">       &lt;/property&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>注入 Set 集合<br>
+ Set 集合：无序不可重复<br>
+ People.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class People &#123;</span><br><span class="line">    // 一个人有多个电话</span><br><span class="line">    private Set&lt;String&gt; phones;</span><br><span class="line"></span><br><span class="line">    public void setPhones(Set&lt;String&gt; phones) &#123;</span><br><span class="line">        this.phones = phones;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //......</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;People&#123;&quot; +</span><br><span class="line">                &quot;phones=&quot; + phones +</span><br><span class="line">                &quot;, names=&quot; + names +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;peopleBean&quot; class=&quot;com.powernode.spring6.beans.People&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;phones&quot;&gt;</span><br><span class="line">           &lt;set&gt;</span><br><span class="line">               &lt;!--非简单类型可以使用ref，简单类型使用value--&gt;</span><br><span class="line">               &lt;value&gt;110&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;110&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;120&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;120&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;119&lt;/value&gt;</span><br><span class="line">               &lt;value&gt;119&lt;/value&gt;</span><br><span class="line">           &lt;/set&gt;</span><br><span class="line">       &lt;/property&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>注入 Map 集合<br>
+ People.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class People &#123;</span><br><span class="line">    // 一个人有多个住址</span><br><span class="line">    private Map&lt;Integer, String&gt; addrs;</span><br><span class="line"></span><br><span class="line">    public void setAddrs(Map&lt;Integer, String&gt; addrs) &#123;</span><br><span class="line">        this.addrs = addrs;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //......</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;People&#123;&quot; +</span><br><span class="line">                &quot;addrs=&quot; + addrs +</span><br><span class="line">                &quot;, phones=&quot; + phones +</span><br><span class="line">                &quot;, names=&quot; + names +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;peopleBean&quot; class=&quot;com.powernode.spring6.beans.People&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;addrs&quot;&gt;</span><br><span class="line">            &lt;map&gt;</span><br><span class="line">                &lt;!--如果key不是简单类型，使用 key-ref 属性--&gt;</span><br><span class="line">                &lt;!--如果value不是简单类型，使用 value-ref 属性--&gt;</span><br><span class="line">                &lt;entry key=&quot;1&quot; value=&quot;北京大兴区&quot;/&gt;</span><br><span class="line">                &lt;entry key=&quot;2&quot; value=&quot;上海浦东区&quot;/&gt;</span><br><span class="line">                &lt;entry key=&quot;3&quot; value=&quot;深圳宝安区&quot;/&gt;</span><br><span class="line">            &lt;/map&gt;</span><br><span class="line">        &lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>注入 Properties<br>
+java.util.Properties 继承 java.util.Hashtable，所以 Properties 也是一个 Map 集合<br>
+ People.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class People &#123;</span><br><span class="line"></span><br><span class="line">    private Properties properties;</span><br><span class="line"></span><br><span class="line">    public void setProperties(Properties properties) &#123;</span><br><span class="line">        this.properties = properties;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //......</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;People&#123;&quot; +</span><br><span class="line">                &quot;properties=&quot; + properties +</span><br><span class="line">                &quot;, addrs=&quot; + addrs +</span><br><span class="line">                &quot;, phones=&quot; + phones +</span><br><span class="line">                &quot;, names=&quot; + names +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;peopleBean&quot; class=&quot;com.powernode.spring6.beans.People&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;properties&quot;&gt;</span><br><span class="line">            &lt;props&gt;</span><br><span class="line">                &lt;prop key=&quot;driver&quot;&gt;com.mysql.cj.jdbc.Driver&lt;/prop&gt;</span><br><span class="line">                &lt;prop key=&quot;url&quot;&gt;jdbc:mysql://localhost:3306/spring&lt;/prop&gt;</span><br><span class="line">                &lt;prop key=&quot;username&quot;&gt;root&lt;/prop&gt;</span><br><span class="line">                &lt;prop key=&quot;password&quot;&gt;123456&lt;/prop&gt;</span><br><span class="line">            &lt;/props&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>注入 null 和空字符串</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;vipBean&quot; class=&quot;com.powernode.spring6.beans.Vip&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;email&quot;&gt;</span><br><span class="line">            &lt;null/&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;vipBean&quot; class=&quot;com.powernode.spring6.beans.Vip&quot;&gt;</span><br><span class="line">       &lt;!--空串的第一种方式--&gt;</span><br><span class="line">       &lt;!--&lt;property name=&quot;email&quot; value=&quot;&quot;/&gt;--&gt;</span><br><span class="line">       &lt;!--空串的第二种方式--&gt;</span><br><span class="line">       &lt;property name=&quot;email&quot;&gt;</span><br><span class="line">           &lt;value/&gt;</span><br><span class="line">       &lt;/property&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="11">
+<li>注入的值中含有特殊符号<br>
+ XML 中有 5 个特殊字符，分别是：&lt;、&gt;、’、&quot;、&amp;</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;mathBean&quot; class=&quot;com.powernode.spring6.beans.Math&quot;&gt;</span><br><span class="line">       &lt;property name=&quot;result&quot; value=&quot;2 &amp;lt; 3&quot;/&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;mathBean&quot; class=&quot;com.powernode.spring6.beans.Math&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;result&quot;&gt;</span><br><span class="line">            &lt;!--只能使用value标签--&gt;</span><br><span class="line">            &lt;value&gt;&lt;![CDATA[2 &lt; 3]]&gt;&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="12">
+<li>p 命名空间注入<br>
+在 XML 头部信息中添加 p 命名空间的配置信息：xmlns:p=“<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/p">http://www.springframework.org/schema/p</a>”<br>
+p 命名空间注入是基于 setter 方法的，所以需要对应的属性提供 setter 方法。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</span><br><span class="line">&lt;bean id=&quot;customerBean&quot; class=&quot;com.powernode.spring6.beans.Customer&quot; p:name=&quot;zhangsan&quot; p:age=&quot;20&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ol start="13">
+<li>c 命名空间注入<br>
+需要在 xml 配置文件头部添加信息：xmlns:c=“<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/c">http://www.springframework.org/schema/c</a>”<br>
+ 需要提供构造方法。<br>
+c 命名空间是依靠构造方法的。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xmlns:c=&quot;http://www.springframework.org/schema/c&quot;</span><br><span class="line"> &lt;bean id=&quot;myTimeBean&quot; class=&quot;com.powernode.spring6.beans.MyTime&quot; c:_0=&quot;2008&quot; c:_1=&quot;8&quot; c:_2=&quot;8&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ol start="14">
+<li>util 命名空间注入<br>
+配置多个数据源且引用相同时</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">xmlns:util=&quot;http://www.springframework.org/schema/util&quot;</span><br><span class="line">xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd&quot;&gt;</span><br><span class="line">                           </span><br><span class="line"> &lt;util:properties id=&quot;prop&quot;&gt;</span><br><span class="line">        &lt;prop key=&quot;driver&quot;&gt;com.mysql.cj.jdbc.Driver&lt;/prop&gt;</span><br><span class="line">        &lt;prop key=&quot;url&quot;&gt;jdbc:mysql://localhost:3306/spring&lt;/prop&gt;</span><br><span class="line">        &lt;prop key=&quot;username&quot;&gt;root&lt;/prop&gt;</span><br><span class="line">        &lt;prop key=&quot;password&quot;&gt;123456&lt;/prop&gt;</span><br><span class="line">    &lt;/util:properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id=&quot;dataSource1&quot; class=&quot;com.powernode.spring6.beans.MyDataSource1&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;properties&quot; ref=&quot;prop&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id=&quot;dataSource2&quot; class=&quot;com.powernode.spring6.beans.MyDataSource2&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;properties&quot; ref=&quot;prop&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="15">
+<li>基于 XML 的名称自动装配<br>
+ UserService.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class UserService &#123;</span><br><span class="line"></span><br><span class="line">    private UserDao aaa;</span><br><span class="line"></span><br><span class="line">    // 这个set方法非常关键</span><br><span class="line">    public void setAaa(UserDao aaa) &#123;</span><br><span class="line">        this.aaa = aaa;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void save()&#123;</span><br><span class="line">        aaa.insert();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;userService&quot; class=&quot;com.powernode.spring6.service.UserService&quot; autowire=&quot;byName&quot;/&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;bean id=&quot;aaa&quot; class=&quot;com.powernode.spring6.dao.UserDao&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ol start="16">
+<li>基于 XML 的类型自动装配<br>
+ AccountService.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class AccountService &#123;</span><br><span class="line">    private AccountDao accountDao;</span><br><span class="line"></span><br><span class="line">    public void setAccountDao(AccountDao accountDao) &#123;</span><br><span class="line">        this.accountDao = accountDao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void save()&#123;</span><br><span class="line">        accountDao.insert();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--byType表示根据类型自动装配--&gt;</span><br><span class="line">   &lt;bean id=&quot;accountService&quot; class=&quot;com.powernode.spring6.service.AccountService&quot; autowire=&quot;byType&quot;/&gt;</span><br><span class="line"></span><br><span class="line">   &lt;bean class=&quot;com.powernode.spring6.dao.AccountDao&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h3><span id="spring-引入外部属性配置文件"> spring 引入外部属性配置文件</span></h3>
+<p>jdbc.properties</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.cj.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/spring</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root123</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;context:property-placeholder location=&quot;jdbc.properties&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=&quot;dataSource&quot; class=&quot;com.powernode.spring6.beans.MyDataSource&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;driver&quot; value=&quot;$&#123;jdbc.driver&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc.url&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc.username&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.password&#125;&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/" data-id="clgs33l7200003stn2w91er52" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/04/23/learning%20share/Git%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git常见使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">50</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/">spring学习</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/23/learning%20share/Git%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8/">Git常见使用</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/01/web_code/webcode_learning/">web前端学习</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/31/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/">Web常见漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/19/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer id="footer">
+<span>访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span>访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+    </div>
+</div>
+</footer>
+
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>
