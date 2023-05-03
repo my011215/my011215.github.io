@@ -7,15 +7,15 @@
   
   <title>spring学习 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原则 spring 程序  构造 启用 log4j2 日志框架 依赖注入 spring 引入外部属性配置文件">
+  <meta name="description" content="原则 spring 程序  构造 启用 log4j2 日志框架 依赖注入 spring 引入外部属性配置文件 工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式   Bean 的实例化方式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring学习">
-<meta property="og:url" content="https://my011215.github.io/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/05/03/learning%20share/spring%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="原则 spring 程序  构造 启用 log4j2 日志框架 依赖注入 spring 引入外部属性配置文件">
+<meta property="og:description" content="原则 spring 程序  构造 启用 log4j2 日志框架 依赖注入 spring 引入外部属性配置文件 工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式   Bean 的实例化方式">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-30T03:30:30.000Z">
-<meta property="article:modified_time" content="2023-04-30T10:50:21.368Z">
+<meta property="article:published_time" content="2023-05-03T03:30:30.000Z">
+<meta property="article:modified_time" content="2023-05-03T14:10:02.538Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
   
@@ -74,8 +74,8 @@
       <div class="outer">
         <section id="main"><article id="post-learning share/spring学习" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2023-04-30T03:30:30.000Z" itemprop="datePublished">2023-04-30</time>
+    <a href="/2023/05/03/learning%20share/spring%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2023-05-03T03:30:30.000Z" itemprop="datePublished">2023-05-03</time>
 </a>
 
 
@@ -109,6 +109,14 @@
 <li><a href="#%E5%90%AF%E7%94%A8log4j2%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6">启用 log4j2 日志框架</a></li>
 <li><a href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5">依赖注入</a></li>
 <li><a href="#spring%E5%BC%95%E5%85%A5%E5%A4%96%E9%83%A8%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">spring 引入外部属性配置文件</a></li>
+<li><a href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">工厂模式</a>
+<ul>
+<li><a href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">简单工厂模式</a></li>
+<li><a href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F">工厂方法模式</a></li>
+<li><a href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">抽象工厂模式</a></li>
+</ul>
+</li>
+<li><a href="#bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F">Bean 的实例化方式</a></li>
 </ul>
 </li>
 </ul>
@@ -313,11 +321,189 @@ c 命名空间是依靠构造方法的。</li>
 <p>jdbc.properties</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.cj.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/spring</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root123</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;context:property-placeholder location=&quot;jdbc.properties&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=&quot;dataSource&quot; class=&quot;com.powernode.spring6.beans.MyDataSource&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;driver&quot; value=&quot;$&#123;jdbc.driver&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;$&#123;jdbc.url&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;$&#123;jdbc.username&#125;&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.password&#125;&quot;/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<h3><span id="工厂模式"> 工厂模式</span></h3>
+<h4><span id="简单工厂模式"> 简单工厂模式</span></h4>
+<ol>
+<li>简单工厂模式的优点：</li>
+</ol>
+<ul>
+<li>客户端程序不需要关心对象的创建细节，需要哪个对象时，只需要向工厂索要即可，初步实现了责任的分离。客户端只负责 “消费”，工厂负责 “生产”。生产和消费分离。</li>
+</ul>
+<ol start="2">
+<li>简单工厂模式的缺点：</li>
+</ol>
+<ul>
+<li>缺点 1：工厂类集中了所有产品的创造逻辑，形成一个无所不知的全能类，有人把它叫做上帝类。显然工厂类非常关键，不能出问题，一旦出问题，整个系统瘫痪。</li>
+<li>缺点 2：不符合 OCP 开闭原则，在进行系统扩展时，需要修改工厂类。</li>
+</ul>
+<ol start="3">
+<li>
+<p>Spring 中的 BeanFactory 就使用了简单工厂模式。</p>
+</li>
+<li>
+<p>简单工厂模式的角色包括三个：</p>
+</li>
+</ol>
+<ul>
+<li>抽象产品 角色</li>
+<li>具体产品 角色</li>
+<li>工厂类 角色</li>
+</ul>
+<ol start="5">
+<li>抽象产品 角色<br>
+ Weapon.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Weapon &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 所有的武器都有攻击行为</span><br><span class="line">     */</span><br><span class="line">    public abstract void attack();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>具体产品 角色<br>
+ Tank.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class Tank extends Weapon&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void attack() &#123;</span><br><span class="line">        System.out.println(&quot;坦克开炮！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Fighter.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class Fighter extends Weapon&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void attack() &#123;</span><br><span class="line">        System.out.println(&quot;战斗机投下原子弹！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Dagger.java</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class Dagger extends Weapon&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void attack() &#123;</span><br><span class="line">        System.out.println(&quot;砍他丫的！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>工厂类 角色<br>
+ WeaponFactory.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static Weapon get(String weaponType)&#123;</span><br><span class="line">        if (weaponType == null || weaponType.trim().length() == 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        Weapon weapon = null;</span><br><span class="line">        if (&quot;TANK&quot;.equals(weaponType)) &#123;</span><br><span class="line">            weapon = new Tank();</span><br><span class="line">        &#125; else if (&quot;FIGHTER&quot;.equals(weaponType)) &#123;</span><br><span class="line">            weapon = new Fighter();</span><br><span class="line">        &#125; else if (&quot;DAGGER&quot;.equals(weaponType)) &#123;</span><br><span class="line">            weapon = new Dagger();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            throw new RuntimeException(&quot;不支持该武器！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return weapon;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>主程序</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Client &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Weapon weapon1 = WeaponFactory.get(&quot;TANK&quot;);</span><br><span class="line">        weapon1.attack();</span><br><span class="line"></span><br><span class="line">        Weapon weapon2 = WeaponFactory.get(&quot;FIGHTER&quot;);</span><br><span class="line">        weapon2.attack();</span><br><span class="line"></span><br><span class="line">        Weapon weapon3 = WeaponFactory.get(&quot;DAGGER&quot;);</span><br><span class="line">        weapon3.attack();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="工厂方法模式"> 工厂方法模式</span></h4>
+<ol>
+<li>工厂方法模式的角色包括：</li>
+</ol>
+<ul>
+<li>抽象工厂角色</li>
+<li>具体工厂角色</li>
+<li>抽象产品角色</li>
+<li>具体产品角色</li>
+</ul>
+<ol start="2">
+<li>
+<p>如果想扩展一个新的产品，只要新增一个产品类，再新增一个该产品对应的工厂即可</p>
+</li>
+<li>
+<p>工厂方法模式的优点：</p>
+</li>
+</ol>
+<ul>
+<li>一个调用者想创建一个对象，只要知道其名称就可以了。</li>
+<li>扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。</li>
+<li>屏蔽产品的具体实现，调用者只关心产品的接口。</li>
+</ul>
+<ol start="4">
+<li>工厂方法模式的缺点：</li>
+</ol>
+<ul>
+<li>每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</li>
+</ul>
+<h4><span id="抽象工厂模式"> 抽象工厂模式</span></h4>
+<p>抽象工厂模式相对于工厂方法模式来说，就是工厂方法模式是针对一个产品系列的，而抽象工厂模式是针对多个产品系列的，即工厂方法模式是一个产品系列一个工厂类，而抽象工厂模式是多个产品系列一个工厂类。</p>
+<ol>
+<li>抽象工厂中包含 4 个角色：</li>
+</ol>
+<ul>
+<li>抽象工厂角色</li>
+<li>具体工厂角色</li>
+<li>抽象产品角色</li>
+<li>具体产品角色</li>
+</ul>
+<h3><span id="bean-的实例化方式"> Bean 的实例化方式</span></h3>
+<ol>
+<li>通常包括 4 种方式</li>
+</ol>
+<ul>
+<li>第一种：通过构造方法实例化</li>
+<li>第二种：通过简单工厂模式实例化</li>
+<li>第三种：通过 factory-bean 实例化</li>
+<li>第四种：通过 FactoryBean 接口实例化</li>
+</ul>
+<ol start="2">
+<li>通过构造方法实例化</li>
+</ol>
+<ul>
+<li>User.java</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line">    public User() &#123;</span><br><span class="line">        System.out.println(&quot;User类的无参数构造方法执行。&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>spring.xml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;userBean&quot; class=&quot;com.powernode.spring6.bean.User&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>主程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void testConstructor()&#123;</span><br><span class="line">        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);</span><br><span class="line">        User user = applicationContext.getBean(&quot;userBean&quot;, User.class);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>通过简单工厂模式实例化</li>
+</ol>
+<ul>
+<li>Vip.java</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class Vip &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>VipFactory.java</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class VipFactory &#123;</span><br><span class="line">    public static Vip get()&#123;</span><br><span class="line">        return new Vip();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>spring.xml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;vipBean&quot; class=&quot;com.powernode.spring6.bean.VipFactory&quot; factory-method=&quot;get&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>主程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void testSimpleFactory()&#123;</span><br><span class="line">    ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);</span><br><span class="line">    Vip vip = applicationContext.getBean(&quot;vipBean&quot;, Vip.class);</span><br><span class="line">    System.out.println(vip);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>通过 factory-bean 实例化<br>
+通过工厂方法模式进行实例化。</li>
+</ol>
+<ul>
+<li>Order.java</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class Order &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>OrderFactory.java</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class OrderFactory &#123;</span><br><span class="line">    public Order get()&#123;</span><br><span class="line">        return new Order();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>spring.xml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;orderFactory&quot; class=&quot;com.powernode.spring6.bean.OrderFactory&quot;/&gt;</span><br><span class="line">&lt;bean id=&quot;orderBean&quot; factory-bean=&quot;orderFactory&quot; factory-method=&quot;get&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>主程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void testSelfFactoryBean()&#123;</span><br><span class="line">    ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);</span><br><span class="line">    Order orderBean = applicationContext.getBean(&quot;orderBean&quot;, Order.class);</span><br><span class="line">    System.out.println(orderBean);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>通过 FactoryBean 接口实例化<br>
+主要是对上一种方法的改进。<br>
+在 Spring 中，当你编写的类直接实现 FactoryBean 接口之后，factory-bean 不需要指定了，factory-method 也不需要指定了。<br>
+factory-bean 会自动指向实现 FactoryBean 接口的类，factory-method 会自动指向 getObject () 方法。</li>
+</ol>
+<p>FactoryBean 在 Spring 中是一个接口。被称为 “工厂 Bean”。“工厂 Bean” 是一种特殊的 Bean。所有的 “工厂 Bean” 都是用来协助 Spring 框架来创建其他 Bean 对象的。</p>
+<ul>
+<li>person.java</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class Person &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>FactoryBean 接口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class PersonFactoryBean implements FactoryBean&lt;Person&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Person getObject() throws Exception &#123;</span><br><span class="line">        return new Person();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Class&lt;?&gt; getObjectType() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean isSingleton() &#123;</span><br><span class="line">        // true表示单例</span><br><span class="line">        // false表示原型</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>spring.xml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;personBean&quot; class=&quot;com.powernode.spring6.bean.PersonFactoryBean&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>主程序</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void testFactoryBean()&#123;</span><br><span class="line">    ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);</span><br><span class="line">    Person personBean = applicationContext.getBean(&quot;personBean&quot;, Person.class);</span><br><span class="line">    System.out.println(personBean);</span><br><span class="line"></span><br><span class="line">    Person personBean2 = applicationContext.getBean(&quot;personBean&quot;, Person.class);</span><br><span class="line">    System.out.println(personBean2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/" data-id="clgs33l7200003stn2w91er52" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/05/03/learning%20share/spring%E5%AD%A6%E4%B9%A0/" data-id="clgs33l7200003stn2w91er52" class="article-share-link">Share</a>
       
       
     </footer>
@@ -326,19 +512,10 @@ c 命名空间是依靠构造方法的。</li>
     
 <nav id="article-nav">
   
-    <a href="/2023/05/02/CTF/%E5%88%B7%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          刷题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/04/23/learning%20share/Git%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/05/02/CTF/%E5%88%B7%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Git常见使用</div>
+      <div class="article-nav-title">刷题</div>
     </a>
   
 </nav>
@@ -370,7 +547,7 @@ c 命名空间是依靠构造方法的。</li>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -383,11 +560,11 @@ c 命名空间是依靠构造方法的。</li>
       <ul>
         
           <li>
-            <a href="/2023/05/02/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
+            <a href="/2023/05/03/learning%20share/spring%E5%AD%A6%E4%B9%A0/">spring学习</a>
           </li>
         
           <li>
-            <a href="/2023/04/30/learning%20share/spring%E5%AD%A6%E4%B9%A0/">spring学习</a>
+            <a href="/2023/05/02/CTF/%E5%88%B7%E9%A2%98/">刷题</a>
           </li>
         
           <li>
