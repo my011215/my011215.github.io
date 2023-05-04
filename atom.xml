@@ -3,14 +3,43 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-05-04T03:30:30.000Z</updated>
+    <updated>2023-05-04T08:30:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
+        <title>vulnhub靶机学习记录</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#jis-ctf&#34;&gt;JIS-CTF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;jis-ctf&#34;&gt; JIS-CTF&lt;/span&gt;&lt;/h2&gt;
+</content>
+        <updated>2023-05-04T08:30:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/04/learning%20share/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
         <title>计算机网络学习笔记</title>
         <link rel="alternate" href="https://my011215.github.io/2023/05/04/learning%20share/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
         <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84&#34;&gt;计算机网络体系结构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%89%A9%E7%90%86%E5%B1%82&#34;&gt;物理层&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82&#34;&gt;数据链路层&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BD%91%E7%BB%9C%E5%B1%82&#34;&gt;网络层&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BC%A0%E8%BE%93%E5%B1%82&#34;&gt;传输层&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%BA%94%E7%94%A8%E5%B1%82&#34;&gt;应用层&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;!-- tocstop --&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;</content>
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;计算机网络体系结构&#34;&gt; 计算机网络体系结构&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;物理层&#34;&gt; 物理层&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;数据链路层&#34;&gt; 数据链路层&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;网络层&#34;&gt; 网络层&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;传输层&#34;&gt; 传输层&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;应用层&#34;&gt; 应用层&lt;/span&gt;&lt;/h2&gt;
+</content>
         <updated>2023-05-04T03:30:30.000Z</updated>
     </entry>
     <entry>
