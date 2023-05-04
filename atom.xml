@@ -3,7 +3,16 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-05-03T03:30:30.000Z</updated>
+    <updated>2023-05-04T03:30:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/05/04/learning%20share/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+        <title>计算机网络学习笔记</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/05/04/learning%20share/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;</content>
+        <updated>2023-05-04T03:30:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/03/learning%20share/spring%E5%AD%A6%E4%B9%A0/</id>
         <title>spring学习</title>
@@ -25,6 +34,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F&#34;&gt;Bean 的实例化方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F&#34;&gt;Bean 的生命周期&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -407,6 +417,22 @@ factory-bean 会自动指向实现 FactoryBean 接口的类，factory-method 会
 &lt;li&gt;主程序&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;public void testFactoryBean()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&amp;quot;spring.xml&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Person personBean = applicationContext.getBean(&amp;quot;personBean&amp;quot;, Person.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    System.out.println(personBean);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Person personBean2 = applicationContext.getBean(&amp;quot;personBean&amp;quot;, Person.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    System.out.println(personBean2);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;注入自定义 Date&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;DateFactoryBean 接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;public class DateFactoryBean implements FactoryBean&amp;lt;Date&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    // 定义属性接收日期字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    private String date;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    // 通过构造方法给日期字符串属性赋值&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    public DateFactoryBean(String date) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        this.date = date;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    public Date getObject() throws Exception &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        SimpleDateFormat sdf = new SimpleDateFormat(&amp;quot;yyyy-MM-dd&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        return sdf.parse(this.date);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    public Class&amp;lt;?&amp;gt; getObjectType() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        return null;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;spring.xml&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;bean id=&amp;quot;dateBean&amp;quot; class=&amp;quot;com.powernode.spring6.bean.DateFactoryBean&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;lt;constructor-arg name=&amp;quot;date&amp;quot; value=&amp;quot;1999-10-11&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;/bean&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;bean id=&amp;quot;studentBean&amp;quot; class=&amp;quot;com.powernode.spring6.bean.Student&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;lt;property name=&amp;quot;birth&amp;quot; ref=&amp;quot;dateBean&amp;quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;/bean&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;主程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;public void testDate()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&amp;quot;spring.xml&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    Student studentBean = applicationContext.getBean(&amp;quot;studentBean&amp;quot;, Student.class);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    System.out.println(studentBean);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;bean-的生命周期&#34;&gt; Bean 的生命周期&lt;/span&gt;&lt;/h3&gt;
 </content>
         <updated>2023-05-03T03:30:30.000Z</updated>
     </entry>
@@ -12455,9 +12481,9 @@ eg:&lt;img src=&#34;/2022/04/13/vulnerability/%E5%B0%8F%E7%99%BD%E5%AE%89%E5%85%
         <updated>2022-04-05T09:58:56.746Z</updated>
     </entry>
     <entry>
-        <id>https://my011215.github.io/2022/03/02/others/%E5%85%B3%E4%BA%8E%E5%BC%80%E6%BA%90/</id>
+        <id>https://my011215.github.io/2022/03/02/learning%20share/%E5%85%B3%E4%BA%8E%E5%BC%80%E6%BA%90/</id>
         <title>开源</title>
-        <link rel="alternate" href="https://my011215.github.io/2022/03/02/others/%E5%85%B3%E4%BA%8E%E5%BC%80%E6%BA%90/"/>
+        <link rel="alternate" href="https://my011215.github.io/2022/03/02/learning%20share/%E5%85%B3%E4%BA%8E%E5%BC%80%E6%BA%90/"/>
         <content type="html">&lt;h2&gt;&lt;span id=&#34;导入&#34;&gt; 导入&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;软件正在慢条斯理地吞噬世界，开源正在慢条斯理地吞噬软件业。&lt;/p&gt;
 &lt;p&gt;软件正在吞噬世界？是的，对于购物、吃饭、健身、交停车费都需要使用软件的年代，对于平均每人每天都要花费 5 到 6 个小时使用手机软件的年代，有什么理由不相信软件正在吞噬整个世界呢。&lt;/p&gt;
@@ -13072,9 +13098,9 @@ class 派生类名：virtual 继承方式 基类名&lt;br&gt;
         <updated>2022-01-26T14:01:39.000Z</updated>
     </entry>
     <entry>
-        <id>https://my011215.github.io/2022/01/26/others/%E7%88%AC%E8%99%AB/</id>
+        <id>https://my011215.github.io/2022/01/26/learning%20share/%E7%88%AC%E8%99%AB/</id>
         <title>爬虫</title>
-        <link rel="alternate" href="https://my011215.github.io/2022/01/26/others/%E7%88%AC%E8%99%AB/"/>
+        <link rel="alternate" href="https://my011215.github.io/2022/01/26/learning%20share/%E7%88%AC%E8%99%AB/"/>
         <content type="html">&lt;h2&gt;&lt;span id=&#34;爬虫简介&#34;&gt; 爬虫简介&lt;/span&gt;&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;什么是爬虫&lt;br&gt;
@@ -13239,9 +13265,9 @@ WinSoc Expert 是一个用来监视和修改网络发送和接收数据的程序
         <updated>2021-09-12T13:25:39.000Z</updated>
     </entry>
     <entry>
-        <id>https://my011215.github.io/2021/07/25/others/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/</id>
+        <id>https://my011215.github.io/2021/07/25/learning%20share/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/</id>
         <title>WPS兼容性</title>
-        <link rel="alternate" href="https://my011215.github.io/2021/07/25/others/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/"/>
+        <link rel="alternate" href="https://my011215.github.io/2021/07/25/learning%20share/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/"/>
         <content type="html">&lt;ol&gt;
 &lt;li&gt;与操作系统的兼容性&lt;br&gt;
 最新版本的 WPS 对 Windows (Win2000-Win10)、Linux、Mac、Android (Android4.0 或更高版本)、iOS (iOS 所有的 iphone 固件版本以上，iOS 12 及以上) 都表示支持&lt;br&gt;
@@ -13258,9 +13284,9 @@ WinSoc Expert 是一个用来监视和修改网络发送和接收数据的程序
 支持.ppt.pptx.pot.potx.pps.dps.dpt 等文件格式的打开和播放，包括加密文档（演示方面）&lt;br&gt;
 支持 Airplay、DLNA 播放 PPT&lt;br&gt;
  支持 xls、xlt、xlsx、xltx、et、ett 等格式的查看，包括加密文档（表格方面）&lt;br&gt;
-支持金山快盘、Dropbox、Box、GoogleDrive、SkyDrive、WebDAV 等多种主流网盘&lt;/li&gt;
+支持金山快盘、Dropbox、Box、GoogleDrive、SkyDrive、WebDAV 等多种主流网盘&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;与浏览器的兼容性&lt;br&gt;
 各大浏览器只要设置兼容后，基本都可以打开&lt;/li&gt;
@@ -13323,9 +13349,9 @@ WPS Office 提供了多套风格不同的界面，在经典界面与新界面之
         <updated>2021-07-25T13:52:39.000Z</updated>
     </entry>
     <entry>
-        <id>https://my011215.github.io/2021/07/18/others/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/</id>
+        <id>https://my011215.github.io/2021/07/18/learning%20share/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/</id>
         <title>降噪耳机</title>
-        <link rel="alternate" href="https://my011215.github.io/2021/07/18/others/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/"/>
+        <link rel="alternate" href="https://my011215.github.io/2021/07/18/learning%20share/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/"/>
         <content type="html">&lt;h2&gt;&lt;span id=&#34;准备&#34;&gt; 准备&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;从噪音污染的例子引入话题，引入降噪，简单讲述降噪的历史发展&lt;br&gt;
 物理原理简单了解  (图理结合)&lt;br&gt;
