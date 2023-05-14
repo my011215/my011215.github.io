@@ -3,7 +3,147 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;学习分享&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-05-04T03:30:30.000Z</updated>
+    <updated>2023-05-14T03:30:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/</id>
+        <title>货运物流表生成</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E5%AD%97%E6%AE%B5%E5%88%86%E6%9E%90&#34;&gt;货运物流字段分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%A2%E6%88%B7%E4%BF%A1%E6%81%AF&#34;&gt;客户信息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%89%A9%E6%B5%81%E5%85%AC%E5%8F%B8&#34;&gt;物流公司&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%89%A9%E6%B5%81%E4%BF%A1%E6%81%AF&#34;&gt;物流信息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%A3%85%E8%B4%A7%E8%A1%A8&#34;&gt;装货表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8D%B8%E8%B4%A7%E8%A1%A8&#34;&gt;卸货表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%9B%86%E8%A3%85%E7%AE%B1%E5%8A%A8%E6%80%81&#34;&gt;集装箱动态&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80&#34;&gt;代码仓库地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;货运物流字段分析&#34;&gt; 货运物流字段分析&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;客户信息&#34;&gt; 客户信息&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;客户名称&lt;br&gt;
+随机生成 2-4 个汉字&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户编号&lt;br&gt;
+ 18 位合法身份证号&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;手机号&lt;br&gt;
+手机号编码规则&lt;br&gt;
+逻辑：&lt;a href=&#34;https://blog.csdn.net/gggwfn1982/article/details/112299282&#34;&gt;https://blog.csdn.net/gggwfn1982/article/details/112299282&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;省市区&lt;br&gt;
+省市对应生成&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;物流公司&#34;&gt; 物流公司&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;我建议原表数据即可，扩充其他表的数据量&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;物流信息&#34;&gt; 物流信息&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;提单号&lt;br&gt;
+对应规则生成&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/92568213&#34;&gt; https://zhuanlan.zhihu.com/p/92568213&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;货主名称&lt;br&gt;
+对应客户信息的货主名称&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;货主代码&lt;br&gt;
+对应货主信息的身份证号&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;物流公司&lt;br&gt;
+找一堆随机匹配&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;集装箱箱号&lt;br&gt;
+按规则随机生成后随机匹配&lt;br&gt;
+&lt;a href=&#34;https://www.liuyude.com/is_second_to_understand_how_to_use_python_implementation_rules_container_check.html&#34;&gt; https://www.liuyude.com/is_second_to_understand_how_to_use_python_implementation_rules_container_check.html&lt;/a&gt;&lt;br&gt;
+ 具体有点麻烦，这个得细看一下&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;货物名称&lt;br&gt;
+写一堆随机匹配&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;货重&lt;br&gt;
+写个范围随机生成&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;装货表&#34;&gt; 装货表&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;船公司&lt;br&gt;
+随机写一堆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;船名称&lt;br&gt;
+按规则匹配一堆&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作业开始时间&lt;br&gt;
+按规则生成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作业结束时间&lt;br&gt;
+按规则生成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;始发时间&lt;br&gt;
+按规则生成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;到达时间&lt;br&gt;
+按规则生成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作业港口&lt;br&gt;
+随机匹配&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提单号&lt;br&gt;
+和前面物流信息的提单号顺序一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;集装箱箱号&lt;br&gt;
+和前面物流信息的提单号顺序一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;箱尺寸（TEU）&lt;br&gt;
+写个范围随机匹配&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启运地&lt;br&gt;
+和作业港口一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;目的地&lt;br&gt;
+不等于启运地即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;卸货表&#34;&gt; 卸货表&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;和装货表内容基本一致&lt;br&gt;
+作业开始和结束时间需要另外设计规则&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;集装箱动态&#34;&gt; 集装箱动态&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;这个规则粗略看了一下，主要是根据装货表的启运地和目的地以及集装箱箱号（唯一）进行列举&lt;br&gt;
+还需要考虑一下堆场位置&lt;br&gt;
+其实感觉如果图方便可以考虑集装箱只写一个，生成大量的进行匹配（不过这样感觉不太真实）&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;代码仓库地址&#34;&gt; 代码仓库地址&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/my011215/sharing_learning&#34;&gt;https://github.com/my011215/sharing_learning&lt;/a&gt;&lt;/p&gt;
+</content>
+        <updated>2023-05-14T03:30:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/04/learning%20share/spring%E5%AD%A6%E4%B9%A0/</id>
         <title>spring学习</title>
