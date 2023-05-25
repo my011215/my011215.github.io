@@ -3,7 +3,53 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-05-14T03:30:30.000Z</updated>
+    <updated>2023-05-25T08:12:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/05/25/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
+        <title>学习思考</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/05/25/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8&#34;&gt;基础入门&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#web%E5%BA%94%E7%94%A8&#34;&gt;Web 应用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;基础入门&#34;&gt; 基础入门&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;web-应用&#34;&gt; Web 应用&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;个人感觉信息收集的本质就是摸清 web 结构，有一句话说得好” 知己知彼，百战不殆 “，所以常常会说信息收集很重要，之前也只是对信息收集的想法模模糊糊，认为按照一定的顺序收集一些资料就可以。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可以从一个网站常规的搭建思路来进行信息收集（从开发层面来思考安全）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;（1） 搭建形式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子域名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;bbs.baidu.com  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;oa.baidu.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;端口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com:80&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com:8889&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;目录&lt;br&gt;
+感觉类似与 mvc 架构的路由形式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com/index.html&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com/index/bbs.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;集成环境&lt;br&gt;
+ 1docker&lt;br&gt;
+ 一个常见的容器代表，很多靶场以及个人身边的校内同学会大量使用。部署方便、安全性相对更高。&lt;br&gt;
+ps 个人想法：如果目的是为了拿取服务器权限的话，那后期进入了容器内部，是不是应该简单识别一下容器的状况，判别容器信息。&lt;br&gt;
+以下是 chatgpt 给出的一些简易方法：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1. 查看进程：在服务器上运行的应用程序通常作为进程运行。可以使用类似于“ps -ef”命令查看正在运行的进程，如果进程是在容器中运行的，通常会看到包含“docker”或其他容器管理工具名称的进程。  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2. 查看运行环境：如果网站是在服务器上运行，那么通常需要安装和配置运行环境，如数据库、Web服务器等。可以通过查看服务器上的安装和配置信息来确定网站是在服务器上部署还是在容器中运行。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3. 查看日志：在服务器上运行的应用程序通常会将日志记录在服务器上的某个目录中。可以查看日志文件来确定网站是在服务器上运行还是在容器中运行。如果日志文件中有关于容器的信息，那么网站就是在容器中运行的。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4. 查看端口：如果网站是在服务器上运行，那么通常需要监听某个端口来接收客户端请求。可以通过查看服务器上的端口信息来确定网站是在服务器上运行还是在容器中运行。如果网站的端口是在容器中映射到服务器上的端口，那么网站就是在容器中运行的。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（2）&lt;/p&gt;
+</content>
+        <updated>2023-05-25T08:12:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/</id>
         <title>货运物流表生成</title>
