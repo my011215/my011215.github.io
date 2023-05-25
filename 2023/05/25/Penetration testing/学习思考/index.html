@@ -15,7 +15,7 @@
 <meta property="og:description" content="基础入门  Web 应用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-25T08:12:30.000Z">
-<meta property="article:modified_time" content="2023-05-25T09:21:09.343Z">
+<meta property="article:modified_time" content="2023-05-25T13:35:47.064Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
   
@@ -132,13 +132,25 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.baidu.com/index.html</span><br><span class="line">www.baidu.com/index/bbs.php</span><br></pre></td></tr></table></figure>
 <ul>
 <li>集成环境<br>
- 1docker<br>
+ 1）docker<br>
  一个常见的容器代表，很多靶场以及个人身边的校内同学会大量使用。部署方便、安全性相对更高。<br>
 ps 个人想法：如果目的是为了拿取服务器权限的话，那后期进入了容器内部，是不是应该简单识别一下容器的状况，判别容器信息。<br>
 以下是 chatgpt 给出的一些简易方法：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 查看进程：在服务器上运行的应用程序通常作为进程运行。可以使用类似于“ps -ef”命令查看正在运行的进程，如果进程是在容器中运行的，通常会看到包含“docker”或其他容器管理工具名称的进程。  </span><br><span class="line"></span><br><span class="line">2. 查看运行环境：如果网站是在服务器上运行，那么通常需要安装和配置运行环境，如数据库、Web服务器等。可以通过查看服务器上的安装和配置信息来确定网站是在服务器上部署还是在容器中运行。</span><br><span class="line"></span><br><span class="line">3. 查看日志：在服务器上运行的应用程序通常会将日志记录在服务器上的某个目录中。可以查看日志文件来确定网站是在服务器上运行还是在容器中运行。如果日志文件中有关于容器的信息，那么网站就是在容器中运行的。</span><br><span class="line"></span><br><span class="line">4. 查看端口：如果网站是在服务器上运行，那么通常需要监听某个端口来接收客户端请求。可以通过查看服务器上的端口信息来确定网站是在服务器上运行还是在容器中运行。如果网站的端口是在容器中映射到服务器上的端口，那么网站就是在容器中运行的。</span><br></pre></td></tr></table></figure>
-<p>（2）</p>
+<p>2）分配站<br>
+这种可以理解成，博客园搭建这种形式，给每个人分配一个博客网站这样子。个人感觉利用 Github 搭建个人网站也类似这个样子。<br>
+3）利用宝塔、phpstudy 等面板搭建网站</p>
+<p>总结：利用集成环境搭建会更方便，门槛也相对较低，也更加安全。但是可以根据一些爆出的漏洞进行结合利用。n’n</p>
+<p>（2）程序源码（是否可以代码审计）<br>
+开源 VS 闭源</p>
+<p>（3）数据库部署情况</p>
+<ul>
+<li>本地服务器部署</li>
+<li>云数据库</li>
+<li>服务器数据库部署</li>
+</ul>
+<p>总结：本地服务器部署相对来说划算一点，但是可能暴露的弱点也会相对较多。云数据库和服务器数据库更为安全。</p>
 
       
     </div>

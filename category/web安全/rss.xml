@@ -44,13 +44,25 @@
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com/index.html&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;www.baidu.com/index/bbs.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
 &lt;li&gt;集成环境&lt;br&gt;
- 1docker&lt;br&gt;
+ 1）docker&lt;br&gt;
  一个常见的容器代表，很多靶场以及个人身边的校内同学会大量使用。部署方便、安全性相对更高。&lt;br&gt;
 ps 个人想法：如果目的是为了拿取服务器权限的话，那后期进入了容器内部，是不是应该简单识别一下容器的状况，判别容器信息。&lt;br&gt;
 以下是 chatgpt 给出的一些简易方法：&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1. 查看进程：在服务器上运行的应用程序通常作为进程运行。可以使用类似于“ps -ef”命令查看正在运行的进程，如果进程是在容器中运行的，通常会看到包含“docker”或其他容器管理工具名称的进程。  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2. 查看运行环境：如果网站是在服务器上运行，那么通常需要安装和配置运行环境，如数据库、Web服务器等。可以通过查看服务器上的安装和配置信息来确定网站是在服务器上部署还是在容器中运行。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3. 查看日志：在服务器上运行的应用程序通常会将日志记录在服务器上的某个目录中。可以查看日志文件来确定网站是在服务器上运行还是在容器中运行。如果日志文件中有关于容器的信息，那么网站就是在容器中运行的。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4. 查看端口：如果网站是在服务器上运行，那么通常需要监听某个端口来接收客户端请求。可以通过查看服务器上的端口信息来确定网站是在服务器上运行还是在容器中运行。如果网站的端口是在容器中映射到服务器上的端口，那么网站就是在容器中运行的。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;（2）&lt;/p&gt;
+&lt;p&gt;2）分配站&lt;br&gt;
+这种可以理解成，博客园搭建这种形式，给每个人分配一个博客网站这样子。个人感觉利用 Github 搭建个人网站也类似这个样子。&lt;br&gt;
+3）利用宝塔、phpstudy 等面板搭建网站&lt;/p&gt;
+&lt;p&gt;总结：利用集成环境搭建会更方便，门槛也相对较低，也更加安全。但是可以根据一些爆出的漏洞进行结合利用。n’n&lt;/p&gt;
+&lt;p&gt;（2）程序源码（是否可以代码审计）&lt;br&gt;
+开源 VS 闭源&lt;/p&gt;
+&lt;p&gt;（3）数据库部署情况&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本地服务器部署&lt;/li&gt;
+&lt;li&gt;云数据库&lt;/li&gt;
+&lt;li&gt;服务器数据库部署&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：本地服务器部署相对来说划算一点，但是可能暴露的弱点也会相对较多。云数据库和服务器数据库更为安全。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
