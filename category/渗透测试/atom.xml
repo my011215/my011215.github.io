@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;渗透测试&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-07-11T03:12:30.000Z</updated>
+    <updated>2023-07-15T03:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/07/11/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
+        <id>https://my011215.github.io/2023/07/15/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
         <title>学习思考</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/07/11/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/07/15/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8&#34;&gt;基础入门&lt;/a&gt;
@@ -24,6 +24,8 @@
 &lt;li&gt;&lt;a href=&#34;#web%E5%8D%95%E5%9F%9F%E5%90%8D&#34;&gt;WEB 单域名&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#web%E5%AD%90%E5%9F%9F%E5%90%8D&#34;&gt;WEB 子域名&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#web%E6%9E%B6%E6%9E%84%E8%B5%84%E4%BA%A7&#34;&gt;Web 架构资产&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2&#34;&gt;源码泄露&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#js%E6%9E%B6%E6%9E%84&#34;&gt;JS 架构&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -450,7 +452,8 @@ linux 控制 windows&lt;br&gt;
 &lt;li&gt;&lt;a href=&#34;https://dnsdumpster.com/&#34;&gt;https://dnsdumpster.com/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;证书查询&lt;/li&gt;
+&lt;li&gt;证书查询&lt;br&gt;
+根据 https 证书查询，大部分公司会使用同一个证书注册&lt;/li&gt;
 &lt;/ul&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://crt.sh/&#34;&gt;https://crt.sh/&lt;/a&gt;&lt;/li&gt;
@@ -480,10 +483,67 @@ linux 控制 windows&lt;br&gt;
 &lt;a href=&#34;https://ti.360.cn/#/homepage&#34;&gt;https://ti.360.cn/#/homepage&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;指纹识别&lt;/li&gt;
+&lt;li&gt;指纹识别&lt;br&gt;
+根据这个厂商开发出的产品，比如 CMS 等进行详细拆分，提取指纹信息（标题指纹、关键字指纹、图标指纹）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;源码泄露&#34;&gt; 源码泄露&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;这一块感觉有点社会工程学，主要从一些特殊的点和程序员” 不太友好 “的习惯入手。&lt;br&gt;
+这点还很考究缘分，你得看这个网站具体怎么写的，有过开发经验的小伙伴们很容易知道，快速开发要么依赖于框架或者一些现有的框架进行改动，再或者就是自己开发，自己开发这种就很难获取源码了。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;版本控制系统源码泄露&lt;br&gt;
+&lt;a href=&#34;https://www.secpulse.com/archives/124398.html&#34;&gt; https://www.secpulse.com/archives/124398.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;.git 信息泄露&lt;br&gt;
+这篇文章是我在刷 BUU 的时候看到的，感觉写的挺不错的。&lt;br&gt;
+&lt;a href=&#34;https://www.freebuf.com/articles/web/267597.html&#34;&gt;https://www.freebuf.com/articles/web/267597.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;备份文件&lt;br&gt;
+管理员将网站源代码备份在 Web 目录下，攻击者通过猜解文件路径，下载备份文件，导致源代码泄露。&lt;br&gt;
+常见的备份文件后缀：zip、rar、tar.gz 等&lt;br&gt;
+这个可以使用爆破思想，猜解文件路径，获取备份文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一些配置文件泄露&lt;br&gt;
+这个主要是经验问题了&lt;br&gt;
+ WEB-INF/web.xml 泄露&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开源网站信息泄露&lt;br&gt;
+就是社工吧，根据一些关键词利用相关开源网站的搜索语法搜索。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;gitee&lt;br&gt;
+&lt;a href=&#34;https://gitee.com/&#34;&gt;https://gitee.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;github&lt;br&gt;
+&lt;a href=&#34;https://github.com/&#34;&gt;https://github.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;互站&lt;br&gt;
+&lt;a href=&#34;https://www.huzhan.com/&#34;&gt; https://www.huzhan.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;js-架构&#34;&gt; JS 架构&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;这里的核心思想主要就是 js 代码白盒测试，js 代码可以直接查看，在开发时候可能会有敏感信息（手机号、邮箱、用户名等）泄露，还有一些加密方式，再者就是一些 URL 或者未授权接口等信息会被扫出来。&lt;br&gt;
+一般的常规方式有这样几个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;手工搜索&lt;br&gt;
+锁定敏感的 js 文件，进入代码里面查询想要的信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;半自动化 Burp 分析&lt;br&gt;
+自带功能：Target-&amp;gt;sitemap-&amp;gt;Engagement tools-&amp;gt;Find scripts&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 </content>
-        <updated>2023-07-11T03:12:30.000Z</updated>
+        <updated>2023-07-15T03:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
