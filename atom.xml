@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-07-15T03:12:30.000Z</updated>
+    <updated>2023-07-18T03:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/07/15/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
+        <id>https://my011215.github.io/2023/07/18/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
         <title>学习思考</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/07/15/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/07/18/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8&#34;&gt;基础入门&lt;/a&gt;
@@ -26,6 +26,7 @@
 &lt;li&gt;&lt;a href=&#34;#web%E6%9E%B6%E6%9E%84%E8%B5%84%E4%BA%A7&#34;&gt;Web 架构资产&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2&#34;&gt;源码泄露&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#js%E6%9E%B6%E6%9E%84&#34;&gt;JS 架构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AB%AF%E5%8F%A3%E8%9C%9C%E7%BD%90waf&#34;&gt;端口 &amp;amp; 蜜罐 &amp;amp; WAF&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -541,9 +542,21 @@ linux 控制 windows&lt;br&gt;
 &lt;p&gt;半自动化 Burp 分析&lt;br&gt;
 自带功能：Target-&amp;gt;sitemap-&amp;gt;Engagement tools-&amp;gt;Find scripts&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自动化&lt;br&gt;
+插件：findsomething&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;端口-amp-蜜罐-amp-waf&#34;&gt; 端口 &amp;amp; 蜜罐 &amp;amp; WAF&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;端口扫描的意义&lt;br&gt;
+一般会使用端口扫描工具，比如 Nmap 扫描端口开放情况。有很多服务和应用是一些熟悉的端口，或者是部署的人不改端口，识别到这个端口又结合相关应用爆出的漏洞就可以进一步渗透测试，同时还可以根据扫描出来的端口开放情况进一步了解 web 架构。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </content>
-        <updated>2023-07-15T03:12:30.000Z</updated>
+        <updated>2023-07-18T03:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/</id>
