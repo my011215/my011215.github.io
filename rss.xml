@@ -5,13 +5,13 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Tue, 18 Jul 2023 11:12:30 +0800</pubDate>
-        <lastBuildDate>Tue, 18 Jul 2023 11:12:30 +0800</lastBuildDate>
+        <pubDate>Sun, 23 Jul 2023 11:12:30 +0800</pubDate>
+        <lastBuildDate>Sun, 23 Jul 2023 11:12:30 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://my011215.github.io/2023/07/18/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</guid>
+            <guid isPermalink="true">https://my011215.github.io/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</guid>
             <title>学习思考</title>
-            <link>https://my011215.github.io/2023/07/18/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</link>
-            <pubDate>Tue, 18 Jul 2023 11:12:30 +0800</pubDate>
+            <link>https://my011215.github.io/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</link>
+            <pubDate>Sun, 23 Jul 2023 11:12:30 +0800</pubDate>
             <description><![CDATA[ &lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8&#34;&gt;基础入门&lt;/a&gt;
@@ -31,6 +31,7 @@
 &lt;li&gt;&lt;a href=&#34;#%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2&#34;&gt;源码泄露&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#js%E6%9E%B6%E6%9E%84&#34;&gt;JS 架构&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E7%AB%AF%E5%8F%A3%E8%9C%9C%E7%BD%90waf&#34;&gt;端口 &amp;amp; 蜜罐 &amp;amp; WAF&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cdn%E7%BB%95%E8%BF%87&#34;&gt;CDN 绕过&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -553,12 +554,66 @@ linux 控制 windows&lt;br&gt;
 &lt;/ul&gt;
 &lt;h3&gt;&lt;span id=&#34;端口-amp-蜜罐-amp-waf&#34;&gt; 端口 &amp;amp; 蜜罐 &amp;amp; WAF&lt;/span&gt;&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;端口扫描的意义&lt;br&gt;
-一般会使用端口扫描工具，比如 Nmap 扫描端口开放情况。有很多服务和应用是一些熟悉的端口，或者是部署的人不改端口，识别到这个端口又结合相关应用爆出的漏洞就可以进一步渗透测试，同时还可以根据扫描出来的端口开放情况进一步了解 web 架构。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;端口扫描的意义&lt;br&gt;
+一般会使用端口扫描工具，比如 Nmap 扫描端口开放情况。有很多服务和应用是一些熟悉的端口，或者是部署的人不改端口，识别到这个端口又结合相关应用爆出的漏洞就可以进一步渗透测试，同时还可以根据扫描出来的端口开放情况进一步了解 web 架构。&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;参考连接：&lt;a href=&#34;https://www.cnblogs.com/tdcqma/p/5692546.html&#34;&gt;https://www.cnblogs.com/tdcqma/p/5692546.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;该篇文章文章主要介绍了 nmap 最主要的四个功能：主机扫描、端口扫描、版本侦测、操作系统侦测。并且对扫描探测原理做了较为详细的介绍，大概思想是根据网络通信发包根据请求情况进行辨别，并且根据不同协议特点，有准确不准确，全扫描半扫描秘密扫描等一系列情况。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;WAF&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;云 WAF&lt;br&gt;
+ 百度安全宝、阿里云盾、长亭雷池，华为云，亚马逊云等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;硬件 WAF&lt;br&gt;
+ 绿盟、安恒、深信服、知道创宇等公司商业产品&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;软件 WAF&lt;br&gt;
+ 宝塔，安全狗、D 盾等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;代码级 WAF&lt;br&gt;
+ 自己写的 waf 规则，防止出现注入等，一般是在代码里面写死的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;识别 WAF 的意义：&lt;br&gt;
+绕（不在南墙不回头）？or 放弃&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;蜜罐&lt;br&gt;
+（1）根据蜜罐与攻击者之间进行的交互的程度可以将蜜罐分为三类&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;低交互蜜罐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;中交互蜜罐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;高交互蜜罐&lt;br&gt;
+根据蜜罐模拟的目标进行分类&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据库蜜罐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;工控蜜罐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;物联网蜜罐&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Web 蜜罐&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（2）识别原理&lt;br&gt;
+参考：&lt;a href=&#34;https://mp.weixin.qq.com/s/jPz9hBmUypFyQlU27vglUg&#34;&gt;https://mp.weixin.qq.com/s/jPz9hBmUypFyQlU27vglUg&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;cdn-绕过&#34;&gt; CDN 绕过&lt;/span&gt;&lt;/h3&gt;
  ]]></description>
         </item>
         <item>
