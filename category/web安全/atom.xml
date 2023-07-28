@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;web安全&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-07-23T03:12:30.000Z</updated>
+    <updated>2023-07-28T03:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
+        <id>https://my011215.github.io/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/</id>
         <title>学习思考</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8&#34;&gt;基础入门&lt;/a&gt;
@@ -610,8 +610,123 @@ linux 控制 windows&lt;br&gt;
 &lt;p&gt;（2）识别原理&lt;br&gt;
 参考：&lt;a href=&#34;https://mp.weixin.qq.com/s/jPz9hBmUypFyQlU27vglUg&#34;&gt;https://mp.weixin.qq.com/s/jPz9hBmUypFyQlU27vglUg&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;span id=&#34;cdn-绕过&#34;&gt; CDN 绕过&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/zxEH-HMqKukmq7qXfrdnQQ&#34;&gt;https://mp.weixin.qq.com/s/zxEH-HMqKukmq7qXfrdnQQ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;超级 Ping：&lt;a href=&#34;http://www.17ce.com/&#34;&gt;http://www.17ce.com/&lt;/a&gt;&lt;br&gt;
+ 超级 Ping：&lt;a href=&#34;https://ping.chinaz.com/&#34;&gt;https://ping.chinaz.com/&lt;/a&gt;&lt;br&gt;
+ 接口查询：&lt;a href=&#34;https://get-site-ip.com/&#34;&gt;https://get-site-ip.com/&lt;/a&gt;&lt;br&gt;
+ 接口查询：&lt;a href=&#34;https://fofa.info/extensions/source&#34;&gt;https://fofa.info/extensions/source&lt;/a&gt;&lt;br&gt;
+ 国外请求：&lt;a href=&#34;https://tools.ipip.net/cdn.php&#34;&gt;https://tools.ipip.net/cdn.php&lt;/a&gt;&lt;br&gt;
+ 国外请求：&lt;a href=&#34;https://boce.aliyun.com/detect/&#34;&gt;https://boce.aliyun.com/detect/&lt;/a&gt;&lt;br&gt;
+IP 社区库：&lt;a href=&#34;https://www.cz88.net/geo-public&#34;&gt;https://www.cz88.net/geo-public&lt;/a&gt;&lt;br&gt;
+ 全网扫描：&lt;a href=&#34;https://github.com/Tai7sy/fuckcdn&#34;&gt;https://github.com/Tai7sy/fuckcdn&lt;/a&gt;&lt;br&gt;
+ 全网扫描：&lt;a href=&#34;https://github.com/boy-hack/w8fuckcdn&#34;&gt;https://github.com/boy-hack/w8fuckcdn&lt;/a&gt;&lt;br&gt;
+ 全网扫描：&lt;a href=&#34;https://github.com/Pluto-123/Bypass_cdn&#34;&gt;https://github.com/Pluto-123/Bypass_cdn&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;解析大致过程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;普通域名解析&lt;br&gt;
+用户访问域名–&amp;gt; 解析服务器获取目标 IP–&amp;gt; 访问目标主机&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;普通 CDN 解析&lt;br&gt;
+用户访问域名–&amp;gt; 解析服务器获取 CDNIP–&amp;gt;CDN 节点–&amp;gt; 真实服务器 IP–&amp;gt; 访问目标主机&lt;br&gt;
+ CDN 最大的特点就是加速和负载均衡&lt;br&gt;
+加速是因为有一些不变的静态资源会缓存放在 CDN 节点，负载均衡则是对各个地方的请求根据地区有不同的 CDN 节点（看用户选择配置，地区、全国、全球）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;带 WAF 的 CDN&lt;br&gt;
+ 用户访问域名–&amp;gt; 解析服务器获取 CDNIP–&amp;gt;CDN 节点–&amp;gt;WAF 节点 -&amp;gt; 真实服务器 IP–&amp;gt; 访问目标主机&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;CDN 加速配置流程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;配置 1&lt;br&gt;
+ 加速域名 - 需要启用加速的域名&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置 2&lt;br&gt;
+ 加速区域 - 需要启用加速的地区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置 3&lt;br&gt;
+ 加速类型 - 需要启用加速的资源&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;常见绕过方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;子域名&lt;br&gt;
+配置 1&lt;br&gt;
+ 加速域名 - 需要启用加速的域名，有可能没有给子域名配置 CDN 加速，导致暴露真实 CDN。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;邮件系统&lt;br&gt;
+一般大型网站自己部署架设的邮件服务器如果向外部用户发送邮件的话，如果中间未经任何数据处理和防护措施，那么邮件头部的源码中会包含此邮件服务器的真实 IP 地址。&lt;br&gt;
+RSS 订阅&lt;br&gt;
+邮箱注册、激活处&lt;br&gt;
+邮箱找回密码处&lt;br&gt;
+产品更新的邮件推送&lt;br&gt;
+某业务执行后发送的邮件通知&lt;br&gt;
+员工邮箱、邮件管理平台等入口处的忘记密码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;国外访问&lt;br&gt;
+配置 2&lt;br&gt;
+ 加速区域 - 需要启用加速的地区&lt;br&gt;
+有可能配置区域不是全球，可以用国外代理 IP 访问泄露真实 IP。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;证书查询&lt;br&gt;
+证书颁发机构 (CA) 必须将他们发布的每个 SSL/TLS 证书发布到公共日志中，SSL/TLS 证书通常包含域名、子域名和电子邮件地址。&lt;br&gt;
+我们可以解析 IP：443 发送的证书，获取到比较准确的域名信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;from requests.packages.urllib3.contrib import pyopenssl as reqs&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ip=&amp;#x27;220.181.38.148&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;port=&amp;#x27;443&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;try:    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    x509 = reqs.OpenSSL.crypto.load_certificate(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        reqs.OpenSSL.crypto.FILETYPE_PEM,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        reqs.ssl.get_server_certificate((ip, port))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    )&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    domain = x509.get_subject().CN&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    print(domain)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;except:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    print(ip+&amp;#x27;&amp;gt;Get CN failed&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以 IP 反查得到域名和证书对比。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;敏感文件泄露&lt;br&gt;
+服务器日志文件&lt;br&gt;
+探针文件，例如 phpinfo&lt;br&gt;
+ 网站备份压缩文件&lt;br&gt;
+.DS_Store&lt;br&gt;
+.hg&lt;br&gt;
+.git&lt;br&gt;
+SVN&lt;br&gt;
+Web.xml&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过变更域名和历史域名&lt;br&gt;
+之前的域名由于没过期，可能未使用 CDN，因此可以直接获得服务器 IP&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;过 APP 移动端应用&lt;br&gt;
+如果网站存在 APP ，可以通过抓包分析其 APP 的数据流量，看是否能找到网站真实 IP 地址，记得关注 APP 的历史版本，里面会有很多 surprise 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过 F5 LTM 解码&lt;br&gt;
+ LTM 是将所有的应用请求分配到多个节点服务器上。提高业务的处理能力，也就是负载均衡。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当服务器使用 F5 LTM 做负载均衡时，通过对 set-cookie 关键字的解码，可以获取服务器真实 ip 地址。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;空间测绘&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;以量打量&lt;br&gt;
+ ddos 流量耗尽&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </content>
-        <updated>2023-07-23T03:12:30.000Z</updated>
+        <updated>2023-07-28T03:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/05/05/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>

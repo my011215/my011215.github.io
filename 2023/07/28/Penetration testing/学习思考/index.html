@@ -10,7 +10,7 @@
   <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习思考">
-<meta property="og:url" content="https://my011215.github.io/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="blog小窝">
 <meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过">
 <meta property="og:locale" content="en_US">
@@ -21,8 +21,8 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/395.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
-<meta property="article:published_time" content="2023-07-23T03:12:30.000Z">
-<meta property="article:modified_time" content="2023-07-23T13:37:46.932Z">
+<meta property="article:published_time" content="2023-07-28T03:12:30.000Z">
+<meta property="article:modified_time" content="2023-07-28T14:32:59.517Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
@@ -82,8 +82,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/学习思考" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
-  <time datetime="2023-07-23T03:12:30.000Z" itemprop="datePublished">2023-07-23</time>
+    <a href="/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2023-07-28T03:12:30.000Z" itemprop="datePublished">2023-07-28</time>
 </a>
 
 
@@ -710,11 +710,126 @@ linux 控制 windows<br>
 <p>（2）识别原理<br>
 参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jPz9hBmUypFyQlU27vglUg">https://mp.weixin.qq.com/s/jPz9hBmUypFyQlU27vglUg</a></p>
 <h3><span id="cdn-绕过"> CDN 绕过</span></h3>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/zxEH-HMqKukmq7qXfrdnQQ">https://mp.weixin.qq.com/s/zxEH-HMqKukmq7qXfrdnQQ</a></p>
+<p>超级 Ping：<a target="_blank" rel="noopener" href="http://www.17ce.com/">http://www.17ce.com/</a><br>
+ 超级 Ping：<a target="_blank" rel="noopener" href="https://ping.chinaz.com/">https://ping.chinaz.com/</a><br>
+ 接口查询：<a target="_blank" rel="noopener" href="https://get-site-ip.com/">https://get-site-ip.com/</a><br>
+ 接口查询：<a target="_blank" rel="noopener" href="https://fofa.info/extensions/source">https://fofa.info/extensions/source</a><br>
+ 国外请求：<a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a><br>
+ 国外请求：<a target="_blank" rel="noopener" href="https://boce.aliyun.com/detect/">https://boce.aliyun.com/detect/</a><br>
+IP 社区库：<a target="_blank" rel="noopener" href="https://www.cz88.net/geo-public">https://www.cz88.net/geo-public</a><br>
+ 全网扫描：<a target="_blank" rel="noopener" href="https://github.com/Tai7sy/fuckcdn">https://github.com/Tai7sy/fuckcdn</a><br>
+ 全网扫描：<a target="_blank" rel="noopener" href="https://github.com/boy-hack/w8fuckcdn">https://github.com/boy-hack/w8fuckcdn</a><br>
+ 全网扫描：<a target="_blank" rel="noopener" href="https://github.com/Pluto-123/Bypass_cdn">https://github.com/Pluto-123/Bypass_cdn</a></p>
+<ol>
+<li>解析大致过程</li>
+</ol>
+<ul>
+<li>
+<p>普通域名解析<br>
+用户访问域名–&gt; 解析服务器获取目标 IP–&gt; 访问目标主机</p>
+</li>
+<li>
+<p>普通 CDN 解析<br>
+用户访问域名–&gt; 解析服务器获取 CDNIP–&gt;CDN 节点–&gt; 真实服务器 IP–&gt; 访问目标主机<br>
+ CDN 最大的特点就是加速和负载均衡<br>
+加速是因为有一些不变的静态资源会缓存放在 CDN 节点，负载均衡则是对各个地方的请求根据地区有不同的 CDN 节点（看用户选择配置，地区、全国、全球）</p>
+</li>
+<li>
+<p>带 WAF 的 CDN<br>
+ 用户访问域名–&gt; 解析服务器获取 CDNIP–&gt;CDN 节点–&gt;WAF 节点 -&gt; 真实服务器 IP–&gt; 访问目标主机</p>
+</li>
+</ul>
+<ol start="2">
+<li>CDN 加速配置流程</li>
+</ol>
+<ul>
+<li>
+<p>配置 1<br>
+ 加速域名 - 需要启用加速的域名</p>
+</li>
+<li>
+<p>配置 2<br>
+ 加速区域 - 需要启用加速的地区</p>
+</li>
+<li>
+<p>配置 3<br>
+ 加速类型 - 需要启用加速的资源</p>
+</li>
+</ul>
+<ol start="3">
+<li>常见绕过方法</li>
+</ol>
+<ul>
+<li>
+<p>子域名<br>
+配置 1<br>
+ 加速域名 - 需要启用加速的域名，有可能没有给子域名配置 CDN 加速，导致暴露真实 CDN。</p>
+</li>
+<li>
+<p>邮件系统<br>
+一般大型网站自己部署架设的邮件服务器如果向外部用户发送邮件的话，如果中间未经任何数据处理和防护措施，那么邮件头部的源码中会包含此邮件服务器的真实 IP 地址。<br>
+RSS 订阅<br>
+邮箱注册、激活处<br>
+邮箱找回密码处<br>
+产品更新的邮件推送<br>
+某业务执行后发送的邮件通知<br>
+员工邮箱、邮件管理平台等入口处的忘记密码</p>
+</li>
+<li>
+<p>国外访问<br>
+配置 2<br>
+ 加速区域 - 需要启用加速的地区<br>
+有可能配置区域不是全球，可以用国外代理 IP 访问泄露真实 IP。</p>
+</li>
+<li>
+<p>证书查询<br>
+证书颁发机构 (CA) 必须将他们发布的每个 SSL/TLS 证书发布到公共日志中，SSL/TLS 证书通常包含域名、子域名和电子邮件地址。<br>
+我们可以解析 IP：443 发送的证书，获取到比较准确的域名信息。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from requests.packages.urllib3.contrib import pyopenssl as reqs</span><br><span class="line"></span><br><span class="line">ip=&#x27;220.181.38.148&#x27;</span><br><span class="line">port=&#x27;443&#x27;</span><br><span class="line">try:    </span><br><span class="line">    x509 = reqs.OpenSSL.crypto.load_certificate(</span><br><span class="line">        reqs.OpenSSL.crypto.FILETYPE_PEM,</span><br><span class="line">        reqs.ssl.get_server_certificate((ip, port))</span><br><span class="line">    )</span><br><span class="line">    domain = x509.get_subject().CN</span><br><span class="line">    print(domain)</span><br><span class="line">except:</span><br><span class="line">    print(ip+&#x27;&gt;Get CN failed&#x27;</span><br></pre></td></tr></table></figure>
+<p>可以 IP 反查得到域名和证书对比。</p>
+<ul>
+<li>
+<p>敏感文件泄露<br>
+服务器日志文件<br>
+探针文件，例如 phpinfo<br>
+ 网站备份压缩文件<br>
+.DS_Store<br>
+.hg<br>
+.git<br>
+SVN<br>
+Web.xml</p>
+</li>
+<li>
+<p>通过变更域名和历史域名<br>
+之前的域名由于没过期，可能未使用 CDN，因此可以直接获得服务器 IP</p>
+</li>
+<li>
+<p>过 APP 移动端应用<br>
+如果网站存在 APP ，可以通过抓包分析其 APP 的数据流量，看是否能找到网站真实 IP 地址，记得关注 APP 的历史版本，里面会有很多 surprise 。</p>
+</li>
+<li>
+<p>通过 F5 LTM 解码<br>
+ LTM 是将所有的应用请求分配到多个节点服务器上。提高业务的处理能力，也就是负载均衡。</p>
+</li>
+</ul>
+<p>当服务器使用 F5 LTM 做负载均衡时，通过对 set-cookie 关键字的解码，可以获取服务器真实 ip 地址。</p>
+<ul>
+<li>
+<p>空间测绘</p>
+</li>
+<li>
+<p>以量打量<br>
+ ddos 流量耗尽</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -771,7 +886,7 @@ linux 控制 windows<br>
       <ul>
         
           <li>
-            <a href="/2023/07/23/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+            <a href="/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
           </li>
         
           <li>
