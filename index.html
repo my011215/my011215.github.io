@@ -72,6 +72,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Penetration testing/学习思考" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2023-10-17T03:12:30.000Z" itemprop="datePublished">2023-10-17</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8">基础入门</a>
+<ul>
+<li><a href="#web%E5%BA%94%E7%94%A8">Web 应用</a></li>
+<li><a href="#web%E6%9E%B6%E6%9E%84">Web 架构</a></li>
+<li><a href="#web%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9">web 架构相关内容</a></li>
+<li><a href="#%E5%8F%8D%E5%BC%B9shell">反弹 shell</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BF%A1%E6%81%AF%E6%89%93%E7%82%B9">信息打点</a>
+<ul>
+<li><a href="#%E4%B8%9A%E5%8A%A1%E8%B5%84%E4%BA%A7">业务资产</a></li>
+<li><a href="#web%E5%8D%95%E5%9F%9F%E5%90%8D">WEB 单域名</a></li>
+<li><a href="#web%E5%AD%90%E5%9F%9F%E5%90%8D">WEB 子域名</a></li>
+<li><a href="#web%E6%9E%B6%E6%9E%84%E8%B5%84%E4%BA%A7">Web 架构资产</a></li>
+<li><a href="#%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2">源码泄露</a></li>
+<li><a href="#js%E6%9E%B6%E6%9E%84">JS 架构</a></li>
+<li><a href="#%E7%AB%AF%E5%8F%A3%E8%9C%9C%E7%BD%90waf">端口 &amp; 蜜罐 &amp; WAF</a></li>
+<li><a href="#cdn%E7%BB%95%E8%BF%87">CDN 绕过</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8F%90%E6%9D%83">提权</a>
+<ul>
+<li><a href="#%E5%90%8E%E5%8F%B0%E6%9D%83%E9%99%90">后台权限</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%83%E9%99%90">数据库权限</a>
+<ul>
+<li><a href="#mysql%E6%8F%90%E6%9D%83">mysql 提权</a></li>
+<li><a href="#mssql%E6%8F%90%E6%9D%83">MSSQL 提权</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%B7%A5%E5%85%B7">工具</a>
+<ul>
+<li><a href="#sqlmap">sqlmap</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9%E6%A2%B3%E7%90%86">目录内容梳理</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7">一些常用功能特性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+        
+          <p class="article-more-link">
+            <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Penetration testing/vulnhub靶机学习记录" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
     <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
@@ -131,88 +223,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="https://my011215.github.io/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clh8uy1qx0000l4tn74tu6soz" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Penetration testing/学习思考" class="article article-type-post" itemscope itemprop="blogPost"> 
-<div class="article-meta">
-    <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" class="article-date">
-  <time datetime="2023-08-12T03:12:30.000Z" itemprop="datePublished">2023-08-12</time>
-</a>
-
-
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- toc -->
-<ul>
-<li><a href="#%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8">基础入门</a>
-<ul>
-<li><a href="#web%E5%BA%94%E7%94%A8">Web 应用</a></li>
-<li><a href="#web%E6%9E%B6%E6%9E%84">Web 架构</a></li>
-<li><a href="#web%E6%9E%B6%E6%9E%84%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9">web 架构相关内容</a></li>
-<li><a href="#%E5%8F%8D%E5%BC%B9shell">反弹 shell</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BF%A1%E6%81%AF%E6%89%93%E7%82%B9">信息打点</a>
-<ul>
-<li><a href="#%E4%B8%9A%E5%8A%A1%E8%B5%84%E4%BA%A7">业务资产</a></li>
-<li><a href="#web%E5%8D%95%E5%9F%9F%E5%90%8D">WEB 单域名</a></li>
-<li><a href="#web%E5%AD%90%E5%9F%9F%E5%90%8D">WEB 子域名</a></li>
-<li><a href="#web%E6%9E%B6%E6%9E%84%E8%B5%84%E4%BA%A7">Web 架构资产</a></li>
-<li><a href="#%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2">源码泄露</a></li>
-<li><a href="#js%E6%9E%B6%E6%9E%84">JS 架构</a></li>
-<li><a href="#%E7%AB%AF%E5%8F%A3%E8%9C%9C%E7%BD%90waf">端口 &amp; 蜜罐 &amp; WAF</a></li>
-<li><a href="#cdn%E7%BB%95%E8%BF%87">CDN 绕过</a></li>
-</ul>
-</li>
-<li><a href="#%E6%8F%90%E6%9D%83">提权</a>
-<ul>
-<li><a href="#%E5%90%8E%E5%8F%B0%E6%9D%83%E9%99%90">后台权限</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%83%E9%99%90">数据库权限</a>
-<ul>
-<li><a href="#mysql%E6%8F%90%E6%9D%83">mysql 提权</a></li>
-<li><a href="#mssql%E6%8F%90%E6%9D%83">MSSQL 提权</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-        
-          <p class="article-more-link">
-            <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/" data-id="cli2xd5rx0000g8tn92wf64l6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -900,7 +910,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -913,11 +923,11 @@
       <ul>
         
           <li>
-            <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
+            <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
           </li>
         
           <li>
-            <a href="/2023/08/12/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+            <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
           </li>
         
           <li>
