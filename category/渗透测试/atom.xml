@@ -1122,6 +1122,30 @@ sqlmap 自带的功能检测插件&lt;/p&gt;
         <updated>2023-10-17T03:12:30.000Z</updated>
     </entry>
     <entry>
+        <id>https://my011215.github.io/2023/10/17/vulnerability/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/</id>
+        <title>log4j2原理分析+漏洞复现和利用</title>
+        <link rel="alternate" href="https://my011215.github.io/2023/10/17/vulnerability/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/"/>
+        <content type="html">&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#log4j2%E7%AE%80%E4%BB%8B&#34;&gt;log4j2 简介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0&#34;&gt;漏洞描述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E9%80%82%E7%94%A8%E7%89%88%E6%9C%AC&#34;&gt;漏洞适用版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86&#34;&gt;漏洞原理&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;log4j2-简介&#34;&gt; log4j2 简介&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;log4j2 是 Java 平台上一种流行的日志管理框架，也是 log4j 的升级版本。它提供了高度灵活和可配置的日志记录功能，可以用于在应用程序中生成、管理和输出日志信息。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞描述&#34;&gt; 漏洞描述&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Apache Log4j 是 Apache 的一个开源项目，Apache log4j2 是 Log4j 的升级版本，用户可以控制日志信息输送的目的地为控制台、文件、GUI 组件等，通过定义每一条日志信息的级别，能够更加细致地控制日志的生成过程。&lt;/p&gt;
+&lt;p&gt;Log4j2 中存在 JNDI 注入漏洞，当程序将用户输入的数据进行日志记录时，即可触发此漏洞，成功利用此漏洞可以在目标服务器上执行任意代码。该漏洞影响 Apache Struts、Apache Solr、Apache Druid、Apache Filnk 等众多组件，漏洞影响面大，危害性高。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞适用版本&#34;&gt; 漏洞适用版本&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;2.0 &amp;lt;= Apache log4j2 &amp;lt;= 2.14.1&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞原理&#34;&gt; 漏洞原理&lt;/span&gt;&lt;/h2&gt;
+</content>
+        <updated>2023-10-17T03:12:30.000Z</updated>
+    </entry>
+    <entry>
         <id>https://my011215.github.io/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
         <title>vulnhub靶机学习记录</title>
         <link rel="alternate" href="https://my011215.github.io/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>

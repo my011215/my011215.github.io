@@ -72,6 +72,131 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Penetration testing/信息收集" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2023/02/14/Penetration%20testing/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time datetime="2023-02-14T09:12:30.000Z" itemprop="datePublished">2023-02-14</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/14/Penetration%20testing/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86">信息收集</a>
+<ul>
+<li><a href="#cms%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB">（CMS）指纹识别</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93">系统及数据库</a>
+<ul>
+<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%B1%82%E9%9D%A2">操作系统层面</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B1%82%E9%9D%A2">数据库层面</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B1%82%E9%9D%A2">第三方层面</a></li>
+</ul>
+</li>
+<li><a href="#cdn%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF">CDN 相关技术</a></li>
+<li><a href="#cdn%E7%BB%95%E8%BF%87">（CDN）绕过</a></li>
+<li><a href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86waf">信息收集（WAF）</a>
+<ul>
+<li><a href="#%E7%AB%99%E7%82%B9%E6%90%AD%E5%BB%BA">站点搭建</a></li>
+<li><a href="#waf%E9%98%B2%E6%8A%A4%E5%88%86%E6%9E%90">（WAF）防护分析</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9%E6%94%B6%E9%9B%86">其他内容收集</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+        
+          <p class="article-more-link">
+            <a href="/2023/02/14/Penetration%20testing/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/02/14/Penetration%20testing/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cle41qedf0007cctnbkfd4isc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vulnerability/文件下载漏洞" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time datetime="2023-02-14T06:12:30.000Z" itemprop="datePublished">2023-02-14</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/">文件下载漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
+<li><a href="#pikachu%E9%9D%B6%E5%9C%BA">pikachu 靶场</a></li>
+</ul>
+<!-- tocstop -->
+        
+          <p class="article-more-link">
+            <a href="/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/02/14/vulnerability/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E6%BC%8F%E6%B4%9E/" data-id="cle2whg180000aotnhnvqemqc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-vulnerability/目录遍历漏洞" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
     <a href="/2023/02/13/vulnerability/%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/" class="article-date">
@@ -537,140 +662,6 @@
 
 
   
-    <article id="post-tool/空间搜索引擎" class="article article-type-post" itemscope itemprop="blogPost"> 
-<div class="article-meta">
-    <a href="/2023/01/17/tool/%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" class="article-date">
-  <time datetime="2023-01-17T15:12:30.000Z" itemprop="datePublished">2023-01-17</time>
-</a>
-
-
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/01/17/tool/%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">空间搜索引擎</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- toc -->
-<ul>
-<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8">使用</a>
-<ul>
-<li><a href="#fofa">fofa</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-        
-          <p class="article-more-link">
-            <a href="/2023/01/17/tool/%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/01/17/tool/%E7%A9%BA%E9%97%B4%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" data-id="cld08z3ot004nuctn4z53dw18" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-tool/Nmap" class="article article-type-post" itemscope itemprop="blogPost"> 
-<div class="article-meta">
-    <a href="/2023/01/15/tool/Nmap/" class="article-date">
-  <time datetime="2023-01-15T07:02:30.000Z" itemprop="datePublished">2023-01-15</time>
-</a>
-
-
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/01/15/tool/Nmap/">Nmap的使用方法总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bonelee/p/9188122.html">https://www.cnblogs.com/bonelee/p/9188122.html</a><br>
-<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/387663890">https://zhuanlan.zhihu.com/p/387663890</a></p>
-<!-- toc -->
-<ul>
-<li><a href="#%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D">功能介绍</a></li>
-<li><a href="#%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8">常见使用</a></li>
-</ul>
-<!-- tocstop -->
-<h2 id="功能介绍"><a class="markdownIt-Anchor" href="#功能介绍">#</a> 功能介绍</h2>
-<p>Nmap 是主机扫描工具，他的图形化界面是 Zenmap，分布式框架为 Dnamp。<br>
-Nmap（Network Mapper，网络映射器）是一款开放源代码的网络探测和安全审核工具。它被设计用来快速扫描大型网络，包括主机探测与发现、开放的端口情况、操作系统与应用服务指纹识别、WAF 识别及常见安全漏洞。</p>
-<ul>
-<li>Nmap 可以完成以下任务：</li>
-</ul>
-<ol>
-<li>主机探测</li>
-<li>端口扫描</li>
-<li>版本检测</li>
-<li>系统检测</li>
-<li>支持探测脚本的编写</li>
-</ol>
-<ul>
-<li>Nmap 在实际中应用场合如下：</li>
-</ul>
-<ol>
-<li>通过对设备或者防火墙的探测来审计它的安全性</li>
-<li>探测目标主机所开放的端口</li>
-<li>通过识别新的服务器审计网络的安全性</li>
-<li>探测网络上的主机</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2023/01/15/tool/Nmap/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/01/15/tool/Nmap/" data-id="cld08z3om002zuctnb4ys7pi7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -686,7 +677,7 @@ Nmap（Network Mapper，网络映射器）是一款开放源代码的网络探�
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">51</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">53</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -701,7 +692,7 @@ Nmap（Network Mapper，网络映射器）是一款开放源代码的网络探�
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -714,6 +705,10 @@ Nmap（Network Mapper，网络映射器）是一款开放源代码的网络探�
       <ul>
         
           <li>
+            <a href="/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/">log4j2原理分析+漏洞复现和利用</a>
+          </li>
+        
+          <li>
             <a href="/2023/10/24/learning%20share/%E4%BD%BF%E7%94%A8python%E5%AF%B9excel%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%88%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%89/">使用python对excel表的操作（基础版~）</a>
           </li>
         
@@ -722,15 +717,11 @@ Nmap（Network Mapper，网络映射器）是一款开放源代码的网络探�
           </li>
         
           <li>
+            <a href="/2023/10/17/vulnerability/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/">log4j2原理分析+漏洞复现和利用</a>
+          </li>
+        
+          <li>
             <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/">货运物流表生成</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/04/learning%20share/spring%E5%AD%A6%E4%B9%A0/">spring学习</a>
           </li>
         
       </ul>

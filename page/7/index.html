@@ -72,6 +72,117 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vulnerability/暴力破解" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" class="article-date">
+  <time datetime="2022-07-18T13:19:39.000Z" itemprop="datePublished">2022-07-18</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是暴力破解"><a class="markdownIt-Anchor" href="#什么是暴力破解">#</a> 什么是暴力破解</h2>
+<p>暴力破解通俗来说就是 “撞库”，是现在最流行的密码破解方式之一。它的实质就是枚举法，通过大量穷举的方式来尝试获取用户口令，即猜口令。并且暴力破解也不仅仅只用来暴力破解，也可以发现 Web 应用程序中的隐藏页面和内容。<br>
+造成这样的漏洞的原因主要和不安全的口令设置和不可靠的数据传输组成，其中不安全的口令设置又可以分为使用弱口令和使用默认口令。<br>
+大量猜测和穷举获取用户口令，通过对比数据包的长度可以很好的判断是否爆破成功</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/07/18/vulnerability/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="cld08z3og002auctn4kt4ha4w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-tool/sqlmap" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2022/07/18/tool/sqlmap/" class="article-date">
+  <time datetime="2022-07-18T13:19:39.000Z" itemprop="datePublished">2022-07-18</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a>►<a class="article-category-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/18/tool/sqlmap/">sqlmap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a class="markdownIt-Anchor" href="#简介">#</a> 简介</h2>
+<ul>
+<li>概念<br>
+ SQLMap 是一个开源的渗透测试工具，可以用来进行自动化检测，利用 SQL 注入漏洞，获取数据库服务器的权限。它具有功能强大的检测引擎，针对各种不同类型数据库的渗透测试的功能选项，包括获取数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连接的方式执行操作系统命令。</li>
+<li>支持数据库<br>
+ Full support for MySQL, Oracle, PostgreSQL, Microsoft SQL Server, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, Informix, MariaDB, MemSQL, TiDB, CockroachDB, HSQLDB, H2, MonetDB, Apache Derby, Amazon Redshift, Vertica, Mckoi, Presto, Altibase, MimerSQL, CrateDB, Greenplum, Drizzle, Apache Ignite, Cubrid, InterSystems Cache, IRIS, eXtremeDB, FrontBase, Raima Database Manager, YugabyteDB and Virtuoso database management systems.</li>
+<li>sqlmap 支持五种不同的注入模式：<br>
+1、基于布尔的盲注，即可以根据返回页面判断条件真假的注入。<br>
+2、基于时间的盲注，即不能根据页面返回内容判断任何信息，用条件语句查看时间延迟语句是否执行（即页面返回时间是否增加）来判断。<br>
+3、基于报错注入，即页面会返回错误信息，或者把注入的语句的结果直接返回在页面中。<br>
+4、联合查询注入，可以使用 union 的情况下的注入。<br>
+5、堆查询注入，可以同时执行多条语句的执行时的注入。</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2022/07/18/tool/sqlmap/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2022/07/18/tool/sqlmap/" data-id="cld08z3on0032uctn2k1ghd90" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-vulnerability/SQL注入" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
     <a href="/2022/06/27/vulnerability/SQL%E6%B3%A8%E5%85%A5/" class="article-date">
@@ -588,125 +699,6 @@ name[3]=‘a’;<br>
 
 
   
-    <article id="post-learning share/WPS兼容性" class="article article-type-post" itemscope itemprop="blogPost"> 
-<div class="article-meta">
-    <a href="/2021/07/25/learning%20share/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/" class="article-date">
-  <time datetime="2021-07-25T13:52:39.000Z" itemprop="datePublished">2021-07-25</time>
-</a>
-
-
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/25/learning%20share/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/">WPS兼容性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>与操作系统的兼容性<br>
-最新版本的 WPS 对 Windows (Win2000-Win10)、Linux、Mac、Android (Android4.0 或更高版本)、iOS (iOS 所有的 iphone 固件版本以上，iOS 12 及以上) 都表示支持<br>
- PDF 新增：兼容系统控件中的功能（长按取词、复制、朗读，定义）</li>
-<li>与数据的兼容性</li>
-</ol>
-<ul>
-<li>不同版本间的数据兼容性<br>
-支持新旧版本界面风格随时切换<br>
-一般来说高版本支持低版本，但是高版本中出现一些新功能，在低版本中可能会出现一些小问题</li>
-<li>不同软件间的数据兼容性<br>
-与 Microsoft Office 中的 Word，Excel，PowerPoint 一一对应，应用 XML 数据交换技术，无障碍兼容 docx.xlsx.pptx，pdf 等文件格式，你可以直接保存和打开 Microsoft Word、Excel 和 PowerPoint 文件，也可以用 Microsoft Office 轻松编辑 WPS 系列文档。<br>
-无隔阂兼容 MS-Office 加密信息、宏文档 内容互联、知识分享 —— 以提升效率为核心的互联网应用 。（文档方面）<br>
-支持.ppt.pptx.pot.potx.pps.dps.dpt 等文件格式的打开和播放，包括加密文档（演示方面）<br>
-支持 Airplay、DLNA 播放 PPT<br>
- 支持 xls、xlt、xlsx、xltx、et、ett 等格式的查看，包括加密文档（表格方面）<br>
-支持金山快盘、Dropbox、Box、GoogleDrive、SkyDrive、WebDAV 等多种主流网盘</li></ul>
-        
-          <p class="article-more-link">
-            <a href="/2021/07/25/learning%20share/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2021/07/25/learning%20share/WPS%E5%85%BC%E5%AE%B9%E6%80%A7/" data-id="clh8jzuc1000040tnddpp4mhr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-learning share/降噪耳机" class="article article-type-post" itemscope itemprop="blogPost"> 
-<div class="article-meta">
-    <a href="/2021/07/18/learning%20share/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/" class="article-date">
-  <time datetime="2021-07-18T13:56:39.000Z" itemprop="datePublished">2021-07-18</time>
-</a>
-
-
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/18/learning%20share/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/">降噪耳机</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备"><a class="markdownIt-Anchor" href="#准备">#</a> 准备</h2>
-<p>从噪音污染的例子引入话题，引入降噪，简单讲述降噪的历史发展<br>
-物理原理简单了解  (图理结合)<br>
- 降噪类型 (图理结合)<br>
- 涉及计算机领域的知识<br>
-降噪耳机对我们生活影响 (健康、价格、使用范围、优缺点、目前发展趋势)<br>
- qq 视频，软件实现降噪？<br>
-大家 (知乎、各论坛、各种研究学者) 对降噪耳机的看法，我的看法</p>
-        
-          <p class="article-more-link">
-            <a href="/2021/07/18/learning%20share/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2021/07/18/learning%20share/%E9%99%8D%E5%99%AA%E8%80%B3%E6%9C%BA/" data-id="clh8jzuc3000740tn5g5rcmts" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -722,7 +714,7 @@ name[3]=‘a’;<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">51</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">53</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -737,7 +729,7 @@ name[3]=‘a’;<br>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -750,6 +742,10 @@ name[3]=‘a’;<br>
       <ul>
         
           <li>
+            <a href="/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/">log4j2原理分析+漏洞复现和利用</a>
+          </li>
+        
+          <li>
             <a href="/2023/10/24/learning%20share/%E4%BD%BF%E7%94%A8python%E5%AF%B9excel%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%88%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%89/">使用python对excel表的操作（基础版~）</a>
           </li>
         
@@ -758,15 +754,11 @@ name[3]=‘a’;<br>
           </li>
         
           <li>
+            <a href="/2023/10/17/vulnerability/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/">log4j2原理分析+漏洞复现和利用</a>
+          </li>
+        
+          <li>
             <a href="/2023/09/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/14/learning%20share/%E8%B4%A7%E8%BF%90%E7%89%A9%E6%B5%81%E8%A1%A8%E7%94%9F%E6%88%90/">货运物流表生成</a>
-          </li>
-        
-          <li>
-            <a href="/2023/05/04/learning%20share/spring%E5%AD%A6%E4%B9%A0/">spring学习</a>
           </li>
         
       </ul>
