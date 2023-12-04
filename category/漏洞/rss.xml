@@ -5,8 +5,86 @@
         <link>https://my011215.github.io</link>
         <description>用来记录学习和分享日常</description>
         <language>en</language>
-        <pubDate>Sun, 29 Oct 2023 11:12:30 +0800</pubDate>
-        <lastBuildDate>Sun, 29 Oct 2023 11:12:30 +0800</lastBuildDate>
+        <pubDate>Mon, 04 Dec 2023 11:12:30 +0800</pubDate>
+        <lastBuildDate>Mon, 04 Dec 2023 11:12:30 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">https://my011215.github.io/2023/12/04/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/</guid>
+            <title>Apache Kafka CVE-2023-25194 JNDI注入漏洞环境搭建+浅析</title>
+            <link>https://my011215.github.io/2023/12/04/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/</link>
+            <pubDate>Mon, 04 Dec 2023 11:12:30 +0800</pubDate>
+            <description><![CDATA[ &lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0&#34;&gt;漏洞描述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC&#34;&gt;影响版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA&#34;&gt;环境搭建&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%8B%E8%BD%BD&#34;&gt;下载&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%BC%80%E5%90%AF%E6%97%85%E9%80%94&#34;&gt;开启旅途&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
+&lt;h2&gt;&lt;span id=&#34;介绍&#34;&gt; 介绍&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;Apache Kafka 是一个开源的分布式事件流平台，用于 数以千计的高性能数据管道、流分析、 数据集成和任务关键型应用程序。&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://kafka.apache.org/&#34;&gt;https://kafka.apache.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/443.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞描述&#34;&gt; 漏洞描述&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;链接：&lt;a href=&#34;http://t.csdnimg.cn/v7Oav&#34;&gt;http://t.csdnimg.cn/v7Oav&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在 Apache Kafka Connect 中存在 JNDI 注入漏洞，当攻击者可访问 Kafka Connect Worker，且可以创建或修改连接器时，通过设置 sasl.jaas.config 属性为 com.sun.security.auth.module.JndiLoginModule，进而可导致 JNDI 注入，造成 RCE 需低版本 JDK 或目标 Kafka Connect 系统中存在利用链。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;可访问 Kafka Connect Worker&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/444.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;可以创建或修改连接器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/445.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;设置 sasl.jaas.config 属性为 com.sun.security.auth.module.JndiLoginModule&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span id=&#34;影响版本&#34;&gt; 影响版本&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;2.3.0 &amp;lt;= Apache Kafka &amp;lt;= 3.3.2&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;环境搭建&#34;&gt; 环境搭建&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;下载&#34;&gt; 下载&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;kafka&lt;br&gt;
+ 链接：&lt;a href=&#34;https://archive.apache.org/dist/kafka/2.5.0/kafka_2.13-2.5.0.tgz&#34;&gt;https://archive.apache.org/dist/kafka/2.5.0/kafka_2.13-2.5.0.tgz&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Zookeeper&lt;br&gt;
+ 链接：&lt;a href=&#34;https://zookeeper.apache.org/releases.html&#34;&gt;https://zookeeper.apache.org/releases.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;debezium&lt;br&gt;
+ 链接：&lt;a href=&#34;https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/0.8.1.Final/debezium-connector-mysql-0.8.1.Final-plugin.tar.gz&#34;&gt;https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/0.8.1.Final/debezium-connector-mysql-0.8.1.Final-plugin.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mysql&lt;br&gt;
+ 注意：debezium 解压后可以看到 mysql 插件的 jar 包是 5.x 的版本，所以解决后门版本冲突问题这里的 mysql 我选择 5.1.73 版本&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://mirrors.aliyun.com/mysql/MySQL-5.1/&#34;&gt;https://mirrors.aliyun.com/mysql/MySQL-5.1/&lt;/a&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;java&lt;br&gt;
+ 这里我使用的是 1.8 的 Java，就不展示安装了。&lt;br&gt;
+PS：注意 java 版本和 debezium 版本冲突问题。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;开启旅途&#34;&gt; 开启旅途&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;解压&lt;br&gt;
+首先解压 kafka 和 Zookeeper 放在如下位置&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/446.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;启动服务端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://my011215.github.io/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/</guid>
             <title>log4j2原理分析+漏洞复现和利用</title>
