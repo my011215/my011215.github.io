@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>POC编写总结 | blog小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="基本步骤 一些友好的编写规范  准确性  关键字匹配 特征码识别 可预测的变化检测 others   通用性  构建通用的 Payload 考虑常见的安全防护机制 无法通用检测时，尽可能覆盖多种情况   无害性 随机性   常见 POC 框架 感谢">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POC编写总结">
+<meta property="og:url" content="https://my011215.github.io/2023/12/20/learning%20share/POC%E7%BC%96%E5%86%99%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="blog小窝">
+<meta property="og:description" content="基本步骤 一些友好的编写规范  准确性  关键字匹配 特征码识别 可预测的变化检测 others   通用性  构建通用的 Payload 考虑常见的安全防护机制 无法通用检测时，尽可能覆盖多种情况   无害性 随机性   常见 POC 框架 感谢">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-20T03:12:30.000Z">
+<meta property="article:modified_time" content="2023-12-20T14:57:42.053Z">
+<meta property="article:author" content="草莓布丁">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="blog小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">blog小窝</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+        
+          <a class="main-nav-link" href="/categories/web%E5%AE%89%E5%85%A8/">安全</a>
+        
+          <a class="main-nav-link" href="/categories/%E5%85%B4%E8%B6%A3/">兴趣</a>
+        
+          <a class="main-nav-link" href="/richang">日常</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://my011215.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning share/POC编写总结" class="article article-type-post" itemscope itemprop="blogPost"> 
+<div class="article-meta">
+    <a href="/2023/12/20/learning%20share/POC%E7%BC%96%E5%86%99%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2023-12-20T03:12:30.000Z" itemprop="datePublished">2023-12-20</time>
+</a>
+
+
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      POC编写总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- toc -->
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4">基本步骤</a></li>
+<li><a href="#%E4%B8%80%E4%BA%9B%E5%8F%8B%E5%A5%BD%E7%9A%84%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83">一些友好的编写规范</a>
+<ul>
+<li><a href="#%E5%87%86%E7%A1%AE%E6%80%A7">准确性</a>
+<ul>
+<li><a href="#%E5%85%B3%E9%94%AE%E5%AD%97%E5%8C%B9%E9%85%8D">关键字匹配</a></li>
+<li><a href="#%E7%89%B9%E5%BE%81%E7%A0%81%E8%AF%86%E5%88%AB">特征码识别</a></li>
+<li><a href="#%E5%8F%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E5%8F%98%E5%8C%96%E6%A3%80%E6%B5%8B">可预测的变化检测</a></li>
+<li><a href="#others">others</a></li>
+</ul>
+</li>
+<li><a href="#%E9%80%9A%E7%94%A8%E6%80%A7">通用性</a>
+<ul>
+<li><a href="#%E6%9E%84%E5%BB%BA%E9%80%9A%E7%94%A8%E7%9A%84-payload">构建通用的 Payload</a></li>
+<li><a href="#%E8%80%83%E8%99%91%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E6%9C%BA%E5%88%B6">考虑常见的安全防护机制</a></li>
+<li><a href="#%E6%97%A0%E6%B3%95%E9%80%9A%E7%94%A8%E6%A3%80%E6%B5%8B%E6%97%B6%E5%B0%BD%E5%8F%AF%E8%83%BD%E8%A6%86%E7%9B%96%E5%A4%9A%E7%A7%8D%E6%83%85%E5%86%B5">无法通用检测时，尽可能覆盖多种情况</a></li>
+</ul>
+</li>
+<li><a href="#%E6%97%A0%E5%AE%B3%E6%80%A7">无害性</a></li>
+<li><a href="#%E9%9A%8F%E6%9C%BA%E6%80%A7">随机性</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B8%B8%E8%A7%81poc%E6%A1%86%E6%9E%B6">常见 POC 框架</a></li>
+<li><a href="#%E6%84%9F%E8%B0%A2">感谢</a></li>
+</ul>
+<!-- tocstop -->
+<span id="more"></span>  
+<h2><span id="基本步骤"> 基本步骤</span></h2>
+<ol>
+<li>理解漏洞</li>
+</ol>
+<ul>
+<li>漏洞特性</li>
+<li>触发条件</li>
+<li>影响利用</li>
+</ul>
+<ol start="2">
+<li>复现漏洞<br>
+根据复现教程，结合靶场和实际漏洞进行复现。同时还应该在此环境进一步强化第一步理解漏洞。</li>
+</ol>
+<p>比如：Apache Kafka Connect CVE-2023-25194 JNDI 注入漏洞</p>
+<p>网上有靶场的复现教程和自己搭建环境的复现教程，靶场的复现教程没啥很大难度，但是自己搭建环境复现这个环境就比较繁琐出了很多问题。</p>
+<p>我可以简单地以我写这个插件的过程为例子简单剖析漏洞复现结合理解漏洞的重要性。</p>
+<p>首先，编写这个漏洞我是参照如下博客：  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40646572/article/details/130672387">https://blog.csdn.net/qq_40646572/article/details/130672387</a><br>
+ 搭建 vulnhub 靶场进行复现，采用 dnslog 回显日志记录验证即可，但是触发了如下几个问题：<br>
+（1）路径和 payload 通用性<br>
+（2）漏洞触发因素模糊<br>
+（3）指纹是服务指纹还是 web 指纹</p>
+<p>于是乎，本着解铃还须系铃人的原则，我开始搭建环境验证漏洞，加强漏洞理解顺便回答以上存在疑问的问题。</p>
+<p>参考知乎文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/616398569">https://zhuanlan.zhihu.com/p/616398569</a><br>
+ 完成 kafka 漏洞环境的搭建和复现，从搭建完那一刻我就清晰漏洞触发原因（开启了服务），触发路径，和触发通用 payload 应该是怎样的。之前的 payload 只能针对靶场，一旦放入实际环境中，基本没中的。当然这个实际资产环境也可以根据具体产品改编 POC。（下一步骤提及）</p>
+<ol start="3">
+<li>
+<p>编写 POC<br>
+ 这里可以根据复现漏洞的环境进行编写测试，同时也可以将一个通用漏洞（比如 fastjson）结合不同产品（海康威视…）对应路径和 POC 进行细分 POC 编写。并且在这个编写步骤中也应该着重考虑一些友好的规范因素（在下一标题会详细总结）。</p>
+</li>
+<li>
+<p>充分测试和验证<br>
+这是一个长久的持续利用过程，并且需要结合下一步骤不断优化，形成一条友好的生态圈。</p>
+</li>
+</ol>
+<p>关于测试和验证我个人目前觉得比较不错的几种方法是：</p>
+<p>（1）客户使用反馈记录，迭代问题报告。<br>
+（2）对某些资产或者通用型漏洞周五部署编辑好，周末批量测试（前提，确保 POC 无害性，以及一些危害操作和敏感资产处理）。不断迭代，形成一份长久的测试数据，同时根据测试的问题，不断迭代测试方案和测试最佳流程。<br>
+（3）靶场覆盖数据维护<br>
+（4）可以结合现有 POC，以小组形式一起编写批量漏洞挖掘提交脚本，在各种漏洞平台提交 nday（个人能力提升，问题发现，知名度，团队核心凝聚力）</p>
+<ol start="5">
+<li>更新和维护<br>
+随着时间的推移，漏洞的修复和新的检测方式可能会出现，并且在上一步骤测试过程会出现 POC 需要优化的情况。</li>
+</ol>
+<h2><span id="一些友好的编写规范"> 一些友好的编写规范</span></h2>
+<h3><span id="准确性"> 准确性</span></h3>
+<ol>
+<li>关键字匹配</li>
+<li>特征码识别</li>
+<li>可预测的变化检测</li>
+</ol>
+<h4><span id="关键字匹配"> 关键字匹配</span></h4>
+<p>以命令执行举例，通常会使用 phpinfo,echo,print 这些命令用来检测，但是也还是会产生一些无法避免的误报问题。</p>
+<ol>
+<li>页面本身就是一个打印 phpinfo 的页面</li>
+<li>目标网站将你的输入，原样的输出在返回的 body</li>
+</ol>
+<h4><span id="特征码识别"> 特征码识别</span></h4>
+<p>按照漏洞逻辑执行完后，直接通过判断 HTTP 响应状态码，判断漏洞是否存在。<br>
+这是很大概率会产生误报的行为，直接根据特征码判断是不可取的。</p>
+<h4><span id="可预测的变化检测"> 可预测的变化检测</span></h4>
+<p>简单来说就是对直接生成的随机数加上一些加减乘除编码加密操作</p>
+<ol>
+<li>代码执行</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&#123;&#123;randint(8)&#125;&#125; * &#123;&#123;randint(8)&#125;&#125;)，匹配相乘后的结果</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(&quot;&#123;&#123;randstr(8)&#125;&#125;&quot; + &quot;&#123;&#123;randstr(8)&#125;&#125;&quot; )，匹配字符串拼接后的结果</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(md5(&#123;&#123;randstr(16)&#125;&#125;))，匹配 md5 后的结果</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;&#123;&#123;randstr(16)&#125;&#125;%%&#123;&#123;randstr(16)&#125;&#125;&quot;)实际输出会少一个百分号，检出时只需要匹配 &#123;&#123;randstr(16)&#125;&#125;%&#123;&#123;randstr(16)&#125;&#125;即可</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>命令执行</li>
+</ol>
+<ul>
+<li>Linux 下可以使用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expr &#123;&#123;randint(8)&#125;&#125; - &#123;&#123;randint(7)&#125;&#125;,匹配相减后的数字即可</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo aaaa&quot;&quot;bbbb,echo aaaa&#x27;&#x27;bbbb，匹配 aaaabbbb 即可</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo aaaa\bbbb，匹配 aaaabbbb 即可</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Windows 下可以使用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set /a result=&#123;&#123;randint(8)&#125;&#125;-&#123;&#123;randint(7)&#125;&#125; &amp;&amp; call echo %result%,匹配相减后的数字即可</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>SQL 注入类型</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select md5(&#123;&#123;randstr(16)&#125;&#125;)，匹配 md5 后的结果</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select concat(&#x27;&#123;&#123;randstr(8)&#125;&#125;&#x27;,&#x27;&#123;&#123;randstr(8)&#125;&#125;&#x27;)，匹配字符串拼接后的结果</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>文件读取</li>
+</ol>
+<ul>
+<li>Linux 下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root:.*:0:0:，使用正则进行匹配</span><br></pre></td></tr></table></figure>
+<h4><span id="others"> others</span></h4>
+<p>综上，为了确保 POC 的准确性，采用状态码 + 可预测的变化检测是一种比较友好的方式，但是并不是所有的 POC 都可以这么做，还得根据特定漏洞来定制，当可预测的变化检测没有想到合适的时候，可以结合状态码 + 关键字匹配，或者多个条件 if 验证，也可以加强 POC 的准确性。并且，还需要考虑 POC 的应用场景，当 POC 是运用到一个自动化渗透测试系统中时，可以针对特定产品 POC 特殊考虑，有时候对指纹识别的准确提高也可以加强 POC 的准确性。</p>
+<h3><span id="通用性"> 通用性</span></h3>
+<p>在编写 PoC 时，应该确保 Payload 或包含的检测代码兼顾各个环境或平台，比如 ipconfig 和 ifconfig，id，cat\etc\passwd 等</p>
+<ol>
+<li>构建通用的 Payload</li>
+<li>考虑常见的安全防护机制</li>
+<li>无法通用检测时，尽可能覆盖多种情况</li>
+</ol>
+<h4><span id="构建通用的-payload"> 构建通用的 Payload</span></h4>
+<p>能通过代码执行的漏洞，就不要再通过代码调用系统命令来执行。</p>
+<p>使用 system 去执行命令来进行检测，这种方式存在很多的弊端：</p>
+<ol>
+<li>不够通用，Windows 下和 Linux 下可能没有足够通用的命令用于检测</li>
+<li>没有考虑安全防护机制，比如 PHP 经常存在的 disable_functions 以及一些 WAF 之类的</li>
+</ol>
+<h4><span id="考虑常见的安全防护机制"> 考虑常见的安全防护机制</span></h4>
+<p>结合前面说到的，建议选择打印随机字符串来进行检测，或其他的无害化的方式检测漏洞，降低触发其安全防护机制的概率。</p>
+<h4><span id="无法通用检测时尽可能覆盖多种情况"> 无法通用检测时，尽可能覆盖多种情况</span></h4>
+<ol>
+<li>
+<p>系统不确定<br>
+这种情况常见于命令执行、文件读取漏洞的情况，可以根据对应平台分别发送检测 Payload 进行检测，如发送两个检测包，第一个是针对 Windows 的，第二个是针对 Linux 的即可。</p>
+</li>
+<li>
+<p>多种 payload<br>
+ 当有多种检测 payload 时，可以写成 for 循环进行测试，也可以使用 if 条件语句进行测试。</p>
+</li>
+</ol>
+<h3><span id="无害性"> 无害性</span></h3>
+<ol>
+<li>确保编写的 PoC 不会对目标造成危害。包括但不限于，插入，删除，篡改等等直接或间接产生危害的操作。</li>
+<li>对于文件上传类漏洞，请尝试清理 PoC 测试中产生的测试文件，即在访问该文件后删除自身</li>
+</ol>
+<ul>
+<li>php</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php echo md5(233);unlink(__FILE__);?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>asp</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">Response.Write chr(101)&amp;chr(49)&amp;chr(54)&amp;chr(53)&amp;chr(52)&amp;chr(50)&amp;chr(49)&amp;chr(49)&amp;chr(49)&amp;chr(48)&amp;chr(98)&amp;chr(97)&amp;chr(48)&amp;chr(51)&amp;chr(48)&amp;chr(57)&amp;chr(57)&amp;chr(97)&amp;chr(49)&amp;chr(99)&amp;chr(48)&amp;chr(51)&amp;chr(57)&amp;chr(51)&amp;chr(51)&amp;chr(55)&amp;chr(51)&amp;chr(99)&amp;chr(53)&amp;chr(98)&amp;chr(52)&amp;chr(51)</span><br><span class="line">CreateObject(&quot;Scripting.FileSystemObject&quot;).DeleteFile(server.mappath(Request.ServerVariables(&quot;SCRIPT_NAME&quot;)))</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>aspx</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@Page Language=&quot;C#&quot;%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">Response.Write(System.Text.Encoding.GetEncoding(65001).GetString(System.Convert.FromBase64String(&quot;ZTE2NTQyMTExMGJhMDMwOTlhMWMwMzkzMzczYzViNDM=&quot;)));System.IO.File.Delete(Request.PhysicalPath);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>jsp</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% out.println(new String(new sun.misc.BASE64Decoder().decodeBuffer(&quot;ZTE2NTQyMTExMGJhMDMwOTlhMWMwMzkzMzczYzViNDM=&quot;)));new java.io.File(application.getRealPath(request.getServletPath())).delete(); %&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>jspx</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:root xmlns=&quot;http://www.w3.org/1999/xhtml&quot; version=&quot;2.0&quot; xmlns:jsp=&quot;http://java.sun.com/JSP/Page&quot; xmlns:c=&quot;http://java.sun.com/jsp/jstl/core&quot;&gt;</span><br><span class="line">&lt;jsp:directive.page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; /&gt;</span><br><span class="line">jsp:scriptlet out.println(new String(new sun.misc.BASE64Decoder().decodeBuffer(&quot;ZTE2NTQyMTExMGJhMDMwOTlhMWMwMzkzMzczYzViNDM=&quot;))); new java.io.File(application.getRealPath(request.getServletPath())).delete(); &lt;/jsp:scriptlet&gt; &lt;/jsp:root&gt;</span><br></pre></td></tr></table></figure>
+<h3><span id="随机性"> 随机性</span></h3>
+<ol>
+<li>避免固定字符和个人信息</li>
+<li>使用随机字符串或哈希值，增加 Payload 的多样性和复杂性，提高对目标系统的覆盖能力</li>
+<li>规避安全设备的特征识别</li>
+</ol>
+<h2><span id="常见-poc-框架"> 常见 POC 框架</span></h2>
+<ol>
+<li>
+<p>Pocsuite<br>
+Pocsuite 框架现为知道创宇 Seebug 平台通用的漏洞验证框架，使用 Python 编写 POC。可以提交 POC 换 kb, kb 可以用来兑换现金，挣点零花钱还是相当不错的。老司机们可能听过 Sebug, 那是 Seebug 的前身， 2016 年 Sebug 收购了另一个优秀框架 Beebeeto 后，更名为 Seebug。</p>
+</li>
+<li>
+<p>Tangscan<br>
+Tangscan (唐朝扫描器) 是 wooyun 社区的官方框架，使用 Python 编写 POC。可以提交 POC 换汤圆，参与现金分红。</p>
+</li>
+<li>
+<p>Bugscan<br>
+Bugscan 是四叶草的官方框架，使用 Python 编写 POC。提交 POC 插件获取 rank 奖励，可兑换实物奖励，奖品还是蛮丰富的。</p>
+</li>
+</ol>
+<h2><span id="感谢"> 感谢</span></h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/386054.html">https://www.freebuf.com/articles/web/386054.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1759225">https://cloud.tencent.com/developer/article/1759225</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/246033.html">https://www.freebuf.com/vuls/246033.html</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://my011215.github.io/2023/12/20/learning%20share/POC%E7%BC%96%E5%86%99%E6%80%BB%E7%BB%93/" data-id="clqdweted0000uktn9nyd2hyw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/12/05/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Apache Kafka CVE-2023-25194 JNDI注入漏洞环境搭建+浅析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><span class="category-list-count">54</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/CTF/">CTF</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E4%B9%A6%E7%B1%8D/">书籍</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%9E%E6%88%98/">实战</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/">思维导图</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E/">漏洞</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/XSS/">XSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web%E5%AE%89%E5%85%A8/%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/">区块链安全</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%9A%E5%BC%88%E8%AE%BA/">博弈论</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">学习分享</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/12/20/learning%20share/POC%E7%BC%96%E5%86%99%E6%80%BB%E7%BB%93/">POC编写总结</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/05/Penetration%20testing/Apache-Kafka-CVE-2023-25194-JNDI%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA+%E6%B5%85%E6%9E%90/">Apache Kafka CVE-2023-25194 JNDI注入漏洞环境搭建+浅析</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/29/Penetration%20testing/log4j2%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90+%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E5%92%8C%E5%88%A9%E7%94%A8/">log4j2原理分析+漏洞复现和利用</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/24/learning%20share/%E4%BD%BF%E7%94%A8python%E5%AF%B9excel%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%88%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%89/">使用python对excel表的操作（基础版~）</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer id="footer">
+<span>访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span>访客<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 草莓布丁<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+
+    </div>
+</div>
+</footer>
+
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/" class="mobile-nav-link">学习分享</a>
+  
+    <a href="/categories/web%E5%AE%89%E5%85%A8/" class="mobile-nav-link">安全</a>
+  
+    <a href="/categories/%E5%85%B4%E8%B6%A3/" class="mobile-nav-link">兴趣</a>
+  
+    <a href="/richang" class="mobile-nav-link">日常</a>
+  
+</nav>
+    
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript" src="\js\snow.js"></script>
+</html>
