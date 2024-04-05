@@ -10,15 +10,15 @@
   <meta name="description" content="(sql) 注入  概念 常见的 sql 注入产生原因 参数提交注入基本流程  判断数据库类型 判断提交方法 判断注入参数数据类型 判断对应 sql 语句的构造 判断是否有回显 黑名单绕过简单思路 waf 绕过简单思路   mysql 注入  判断是否存在注入点 信息收集 数据注入 高权限注入 SQL 注入防护 预编译先占位原理   提权，种植后门 黑盒挖掘思路 白盒挖掘思路   文件包含">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web常见漏洞">
-<meta property="og:url" content="https://my011215.github.io/2023/03/31/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:url" content="https://my011215.github.io/2024/04/05/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="blog小窝">
 <meta property="og:description" content="(sql) 注入  概念 常见的 sql 注入产生原因 参数提交注入基本流程  判断数据库类型 判断提交方法 判断注入参数数据类型 判断对应 sql 语句的构造 判断是否有回显 黑名单绕过简单思路 waf 绕过简单思路   mysql 注入  判断是否存在注入点 信息收集 数据注入 高权限注入 SQL 注入防护 预编译先占位原理   提权，种植后门 黑盒挖掘思路 白盒挖掘思路   文件包含">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/349.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/350.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/370.png?raw=true">
-<meta property="article:published_time" content="2023-03-31T08:12:30.000Z">
-<meta property="article:modified_time" content="2023-03-31T13:04:44.589Z">
+<meta property="article:published_time" content="2024-04-05T08:12:30.000Z">
+<meta property="article:modified_time" content="2024-04-05T11:33:35.696Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/349.png?raw=true">
@@ -78,8 +78,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/Web常见漏洞" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2023/03/31/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time datetime="2023-03-31T08:12:30.000Z" itemprop="datePublished">2023-03-31</time>
+    <a href="/2024/04/05/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time datetime="2024-04-05T08:12:30.000Z" itemprop="datePublished">2024-04-05</time>
 </a>
 
 
@@ -684,13 +684,47 @@ manager app 暴力破解</p>
 形成 XSS 漏洞的主要原因是程序对输入和输出没有做合适的处理，导致 “精心构造” 的字符输出在前端时被浏览器当作有效代码解析执行从而产生危害。</p>
 <h3><span id="分类"> 分类</span></h3>
 <ol>
-<li>
-<p>反射性 XSS<br>
+<li>反射性 XSS<br>
  前端–&gt; 后端–&gt; 前端<br>
 需要用户将构造的 url 发送给用户才可出发。<br>
 危害可能单点利用可能较小，需要精心构造 url 或者结合其他漏洞一起使用。<br>
-通常用于获取用户信息，主要是信息收集，如果能获取 cookie 结合其他漏洞比如 csrf 等。</p>
+通常用于获取用户信息，主要是信息收集，如果能获取 cookie 结合其他漏洞比如 csrf 等。</li>
+</ol>
+<ul>
+<li>svg 类型 xss<br>
+SVG (Scalable Vector Graphics) 是一种基于 XML 的二维矢量图格式，和我们平常用的 jpg/png 等图片格式所不同的是 SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失，并且我们可以使用任何的文本编辑器打开 SVG 图片并且编辑它，目前主流的浏览器都已经支持 SVG 图片的渲染。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot;&gt;</span><br><span class="line">   &lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;red&quot; /&gt;</span><br><span class="line">   &lt;script&gt;alert(1)&lt;/script&gt;</span><br><span class="line">&lt;/svg&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>PDF 类型 xss<br>
+1、创建 PDF，加入动作 JS<br>
+2、通过文件上传获取直链<br>
+ 3、直链地址访问后被触发</p>
 </li>
+<li>
+<p>flash 类型 xss<br>
+1、制作 swf-xss 文件</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、新建swf文件</span><br><span class="line">2、F9进入代码区域</span><br><span class="line">3、属性发布设置解析</span><br><span class="line">//取m参数</span><br><span class="line">var m=_root.m;</span><br><span class="line">//调用html中Javascript中的m参数值</span><br><span class="line">flash.external.ExternalInterface.call(m);</span><br><span class="line">触发：?m=alert(/xss/)</span><br><span class="line">相关工具：Adobe Flash Professional CS6</span><br></pre></td></tr></table></figure>
+<p>2、测试 swf 文件是否存在 xss 漏洞</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、反编译swf文件</span><br><span class="line">2、查找触发危险函数</span><br><span class="line">3、找可控参数访问触发</span><br><span class="line">xss一是指执行恶意js，那么为什么说flash xss呢？是因为flash有可以调用js的函数，也就是可以和js通信，因此这些函数如果使用不当就会造成xss。常见的可触发xss的危险函数有：getURL，navigateToURL，ExternalInterface.call，htmlText，loadMovie等等</span><br><span class="line">项目：JPEXS Free Flash Decompiler</span><br></pre></td></tr></table></figure>
+<ul>
+<li>mXSS<br>
+ 参考：<a target="_blank" rel="noopener" href="https://www.fooying.com/the-art-of-xss-1-introduction/">https://www.fooying.com/the-art-of-xss-1-introduction/</a><br>
+ 原本正常访问经过实体化是不存在漏洞的，但是由于一些特殊原因比如说反编码等导致 XSS。<br>
+一个例子：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">博客园链接编译实体化不会造成反射型XSS弹窗显示，但是将博客园链接放到qq客户端浏览器预览功能上，成功造成反射型XSS，这个页面对原网页内容进行提取和处理的过程中，将原本无害的XSS Payload进行了转码操作，于是导致了Payload 变异而产生了XSS</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实际上，页面预览这个功能不是针对所有网址都可以预览，对于一些大型的网站，估计是有白名单机制或者是认证的网站，才能进行预览，随便一个网址是不可以的，这本身也是一种信任的限制在里面，如果是随意的网站，那就更好控制内容了，所以对于域名是有限制的；这里也存在一个信任的问题，理论上，这些大站的内容应该是没问题的，但实际情况是可被控制而导致产生XSS</span><br></pre></td></tr></table></figure>
+<ul>
+<li>UXSS<br>
+UXSS 全称 Universal Cross-Site Scripting，翻译过来就是通用型 XSS，也叫 Universal  XSS。UXSS 是一种利用浏览器或者浏览器扩展漏洞来制造产生 XSS 的条件并执行代码的一种攻击类型。UXSS 可以理解为 Bypass 同源策略。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">同源策略：不同域的客户端脚本在没明确授权的情况下，不能读写对方的资源</span><br></pre></td></tr></table></figure>
+<p>比如使用某些浏览器翻译功能或者使用其他 插件。</p>
+<ol start="2">
 <li>
 <p>存储型 XSS<br>
  前端–&gt; 后端–&gt; 数据库–&gt; 前端<br>
@@ -981,7 +1015,7 @@ Apache</li>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2023/03/31/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/" data-id="cle41qed20000cctna91555iy" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2024/04/05/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/" data-id="cle41qed20000cctna91555iy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -990,19 +1024,10 @@ Apache</li>
     
 <nav id="article-nav">
   
-    <a href="/2023/04/01/web_code/webcode_learning/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          web前端学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/19/Mind%20maps/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/12/20/learning%20share/POC%E7%BC%96%E5%86%99%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">思维导图</div>
+      <div class="article-nav-title">POC编写总结</div>
     </a>
   
 </nav>
@@ -1034,7 +1059,7 @@ Apache</li>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2001/12/">December 2001</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1045,6 +1070,10 @@ Apache</li>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/04/05/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/">Web常见漏洞</a>
+          </li>
         
           <li>
             <a href="/2023/12/20/learning%20share/POC%E7%BC%96%E5%86%99%E6%80%BB%E7%BB%93/">POC编写总结</a>
@@ -1060,10 +1089,6 @@ Apache</li>
         
           <li>
             <a href="/2023/10/24/learning%20share/%E4%BD%BF%E7%94%A8python%E5%AF%B9excel%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%88%E5%9F%BA%E7%A1%80%E7%89%88%EF%BC%89/">使用python对excel表的操作（基础版~）</a>
-          </li>
-        
-          <li>
-            <a href="/2023/10/17/Penetration%20testing/%E5%AD%A6%E4%B9%A0%E6%80%9D%E8%80%83/">学习思考</a>
           </li>
         
       </ul>
@@ -1083,7 +1108,7 @@ Apache</li>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2023 草莓布丁<br>
+      &copy; 2024 草莓布丁<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
 
     </div>
